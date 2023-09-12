@@ -1,0 +1,18 @@
+{
+  "workDir": ".",
+  "dependencies": [
+    {
+      "name": "zxing-wrapper",
+      "src": "http://github.com/webcardinal/zxing-wrapper.git",
+      "actions": [
+        {
+          "type": "smartClone",
+          "target": "./lib",
+          "collectLog": false,
+          "commit": "b29ec753a51a43a548fc93ac33b82bcd1057c56c",
+          "tag": "v1.1.1"
+        }
+      ]
+    }
+  ]
+}
