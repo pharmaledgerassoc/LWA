@@ -825,7 +825,9 @@ b {
     border-radius: 3px;
     height: 100%;
     top: 3px;
-    padding-right: 5px;
+    box-shadow: 0 0 1px 1px lightgrey;
+    margin-right: 2px;
+    margin-left: 4px;
 }
 
 .modal-content .languages-container .language-item-container input {
