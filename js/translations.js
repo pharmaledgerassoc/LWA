@@ -592,7 +592,7 @@ export function changeLanguage(newLang) {
 function setDefaultLanguage() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  let appLang = urlParams.get("lang") || localStorage.getItem(constants.APP_LANG) || window.navigator.language.slice(0, 2);
+  let appLang = urlParams.get("lang") || window.navigator.language.toLowerCase() || localStorage.getItem(constants.APP_LANG);
   appLang = translations[appLang] ? appLang : "en"
   localStorage.setItem(constants.APP_LANG, appLang);
   setTextDirectionForLanguage(appLang);
