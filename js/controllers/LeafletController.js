@@ -134,7 +134,13 @@ function LeafletController() {
     let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
     let leafletImages = resultDocument.querySelectorAll("img");
     for (let image of leafletImages) {
-      image.setAttribute("src", result.leafletImages[image.getAttribute("src")]);
+      let imageSrc = image.getAttribute("src");
+      let dataUrlRegex = new RegExp(/^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i);
+      if(!!imageSrc.match(dataUrlRegex) || imageSrc.startsWith("data:")){
+        //we don't alter already embedded images
+        continue;
+      }
+      image.setAttribute("src", this.images[imageSrc]);
     }
     let sectionsElements = resultDocument.querySelectorAll(".leaflet-accordion-item");
     let htmlContent = "";
