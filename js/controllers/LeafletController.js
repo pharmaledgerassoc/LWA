@@ -140,7 +140,7 @@ function LeafletController() {
         //we don't alter already embedded images
         continue;
       }
-      image.setAttribute("src", this.images[imageSrc]);
+      image.setAttribute("src", result.leafletImages[imageSrc]);
     }
     let sectionsElements = resultDocument.querySelectorAll(".leaflet-accordion-item");
     let htmlContent = "";
