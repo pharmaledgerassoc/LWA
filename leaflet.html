@@ -13,7 +13,7 @@
     <div class="modal-body">
         <div class="page-header modal-header left-aligned-header">
             <div class="icon-title-container">
-                <h4 class="product-name"></h4>
+                <h1 class="product-name"></h1>
                 <!--<div class="modal-icon leaflet-title-icon hiddenElement"></div>-->
             </div>
             <div class="product-description"></div>
@@ -47,10 +47,10 @@
         <div class="modal-header centered-header">
             <div class="icon-title-container">
                 <div class="modal-icon"></div>
-                <div class="modal-title" id="incorrect-date-title" translate="leaflet_incorrect_date_title"></div>
+                <h1 class="modal-title" id="incorrect-date-title" translate="leaflet_incorrect_date_title" role="alert"></h1>
             </div>
-            <div class="close-modal" modal-id="incorrect-date-modal"
-                 aria-label="close error modal"></div>
+            <button class="close-modal" modal-id="incorrect-date-modal"
+                 aria-label="close error modal"></button>
         </div>
         <div class="modal-content" translate="leaflet_incorrect_date_message"></div>
     </div>
@@ -68,7 +68,7 @@
         <div class="modal-content" role="alert">
             <div class="text-section has-leaflets" translate="leaflet_lang_select_message"></div>
             <!-- <div class="text-section no-leaflet" translate="no_leaflet_message"></div>-->
-            <div class="languages-container"></div>
+            <div class="languages-container" role="radiogroup"></div>
             <button id="proceed-button" class="proceed-button has-leaflets"
                     translate="lang_proceed"></button>
             <div id="modal-scan-again-button" class="proceed-button no-leaflet"

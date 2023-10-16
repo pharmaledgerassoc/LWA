@@ -47,14 +47,14 @@ export const translations = {
     "about_content": "<iframe style=\"width: 100%; height: 100%; margin-bottom: 24px; border: 0\" src=\"https://pharmaledger.org\"></iframe>",
     "help_modal_title": "Help",
     "help_modal_subtitle": "FAQs",
-    "help_content": "<div><p><b>What is EPI?</b></p>" +
+    "help_content": "<div><p><b><h2>What is EPI?</h2></b></p>" +
       "<p>" +
       "    <b>EPI</b> is an abbreviation for <b>electronic product information.</b> It is an electronic version of the paper" +
       "    Product Information leaflet you typically find inside a pharmaceutical product package. In some cases, the" +
       "    <b>EPI</b> may have replaced the paper leaflet." +
       "</p>" +
       "<p>" +
-      "    <b>What is PharmaLedger?</b>" +
+      "    <b><h2>What is PharmaLedger?</h2></b>" +
       "</p>" +
       "<p>The PharmaLedger Association (PLA) is a not-for-profit association based in Switzerland with the purpose to enable" +
       "    and foster a Digital Trust Ecosystem in healthcare through a standardized and trusted open-source platform. PLA" +
@@ -63,13 +63,13 @@ export const translations = {
       "    project, a 3-year project funded by the European Commission and the pharmaceutical industry aimed at proving the" +
       "    value of blockchain solutions. Further information is available at <a href=\"https://pharmaledger.org/\">https://pharmaledger.org/</a>." +
       "</p>" +
-      "<p><b>What is the DataMatrix?</b></p>" +
+      "<p><b><h2>What is the DataMatrix?</h2></b></p>" +
       "<p>It's a type of barcode on your product package. It is a black and white square box barcode and will look similar to" +
       "    this:<br>" +
       "    <img src=\"./images/barcode_example.png\">" +
       "</p>" +
       "<p>" +
-      "    <b>How to use the App?</b>" +
+      "    <b><h2>How to use the App?</h2></b>" +
       "</p>" +
       "<p>" +
       "    Follow the instructions on the landing page of the <b>App...</b> it shows a picture of where to find the" +
@@ -79,7 +79,7 @@ export const translations = {
       "    use the camera so the <b>DataMatrix</b> can be scanned. Use the camera to focus on the <b>DataMatrix</b>. Once the" +
       "    pack is scanned" +
       "    successfully, the <b>EPI</b> will be displayed. You can click the '+' button to get more details." +
-      "</p><p><b>Why does my DataMatrix scan not give a result?</b></p><p>" +
+      "</p><p><b><h2>Why does my DataMatrix scan not give a result?</h2></b></p><p>" +
       "    There are several reasons why the <b>DataMatrix</b> on your package may not give an EPI. One of the reasons could be" +
       "    the" +
       "    focus for the camera. Please try to scan the code in a well lit place and code clearly visible on the screen. If you" +
