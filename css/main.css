@@ -42,19 +42,25 @@
 
 }
 
+html {
+    width: 100vw;
+    height: 100vh;
+}
+
 body {
     padding: 0;
     width: 24%;
-    min-width: 435px;
+    min-width: 460px;
     margin-right: auto;
     margin-left: auto;
     background-image: url("./../images/background.jpg");
     background-repeat: no-repeat;
     background-position: center center;
-    background-size: cover;
     display: flex;
     font-family: "DM Sans";
+    height: 100%;
 }
+
 
 b {
     font-family: "DM Sans bold";
@@ -101,13 +107,13 @@ b {
     color: #fff;
     border-radius: 30px;
     align-self: center;
-    max-height: min(86%, 960px);
-    min-height: min(86%, 960px);
     width: 100%;
     display: flex;
     flex-direction: column;
     position: relative;
-    height: 100%;
+    min-width: max(24%, 460px);
+    min-height: min(96%, 960px);
+    height: min(96%, 960px);
 }
 
 
@@ -150,13 +156,19 @@ b {
     font-size: calc(100% + 1vmin);
 }
 
+body[dir="RTL"] .terms-content-container h2 {
+    text-align: right;
+    font-size: calc(100% + 1vmin);
+}
+
+
 .terms-content-container {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-height: 70%;
-    margin: 0 24px 24px;
+    max-height: 70.5%;
+    margin: 0 min(24px, 3%) 0px;
     font-size: calc(100% + 0.1vmin);
 }
 
@@ -187,10 +199,11 @@ b {
 .terms-container .terms-buttons-container {
     display: flex;
     justify-content: space-around;
-    margin-bottom: 14px;
+    margin-bottom: 24px;
     margin-left: 10px;
     margin-right: 10px;
     gap: 10px;
+    flex-wrap: wrap;
 }
 
 .menu-icon {
@@ -334,6 +347,7 @@ b {
     animation-direction: alternate;
     margin: 12% 90px 6%;
     border-radius: 15px;
+    min-width: 85px;
 }
 
 .icon-div {
@@ -417,7 +431,8 @@ b {
     display: flex;
     justify-content: space-between;
     height: 10%;
-    align-items: end;
+    align-items: center;
+    margin: 4% 6%;
     font-family: 'DM Sans semi-bold';
     font-size: calc(100% + 0.1vmin);
 }
@@ -426,6 +441,7 @@ b {
     overflow: hidden;
     position: relative !important;
     height: 90%;
+    border-radius: 0px 0px 30px 30px;
 }
 
 
@@ -437,7 +453,7 @@ b {
     color: white;
     border: 0;
     font-family: 'DM Sans semi-bold';
-    font-size: 1em;
+    font-size: calc(100% + 0.1vmin);
 }
 
 .page-container.error-page {
@@ -449,15 +465,17 @@ b {
     background: var(--green-200);
 }
 
-.leaflet-page .page-header, .error-page .page-header {
+.leaflet-page .page-header,
+.error-page .page-header {
     display: flex;
     flex-direction: column;
     height: 20%;
     justify-content: center;
 }
 
-.leaflet-page .page-content, .error-page .page-content {
-    height: 86%;
+.leaflet-page .page-content,
+.error-page .page-content {
+    height: 88%;
     position: relative;
     color: #04313B;
     background: #fff;
@@ -532,7 +550,7 @@ b {
 .leaflet-accordion-item {
     padding: 0px 1vh;
     border-bottom: 0.5px solid #E5EAEB;
-    line-height: 3vh;
+    line-height: 1.2;
 }
 
 .leaflet-accordion-item h2 {
@@ -559,12 +577,12 @@ b {
     visibility: visible;
     position: relative;
     float: right;
-    width: 7%;
-    height: 3vh;
     background-image: url(../images/accordion-open.svg);
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
 }
 
 .leaflet-accordion-item.active:before {
@@ -591,6 +609,12 @@ b {
     position: relative;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    max-height: 90%;
+}
+
+.info-modal.modal-container .modal-body {
+    max-height: 100%;
 }
 
 .modal-header.centered-header {
@@ -607,7 +631,13 @@ b {
     border-radius: 30px 30px 0px 0px;
     height: fit-content;
     padding: 1.5rem 24px;
-    height: 14%;
+    height: 12%;
+    width: calc(100% - 48px);
+}
+
+.gap-element {
+    min-width: min(12px, 5%);
+    height: 100%;
 }
 
 .modal-header.centered-header .icon-title-container {
@@ -646,7 +676,6 @@ b {
 
 .modal-header.left-aligned-header .modal-title {
     text-align: left;
-    margin-right: 12px;
 }
 
 #settings-modal {
@@ -672,12 +701,11 @@ b {
     justify-content: center;
     align-self: center;
     z-index: 100;
-    height: 100%;
+    height: min(96vh, 960px);
     border-radius: 30px;
     min-width: 435px;
     width: max(24%, 460px);
-    max-height: min(86%, 960px);
-    min-height: min(86%, 960px);
+    min-height: 960px;
 }
 
 #scan-error {
@@ -768,7 +796,7 @@ b {
     position: relative;
     overflow: auto;
     color: #04313B;
-    min-height: 170px;
+    height: 100%;
     padding: 24px;
     max-height: 60vh;
     border-radius: 0px 0px 30px 30px;
@@ -793,41 +821,36 @@ b {
 
 .modal-content .languages-container .language-item-container {
     font-family: 'DM Sans semi-bold';
-    border: 0.5px solid #D0D5DD;
+    font-size: calc(50% + 1vmin);
+    border: 0.5px solid var(--grey);
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     padding: 10px 0px;
-    height: 2vh;
-    border-radius: 5px;
+    border-radius: 18px;
+    gap: 10px;
+    overflow: auto;
 }
 
-.flag-label-wrapper {
-    width: 85%;
-    min-width: 85%;
-    position: relative;
-    padding: 0px 5px;
-    display: flex;
-}
-
-.flag-label-wrapper label {
-    position: relative;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    align-self: center;
+.modal-content .languages-container .language-item-container:has(input[name='languages']:checked) {
+    background: var(--grey);
 }
 
 .modal-content .languages-container .language-item-container .language-flag {
     vertical-align: baseline;
-    width: 10%;
+    width: 5rem;
     position: relative;
-    border-radius: 3px;
+    border-radius: 50%;
     height: 100%;
-    top: 3px;
-    box-shadow: 0 0 1px 1px lightgrey;
-    margin-right: 2px;
-    margin-left: 4px;
+    margin-left: 10px;
+    aspect-ratio: 1;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    max-width: 42px;
+    min-width: 32px;
+    box-shadow: inset 0 0 10px lightgrey;
+
 }
 
 .modal-content .languages-container .language-item-container input {
@@ -835,6 +858,8 @@ b {
     position: relative;
     height: fit-content;
     min-height: 15px;
+    margin-right: 10px;
+    min-width: 10px;
 }
 
 .proceed-button {
@@ -941,9 +966,7 @@ body[dir="RTL"] #leaflet-content h2 {
     position: absolute;
     display: none;
     background: white;
-    height: 100%;
-    max-height: min(86%, 960px);
-    min-height: min(86%, 960px);
+    height: min(96vh, 960px);
     border-radius: 30px;
     width: max(24%, 460px);
     min-width: 435px;
@@ -971,6 +994,7 @@ body[dir="RTL"] #leaflet-content h2 {
         min-height: unset;
         margin: 0;
         overflow: auto;
+        min-width: 100%;
     }
 
     .page-container {
@@ -991,6 +1015,9 @@ body[dir="RTL"] #leaflet-content h2 {
         height: 100%;
         max-height: 100%;
         border-radius: unset;
+        flex-direction: column;
+        justify-content: center;
+        min-height: unset;
     }
 
     .modal-header.left-aligned-header,
@@ -1016,6 +1043,12 @@ body[dir="RTL"] #leaflet-content h2 {
         font-size: calc(100% + 2.5vmin);
     }
 
+    .scan-header {
+        height: fit-content;
+        overflow-x: auto;
+        overflow-y: hidden;
+    }
+
     .scan-page #scanner-placeholder {
         height: 100%;
         max-width: 100%;
@@ -1029,11 +1062,12 @@ body[dir="RTL"] #leaflet-content h2 {
         width: 100%;
     }
 
-    #scan-error {
-        top: 0px;
+    #scanner-placeholder canvas{
+        width: 100%;
+        height: 100%;
     }
 
-    #scanner-placeholder canvas#scene {
+   /* #scanner-placeholder canvas#scene {
         width: 200%;
         height: 200%;
     }
@@ -1044,6 +1078,10 @@ body[dir="RTL"] #leaflet-content h2 {
         top: -10%;
         left: 0%;
         transform: translate(-30%, 10%);
+    }*/
+
+    .modal-content .languages-container .language-item-container {
+        font-size: calc(75% + 1vmin);
     }
 
     /*  .leaflet-page .product-name,
@@ -1087,7 +1125,7 @@ body[dir="RTL"] #leaflet-content h2 {
 
     .go-back-button,
     .proceed-button {
-        font-size: 2.5vh;
+        font-size: calc(100% - 1vmin);
         padding: 16px;
     }
 
@@ -1099,7 +1137,7 @@ body[dir="RTL"] #leaflet-content h2 {
     #leaflet-content .select-lang-text,
     #leaflet-content .languages-list {
         font-size: calc(100% - 0.5vmin);
-        line-height: 3vh;
+        line-height: 1.2;
     }
 
     #leaflet-content h2 {
@@ -1424,7 +1462,6 @@ body[dir="RTL"] #leaflet-content h2 {
         background-image: url(./../images/background.jpg);
         background-repeat: no-repeat;
         background-position: center center;
-        background-size: cover;
     }
 
     .modal-container {
@@ -1472,8 +1509,3 @@ body[dir="RTL"] #leaflet-content h2 {
 }
 
 
-@media only screen and (max-width: 435px) {
-    body {
-        min-width: 300px;
-    }
-}
