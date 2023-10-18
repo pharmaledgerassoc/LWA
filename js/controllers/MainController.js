@@ -38,8 +38,10 @@ function MainController() {
 
     let menuContainer = document.querySelector(".app-menu-container");
     menuContainer.classList.toggle("hidden");
-    document.querySelector(".scan-button-container .scan-button").setAttribute("tabindex", "-1");
-    let liElements = menuContainer.querySelectorAll('li');
+    menuContainer.addEventListener('transitionend', (e) => {
+      menuContainer.querySelector('li').focus();
+    });
+    let liElements = menuContainer.querySelectorAll('li.forward-to-page');
     liElements.forEach(function (li) {
       li.addEventListener("keydown", function (event) {
         if (event.key === "Enter" || event.key === " ") {
@@ -47,9 +49,6 @@ function MainController() {
         }
       });
     });
-    if (menuContainer.classList.contains("hidden")) {
-      document.querySelector(".scan-button-container .scan-button").setAttribute("tabindex", "2");
-    }
   }
 
   this.checkOnboarding = function () {
@@ -111,7 +110,22 @@ function MainController() {
   }
 
   let addEventListeners = () => {
-    document.getElementById("hamburger-menu-button").addEventListener("click", this.toggleMenu)
+    let menuContainer = document.querySelector(".app-menu-container");
+    let menuButton = document.getElementById("hamburger-menu-button");
+
+    document.getElementById("hamburger-menu-button").addEventListener("click", this.toggleMenu);
+    document.addEventListener('keydown', evt => {
+      if (evt.key === 'Escape') {
+        if (!menuContainer.classList.contains("hidden")) {
+          menuContainer.classList.add("hidden");
+        }
+      }
+    });
+    document.querySelector("body").addEventListener("click", (event) => {
+      if (event.target != menuContainer && event.target != menuButton) {
+        menuContainer.classList.add("hidden");
+      }
+    })
     document.querySelectorAll(".app-menu-container li.forward-to-page").forEach(item => {
       item.addEventListener("click", (event) => {
         this.showModal(event.currentTarget.getAttribute("modal-name"))
