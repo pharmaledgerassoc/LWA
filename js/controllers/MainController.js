@@ -32,23 +32,9 @@ function MainController() {
 
   this.toggleMenu = function () {
     let menuButton = document.getElementById("hamburger-menu-button");
-    if (menuButton) {
-      menuButton.setAttribute("aria-expanded", menuButton.getAttribute("aria-expanded") != "true");
-    }
-
+    menuButton.setAttribute("aria-expanded", menuButton.getAttribute("aria-expanded") != "true");
     let menuContainer = document.querySelector(".app-menu-container");
     menuContainer.classList.toggle("hidden");
-    menuContainer.addEventListener('transitionend', (e) => {
-      menuContainer.querySelector('li').focus();
-    });
-    let liElements = menuContainer.querySelectorAll('li.forward-to-page');
-    liElements.forEach(function (li) {
-      li.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" || event.key === " ") {
-          li.click();
-        }
-      });
-    });
   }
 
   this.checkOnboarding = function () {
@@ -112,6 +98,19 @@ function MainController() {
   let addEventListeners = () => {
     let menuContainer = document.querySelector(".app-menu-container");
     let menuButton = document.getElementById("hamburger-menu-button");
+
+    menuContainer.addEventListener('transitionend', (e) => {
+      menuContainer.querySelector('li').focus();
+    });
+
+    let liElements = menuContainer.querySelectorAll('li.forward-to-page');
+    liElements.forEach(function (li) {
+      li.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          li.click();
+        }
+      });
+    });
 
     document.getElementById("hamburger-menu-button").addEventListener("click", this.toggleMenu);
     document.addEventListener('keydown', evt => {

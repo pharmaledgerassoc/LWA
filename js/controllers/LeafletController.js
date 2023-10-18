@@ -174,12 +174,12 @@ function LeafletController() {
         site for flags https://flagpedia.net/download
       */
       result.availableLanguages.forEach((lang, index) => {
-        let langRadio = `<div class="flag-label-wrapper">
-        <label for="${lang.value}"> 
-          <img src="./images/flags/${lang.value}.svg" class="language-flag" alt=""/> ${lang.label} - (${lang.nativeName})
-        </label> 
-        </div><input type="radio" name="languages" ${index === 0 ? "checked" : ""} value="${lang.value}" id="${lang.value}">`;
-        let radioFragment = document.createElement('div');
+        let langRadio = `
+         <div class="language-flag" style="background-image: url(./images/flags/${lang.value}.svg);"></div>
+         <div class="language-label">${lang.label} - (${lang.nativeName})</div>
+         <input type="radio" name="languages" ${index === 0 ? "checked" : ""} value="${lang.value}" id="${lang.value}">
+        `;
+        let radioFragment = document.createElement('label');
         radioFragment.classList.add("language-item-container");
         radioFragment.innerHTML = langRadio;
         languagesContainer.appendChild(radioFragment);
@@ -213,6 +213,3 @@ const leafletController = new LeafletController();
 
 
 window.leafletController = leafletController;
-
-
-

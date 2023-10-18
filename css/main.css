@@ -43,8 +43,10 @@
 }
 
 html {
-    width: 100vw;
-    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
 }
 
 body {
@@ -638,9 +640,8 @@ body[dir="RTL"] .terms-content-container h2 {
     justify-content: center;
     border-radius: 30px 30px 0px 0px;
     height: fit-content;
-    padding: 1.5rem 24px;
-    height: 12%;
-    width: calc(100% - 48px);
+    padding: 2.5rem 1.5rem;
+    min-height: 7%;
 }
 
 .gap-element {
@@ -659,7 +660,9 @@ body[dir="RTL"] .terms-content-container h2 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: -webkit-fill-available;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
     position: relative;
 }
 
@@ -684,6 +687,7 @@ body[dir="RTL"] .terms-content-container h2 {
 
 .modal-header.left-aligned-header .modal-title {
     text-align: left;
+    margin-right: 12px;
 }
 
 #settings-modal {
@@ -857,8 +861,11 @@ body[dir="RTL"] .terms-content-container h2 {
     background-size: cover;
     max-width: 42px;
     min-width: 32px;
-    box-shadow: inset 0 0 10px lightgrey;
+    box-shadow: inset 0 0 10px var(--grey);
+}
 
+.modal-content .languages-container .language-item-container .language-label {
+    flex-grow: 1;
 }
 
 .modal-content .languages-container .language-item-container input {
@@ -1047,8 +1054,10 @@ body[dir="RTL"] #leaflet-content h2 {
 
     .leaflet-page .product-name,
     .modal-header .header-title,
-    .modal-header .modal-title {
+    .modal-header .modal-title,
+    .error-page .header-title {
         font-size: calc(100% + 2.5vmin);
+        font-family: 'DM Sans bold';
     }
 
     .scan-header {
@@ -1070,24 +1079,23 @@ body[dir="RTL"] #leaflet-content h2 {
         width: 100%;
     }
 
-    #scanner-placeholder canvas{
+    #scanner-placeholder canvas {
         width: 100%;
         height: 100%;
     }
 
-   /* #scanner-placeholder canvas#scene {
-        width: 200%;
-        height: 200%;
-    }
+    /* #scanner-placeholder canvas#scene {
+         width: 200%;
+         height: 200%;
+     }
 
-    #scanner-placeholder canvas#overlay {
-        width: 200%;
-        height: 200%;
-        top: -10%;
-        left: 0%;
-        transform: translate(-30%, 10%);
-    }*/
-
+     #scanner-placeholder canvas#overlay {
+         width: 200%;
+         height: 200%;
+         top: -10%;
+         left: 0%;
+         transform: translate(-30%, 10%);
+     }*/
     .modal-content .languages-container .language-item-container {
         font-size: calc(75% + 1vmin);
     }
@@ -1484,6 +1492,7 @@ body[dir="RTL"] #leaflet-content h2 {
 @media only screen and (orientation: landscape) and (max-device-width: 768px) {
 
     body {
+        min-height: unset;
         width: max(60%, 460px);
     }
 
@@ -1514,6 +1523,12 @@ body[dir="RTL"] #leaflet-content h2 {
 
 .ignore-tab {
     tab-index: -1;
+}
+
+@media only screen and (max-width: 435px) {
+    body {
+        min-width: 300px;
+    }
 }
 
 
