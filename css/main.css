@@ -1081,8 +1081,7 @@ body[dir="RTL"] #leaflet-content h2 {
     }
 
     #scanner-placeholder canvas {
-        width: 100%;
-        height: 100%;
+        border-radius: unset;
     }
 
     /* #scanner-placeholder canvas#scene {
