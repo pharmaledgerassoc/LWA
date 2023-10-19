@@ -9,7 +9,7 @@
           "type": "smartClone",
           "target": "./lib",
           "collectLog": false,
-          "commit": "5d168b6c0d239e8b23d2ff5dd3d27b9f48825d82",
+          "commit": "b29ec753a51a43a548fc93ac33b82bcd1057c56c",
           "tag": "v1.1.1"
         }
       ]

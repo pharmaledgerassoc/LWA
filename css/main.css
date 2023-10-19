@@ -1069,6 +1069,7 @@ body[dir="RTL"] #leaflet-content h2 {
     .scan-page #scanner-placeholder {
         height: 100%;
         max-width: 100%;
+        border-radius: unset;
     }
 
     .loader-container {
@@ -1494,6 +1495,7 @@ body[dir="RTL"] #leaflet-content h2 {
     body {
         min-height: unset;
         width: max(60%, 460px);
+        background: none;
     }
 
     .modal-header.centered-header {
