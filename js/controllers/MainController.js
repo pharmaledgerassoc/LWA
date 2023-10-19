@@ -32,7 +32,8 @@ function MainController() {
 
   this.toggleMenu = function () {
     let menuButton = document.getElementById("hamburger-menu-button");
-    menuButton.setAttribute("aria-expanded", menuButton.getAttribute("aria-expanded") != "true");
+    let menuExpanded = menuButton.getAttribute("aria-expanded") != "true";
+    menuButton.setAttribute("aria-expanded", menuExpanded);
     let menuContainer = document.querySelector(".app-menu-container");
     menuContainer.classList.toggle("hidden");
   }
@@ -99,9 +100,23 @@ function MainController() {
     let menuContainer = document.querySelector(".app-menu-container");
     let menuButton = document.getElementById("hamburger-menu-button");
 
-    menuContainer.addEventListener('transitionend', (e) => {
-      menuContainer.querySelector('li').focus();
+    const focusableElements = document.querySelectorAll('.app-menu-container li');
+
+    // Add event listener to the menu to capture the Tab key press
+    menuContainer.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        event.preventDefault(); // Prevent the default tab behavior
+
+        for (let i = 0; i < focusableElements.length; i++) {
+          if (focusableElements[i] === document.activeElement) {
+            let nextIndex = (i + 1) % focusableElements.length;
+            focusableElements[nextIndex].focus();
+            break;
+          }
+        }
+      }
     });
+
 
     let liElements = menuContainer.querySelectorAll('li.forward-to-page');
     liElements.forEach(function (li) {

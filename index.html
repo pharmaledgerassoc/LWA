@@ -15,7 +15,8 @@
         <div class="pharmaledger-logo">
             <img src="images/app-icon.svg" alt="PharmaLedger Association Logo">
         </div>
-        <button id="hamburger-menu-button" class="menu-icon" tabindex="1" aria-label="menu" aria-expanded="false"></button>
+        <button id="hamburger-menu-button" class="menu-icon" tabindex="1" aria-label="menu"
+                aria-expanded="false"></button>
         <ul class="app-menu-container hidden" role="list">
             <li id="terms-link" class="forward-to-page" modal-name="terms" role="listitem" tabindex="2">
                 <div class="label" translate="fwd_terms"></div>
@@ -36,11 +37,12 @@
                 <div class="label" translate="fwd_help"></div>
                 <div class="fwd-icon"></div>
             </li>
-            <li class="more-options-link"><span translate="app_version"></span> <span id="app_version_number"></span>
+            <li class="more-options-link" role="listitem" tabindex="6">
+                <span translate="app_version"></span> <span id="app_version_number"></span>
             </li>
         </ul>
     </div>
-    <div class="welcome-container" role="main">
+    <div class="welcome-container" role="main" tabindex="0">
         <h1 translate="welcome"></h1>
     </div>
     <div class="terms-content-container" role="contentinfo">
@@ -58,7 +60,7 @@
     <div class="content-container">
         <div class="icon-div"></div>
     </div>
-    <div class="explain-container">
+    <div class="explain-container" tabindex="0">
         <span translate="scan_explain"></span>
     </div>
     <div class="scan-button-container">

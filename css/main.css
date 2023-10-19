@@ -271,11 +271,6 @@ body[dir="RTL"] .terms-content-container h2 {
     margin: 5% 4%;
 }
 
-.app-menu-container:not(:focus-within) {
-    background-color: rgb(255, 255, 254);
-    transition: background-color 0.01s;
-}
-
 .forward-to-page {
     display: flex;
     justify-content: space-between;
