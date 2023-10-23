@@ -692,7 +692,7 @@ const langSubtypesMap = {
   "fr-ca": "fr",
   "nl-nl": "nl",
   "ko-kr": "ko",
-  "zh_cn": "zh",
+  "zh-cn": "zh",
   "zh-hans": "zh",
   "zh-hant": "zh",
   "zh-hk": "zh"

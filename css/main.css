@@ -81,6 +81,9 @@ b {
     z-index: 200;
 }
 
+body[dir="RTL"] .loader {
+    right: calc(50% - 51px);
+}
 
 @keyframes spin {
     0% {
