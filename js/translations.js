@@ -644,7 +644,7 @@ export const translations = {
     "help_modal_title": "Ajuda",
     "help_modal_subtitle": "Perguntas Frequentes",
     "help_content": "<div><p><b><h2>O que é EPI?</h2></b></p>" +
-      "<p><b>EPI</b> é uma abreviação de <b>informativo eletrônica do produto</b>. É uma versão eletrônica do folheto informativo do produto em papel que você normalmente encontra dentro de uma embalagem de produto farmacêutico. Em alguns casos, o <b>EPI</b> pode ter substituído o folheto em papel.</p>" +
+      "<p><b>EPI</b> é uma abreviação de <b>informativo eletrônico do produto</b>. É uma versão eletrônica do folheto informativo do produto em papel que você normalmente encontra dentro de uma embalagem de produto farmacêutico. Em alguns casos, o <b>EPI</b> pode ter substituído o folheto em papel.</p>" +
       "<p><b><h2>O que é PharmaLedger?</h2></b></p>" +
       "<p>A Associação PharmaLedger (PharmaLedger Association PLA) é uma associação sem fins lucrativos com sede na Suíça com o objetivo de habilitar e promover um ecossistema de confiança digital na área da saúde por meio de uma plataforma de código aberto padronizada e confiável. A PLA promove a colaboração e acelera a inovação e a adoção para alcançar benefícios mútuos nos domínios da saúde e das ciências da vida para pacientes e outras partes interessadas. A PLA foi formado em 2022 para continuar o trabalho do projeto PharmaLedger, um projeto de 3 anos financiado pela Comissão Europeia e pela indústria farmacêutica com o objetivo de provar o valor das soluções blockchain. Mais informações estão disponíveis no site <a href=\"https://pharmaledger.org/\">https://pharmaledger.org/</a>.</p>" +
       "<p><b><h2>O que é o DataMatrix?</h2></b></p>" +
