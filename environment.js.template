@@ -1,11 +1,11 @@
 export default {
-  "epiDomain": "localhost.epi",
+  "epiDomain": "${epi_domain}",
   "epiProtocolVersion": 1,
-  "appBuildVersion":  "2023.x.x",
-  "timePerCall": 10000,
-  "totalWaitTime": 60000,
-  "gto_TimePerCall": 3000,
-  "gto_TotalWaitTime": 15000,
+  "appBuildVersion":  "${app_build_version}",
+  "timePerCall": ${time_per_call},
+  "totalWaitTime": ${total_wait_time},
+  "gto_TimePerCall": ${gto_time_per_call},
+  "gto_TotalWaitTime": ${gto_total_wait_time},
   "enableEpiDomain": true,
-  "bdnsUrl": "https://raw.githubusercontent.com/pharmaledgerassoc/mobile-bdns/master/bdns.json"
+  "bdnsUrl": "${bdns_url}"
 }
