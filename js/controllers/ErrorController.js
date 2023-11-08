@@ -31,10 +31,6 @@ function ErrorController() {
       document.querySelector(".page-content .error-text").innerHTML = `<p> <b>${getTranslation("system_busy")} </b></p>`;
       break;
   }
-  if (document.querySelector(".modal-title.header-title").innerText.length > 22) {
-    document.querySelector(".modal-title.header-title").style.fontSize = "3vh";
-    document.querySelector(".modal-icon").style.height = "7vh";
-  }
 
   this.scanAgainHandler = function () {
     goToPage("/scan.html")

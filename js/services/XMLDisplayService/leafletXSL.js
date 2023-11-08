@@ -1,4 +1,4 @@
-const defualtXslContent = `<?xml version="1.0" encoding="UTF-8"?>
+const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="urn:hl7-org:v3"
@@ -32,19 +32,19 @@ const defualtXslContent = `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
 
     <xsl:template match="xs:paragraph">
-        <p>
+        <p tabindex="0">
             <xsl:apply-templates select="@*|node()"/>
         </p>
     </xsl:template>
 
     <xsl:template match="xs:list">
-        <ul>
+        <ul role="list">
             <xsl:apply-templates select="@*|node()"/>
         </ul>
     </xsl:template>
 
     <xsl:template match="xs:item">
-        <li>
+        <li role="list-item" tabindex="0">
             <xsl:apply-templates select="@*|node()"/>
         </li>
     </xsl:template>
@@ -64,7 +64,7 @@ const defualtXslContent = `<?xml version="1.0" encoding="UTF-8"?>
                 </a>
             </xsl:when>
             <xsl:otherwise>
-                <span class="leaflet-link">
+                <span class="leaflet-link" role="link" tabindex="0">
                     <xsl:attribute name="linkUrl">
                         <xsl:value-of select="@href"/>
                     </xsl:attribute>
@@ -78,11 +78,11 @@ const defualtXslContent = `<?xml version="1.0" encoding="UTF-8"?>
     <xsl:template match="xs:section">
         <xsl:choose>
             <xsl:when test="xs:code/@displayName != 'SPL LISTING DATA ELEMENTS SECTION'">
-                <div class="leaflet-accordion-item" role="button" tabindex="0" aria-expanded="false">
+                <div class="leaflet-accordion-item" role="button" aria-expanded="false">
                     <xsl:attribute name="sectionCode">
                         <xsl:value-of select="xs:code/@code"/>
                     </xsl:attribute>
-                    <h2>
+                    <h2 tabindex="0">
                         <!--<xsl:value-of select="xs:code/@displayName"/>-->
                         <xsl:variable name="partialTitle" select="substring(xs:code/@displayName,2)"/>
                         <xsl:variable name="firstLetter" select="substring(xs:code/@displayName,1,1)"/>
@@ -103,7 +103,7 @@ const defualtXslContent = `<?xml version="1.0" encoding="UTF-8"?>
 
     <xsl:template match="xs:section/xs:component/xs:section">
         <div>
-            <h3>
+            <h3 tabindex="0">
                 <!--<xsl:value-of select="xs:code/@displayName"/>-->
                 <xsl:variable name="partialTitle" select="substring(xs:code/@displayName,2)"/>
                 <xsl:variable name="firstLetter" select="substring(xs:code/@displayName,1,1)"/>
@@ -174,7 +174,7 @@ const defualtXslContent = `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
 </xsl:stylesheet>`
 
-const acordisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
+const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 xmlns:xs="urn:hl7-org:v3"
@@ -198,27 +198,27 @@ const acordisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     <xsl:param name="quote">"</xsl:param>
     <xsl:param name="space">\\0020</xsl:param>
     <xsl:template match="//ul">
-        <ul> <xsl:apply-templates select="node()" /></ul>
+        <ul role="list"> <xsl:apply-templates select="node()" /></ul>
     </xsl:template>
 
     <xsl:template match="//ul/li">
-        <li>
+        <li role="list-item" tabindex="0">
           <xsl:attribute name="style"> list-style-type: <xsl:value-of select="$quote"/><xsl:value-of select="@data-enum"/><xsl:value-of select="$space"/><xsl:value-of select="$quote"/>; </xsl:attribute>
         <xsl:apply-templates select="node()" /></li>
     </xsl:template>
 
     <xsl:template match="//ol">
-        <ol><xsl:apply-templates select="node()" /></ol>
+        <ol role="list"><xsl:apply-templates select="node()" /></ol>
     </xsl:template>
 
     <xsl:template match="//ol/li">
-        <li>
+        <li role="list-item" tabindex="0">
          <xsl:attribute name="style"> list-style-type: <xsl:value-of select="$quote"/><xsl:value-of select="@data-enum"/><xsl:value-of select="$space"/><xsl:value-of select="$quote"/>; </xsl:attribute>
         <xsl:apply-templates select="node()" /></li>
     </xsl:template>
 
     <xsl:template match="//section//p">
-        <p><xsl:apply-templates select="node()" /></p>
+        <p tabindex="0"><xsl:apply-templates select="node()" /></p>
     </xsl:template>
     
     <xsl:template match="//figure">
@@ -271,7 +271,7 @@ const acordisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
         <div style="display:none;" class="leaflet_hidden_section ignore_from_ui"><xsl:apply-templates select="@class|node()"/></div>
     </xsl:template>
     <xsl:template match="document/section">
-        <div class="section leaflet-accordion-item" role="button" tabindex="0" aria-expanded="false">
+        <div class="section leaflet-accordion-item" role="button" aria-expanded="false">
             <xsl:apply-templates select="header"/>
                 <div class="leaflet-accordion-item-content">
                      <xsl:apply-templates select="*[not(self::header)]"/>
@@ -280,13 +280,13 @@ const acordisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
     
     <xsl:template match="document/section/header">
-        <h2>
+        <h2 tabindex="0">
             <xsl:apply-templates select="node()" />
         </h2>
     </xsl:template>
 </xsl:stylesheet>`;
 
 export {
-  defualtXslContent,
-  acordisXslContent
+  defaultXslContent,
+  acodisXslContent
 };

@@ -48,6 +48,7 @@ function ScanController() {
       modal.querySelector(".modal-content").innerHTML = `<div>${getTranslation("scan_parse_error_message")}  ${err.scanResult}</div>`;
     }
     modal.setAttribute('style', 'display:flex !important');
+    modal.focus();
     //  goToPage("error.html")
   }
 

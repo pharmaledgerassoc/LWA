@@ -87,6 +87,14 @@ function LeafletController() {
       })
     })
   }
+  let focusModalHeader = function () {
+    document.querySelectorAll(".modal-header").forEach(element => {
+      if (element.offsetParent) {
+        document.querySelector(".modal-header").focus();
+      }
+    })
+
+  }
 
   this.getLangLeaflet = function () {
     document.querySelector(".loader-container").setAttribute('style', 'display:block');
@@ -117,9 +125,12 @@ function LeafletController() {
     document.getElementById("settings-modal").style.display = "none";
     document.querySelector(".loader-container").setAttribute('style', 'display:none');
     document.querySelector("#expired-modal").setAttribute('style', 'display:flex !important');
+    focusModalHeader();
   }
+
   let showIncorrectDate = function () {
     document.querySelector("#incorrect-date-modal").setAttribute('style', 'display:flex !important');
+    focusModalHeader();
   }
 
 
@@ -134,7 +145,13 @@ function LeafletController() {
     let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
     let leafletImages = resultDocument.querySelectorAll("img");
     for (let image of leafletImages) {
-      image.setAttribute("src", result.leafletImages[image.getAttribute("src")]);
+      let imageSrc = image.getAttribute("src");
+      let dataUrlRegex = new RegExp(/^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i);
+      if (!!imageSrc.match(dataUrlRegex) || imageSrc.startsWith("data:")) {
+        //we don't alter already embedded images
+        continue;
+      }
+      image.setAttribute("src", result.leafletImages[imageSrc]);
     }
     let sectionsElements = resultDocument.querySelectorAll(".leaflet-accordion-item");
     let htmlContent = "";
@@ -151,6 +168,7 @@ function LeafletController() {
     xmlService.activateLeafletInnerLinks(leafletLinks);
     self.handleLeafletAccordion();
     document.querySelector(".loader-container").setAttribute('style', 'display:none');
+    focusModalHeader();
   }
 
   let showAvailableLanguages = function (result) {
@@ -160,7 +178,8 @@ function LeafletController() {
     // let langList = `<div class="select-lang-text">${translations[window.currentLanguage]["select_lang_text"]}</div><select class="languages-list">`;
     document.querySelector(".loader-container").setAttribute('style', 'display:none');
     if (result.availableLanguages.length >= 1) {
-      document.querySelector("#leaflet-lang-select").setAttribute('style', 'display:flex !important');
+      let langSelectContainer = document.querySelector("#leaflet-lang-select");
+      langSelectContainer.setAttribute('style', 'display:flex !important');
       document.querySelector(".proceed-button.no-leaflet").setAttribute('style', 'display:none');
       //  document.querySelector(".text-section.no-leaflet").setAttribute('style', 'display:none');
       let languagesContainer = document.querySelector(".languages-container");
@@ -168,16 +187,24 @@ function LeafletController() {
         site for flags https://flagpedia.net/download
       */
       result.availableLanguages.forEach((lang, index) => {
-        let langRadio = `<div class="flag-label-wrapper">
-        <label for="${lang.value}"> 
-          <img src="./images/flags/${lang.value}.svg" class="language-flag"/> ${lang.label} - (${lang.nativeName})
-        </label> 
-        </div><input type="radio" name="languages" ${index === 0 ? "checked" : ""} value="${lang.value}" id="${lang.value}">`;
-        let radioFragment = document.createElement('div');
+        let langRadio = `
+         <div class="language-flag" style="background-image: url(./images/flags/${lang.value}.svg);"></div>
+         <div class="language-label">${lang.label} - (${lang.nativeName})</div>
+         <input type="radio" name="languages" ${index === 0 ? "checked" : ""} value="${lang.value}" id="${lang.value}">
+        `;
+        let radioFragment = document.createElement('label');
         radioFragment.classList.add("language-item-container");
+        radioFragment.setAttribute("role", "radio");
+        radioFragment.setAttribute("tabindex", "0");
         radioFragment.innerHTML = langRadio;
+        radioFragment.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            radioFragment.querySelector("input").checked = true;
+          }
+        })
         languagesContainer.appendChild(radioFragment);
       });
+      focusModalHeader();
     } else {
       goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Product found but no associated leaflet`));
       /*      document.querySelector(".proceed-button.has-leaflets").setAttribute('style', 'display:none');
@@ -207,6 +234,3 @@ const leafletController = new LeafletController();
 
 
 window.leafletController = leafletController;
-
-
-

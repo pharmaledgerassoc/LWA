@@ -1,4 +1,4 @@
-import {defualtXslContent, acordisXslContent} from "./leafletXSL.js"
+import {defaultXslContent, acodisXslContent} from "./leafletXSL.js"
 import CustomError from "../../utils/CustomError.js";
 import constants from "../../constants.js";
 
@@ -35,14 +35,14 @@ class XMLDisplayService {
         let newXmlDoc = document.implementation.createDocument(null, "document");
         newXmlDoc.children[0].innerHTML = rootInnerHtml;
         xmlDoc = newXmlDoc;
-        xslContent = acordisXslContent;
+        xslContent = acodisXslContent;
         break
       case "document":
         if (xmlDoc.documentElement.hasAttribute("type") && xmlDoc.documentElement.getAttribute("type") === "pharmaledger-1.0") {
-          xslContent = acordisXslContent;
+          xslContent = acodisXslContent;
           break;
         }
-        xslContent = defualtXslContent;
+        xslContent = defaultXslContent;
         break
     }
 

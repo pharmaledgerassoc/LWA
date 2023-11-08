@@ -31,20 +31,11 @@ function MainController() {
   }
 
   this.toggleMenu = function () {
+    let menuButton = document.getElementById("hamburger-menu-button");
+    let menuExpanded = menuButton.getAttribute("aria-expanded") != "true";
+    menuButton.setAttribute("aria-expanded", menuExpanded);
     let menuContainer = document.querySelector(".app-menu-container");
     menuContainer.classList.toggle("hidden");
-    document.querySelector(".scan-button-container .scan-button").setAttribute("tabindex", "-1");
-    let liElements = menuContainer.querySelectorAll('li');
-    liElements.forEach(function (li) {
-      li.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" || event.key === " ") {
-          li.click();
-        }
-      });
-    });
-    if (menuContainer.classList.contains("hidden")) {
-      document.querySelector(".scan-button-container .scan-button").setAttribute("tabindex", "2");
-    }
   }
 
   this.checkOnboarding = function () {
@@ -106,7 +97,49 @@ function MainController() {
   }
 
   let addEventListeners = () => {
-    document.getElementById("hamburger-menu-button").addEventListener("click", this.toggleMenu)
+    let menuContainer = document.querySelector(".app-menu-container");
+    let menuButton = document.getElementById("hamburger-menu-button");
+
+    const focusableElements = document.querySelectorAll('.app-menu-container li');
+
+    // Add event listener to the menu to capture the Tab key press
+    menuContainer.addEventListener("keydown", (event) => {
+      if (event.key === "Tab") {
+        event.preventDefault(); // Prevent the default tab behavior
+
+        for (let i = 0; i < focusableElements.length; i++) {
+          if (focusableElements[i] === document.activeElement) {
+            let nextIndex = (i + 1) % focusableElements.length;
+            focusableElements[nextIndex].focus();
+            break;
+          }
+        }
+      }
+    });
+
+
+    let liElements = menuContainer.querySelectorAll('li.forward-to-page');
+    liElements.forEach(function (li) {
+      li.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+          li.click();
+        }
+      });
+    });
+
+    document.getElementById("hamburger-menu-button").addEventListener("click", this.toggleMenu);
+    document.addEventListener('keydown', evt => {
+      if (evt.key === 'Escape') {
+        if (!menuContainer.classList.contains("hidden")) {
+          menuContainer.classList.add("hidden");
+        }
+      }
+    });
+    document.querySelector("body").addEventListener("click", (event) => {
+      if (event.target != menuContainer && event.target != menuButton) {
+        menuContainer.classList.add("hidden");
+      }
+    })
     document.querySelectorAll(".app-menu-container li.forward-to-page").forEach(item => {
       item.addEventListener("click", (event) => {
         this.showModal(event.currentTarget.getAttribute("modal-name"))

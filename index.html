@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html>
 <head>
     <link href="css/main.css" rel="stylesheet">
     <script src="./js/controllers/MainController.js" type="module"></script>
@@ -13,32 +15,34 @@
         <div class="pharmaledger-logo">
             <img src="images/app-icon.svg" alt="PharmaLedger Association Logo">
         </div>
-        <button id="hamburger-menu-button" class="menu-icon" tabindex="1" aria-label="menu"></button>
-        <ul class="app-menu-container hidden">
-            <li id="terms-link" class="forward-to-page" modal-name="terms" role="button" tabindex="2">
+        <button id="hamburger-menu-button" class="menu-icon" tabindex="1" aria-label="menu"
+                aria-expanded="false"></button>
+        <ul class="app-menu-container hidden" role="list">
+            <li id="terms-link" class="forward-to-page" modal-name="terms" role="listitem" tabindex="2">
                 <div class="label" translate="fwd_terms"></div>
                 <div class="fwd-icon"></div>
             </li>
-            <li id="privacy-link" class="forward-to-page" modal-name="privacy" role="button"
+            <li id="privacy-link" class="forward-to-page" modal-name="privacy" role="listitem"
                 tabindex="3">
                 <div class="label" translate="fwd_privacy"></div>
                 <div class="fwd-icon"></div>
             </li>
-            <li id="about-link" class="forward-to-page" modal-name="about" role="button"
+            <li id="about-link" class="forward-to-page" modal-name="about" role="listitem"
                 tabindex="4">
                 <div class="label" translate="fwd_about"></div>
                 <div class="fwd-icon"></div>
             </li>
-            <li id="help-link" class="forward-to-page" modal-name="help" role="button"
+            <li id="help-link" class="forward-to-page" modal-name="help" role="listitem"
                 tabindex="5">
                 <div class="label" translate="fwd_help"></div>
                 <div class="fwd-icon"></div>
             </li>
-            <li class="more-options-link"><span translate="app_version"></span> <span id="app_version_number"></span>
+            <li class="more-options-link" role="listitem" tabindex="6">
+                <span translate="app_version"></span> <span id="app_version_number"></span>
             </li>
         </ul>
     </div>
-    <div class="welcome-container" role="main">
+    <div class="welcome-container" role="main" tabindex="0">
         <h1 translate="welcome"></h1>
     </div>
     <div class="terms-content-container" role="contentinfo">
@@ -56,7 +60,7 @@
     <div class="content-container">
         <div class="icon-div"></div>
     </div>
-    <div class="explain-container">
+    <div class="explain-container" tabindex="0">
         <span translate="scan_explain"></span>
     </div>
     <div class="scan-button-container">
@@ -70,13 +74,13 @@
     <div class="modal-body">
         <div class="modal-header left-aligned-header">
             <div class="icon-title-container">
-                <h1 class="modal-title"></h1>
+                <h1 class="modal-title" tabindex="1"></h1>
                 <!--<div class="modal-icon"></div>-->
             </div>
-            <div class="modal-subtitle"></div>
-            <button id="close-modal-button" class="close-modal" aria-label="close"></button>
+            <div class="modal-subtitle" tabindex="2"></div>
+            <button id="close-modal-button" class="close-modal" aria-label="close" tabindex="4"></button>
         </div>
-        <div class="modal-content">
+        <div class="modal-content" tabindex="3">
             <div class="generated-content-container"></div>
         </div>
     </div>
@@ -84,3 +88,4 @@
 </div>
 </body>
 
+</html>
