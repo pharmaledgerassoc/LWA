@@ -1,6 +1,6 @@
 {
   "name": "lwa",
-  "version": "2023.2.0",
+  "version": "2.0.1",
   "description": "LWA Application code",
   "main": "index.html",
   "directories": {
