@@ -788,11 +788,6 @@ body[dir="RTL"] .terms-content-container h2 {
     overflow: auto;
 }
 
-.info-modal .modal-content.about {
-    overflow: hidden;
-    padding: 0px;
-}
-
 .warning-modal .modal-header {
     background: linear-gradient(0deg, #FFFAED, #FFFAED), #FFFFFF;
 }
