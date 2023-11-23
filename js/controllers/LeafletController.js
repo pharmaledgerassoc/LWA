@@ -6,7 +6,7 @@ enableConsolePersistence();
 
 import {translate} from "../translations.js";
 
-document.getElementsByTagName("body").onload = translate();
+document.getElementsByTagName("body").onload = await translate();
 
 import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.js";
 import constants from "../constants.js";

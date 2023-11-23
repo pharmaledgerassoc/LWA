@@ -6,7 +6,7 @@ import {
 } from "../utils/utils.js";
 
 enableConsolePersistence();
-document.getElementsByTagName("body").onload = translate();
+document.getElementsByTagName("body").onload = await translate();
 
 import interpretGS1scan from "../utils/interpretGS1scan/interpretGS1scan.js";
 import ScanService from "../services/ScanService.js";

@@ -163,8 +163,8 @@ function MainController() {
 
 const mainController = new MainController();
 
-window.onload = (event) => {
-  translate();
+window.onload = async (event) => {
+  await translate();
   mainController.checkOnboarding();
   document.querySelector(".page-container").classList.remove("hiddenElement");
   document.querySelector(".loader-container").setAttribute('style', 'display:none');

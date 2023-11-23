@@ -1,7 +1,7 @@
 import {goToPage} from "../utils/utils.js"
 import {getTranslation, translate} from "../translations.js";
 
-document.getElementsByTagName("body").onload = translate();
+document.getElementsByTagName("body").onload = await translate();
 
 function ErrorController() {
   const queryString = window.location.search;
