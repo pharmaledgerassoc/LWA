@@ -57,17 +57,14 @@ function transformToISOStandardLangCode(code) {
 }
 
 async function fetchTranslation(langCode) {
-  const currentPath = window.location.pathname;
-  const currentDirectory = currentPath.substring(0, currentPath.lastIndexOf('/'));
-
-  const response = await fetch(` ${currentDirectory}/translations/${langCode}.json`);
-  if (!response.ok) {
-    const message = `An error has occurred: ${response.status} on fetching translation for ${langCode}`;
-    alert("Possible network issue!!! Check your network connection and try again");
-    throw new Error(message);
+  try {
+    const dataModule = await import(`./../translations/${langCode}.js`);
+    return dataModule.default
+    // You can now use the 'translations' object for localization in your application
+  } catch (error) {
+    alert(`An error has occurred: ${error.message} on fetching translation for ${langCode} 
+    Possible network issue!!! Check your network connection and try again`);
   }
-  const translation = await response.json();
-  return translation;
 }
 
 let currentAppTranslation;

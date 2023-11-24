@@ -10,7 +10,7 @@ document.getElementsByTagName("body").onload = await translate();
 
 import interpretGS1scan from "../utils/interpretGS1scan/interpretGS1scan.js";
 import ScanService from "../services/ScanService.js";
-import {getTranslation, translate} from "../translations.js";
+import {getTranslation, translate} from "../translationUtils.js";
 import constants from "../constants.js";
 
 function ScanController() {

@@ -4,7 +4,7 @@ import {
 
 enableConsolePersistence();
 
-import {translate} from "../translations.js";
+import {translate} from "../translationUtils.js";
 
 document.getElementsByTagName("body").onload = await translate();
 
