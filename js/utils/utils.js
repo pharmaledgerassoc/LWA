@@ -188,6 +188,81 @@ function enableConsolePersistence() {
 
 }
 
+function getFontSizeInMillimeters(element) {
+  // Obțineți stilul computat pentru elementul dat
+  const style = window.getComputedStyle(element);
+
+  // Extrageți dimensiunea fontului în pixeli și convertiți-o într-un număr
+  const fontSizeInPixels = parseFloat(style.fontSize);
+
+  // Definiți conversia de la inch la milimetri
+  const mmPerInch = 25.4;
+
+  // Convertiți pixelii în puncte (1 punct = 1/72 inch), apoi în milimetri
+  const fontSizeInMillimeters = fontSizeInPixels * (1 / 72) * mmPerInch;
+
+  return fontSizeInMillimeters;
+}
+
+function updateFontZoom() {
+  let zoom = localStorage.getItem(constants.FONT_ZOOM)
+
+  if (zoom <= 115) {
+    zoom = 100;
+  }
+
+  if (zoom > 115 && zoom <= 130) {
+    zoom = 130;
+  }
+  if (zoom > 130 && zoom <= 150) {
+    zoom = 150;
+  }
+
+  if (zoom > 150 && zoom < 200) {
+    zoom = 175;
+  }
+  if (zoom > 200) {
+    zoom = 200;
+  }
+  console.log(`Scale factor = ${zoom}%`);
+  zoomFont(zoom);
+}
+
+function getComputeFontZoom() {
+  let userAgent = navigator.userAgent;
+  let computedZoom;
+  if (userAgent.match(/chrome|chromium|crios/i)) {
+    computedZoom = Math.round(parseFloat(getComputedStyle(document.querySelector(".font-control")).height) / 0.14)
+  } else if (userAgent.match(/firefox|fxios/i)) {
+    //TO DO
+  } else if (userAgent.match(/safari/i)) {
+    computedZoom = window.visualViewport.scale * 100;
+    /*let fontControlElem = document.querySelector(".font-control");
+    const resizeObserver = new ResizeObserver((fontControlElem) => {
+console.log("------>>>", fontControlElem.contentBoxSize[0].inlineSize )
+    })*/
+
+  } else if (userAgent.match(/opr/i)) {
+    //TO DO
+  }
+  return computedZoom;
+}
+
+function saveFontZoom() {
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  let zoom = urlParams.get("zoom") || localStorage.getItem(constants.FONT_ZOOM) || getComputeFontZoom();
+  localStorage.setItem(constants.FONT_ZOOM, zoom);
+}
+
+function zoomFont(scaleFactor) {
+  let visualViewportDelta = window.visualViewport.scale > 2 ? window.visualViewport.scale / 2 : 1
+  document.documentElement.style.setProperty('--font-size--basic', constants.FONT_SCALE_MAP.basic_font[scaleFactor] / visualViewportDelta + "rem");
+  document.documentElement.style.setProperty('--font-size--L', constants.FONT_SCALE_MAP.l_font[scaleFactor] / visualViewportDelta + "rem");
+  document.documentElement.style.setProperty('--font-size--XL', constants.FONT_SCALE_MAP.xl_font[scaleFactor] / visualViewportDelta + "rem");
+}
+
+
 export {
   convertFromISOtoYYYY_HM,
   convertToLastMonthDay,
@@ -199,4 +274,7 @@ export {
   goToErrorPage,
   setTextDirectionForLanguage,
   enableConsolePersistence,
+  updateFontZoom,
+  getFontSizeInMillimeters,
+  saveFontZoom
 }

@@ -1,17 +1,7 @@
-import {setTextDirectionForLanguage} from "./utils/utils.js";
+import {saveFontZoom, setTextDirectionForLanguage, updateFontZoom} from "./utils/utils.js";
 import constants from "./constants.js";
 
 const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt", "pt-br", "zh"];
-
-/*
-export function changeLanguage(newLang) {
-  let languages = Object.keys(translations);
-  if (languages.find(lang => lang === newLang)) {
-    localStorage.setItem(constants.APP_LANG, newLang)
-    translate();
-  }
-}
-*/
 
 const langSubtypesMap = {
   "es-ar": "es",
@@ -80,7 +70,23 @@ function setDefaultLanguage() {
   setTextDirectionForLanguage(appLang);
 }
 
+let resizeListener;
+
+function addResizeListener() {
+  if (!resizeListener) {
+    resizeListener = window.visualViewport.addEventListener("resize", (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      localStorage.setItem(constants.FONT_ZOOM, evt.target.scale * 100);
+      updateFontZoom();
+    })
+  }
+}
+
 export async function translate() {
+  saveFontZoom();
+  updateFontZoom();
+  addResizeListener();
   setDefaultLanguage();
   let matches = document.querySelectorAll("[translate]");
   currentAppTranslation = await fetchTranslation(localStorage.getItem(constants.APP_LANG));

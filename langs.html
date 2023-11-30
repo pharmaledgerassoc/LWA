@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="css/main.css" rel="stylesheet">
+    <title>PharmaLedger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+<div id="logs-container">
+   Languages: <span id="lang-list"> </span> <br/>
+   Language:  <span id="lang"> </span> <br/>
+</div>
+</body>
+<script>
+  let langs = "";
+  window.navigator.languages.forEach(lang=>{
+    langs = langs + lang + "; ";
+  })
+  document.querySelector("#logs-container #lang-list").innerHTML = langs;
+  document.querySelector("#logs-container #lang").innerHTML = window.navigator.language;
+</script>
+</html>
+
+
