@@ -131,7 +131,6 @@ function setTextDirectionForLanguage(lang) {
     document.querySelector("body").setAttribute("dir", "RTL")
   } else {
     document.querySelector("body").setAttribute("dir", "LTR")
-
   }
 }
 

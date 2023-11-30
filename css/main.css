@@ -740,7 +740,6 @@ body[dir="RTL"] .terms-content-container h2 {
     border-radius: 30px;
     min-width: 435px;
     width: max(24%, 460px);
-    min-height: 960px;
 }
 
 #scan-error {
@@ -980,8 +979,12 @@ body[dir="RTL"] .terms-container .terms-buttons-container {
 }
 
 body[dir="RTL"] .modal-content .languages-container .language-item-container input {
-    margin-right: 90%;
-    margin-left: unset;
+    margin-right: unset;
+    margin-left: 10px;
+}
+
+body[dir="RTL"] .modal-content .languages-container .language-item-container .language-flag {
+    margin-right: 10px;
 }
 
 body[dir="RTL"] .leaflet-accordion-item:before {
