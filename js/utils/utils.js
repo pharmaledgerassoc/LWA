@@ -129,6 +129,9 @@ function goToErrorPage(errorCode, error) {
 function setTextDirectionForLanguage(lang) {
   if (constants.rtlLangCodes.find((rtlLAng) => rtlLAng === lang)) {
     document.querySelector("body").setAttribute("dir", "RTL")
+  } else {
+    document.querySelector("body").setAttribute("dir", "LTR")
+
   }
 }
 
