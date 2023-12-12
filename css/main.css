@@ -1,50 +1,5 @@
-:root {
-    --olivegreen: #013646;
-    --mintgreen: #61E4A3;
-    --beige: #FDF0EC;
-    --grey: #E1E7EF;
-    --info-grey: #F0EEEC;
-    --green-200: #5F0808;
-    --red-200: #CC2A2A;
-    --red-100: #FEEFEE;
-    --yellow-200: #FFCB45;
-    --yellow-100: #FFECBB;
-    font-size: 62.5%; /* (62.5/100) * 16px = 10px */
-    --font-size--basic: 1.4rem;
-    --font-size--L: 1.8rem;
-    --font-size--XL: 2.5rem;
-}
-
-/* dm-sans-regular - latin-ext_latin */
-@font-face {
-    font-family: 'DM Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local(''),
-    url('../fonts/dm-sans-v11-latin-ext_latin-regular.woff2') format('woff2'), url('../fonts/dm-sans-v11-latin-ext_latin-regular.woff') format('woff'),
-    url('../fonts/DMSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
-}
-
-/* dm-sans-500 - latin-ext_latin */
-@font-face {
-    font-family: 'DM Sans semi-bold';
-    font-style: normal;
-    font-weight: 500;
-    src: local(''),
-    url('../fonts/dm-sans-v11-latin-ext_latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/dm-sans-v11-latin-ext_latin-500.woff') format('woff'),
-    url('../fonts/DMSans-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
-    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-}
-
-/* dm-sans-700 - latin-ext_latin */
-@font-face {
-    font-family: 'DM Sans bold';
-    font-style: normal;
-    font-weight: 700;
-    src: local(''),
-    url('../fonts/dm-sans-v11-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/dm-sans-v11-latin-ext_latin-700.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ url('../fonts/DMSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
-
-}
+@import "prerequisites.css";
+@import "leaflet.css";
 
 html {
     min-width: 100%;
@@ -166,7 +121,7 @@ body[dir="RTL"] .loader {
 }
 
 .pharmaledger-logo > img {
-    width: 25%;
+    width: 10%;
 }
 
 .welcome-container {
@@ -522,119 +477,8 @@ body[dir="RTL"] .terms-content-container h2 {
 #leaflet-content .languages-list {
     font-size: calc(100% + 0.3vmin);
 }*/
-
-#leaflet-content .select-lang-text {
-    padding: 35px;
-}
-
-#leaflet-content .languages-list li {
-    text-underline-position: under;
-    text-decoration: underline;
-    padding: 0px 0px 55px 0px;
-    color: blue;
-}
-
-#leaflet-content h2 {
-    font-family: 'DM Sans bold';
-    font-size: var(--font-size--L);
-    margin-right: 1rem;
-}
-
-.leaflet-content-wrapper {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-#leaflet-content {
-    text-align: start;
-    overflow-y: auto;
-    position: absolute;
-    height: 88%;
-    width: 100%;
-}
-
-#leaflet-content table {
-    display: block;
-    overflow-x: auto;
-}
-
-/* Force hidden content for images because xslt rule not working for safari < 16. */
-#leaflet-content figure *:not(img) {
-    display: none;
-}
-
-#leaflet-content img {
-    min-width: 100%;
-    min-width: -moz-available; /* WebKit-based browsers will ignore this. */
-    min-width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-    min-width: fill-available;
-}
-
-.leaflet-link {
-    color: #4f4edf;;
-    text-decoration: underline;
-}
-
 .error-page .page-content {
     padding: 0px 24px;
-}
-
-.leaflet-accordion-item {
-    padding: 0px 1vh;
-    border-bottom: 0.5px solid #E5EAEB;
-    line-height: 1.2;
-}
-
-.leaflet-accordion-item h2 {
-    margin-block-end: 0.7em;
-    margin-block-start: 0.9em;
-}
-
-.leaflet-accordion-item-content {
-    display: none;
-    margin-right: 5px;
-    height: fit-content;
-}
-
-.leaflet-accordion-item.active .leaflet-accordion-item-content {
-    height: fit-content;
-    display: block;
-    position: relative;
-    font-style: normal;
-    font-family: 'DM Sans';
-}
-
-.leaflet-accordion-item:before {
-    content: "";
-    visibility: visible;
-    position: relative;
-    float: right;
-    background-image: url(../images/accordion-open.svg);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 24px;
-    height: 24px;
-}
-
-.leaflet-accordion-item.active:before {
-    background-image: url("../images/accordion-close.svg");
-}
-
-.leaflet-accordion-item table,
-.leaflet-accordion-item table td,
-.leaflet-accordion-item table th {
-    border: 1px solid;
-    border-collapse: collapse;
-    font-size: inherit;
-
-}
-
-.leaflet-accordion-item td, th {
-    padding: 5px;
-    width: auto;
-    height: 100%;
 }
 
 .modal-container .modal-body {

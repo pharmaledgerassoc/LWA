@@ -50,5 +50,7 @@ function ErrorController() {
 }
 
 const errorController = new ErrorController();
+document.querySelector(".loader-container").setAttribute('style', 'display:none');
+
 
 window.errorController = errorController;

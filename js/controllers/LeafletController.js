@@ -1,18 +1,14 @@
 import {
   goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence
 } from "../utils/utils.js";
-
-enableConsolePersistence();
-
-import {translate} from "../translationUtils.js";
-
-document.getElementsByTagName("body").onload = await translate();
-
-import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.js";
 import constants from "../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../environment.js";
+import {renderLeaflet, showExpired, showIncorrectDate} from "../utils/leafletUtils.js"
+import {translate} from "../translationUtils.js";
 
+enableConsolePersistence();
+document.getElementsByTagName("body").onload = await translate();
 
 function LeafletController() {
 
@@ -56,45 +52,6 @@ function LeafletController() {
     })
   };
 
-  this.handleLeafletAccordion = function () {
-    let accordionItems = document.querySelectorAll("div.leaflet-accordion-item");
-    accordionItems.forEach((accItem, index) => {
-      accItem.addEventListener("click", (evt) => {
-        accItem.classList.toggle("active");
-        if (accItem.classList.contains("active")) {
-          accItem.setAttribute('aria-expanded', "true");
-        } else {
-          accItem.setAttribute('aria-expanded', "false");
-        }
-        accItem.querySelector(".leaflet-accordion-item-content").addEventListener("click", (event) => {
-          event.stopImmediatePropagation();
-          event.stopPropagation();
-        })
-      })
-      accItem.addEventListener("keydown", (event) => {
-        if (event.key === "Enter" || event.key === " ") {
-          accItem.classList.toggle("active");
-          if (accItem.classList.contains("active")) {
-            accItem.setAttribute('aria-expanded', "true");
-          } else {
-            accItem.setAttribute('aria-expanded', "false");
-          }
-        }
-        accItem.querySelector(".leaflet-accordion-item-content").addEventListener("keydown", (event) => {
-          event.stopImmediatePropagation();
-          event.stopPropagation();
-        })
-      })
-    })
-  }
-  let focusModalHeader = function () {
-    document.querySelectorAll(".modal-header").forEach(element => {
-      if (element.offsetParent) {
-        document.querySelector(".modal-header").focus();
-      }
-    })
-
-  }
 
   this.getLangLeaflet = function () {
     document.querySelector(".loader-container").setAttribute('style', 'display:block');
@@ -121,54 +78,16 @@ function LeafletController() {
     document.getElementById("settings-modal").style.display = "block";
   }
 
-  let showExpired = function () {
-    document.getElementById("settings-modal").style.display = "none";
-    document.querySelector(".loader-container").setAttribute('style', 'display:none');
-    document.querySelector("#expired-modal").setAttribute('style', 'display:flex !important');
-    focusModalHeader();
-  }
-
-  let showIncorrectDate = function () {
-    document.querySelector("#incorrect-date-modal").setAttribute('style', 'display:flex !important');
-    focusModalHeader();
-  }
-
-
   let self = this;
 
   let showXML = function (result) {
     document.getElementById("settings-modal").style.display = "block";
-    document.querySelector(".product-name").innerText = result.productData.name;
-    document.querySelector(".product-description").innerText = result.productData.description;
-    /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
-    let xmlService = new XMLDisplayService("#leaflet-content");
-    let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
-    let leafletImages = resultDocument.querySelectorAll("img");
-    for (let image of leafletImages) {
-      let imageSrc = image.getAttribute("src");
-      let dataUrlRegex = new RegExp(/^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i);
-      if (!!imageSrc.match(dataUrlRegex) || imageSrc.startsWith("data:")) {
-        //we don't alter already embedded images
-        continue;
-      }
-      image.setAttribute("src", result.leafletImages[imageSrc]);
-    }
-    let sectionsElements = resultDocument.querySelectorAll(".leaflet-accordion-item");
-    let htmlContent = "";
-    sectionsElements.forEach(section => {
-      htmlContent = htmlContent + section.outerHTML;
-    })
-
-    if (!htmlContent) {
+    try {
+      renderLeaflet(result);
+    } catch (e) {
       goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
     }
 
-    document.querySelector("#leaflet-content").innerHTML = htmlContent;
-    let leafletLinks = document.querySelectorAll(".leaflet-link");
-    xmlService.activateLeafletInnerLinks(leafletLinks);
-    self.handleLeafletAccordion();
-    document.querySelector(".loader-container").setAttribute('style', 'display:none');
-    focusModalHeader();
   }
 
   let showAvailableLanguages = function (result) {

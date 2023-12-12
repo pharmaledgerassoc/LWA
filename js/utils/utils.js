@@ -126,11 +126,12 @@ function goToErrorPage(errorCode, error) {
   goToPage(`/error.html?errorCode=${errCode}`)
 }
 
-function setTextDirectionForLanguage(lang) {
+function setTextDirectionForLanguage(lang, selector) {
+  let elementSelector = selector || "body";
   if (constants.rtlLangCodes.find((rtlLAng) => rtlLAng === lang)) {
-    document.querySelector("body").setAttribute("dir", "RTL")
+    document.querySelector(elementSelector).setAttribute("dir", "RTL")
   } else {
-    document.querySelector("body").setAttribute("dir", "LTR")
+    document.querySelector(elementSelector).setAttribute("dir", "LTR")
   }
 }
 
@@ -206,8 +207,8 @@ function getFontSizeInMillimeters(element) {
   return fontSizeInMillimeters;
 }
 
-function updateFontZoom() {
-  let zoom = localStorage.getItem(constants.FONT_ZOOM)
+function updateFontZoom(value) {
+  let zoom = value || localStorage.getItem(constants.FONT_ZOOM)
 
   if (zoom <= 115) {
     zoom = 100;
@@ -226,7 +227,6 @@ function updateFontZoom() {
   if (zoom > 200) {
     zoom = 200;
   }
-  console.log(`Scale factor = ${zoom}%`);
   zoomFont(zoom);
 }
 
