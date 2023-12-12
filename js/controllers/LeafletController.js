@@ -4,7 +4,7 @@ import {
 import constants from "../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../environment.js";
-import {renderLeaflet, showExpired, showIncorrectDate} from "../utils/leafletUtils.js"
+import {focusModalHeader, renderLeaflet, showExpired, showIncorrectDate} from "../utils/leafletUtils.js"
 import {translate} from "../translationUtils.js";
 
 enableConsolePersistence();

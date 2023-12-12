@@ -220,6 +220,7 @@ async function getBase64FileContent(file, callback) {
 export {
   showExpired,
   showIncorrectDate,
+  focusModalHeader,
   renderLeaflet,
   getFileContent,
   getFileContentAsBuffer,
