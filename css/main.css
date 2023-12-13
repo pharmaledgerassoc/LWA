@@ -313,13 +313,13 @@ body[dir="RTL"] .terms-content-container h2 {
 
 .content-container {
     align-self: center;
-    background-image: url(../images/medicine-pack.png);
+/*    background: url(../images/medicine-pack.gif) no-repeat;*/
     max-width: 55%;
     width: -moz-available; /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
     width: fill-available;
-    aspect-ratio: 1 / 1;
-    background-position: 15% 97%;
+/*    aspect-ratio: 1 / 1;*/
+    /*background-position: 15% 97%;
     background-repeat: no-repeat;
     transition: 1s auto;
     background-size: 220% 115%;
@@ -329,13 +329,13 @@ body[dir="RTL"] .terms-content-container h2 {
     -ms-animation: animatedBackground 5s linear infinite;
     -o-animation: animatedBackground 5s linear infinite;
     animation-delay: 1s;
-    animation-direction: alternate;
+    animation-direction: alternate;*/
     margin: 12% 90px 6%;
-    border-radius: 15px;
+/*    border-radius: 15px;*/
     min-width: 85px;
 }
 
-.icon-div {
+/*.icon-div {
     position: relative;
     top: -16px;
     right: -16px;
@@ -352,7 +352,7 @@ body[dir="RTL"] .terms-content-container h2 {
     background-size: contain;
     float: right;
     background-repeat: no-repeat;
-}
+}*/
 
 .explain-container {
     align-self: center;
@@ -658,7 +658,7 @@ body[dir="RTL"] .terms-content-container h2 {
 
 .info-modal .modal-content.about {
     overflow: hidden;
-    padding: 0px;
+    padding: 0px 1.5rem;
 }
 
 .warning-modal .modal-header {
@@ -803,7 +803,6 @@ body[dir="RTL"] .modal-header .close-modal {
 }
 
 body[dir="RTL"] .modal-container,
-body[dir="RTL"] .leaflet-page .page-content,
 body[dir="RTL"] .error-page .page-content {
     text-align: right;
 }
@@ -830,22 +829,6 @@ body[dir="RTL"] .modal-content .languages-container .language-item-container inp
 body[dir="RTL"] .modal-content .languages-container .language-item-container .language-flag {
     margin-right: 10px;
 }
-
-body[dir="RTL"] .leaflet-accordion-item:before {
-    float: unset;
-    background-position: bottom;
-    top: 1.35em;
-    display: block;
-    right: 94%;
-
-}
-
-body[dir="RTL"] #leaflet-content h2 {
-    margin-right: unset;
-    margin-block-start: unset;
-    padding-left: 10%;
-}
-
 
 .loader-container {
     position: absolute;

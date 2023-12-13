@@ -124,4 +124,22 @@
     height: 100%;
 }
 
+*[dir="RTL"] .leaflet-page .page-content {
+    text-align: right;
+}
+
+*[dir="RTL"] .leaflet-accordion-item:before {
+    float: unset;
+    background-position: bottom;
+    top: 1.35em;
+    display: block;
+    right: 94%;
+
+}
+
+*[dir="RTL"] #leaflet-content h2 {
+    margin-right: unset;
+    margin-block-start: unset;
+    padding-left: 10%;
+}
 

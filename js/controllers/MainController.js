@@ -50,7 +50,7 @@ function MainController() {
       let welcomeText = getTranslation("welcome");
       document.querySelector(".terms-content-container").classList.add("hiddenElement");
       document.querySelector(".welcome-container").innerHTML = `<h1>${welcomeText}</h1>`;
-      document.querySelector(".content-container").innerHTML = `<div class="icon-div"></div>`;
+     /* document.querySelector(".content-container").innerHTML = `<div class="icon-div"></div>`;*/
     }
     document.querySelector("#app_version_number").innerHTML = `${environment.appBuildVersion}`;
   }
