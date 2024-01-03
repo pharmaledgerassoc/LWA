@@ -2,11 +2,14 @@ import {
   convertFromISOtoYYYY_HM,
   goToErrorPage,
   goToPage,
-  enableConsolePersistence,
+  enableConsolePersistence, setFontSize,
 } from "../utils/utils.js";
 
 enableConsolePersistence();
-document.getElementsByTagName("body").onload = await translate();
+window.onload = async (event) => {
+  await translate();
+}
+document.getElementsByTagName("body").onload = setFontSize();
 
 import interpretGS1scan from "../utils/interpretGS1scan/interpretGS1scan.js";
 import ScanService from "../services/ScanService.js";
@@ -47,7 +50,7 @@ function ScanController() {
       modal.querySelector(".modal-title").innerHTML = getTranslation("scan_parse_error");
       modal.querySelector(".modal-content").innerHTML = `<div>${getTranslation("scan_parse_error_message")}  ${err.scanResult}</div>`;
     }
-    modal.setAttribute('style', 'display:flex !important');
+    modal.setAttribute('style', 'display: flex');
     modal.focus();
     //  goToPage("error.html")
   }

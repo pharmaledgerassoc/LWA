@@ -33,14 +33,11 @@
 .leaflet-content-wrapper {
     position: relative;
     width: 100%;
-    height: 100%;
 }
 
 #leaflet-content {
     text-align: start;
-    overflow-y: auto;
-    position: absolute;
-    height: 88%;
+    height: 100%;
     width: 100%;
 }
 
@@ -68,7 +65,7 @@
 
 
 .leaflet-accordion-item {
-    padding: 0px 1vh;
+    padding: 0px 3%;
     border-bottom: 0.5px solid #E5EAEB;
     line-height: 1.2;
 }
@@ -90,6 +87,7 @@
     position: relative;
     font-style: normal;
     font-family: 'DM Sans';
+    overflow-x: auto;
 }
 
 .leaflet-accordion-item:before {
@@ -128,16 +126,14 @@
     text-align: right;
 }
 
-*[dir="RTL"] .leaflet-accordion-item:before {
-    float: unset;
+#leaflet-content[dir="RTL"] .leaflet-accordion-item:before {
+    float: left;
     background-position: bottom;
-    top: 1.35em;
+    top: 2px;
     display: block;
-    right: 94%;
-
 }
 
-*[dir="RTL"] #leaflet-content h2 {
+#leaflet-content[dir="RTL"]  #leaflet-content h2 {
     margin-right: unset;
     margin-block-start: unset;
     padding-left: 10%;

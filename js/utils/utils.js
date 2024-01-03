@@ -207,14 +207,18 @@ function getFontSizeInMillimeters(element) {
   return fontSizeInMillimeters;
 }
 
-function updateFontZoom(value) {
+function updateFontZoom(value, ignoreBrowser) {
   let zoom = value || localStorage.getItem(constants.FONT_ZOOM)
 
-  if (zoom <= 115) {
+  if (zoom >= 99 && zoom < 110) {
     zoom = 100;
   }
 
-  if (zoom > 115 && zoom <= 130) {
+  if (zoom >= 110 && zoom < 114) {
+    zoom = 110;
+  }
+
+  if (zoom >= 114 && zoom <= 130) {
     zoom = 130;
   }
   if (zoom > 130 && zoom <= 150) {
@@ -224,46 +228,89 @@ function updateFontZoom(value) {
   if (zoom > 150 && zoom < 200) {
     zoom = 175;
   }
-  if (zoom > 200) {
+  if (zoom >= 200 && zoom < 250) {
     zoom = 200;
   }
-  zoomFont(zoom);
+  if (zoom >= 250 && zoom < 300) {
+    zoom = 250;
+  }
+  if (zoom >= 300) {
+    zoom = 300;
+  }
+  zoomFont(zoom, ignoreBrowser);
+}
+
+function getBrowser() {
+  let userAgent = navigator.userAgent;
+
+  if (userAgent.match(/chrome|chromium|crios/i)) {
+    return "chrome"
+  }
+  if (userAgent.match(/firefox|fxios/i)) {
+    return "firefox"
+  }
+  if (userAgent.match(/safari/i)) {
+    return "safari"
+  }
+  if (userAgent.match(/opr/i)) {
+    return "opera"
+  }
 }
 
 function getComputeFontZoom() {
   let userAgent = navigator.userAgent;
-  let computedZoom;
-  if (userAgent.match(/chrome|chromium|crios/i)) {
-    computedZoom = Math.round(parseFloat(getComputedStyle(document.querySelector(".font-control")).height) / 0.14)
-  } else if (userAgent.match(/firefox|fxios/i)) {
-    //TO DO
-  } else if (userAgent.match(/safari/i)) {
-    computedZoom = window.visualViewport.scale * 100;
-    /*let fontControlElem = document.querySelector(".font-control");
-    const resizeObserver = new ResizeObserver((fontControlElem) => {
-console.log("------>>>", fontControlElem.contentBoxSize[0].inlineSize )
-    })*/
-
-  } else if (userAgent.match(/opr/i)) {
-    //TO DO
+  if (getBrowser() === "chrome") {
+    return Math.round(parseFloat(getComputedStyle(document.querySelector("#font-control")).height) / 0.16)
   }
-  return computedZoom;
+
+  if (getBrowser() === "safari") {
+    return window.visualViewport.scale * 100;
+  }
+  if (getBrowser() === "firefox" || getBrowser() === "opera") {
+    //TO DO
+    return 100;
+  }
+
 }
 
 function saveFontZoom() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
-  let zoom = urlParams.get("zoom") || localStorage.getItem(constants.FONT_ZOOM) || getComputeFontZoom();
+  let zoom = urlParams.get("zoom") || getComputeFontZoom() || localStorage.getItem(constants.FONT_ZOOM);
   localStorage.setItem(constants.FONT_ZOOM, zoom);
 }
 
-function zoomFont(scaleFactor) {
-  let visualViewportDelta = window.visualViewport.scale > 2 ? window.visualViewport.scale / 2 : 1
-  document.documentElement.style.setProperty('--font-size--basic', constants.FONT_SCALE_MAP.basic_font[scaleFactor] / visualViewportDelta + "rem");
-  document.documentElement.style.setProperty('--font-size--L', constants.FONT_SCALE_MAP.l_font[scaleFactor] / visualViewportDelta + "rem");
-  document.documentElement.style.setProperty('--font-size--XL', constants.FONT_SCALE_MAP.xl_font[scaleFactor] / visualViewportDelta + "rem");
+function zoomFont(scaleFactor, ignoreBrowser) {
+  let visualViewportDelta = window.visualViewport.scale;// > 2 ? window.visualViewport.scale / 2 : 1
+  let currentBrowser = ignoreBrowser ? "safari" : getBrowser();
+  document.documentElement.style.setProperty('--font-size--basic', constants.FONT_SCALE_MAP.basic_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
+  document.documentElement.style.setProperty('--font-size--M', constants.FONT_SCALE_MAP.m_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
+  document.documentElement.style.setProperty('--font-size--L', constants.FONT_SCALE_MAP.l_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
+  document.documentElement.style.setProperty('--font-size--XL', constants.FONT_SCALE_MAP.xl_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
 }
 
+let resizeListener;
+
+function addResizeListener() {
+  if (!resizeListener) {
+    resizeListener = window.visualViewport.addEventListener("resize", (evt) => {
+      evt.preventDefault();
+      evt.stopPropagation();
+      localStorage.setItem(constants.FONT_ZOOM, evt.target.scale * 100);
+      updateFontZoom();
+    })
+  }
+}
+
+function setFontSize() {
+  let testFontContainer = document.querySelector("#font-control");
+  testFontContainer.innerHTML = `<span>A-W</span>`;
+  saveFontZoom();
+  updateFontZoom();
+  addResizeListener();
+  testFontContainer.innerHTML = "";
+
+}
 
 export {
   convertFromISOtoYYYY_HM,
@@ -278,5 +325,6 @@ export {
   enableConsolePersistence,
   updateFontZoom,
   getFontSizeInMillimeters,
-  saveFontZoom
+  saveFontZoom,
+  setFontSize
 }

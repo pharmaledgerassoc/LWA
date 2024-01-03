@@ -2,7 +2,7 @@
 <html>
 <head>
     <script src="js/cacheControl.js"></script>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="css/responsive.css" rel="stylesheet">
     <title>PharmaLedger</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -11,18 +11,15 @@
 <body>
 
 <div class="loader-container">
-    <div class="font-control">
-        <span>Lorem ipsum text example</span>
-    </div>
     <div class="loader"></div>
 </div>
-
-<div id="settings-modal" class="page-container leaflet-page info-modal">
+<div id="font-control"></div>
+<div id="settings-modal" class="page-container fill-available-width leaflet-page info-modal">
 
     <div class="modal-body">
         <div class="page-header modal-header left-aligned-header">
             <div class="icon-title-container" tabindex="0">
-                <h1 class="product-name"></h1>
+                <h1 class="product-name bold-title"></h1>
                 <!--<div class="modal-icon leaflet-title-icon hiddenElement"></div>-->
             </div>
             <div class="product-description" tabindex="0"></div>
@@ -43,7 +40,8 @@
         <div class="modal-header centered-header">
             <div class="icon-title-container">
                 <div class="modal-icon"></div>
-                <h1 class="modal-title" id="expired-title" translate="leaflet_expired_title" role="alert"></h1>
+                <h1 class="modal-title bold-title" id="expired-title" translate="leaflet_expired_title"
+                    role="alert"></h1>
             </div>
             <button class="close-modal" modal-id="expired-modal" tabindex="0"
                     aria-label="close error message"></button>
@@ -56,10 +54,11 @@
         <div class="modal-header centered-header">
             <div class="icon-title-container">
                 <div class="modal-icon"></div>
-                <h1 class="modal-title" id="incorrect-date-title" translate="leaflet_incorrect_date_title" role="alert"></h1>
+                <h1 class="modal-title bold-title" id="incorrect-date-title" translate="leaflet_incorrect_date_title"
+                    role="alert"></h1>
             </div>
             <button class="close-modal" modal-id="incorrect-date-modal"
-                 aria-label="close error modal"></button>
+                    aria-label="close error modal"></button>
         </div>
         <div class="modal-content" translate="leaflet_incorrect_date_message"></div>
     </div>
@@ -69,7 +68,7 @@
         <div class="modal-header centered-header">
             <div class="icon-title-container">
                 <div class="modal-icon"></div>
-                <h1 class="modal-title" id="lang-title" translate="select_lang_title" role="alert"></h1>
+                <h1 class="modal-title bold-title" id="lang-title" translate="select_lang_title" role="alert"></h1>
             </div>
             <button class="close-modal" modal-id="leaflet-lang-select"
                     aria-label="close"></button>
