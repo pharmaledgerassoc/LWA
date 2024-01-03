@@ -3,52 +3,146 @@ const constants = {
   EPI_DOMAIN: "_epiDomain_",
   FONT_ZOOM: "_fontZoom_",
   APP_LANG: "_appLang_",
-  monthNames: ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-  ],
+  monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   FONT_SCALE_MAP: {
-    //1% = 0.014rem
+    /*body, h4*/
     basic_font: {
-      100: 1.4,
-      110: 0.014 * 2.86 + 1.4,
-      115: 0.014 * 2.86 + 1.4,
-      125: 0.014 * 22.14 + 1.4,
-      130: 0.014 * 22.14 + 1.4,
-      150: 0.014 * 39.29 + 1.4,
-      170: 0.014 * 48 + 1.4,
-      175: 0.014 * 48 + 1.4,
-      200: 0.014 * 85.71 + 1.4,
-      250: 0.014 * 85.71 + 1.4,
-      300: 0.014 * 85.71 + 1.4,
+      100: {
+        "safari": 1.6,
+        "chrome": 1.6
+      }, //16px
+      110: {
+        "safari": 1.65,
+        "chrome": 1.5
+      }, //16.5px
+      130: {
+        "safari": 1.75,
+        "chrome": 1.435
+      }, //17.5px
+      150: {
+        "safari": 1.8,
+        "chrome": 1.277
+      }, //18px
+      175: {
+        "safari": 2,
+        "chrome": 1.252
+      }, //20px
+      200: {
+        "safari": 2.2,
+        "chrome": 1.17019
+      }, //22px
+      250: {
+        "safari": 2.4,
+        "chrome": 0.982
+      }, //24px
+      300: {
+        "safari": 2.6,
+        "chrome": 0.769
+      }  //26px
+    }, /*H3*/
+    m_font: {
+      100: {
+        "safari": 1.8,
+        "chrome": 1.8
+      }, //18px
+      110: {
+        "safari": 1.85,
+        "chrome": 1.55
+      }, //18.5px
+      130: {
+        "safari": 1.9,
+        "chrome": 1.555
+      }, //19px
+      150: {
+        "safari": 2,
+        "chrome": 1.421
+      }, //20px
+      175: {
+        "safari": 2.2,
+        "chrome": 1.377
+      }, //22px
+      200: {
+        "safari": 2.4,
+        "chrome": 1.277
+      }, //24px
+      250: {
+        "safari": 2.6,
+        "chrome": 1.064
+      }, //26px
+      300: {
+        "safari": 2.8,
+        "chrome": 0.8277
+      } //28px
     },
     l_font: {
-      100: 1.8,
-      110: 0.014 * 0 + 1.8,
-      115: 0.014 * 0 + 1.8,
-      125: 0.014 * 10.5 + 1.8,
-      130: 0.014 * 10.5 + 1.8,
-      150: 0.014 * 39.29 + 1.8,
-      170: 0.014 * 60.71 + 1.8,
-      175: 0.014 * 60.71 + 1.8,
-      200: 0.014 * 85.71 + 1.8,
-      250: 0.014 * 85.71 + 1.8,
-      300: 0.014 * 85.71 + 1.8,
+      100: {
+        "safari": 2.2,
+        "chrome": 2.2
+      }, //22px
+      110: {
+        "safari": 2.25,
+        "chrome": 2.25
+      }, //22.5px
+      130: {
+        "safari": 2.3,
+        "chrome": 2.29
+      }, //23px
+      150: {
+        "safari": 2.4,
+        "chrome": 1.89
+      }, //24px
+      175: {
+        "safari": 2.7,
+        "chrome": 1.887
+      }, //27px
+      200: {
+        "safari": 3,
+        "chrome": 1.596
+      }, //30px
+      250: {
+        "safari": 3.3,
+        "chrome": 1.351
+      }, //33px
+      300: {
+        "safari": 3.5,
+        "chrome": 1.035
+      } //35px
     },
     xl_font: {
-      100: 2.5,
-      110: 0.014 * 0 + 2.5,
-      115: 0.014 * 0 + 2.5,
-      125: 0.014 * 7.14 + 2.5,
-      130: 0.014 * 7.14 + 2.5,
-      150: 0.014 * 39.29 + 2.5,
-      170: 0.014 * 52.86 + 2.5,
-      175: 0.014 * 52.86 + 2.5,
-      200: 0.014 * 78.57 + 2.5,
-      250: 0.014 * 78.57 + 2.5,
-      300: 0.014 * 78.57 + 2.5,
+      100: {
+        "safari": 2.4,
+        "chrome": 2.4
+      }, //24px
+      110: {
+        "safari": 2.45,
+        "chrome": 2.45
+      }, //24.5px
+      130: {
+        "safari": 2.5,
+        "chrome": 2.5
+      }, //25px
+      150: {
+        "safari": 2.7,
+        "chrome": 2.5
+      }, //27px
+      175: {
+        "safari": 3,
+        "chrome": 2.487
+      },//30px
+      200: {
+        "safari": 3.3,
+        "chrome": 2.185
+      },//33px
+      250: {
+        "safari": 3.6,
+        "chrome": 1.473
+      },//36px
+      300: {
+        "safari": 3.8,
+        "chrome": 1.123
+      },//38px
     }
-  },
-  /*error code value matches with a key in translations. Adding a new code should sync with translations*/
+  }, /*error code value matches with a key in translations. Adding a new code should sync with translations*/
   errorCodes: {
     "gtin_not_created": "001",
     "gtin_wrong_length": "002",

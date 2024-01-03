@@ -1,5 +1,5 @@
 import {
-  goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence
+  goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence, setFontSize
 } from "../utils/utils.js";
 import constants from "../constants.js";
 import LeafletService from "../services/LeafletService.js";
@@ -8,7 +8,11 @@ import {focusModalHeader, renderLeaflet, showExpired, showIncorrectDate} from ".
 import {translate} from "../translationUtils.js";
 
 enableConsolePersistence();
-document.getElementsByTagName("body").onload = await translate();
+
+window.onload = async (event) => {
+  await translate();
+}
+document.getElementsByTagName("body").onload = setFontSize();
 
 function LeafletController() {
 
@@ -58,7 +62,9 @@ function LeafletController() {
     let lang = document.querySelector("input[name='languages']:checked").value
     this.leafletLang = lang;
     getLeaflet(lang);
-    setTextDirectionForLanguage(lang);
+    setTextDirectionForLanguage(lang, "#leaflet-content");
+    setTextDirectionForLanguage(lang, ".modal-body .page-header");
+
     document.querySelector("#leaflet-lang-select").setAttribute('style', 'display:none !important');
   }
 
@@ -107,9 +113,9 @@ function LeafletController() {
       */
       result.availableLanguages.forEach((lang, index) => {
         let langRadio = `
-         <div class="language-flag" style="background-image: url(./images/flags/${lang.value}.svg);"></div>
-         <div class="language-label">${lang.label} - (${lang.nativeName})</div>
          <input type="radio" name="languages" ${index === 0 ? "checked" : ""} value="${lang.value}" id="${lang.value}">
+         <div class="language-label">${lang.label} - (${lang.nativeName})</div>
+         <div class="language-flag" style="background-image: url(./images/flags/${lang.value}.svg);"></div>
         `;
         let radioFragment = document.createElement('label');
         radioFragment.classList.add("language-item-container");

@@ -97,7 +97,6 @@ let validateLeafletFiles = function (htmlContent, leafletImages, uploadedImages)
     } else if (uploadedImageNames[similarItemIndex] !== imgName) {
       differentCaseImgFiles.push({xmlName: imgName, fileName: uploadedImageNames[similarItemIndex]});
     }
-
   })
 
   if (missingImgFiles.length > 0) {
@@ -129,7 +128,9 @@ let renderLeaflet = function (leafletData) {
       //we don't alter already embedded images
       continue;
     }
-    image.setAttribute("src", leafletData.leafletImages[imageSrc]);
+    if (leafletData.leafletImages[imageSrc]) {
+      image.setAttribute("src", leafletData.leafletImages[imageSrc]);
+    }
   }
   let sectionsElements = resultDocument.querySelectorAll(".leaflet-accordion-item");
   let htmlContent = "";
