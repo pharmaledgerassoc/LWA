@@ -1,7 +1,7 @@
 import {saveFontZoom, setTextDirectionForLanguage, updateFontZoom} from "./utils/utils.js";
 import constants from "./constants.js";
 
-const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt", "pt-br", "zh"];
+const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt", "pt-br", "uk", "zh"];
 
 const langSubtypesMap = {
   "es-ar": "es",
