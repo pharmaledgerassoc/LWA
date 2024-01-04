@@ -1,6 +1,5 @@
 import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.js";
-import {goToErrorPage} from "./utils.js";
-import constants from "../constants.js";
+import constants from "../../../constants.js";
 
 let showExpired = function () {
   document.getElementById("settings-modal").style.display = "none";

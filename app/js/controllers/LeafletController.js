@@ -1,9 +1,9 @@
 import {
   goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence, setFontSize
-} from "../utils/utils.js";
-import constants from "../constants.js";
+} from "../../../utils.js"
+import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
-import environment from "../../environment.js";
+import environment from "../../../environment.js";
 import {focusModalHeader, renderLeaflet, showExpired, showIncorrectDate} from "../utils/leafletUtils.js"
 import {translate} from "../translationUtils.js";
 
@@ -73,13 +73,13 @@ function LeafletController() {
   }
 
   this.goHome = function () {
-    goToPage("/index.html")
+    goToPage("/main.html")
   }
 
   this.closeModal = function (modalId) {
     document.querySelector("#" + modalId).setAttribute('style', 'display:none !important');
     if (modalId === "leaflet-lang-select") {
-      goToPage("/index.html");
+      goToPage("/main.html");
     }
     document.getElementById("settings-modal").style.display = "block";
   }

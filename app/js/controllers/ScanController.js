@@ -3,7 +3,12 @@ import {
   goToErrorPage,
   goToPage,
   enableConsolePersistence, setFontSize,
-} from "../utils/utils.js";
+} from "../../../utils.js";
+import interpretGS1scan from "../utils/interpretGS1scan/interpretGS1scan.js";
+import ScanService from "../services/ScanService.js";
+import {getTranslation, translate} from "../translationUtils.js";
+import constants from "../../../constants.js";
+
 
 enableConsolePersistence();
 window.onload = async (event) => {
@@ -11,10 +16,6 @@ window.onload = async (event) => {
 }
 document.getElementsByTagName("body").onload = setFontSize();
 
-import interpretGS1scan from "../utils/interpretGS1scan/interpretGS1scan.js";
-import ScanService from "../services/ScanService.js";
-import {getTranslation, translate} from "../translationUtils.js";
-import constants from "../constants.js";
 
 function ScanController() {
   this.init = async function (forceNewCamera) {
@@ -56,7 +57,7 @@ function ScanController() {
   }
 
   this.cancelHandler = function () {
-    goToPage("/index.html");
+    goToPage("/main.html");
   }
 
   this.startScanning = async function () {

@@ -1,7 +1,7 @@
-import {goToPage, setFontSize} from "../utils/utils.js"
+import {goToPage, setFontSize} from "../../../utils.js"
 import {getTranslation, translate} from "../translationUtils.js";
-import environment from "../../environment.js";
-import constants from "../constants.js";
+import environment from "../../../environment.js";
+import constants from "../../../constants.js";
 
 
 function MainController() {
@@ -66,7 +66,7 @@ function MainController() {
   }
 
   this.goHome = function () {
-    goToPage("/index.html")
+    goToPage("/main.html")
   }
 
   this.closeModal = function () {
