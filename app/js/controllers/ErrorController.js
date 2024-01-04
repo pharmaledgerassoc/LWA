@@ -1,4 +1,4 @@
-import {goToPage, setFontSize} from "../utils/utils.js"
+import {goToPage, setFontSize} from "../../../utils.js"
 import {getTranslation, translate} from "../translationUtils.js";
 
 window.onload = async (event) => {
@@ -38,7 +38,7 @@ window.onload = async (event) => {
     }
 
     this.goHomeHandler = function () {
-      goToPage("/index.html")
+      goToPage("/main.html")
     }
 
     let scanAgainButton = document.getElementById("scan-again-button");

@@ -1,11 +1,11 @@
-import environment from "../../environment.js";
-import constants from "../constants.js"
+import environment from "../../../environment.js";
+import constants from "../../../constants.js"
 import CustomError from "../utils/CustomError.js";
 import RequestWizard from "./RequestWizard.js";
 import {ERROR_TYPES} from "./RequestWizard.js";
 import LightSmartUrl from "../utils/LightSmartUrl.js";
 
-import {goToErrorPage, validateGTIN} from "../utils/utils.js";
+import {goToErrorPage, validateGTIN} from "../../../utils.js";
 
 const validateGtinOwnerResponse = function (response) {
   return new Promise((resolve) => {

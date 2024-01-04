@@ -7,7 +7,7 @@
       "actions": [
         {
           "type": "smartClone",
-          "target": "./lib",
+          "target": "./app/lib",
           "collectLog": false,
           "commit": "a580226efc56ca6556060308850b43d16708ed85"
         }

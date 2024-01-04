@@ -1,5 +1,5 @@
-import constants from "../constants.js"
-
+import constants from "./constants.js"
+import environment from "./environment.js";
 
 function convertToLastMonthDay(date) {
   let expireDateConverted = date.replace("00", "01");
@@ -312,6 +312,14 @@ function setFontSize() {
 
 }
 
+function loadAppVersion() {
+  if (environment.enableRootVersion) {
+    goToPage(`/${environment.appBuildVersion}/main.html`)
+  } else {
+    goToPage(`/app/main.html`)
+  }
+}
+
 export {
   convertFromISOtoYYYY_HM,
   convertToLastMonthDay,
@@ -326,5 +334,6 @@ export {
   updateFontZoom,
   getFontSizeInMillimeters,
   saveFontZoom,
-  setFontSize
+  setFontSize,
+  loadAppVersion
 }

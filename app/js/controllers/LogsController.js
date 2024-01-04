@@ -1,4 +1,4 @@
-import constants from "../constants.js";
+import constants from "../../../constants.js";
 
 function LogsController() {
   let debugLog = JSON.parse(localStorage.getItem(constants.DEV_DEBUG));
