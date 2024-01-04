@@ -7,5 +7,6 @@ export default {
   "gto_TimePerCall": 3000,
   "gto_TotalWaitTime": 15000,
   "enableEpiDomain": true,
+  "enableRootVersion": false,
   "bdnsUrl": "https://raw.githubusercontent.com/pharmaledgerassoc/mobile-bdns/master/bdns.json"
 }

@@ -310,6 +310,7 @@ b {
 .content-container > img {
     aspect-ratio: 1;
     width: max(35vw, 35vh);
+    max-width: 400px;
 }
 
 .explain-container {
@@ -340,7 +341,7 @@ b {
     border-radius: 5vh;
     border: 0;
     font-family: 'DM Sans bold';
-    font-size: var(--font-size--L);
+    font-size: var(--font-size--basic);
     text-align: center;
     position: absolute;
     right: 4vh;
@@ -538,8 +539,7 @@ b {
 
 .modal-content .text-section {
     padding-bottom: 24px;
-    font-family: 'DM Sans semi-bold';
-    text-align: justify;
+    font-family: 'DM Sans';
 }
 
 .modal-content .languages-container .language-item-container {
@@ -640,7 +640,7 @@ b {
     border-radius: 62px;
     border: 0;
     color: #fff;
-    font-size: var(--font-size--L);
+    font-size: var(--font-size--basic);
     font-family: 'DM Sans bold';
     height: 56px;
 }
@@ -648,7 +648,7 @@ b {
 
 .go-back-button {
     font-family: 'DM Sans bold';
-    font-size: var(--font-size--L);
+    font-size: var(--font-size--basic);
     line-height: 140%;
     text-align: center;
     color: #516266;
