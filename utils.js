@@ -320,6 +320,14 @@ function loadAppVersion() {
   }
 }
 
+function load404Err() {
+  if (environment.enableRootVersion) {
+    goToPage(`/${environment.appBuildVersion}/4xx-errors/index.html`)
+  } else {
+    goToPage(`/app/4xx-errors/index.html`)
+  }
+}
+
 export {
   convertFromISOtoYYYY_HM,
   convertToLastMonthDay,
@@ -335,5 +343,6 @@ export {
   getFontSizeInMillimeters,
   saveFontZoom,
   setFontSize,
-  loadAppVersion
+  loadAppVersion,
+  load404Err
 }
