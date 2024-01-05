@@ -17,6 +17,7 @@ window.onload = async (event) => {
       case "008":
       case "009":
       case "010":
+      case "013":
       case "099":
         document.querySelector(".modal-title.header-title").innerHTML = getTranslation("product_not_found_title");
         document.querySelector(".page-content .error-text").innerHTML = `<p> <b>${getTranslation("product_not_found")} </b></p> <p>${getTranslation("err_code")} ${errorCode}</p>`;

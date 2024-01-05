@@ -13,6 +13,7 @@ window.onload = async (event) => {
   await translate();
 }
 document.getElementsByTagName("body").onload = setFontSize();
+const sanitationRegex = /(<iframe>([\s\S]*)<\/iframe>)|(<script>([\s\S]*)<\/script>)/g;
 
 function LeafletController() {
 
@@ -33,6 +34,12 @@ function LeafletController() {
     document.querySelector(".loader-container").setAttribute('style', 'display:block');
 
     leafletService.getLeafletUsingCache(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime).then((result) => {
+      //check for injections in result
+      let tmp = JSON.stringify(result)
+      if (!tmp || sanitationRegex.test(tmp)) {
+        goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
+        return;
+      }
       if (result.resultStatus === "xml_found") {
         try {
           showXML(result);
