@@ -4,6 +4,7 @@ import constants from "../../constants.js";
 const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt", "pt-br", "uk", "zh"];
 
 const langSubtypesMap = {
+  "de-de": "de",
   "es-ar": "es",
   "es-bo": "es",
   "es-cl": "es",
@@ -24,13 +25,13 @@ const langSubtypesMap = {
   "es-us": "es",
   "es-es": "es",
   "es-419": "es",
-  "pt-pt": "pt",
-  "de-de": "de",
   "fr-fr": "fr",
   "fr-be": "fr",
   "fr-ca": "fr",
-  "nl-nl": "nl",
   "ko-kr": "ko",
+  "nl-nl": "nl",
+  "pt-pt": "pt",
+  "uk-ua": "uk",
   "zh-cn": "zh",
   "zh-hans": "zh",
   "zh-hant": "zh",
