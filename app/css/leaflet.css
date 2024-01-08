@@ -2,7 +2,7 @@
 
 .product-name {
     font-size: var(--font-size--XL);
-    font-family: 'DM Sans bold';
+    font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -38,7 +38,7 @@
 }
 
 #leaflet-content h2 {
-    font-family: 'DM Sans bold';
+    font-weight: 700;
     font-size: var(--font-size--M);
     margin-right: 1rem;
 }
@@ -93,7 +93,7 @@
     display: block;
     position: relative;
     font-style: normal;
-    font-family: 'DM Sans';
+    font-weight: 400;
     overflow-x: auto;
 }
 

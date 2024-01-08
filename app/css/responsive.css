@@ -14,10 +14,22 @@ body {
     padding: 0;
     position: relative;
     margin: 0 auto;
-    font-family: "DM Sans";
+    font-family: "Noto Sans";
     font-size: var(--font-size--basic);
     display: flex;
     flex-direction: column;
+}
+
+body[app-lang="ko"] {
+    font-family: "Noto Sans", "Noto Sans Korea"
+}
+
+body[app-lang="zh"] {
+    font-family: "Noto Sans", "Noto Sans China"
+}
+
+body[app-lang="ja"] {
+    font-family: "Noto Sans", "Noto Sans Japan"
 }
 
 h1 {
@@ -41,18 +53,18 @@ p {
     font-size: 1em;
     top: -5000px;
     line-height: 1;
-    font-family: 'DM Sans';
+    font-weight: 400;
     visibility: hidden;
     position: relative;
 }
 
 b {
-    font-family: "DM Sans bold";
+    font-weight: 700;
 }
 
 .bold-title {
     font-size: var(--font-size--XL);
-    font-family: 'DM Sans bold';
+    font-weight: 700;
 }
 
 .fill-available-width {
@@ -184,7 +196,7 @@ b {
 
 .welcome-container {
     align-self: center;
-    font-family: 'DM Sans bold';
+    font-weight: 700;
     text-align: center;
     padding: min(3vh, 3vw) 7vh 1vh;
 }
@@ -340,7 +352,7 @@ b {
     box-shadow: -1px 8px 24px rgba(0, 0, 0, 0.16);
     border-radius: 5vh;
     border: 0;
-    font-family: 'DM Sans bold';
+    font-weight: 700;
     font-size: var(--font-size--basic);
     text-align: center;
     position: absolute;
@@ -376,8 +388,7 @@ b {
     top: -15px;
     border-radius: 15px 15px 30px 30px;
     font-size: var(--font-size--L);;
-    font-weight: bold;
-    font-family: 'DM Sans bold';
+    font-weight: 700;
 }
 
 .popup-modal .modal-body {
@@ -539,11 +550,11 @@ b {
 
 .modal-content .text-section {
     padding-bottom: 24px;
-    font-family: 'DM Sans';
+    font-weight: 400;
 }
 
 .modal-content .languages-container .language-item-container {
-    font-family: 'DM Sans semi-bold';
+    font-weight: 500;
     font-size: var(--font-size--basic);
     border: 0.5px solid var(--grey);
     margin-bottom: 10px;
@@ -596,7 +607,7 @@ b {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-family: 'DM Sans semi-bold';
+    font-weight: 500;
     font-size: var(--font-size--basic);
     height: 15%;
     max-height: 25%;
@@ -617,7 +628,7 @@ b {
     background: transparent;
     color: white;
     border: 0;
-    font-family: 'DM Sans semi-bold';
+    font-weight: 500;
     font-size: var(--font-size--basic);
     padding: 0 min(3vh, 3vw);
 }
@@ -641,13 +652,13 @@ b {
     border: 0;
     color: #fff;
     font-size: var(--font-size--basic);
-    font-family: 'DM Sans bold';
+    font-weight: 700;
     height: 56px;
 }
 
 
 .go-back-button {
-    font-family: 'DM Sans bold';
+    font-weight: 700;
     font-size: var(--font-size--basic);
     line-height: 140%;
     text-align: center;
@@ -842,7 +853,7 @@ body[dir="RTL"] .modal-content .languages-container .language-item-container .la
     .modal-header .modal-title,
     .error-page .header-title {
         font-size: var(--font-size--XL);
-        font-family: 'DM Sans bold';
+        font-family: 'Noto Sans bold';
     }
 
     .scan-header button {

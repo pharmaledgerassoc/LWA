@@ -67,6 +67,7 @@ function setDefaultLanguage() {
   appLang = langSubtypesMap[appLang.toLowerCase()] || appLang;
   appLang = supportedLanguageCodes.includes(appLang) ? appLang : "en";
   localStorage.setItem(constants.APP_LANG, appLang);
+  document.querySelector("body").setAttribute("app-lang", appLang);
   setTextDirectionForLanguage(appLang);
 }
 
