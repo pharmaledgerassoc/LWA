@@ -2,7 +2,7 @@
 
 .product-name {
     font-size: var(--font-size--XL);
-    font-family: 'DM Sans bold';
+    font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -11,6 +11,19 @@
 
 .product-description {
     font-size: var(--font-size--L);
+}
+
+#leaflet-content {
+    text-align: start;
+    height: 100%;
+    width: 100%;
+
+}
+
+#leaflet-content,
+#leaflet-content p,
+#leaflet-content h4 {
+    font-size: var(--font-size--M);
 }
 
 #leaflet-content .select-lang-text {
@@ -25,19 +38,13 @@
 }
 
 #leaflet-content h2 {
-    font-family: 'DM Sans bold';
-    font-size: var(--font-size--L);
+    font-weight: 700;
+    font-size: var(--font-size--M);
     margin-right: 1rem;
 }
 
 .leaflet-content-wrapper {
     position: relative;
-    width: 100%;
-}
-
-#leaflet-content {
-    text-align: start;
-    height: 100%;
     width: 100%;
 }
 
@@ -86,7 +93,7 @@
     display: block;
     position: relative;
     font-style: normal;
-    font-family: 'DM Sans';
+    font-weight: 400;
     overflow-x: auto;
 }
 
@@ -133,7 +140,7 @@
     display: block;
 }
 
-#leaflet-content[dir="RTL"]  #leaflet-content h2 {
+#leaflet-content[dir="RTL"] #leaflet-content h2 {
     margin-right: unset;
     margin-block-start: unset;
     padding-left: 10%;

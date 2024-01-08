@@ -7,7 +7,7 @@ html {
 
 body {
     padding: 0;
-    font-family: "DM Sans";
+    font-weight: 400;
     height: 100%;
     font-size: var(--font-size--basic);
     -webkit-text-size-adjust: none;
@@ -230,7 +230,7 @@ dialog section {
 }
 
 dialog section p {
-    font-family: "DM Sans semi-bold";
+    font-weight: 500;
     font-size: 16px;
 }
 

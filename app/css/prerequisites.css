@@ -16,33 +16,132 @@
     --font-size--XL: 2.4rem;
 }
 
-/* dm-sans-regular - latin-ext_latin */
 @font-face {
-    font-family: 'DM Sans';
+    font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 400;
     src: local(''),
-    url('../fonts/dm-sans-v11-latin-ext_latin-regular.woff2') format('woff2'), url('../fonts/dm-sans-v11-latin-ext_latin-regular.woff') format('woff'),
-    url('../fonts/DMSans-Regular.ttf') format('truetype'); /* Safari, Android, iOS */
+    url("../fonts/NotoSans-Regular.ttf") format('truetype');
 }
 
-/* dm-sans-500 - latin-ext_latin */
 @font-face {
-    font-family: 'DM Sans semi-bold';
+    font-family: 'Noto Sans Japan';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url("../fonts/NotoSansJP-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Korea';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url("../fonts/NotoSansKR-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans China';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url("../fonts/NotoSansTC-Regular.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans semi-bold';
     font-style: normal;
     font-weight: 500;
     src: local(''),
-    url('../fonts/dm-sans-v11-latin-ext_latin-500.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/dm-sans-v11-latin-ext_latin-500.woff') format('woff'),
-    url('../fonts/DMSans-Medium.ttf') format('truetype'); /* Safari, Android, iOS */
-    /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    url("../fonts/NotoSans-SemiBold.ttf") format('truetype');
 }
 
-/* dm-sans-700 - latin-ext_latin */
 @font-face {
-    font-family: 'DM Sans bold';
+    font-family: 'Noto Sans Japan semi-bold';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''),
+    url("../fonts/NotoSansJP-SemiBold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Korea semi-bold';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''),
+    url("../fonts/NotoSansKR-SemiBold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans China semi-bold';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''),
+    url("../fonts/NotoSansTC-SemiBold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans bold';
     font-style: normal;
     font-weight: 700;
     src: local(''),
-    url('../fonts/dm-sans-v11-latin-ext_latin-700.woff2') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */ url('../fonts/dm-sans-v11-latin-ext_latin-700.woff') format('woff'), /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */ url('../fonts/DMSans-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
+    url("../fonts/NotoSans-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Japan bold';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+    url("../fonts/NotoSansJP-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Korea bold';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+    url("../fonts/NotoSansKR-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans China bold';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+    url("../fonts/NotoSansTC-Bold.ttf") format('truetype');
+}
+
+/*
+!* dm-sans-regular - latin-ext_latin *!
+@font-face {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local(''),
+    url('../fonts/dm-sans-v11-latin-ext_latin-regular.woff2') format('woff2'),
+    url('../fonts/dm-sans-v11-latin-ext_latin-regular.woff') format('woff'),
+    url('../fonts/DMSans-Regular.ttf') format('truetype'); !* Safari, Android, iOS *!
+}
+
+!* dm-sans-500 - latin-ext_latin *!
+@font-face {
+    font-family: 'Noto Sans semi-bold';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''),
+    url('../fonts/dm-sans-v11-latin-ext_latin-500.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *! url('../fonts/dm-sans-v11-latin-ext_latin-500.woff') format('woff'),
+    url('../fonts/DMSans-Medium.ttf') format('truetype'); !* Safari, Android, iOS *!
+    !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *!
+}
+
+!* dm-sans-700 - latin-ext_latin *!
+@font-face {
+    font-family: 'Noto Sans bold';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+    url('../fonts/dm-sans-v11-latin-ext_latin-700.woff2') format('woff2'), !* Chrome 26+, Opera 23+, Firefox 39+ *! url('../fonts/dm-sans-v11-latin-ext_latin-700.woff') format('woff'), !* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ *! url('../fonts/DMSans-Bold.ttf') format('truetype'); !* Safari, Android, iOS *!
 
 }
+*/

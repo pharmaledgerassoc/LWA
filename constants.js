@@ -156,6 +156,7 @@ const constants = {
     "unknown_error": "010",
     "no_uploaded_epi": "011",
     "get_dsu_timeout": "012",
+    "unsupported_response": "013",
     "misconfiguration": "099"
   },
   rtlLangCodes: ["ar", "he"]
