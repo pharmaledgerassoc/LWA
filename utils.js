@@ -313,19 +313,19 @@ function setFontSize() {
 }
 
 function loadAppVersion() {
+  let appRootPage = `/app/main.html`;
   if (environment.enableRootVersion) {
-    goToPage(`/${environment.appBuildVersion}/main.html`)
-  } else {
-    goToPage(`/app/main.html`)
+    appRootPage = `/${environment.appBuildVersion}/main.html`;
   }
+  goToPage(appRootPage);
 }
 
 function load404Err() {
+  let err404Page = `app/404.html`;
   if (environment.enableRootVersion) {
-    goToPage(`/${environment.appBuildVersion}/4xx-errors/index.html`)
-  } else {
-    goToPage(`/app/4xx-errors/index.html`)
+    err404Page = `${environment.appBuildVersion}/404.html`;
   }
+  window.location.href = (window.location.href.split("4xx-errors")[0] + err404Page);
 }
 
 export {
