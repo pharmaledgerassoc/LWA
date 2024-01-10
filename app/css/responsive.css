@@ -32,6 +32,10 @@ body[app-lang="ja"] {
     font-family: "Noto Sans", "Noto Sans Japan"
 }
 
+body[app-lang="ar"] {
+    font-family: "Noto Sans", "Noto Sans Arab"
+}
+
 h1 {
     font-size: var(--font-size--XL);
 }
@@ -203,7 +207,6 @@ b {
 
 .welcome-container h1 {
     margin: 0;
-    line-height: 1.2;
 }
 
 .terms-content-container h2 {
@@ -655,7 +658,6 @@ b {
     font-weight: 700;
     height: 56px;
 }
-
 
 .go-back-button {
     font-weight: 700;
