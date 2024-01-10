@@ -218,7 +218,6 @@ b {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: var(--font-size--basic);
     position: relative;
 }
 

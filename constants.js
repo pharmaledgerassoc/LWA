@@ -8,138 +8,138 @@ const constants = {
     /*body, h4*/
     basic_font: {
       100: {
-        "safari": 1.6,
-        "chrome": 1.6
+        "safari": "calc(1.6rem + 0.1vmin)",
+        "chrome": "calc(1.6rem + 0.1vmin)"
       }, //16px
       110: {
-        "safari": 1.65,
-        "chrome": 1.5
+        "safari": "calc(1.6rem/1.1 + 0.2vmin)",
+        "chrome": "calc(1.6rem + 0.2vmin)"
       }, //16.5px
       130: {
-        "safari": 1.75,
-        "chrome": 1.435
+        "safari": "calc(1.6rem/1.3 + 0.4vmin)",
+        "chrome": "calc(1.6rem + 0.4vmin)"
       }, //17.5px
       150: {
-        "safari": 1.8,
-        "chrome": 1.277
+        "safari": "calc(1.6rem/1.5 + 0.6vmin)",
+        "chrome": "calc(1.6rem + 0.6vmin)"
       }, //18px
       175: {
-        "safari": 2,
-        "chrome": 1.252
+        "safari": "calc(1.6rem/1.75 + 0.8vmin)",
+        "chrome": "calc(1.6rem + 0.8vmin)"
       }, //20px
       200: {
-        "safari": 2.2,
-        "chrome": 1.17019
+        "safari": "calc(1.6rem/2 + 1.1vmin)",
+        "chrome": "calc(1.6rem + 1.1vmin)"
       }, //22px
       250: {
-        "safari": 2.4,
-        "chrome": 0.982
+        "safari": "calc(1.6rem/2.5 + 1.5vmin))",
+        "chrome": "calc(1.6rem + 1.5vmin)"
       }, //24px
       300: {
-        "safari": 2.6,
-        "chrome": 0.769
+        "safari": "calc(1.6rem/3 + 1.8vmin)",
+        "chrome": "calc(1.6rem + 1.8vmin)"
       }  //26px
     }, /*H3*/
     m_font: {
       100: {
-        "safari": 1.8,
-        "chrome": 1.8
+        "safari": "calc(1.6rem + 0.5vmin)",
+        "chrome": "calc(1.6rem + 0.5vmin)"
       }, //18px
       110: {
-        "safari": 1.85,
-        "chrome": 1.55
+        "safari": "calc(1.6rem/1.1 + 0.6vmin)",
+        "chrome": "calc(1.6rem + 0.6vmin)"
       }, //18.5px
       130: {
-        "safari": 1.9,
-        "chrome": 1.555
+        "safari": "calc(1.6rem/1.3 + 0.8vmin)",
+        "chrome": "calc(1.6rem + 0.8vmin)"
       }, //19px
       150: {
-        "safari": 2,
-        "chrome": 1.421
+        "safari": "calc(1.6rem/1.5 + 1vmin)",
+        "chrome": "calc(1.6rem + 1vmin)"
       }, //20px
       175: {
-        "safari": 2.2,
-        "chrome": 1.377
+        "safari": "calc(1.6rem/1.75 + 1.25vmin)",
+        "chrome": "calc(1.6rem + 1.25vmin)"
       }, //22px
       200: {
-        "safari": 2.4,
-        "chrome": 1.277
+        "safari": "calc(1.6rem/2 + 1.5vmin)",
+        "chrome": "calc(1.6rem + 1.5vmin)"
       }, //24px
       250: {
-        "safari": 2.6,
-        "chrome": 1.064
+        "safari": "calc(1.6rem/2.5 + 1.8vmin)",
+        "chrome": "calc(1.6rem + 1.8vmin)"
       }, //26px
       300: {
-        "safari": 2.8,
-        "chrome": 0.8277
+        "safari": "calc(1.6rem/3 + 2.1vmin)",
+        "chrome": "calc(1.6rem + 2.1vmin)"
       } //28px
     },
     l_font: {
       100: {
-        "safari": 2.2,
-        "chrome": 2.2
+        "safari": "calc(1.6rem + 1.2vmin)",
+        "chrome": "calc(1.6rem + 1.2vmin)"
       }, //22px
       110: {
-        "safari": 2.25,
-        "chrome": 2.25
+        "safari": "calc(1.6rem/1.1 + 1.3vmin)",
+        "chrome": "calc(1.6rem + 1.3vmin)"
       }, //22.5px
       130: {
-        "safari": 2.3,
-        "chrome": 2.29
+        "safari": "calc(1.6rem/1.3 + 1.5vmin)",
+        "chrome": "calc(1.6rem + 1.5vmin)"
       }, //23px
       150: {
-        "safari": 2.4,
-        "chrome": 1.89
+        "safari": "calc(1.6rem/1.5 + 1.7vmin)",
+        "chrome": "calc(1.6rem + 1.7vmin)"
       }, //24px
       175: {
-        "safari": 2.7,
-        "chrome": 1.887
+        "safari": "calc(1.6rem/1.75 + 1.9vmin)",
+        "chrome": "calc(1.6rem + 1.9vmin)"
       }, //27px
       200: {
-        "safari": 3,
-        "chrome": 1.596
+        "safari": "calc(1.6rem/2 + 2.1vmin)",
+        "chrome": "calc(1.6rem + 2.1vmin)"
       }, //30px
       250: {
-        "safari": 3.3,
-        "chrome": 1.351
+        "safari": "calc(1.6rem/2.5 + 2.3vmin)",
+        "chrome": "calc(1.6rem + 2.3vmin)"
       }, //33px
       300: {
-        "safari": 3.5,
-        "chrome": 1.035
+        "safari": "calc(1.6rem/3 + 2.5vmin)",
+        "chrome": "calc(1.6rem + 2.5vmin)"
       } //35px
     },
     xl_font: {
       100: {
-        "safari": 2.4,
-        "chrome": 2.4
+        "safari": "calc(1.6rem + 1.6vmin)",
+        "chrome": "calc(1.6rem + 1.6vmin)"
       }, //24px
       110: {
-        "safari": 2.45,
-        "chrome": 2.45
+        "safari": "calc(1.6rem/1.1 + 1.7vmin)",
+        "chrome": "calc(1.6rem + 1.7vmin)"
       }, //24.5px
       130: {
-        "safari": 2.5,
-        "chrome": 2.5
+        "safari": "calc(1.6rem/1.3 + 1.9vmin)",
+        "chrome": "calc(1.6rem + 1.9vmin)"
       }, //25px
       150: {
-        "safari": 2.7,
-        "chrome": 2.5
+        "safari": "calc(1.6rem/1.5 + 2.1vmin)",
+        "chrome": "calc(1.6rem + 2.1vmin)"
       }, //27px
       175: {
-        "safari": 3,
-        "chrome": 2.487
+        "safari": "calc(1.6rem/1.75 + 2.3vmin)",
+        "chrome": "calc(1.6rem + 2.3vmin)"
       },//30px
       200: {
-        "safari": 3.3,
-        "chrome": 2.185
+        "safari": "calc(1.6rem/2 + 2.5vmin)",
+        "chrome": "calc(1.6rem + 2.5vmin)"
       },//33px
       250: {
-        "safari": 3.6,
-        "chrome": 1.473
+        "safari": "calc(1.6rem/2.5 + 2.9vmin)",
+        "chrome": "calc(1.6rem + 2.9vmin)"
       },//36px
       300: {
-        "safari": 3.8,
-        "chrome": 1.123
+        "safari": "calc(1.6rem/3 + 3.2vmin)",
+        "chrome": "calc(1.6rem + 3.2vmin)"
       },//38px
     }
   }, /*error code value matches with a key in translations. Adding a new code should sync with translations*/

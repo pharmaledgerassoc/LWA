@@ -237,7 +237,7 @@ function updateFontZoom(value, ignoreBrowser) {
   if (zoom >= 300) {
     zoom = 300;
   }
-  zoomFont(zoom, ignoreBrowser);
+  zoomFont(zoom.toString(), ignoreBrowser);
 }
 
 function getBrowser() {
@@ -281,12 +281,16 @@ function saveFontZoom() {
 }
 
 function zoomFont(scaleFactor, ignoreBrowser) {
+  console.log("zoom = ", scaleFactor);
+  if(scaleFactor === "100"){
+    return
+  }
   let visualViewportDelta = window.visualViewport.scale;// > 2 ? window.visualViewport.scale / 2 : 1
   let currentBrowser = ignoreBrowser ? "safari" : getBrowser();
-  document.documentElement.style.setProperty('--font-size--basic', constants.FONT_SCALE_MAP.basic_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
-  document.documentElement.style.setProperty('--font-size--M', constants.FONT_SCALE_MAP.m_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
-  document.documentElement.style.setProperty('--font-size--L', constants.FONT_SCALE_MAP.l_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
-  document.documentElement.style.setProperty('--font-size--XL', constants.FONT_SCALE_MAP.xl_font[scaleFactor][currentBrowser] / visualViewportDelta + "rem");
+  document.documentElement.style.setProperty('--font-size--basic', constants.FONT_SCALE_MAP.basic_font[scaleFactor][currentBrowser] );
+  document.documentElement.style.setProperty('--font-size--M', constants.FONT_SCALE_MAP.m_font[scaleFactor][currentBrowser]);
+  document.documentElement.style.setProperty('--font-size--L', constants.FONT_SCALE_MAP.l_font[scaleFactor][currentBrowser]);
+  document.documentElement.style.setProperty('--font-size--XL', constants.FONT_SCALE_MAP.xl_font[scaleFactor][currentBrowser]);
 }
 
 let resizeListener;
@@ -303,6 +307,7 @@ function addResizeListener() {
 }
 
 function setFontSize() {
+  return;
   let testFontContainer = document.querySelector("#font-control");
   testFontContainer.innerHTML = `<span>A-W</span>`;
   saveFontZoom();
