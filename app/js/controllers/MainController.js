@@ -80,7 +80,7 @@ function MainController() {
 
     let modal = document.querySelector("#settings-modal");
 
-    modal.setAttribute('style', 'display:flex');
+    modal.setAttribute('style', 'display:flex;');
     document.querySelector(".page-container").setAttribute('style', 'display:none !important');
     let titleKey = key + "_modal_title";
     let subtitleKey = key + "_modal_subtitle";
@@ -164,10 +164,9 @@ window.onload = async (event) => {
   await translate();
   mainController.checkOnboarding();
   document.querySelector(".page-container").classList.remove("hiddenElement");
-  setFontSize();
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
+  setTimeout(setFontSize, 0);
 }
-
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let epiDomain = urlParams.get("setdomain") || localStorage.getItem(constants.EPI_DOMAIN) || environment.epiDomain;

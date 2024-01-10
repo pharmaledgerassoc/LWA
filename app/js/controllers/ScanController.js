@@ -13,8 +13,8 @@ import constants from "../../../constants.js";
 enableConsolePersistence();
 window.onload = async (event) => {
   await translate();
+  setTimeout(setFontSize, 0);
 }
-document.getElementsByTagName("body").onload = setFontSize();
 
 
 function ScanController() {

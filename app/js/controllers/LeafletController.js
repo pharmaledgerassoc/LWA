@@ -11,8 +11,9 @@ enableConsolePersistence();
 
 window.onload = async (event) => {
   await translate();
+  setTimeout(setFontSize, 0);
 }
-document.getElementsByTagName("body").onload = setFontSize();
+
 const sanitationRegex = /(<iframe>([\s\S]*)<\/iframe>)|(<script>([\s\S]*)<\/script>)/g;
 
 function LeafletController() {

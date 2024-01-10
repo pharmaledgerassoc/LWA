@@ -130,16 +130,16 @@ const constants = {
         "chrome": "calc(1.6rem + 2.3vmin)"
       },//30px
       200: {
-        "safari": "calc(1.6rem/2 + 2.5vmin)",
-        "chrome": "calc(1.6rem + 2.5vmin)"
+        "safari": "calc(1.6rem/2 + 6vmin)",
+        "chrome": "calc(1.6rem + 6vmin)"
       },//33px
       250: {
-        "safari": "calc(1.6rem/2.5 + 2.9vmin)",
-        "chrome": "calc(1.6rem + 2.9vmin)"
+        "safari": "calc(1.6rem/2.5 + 8vmin)",
+        "chrome": "calc(1.6rem + 8vmin)"
       },//36px
       300: {
-        "safari": "calc(1.6rem/3 + 3.2vmin)",
-        "chrome": "calc(1.6rem + 3.2vmin)"
+        "safari": "calc(1.6rem/3 + 10vmin)",
+        "chrome": "calc(1.6rem + 10vmin)"
       },//38px
     }
   }, /*error code value matches with a key in translations. Adding a new code should sync with translations*/

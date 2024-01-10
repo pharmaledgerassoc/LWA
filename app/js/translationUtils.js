@@ -39,7 +39,7 @@ const langSubtypesMap = {
   "nb": "no",
   "nn": "no",
   "it-CH": "it",
-  "it-IT": "no",
+  "it-IT": "it",
 }
 
 function transformToISOStandardLangCode(code) {

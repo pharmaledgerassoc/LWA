@@ -6,6 +6,7 @@ html {
     min-height: 100%;
     width: 100%;
     height: 100%;
+    font-size: 10px;
 }
 
 body {
@@ -211,6 +212,7 @@ b {
     font-weight: 700;
     text-align: center;
     padding: min(3vh, 3vw) 7vh 1vh;
+    font-size: var(--font-size--XL);
 }
 
 .welcome-container h1 {
@@ -313,7 +315,7 @@ b {
 }
 
 .app-menu-container.hidden {
-    display: none;
+    visibility: hidden;
 }
 
 .hiddenElement {
