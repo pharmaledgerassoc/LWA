@@ -10,18 +10,17 @@
     --yellow-200: #FFCB45;
     --yellow-100: #FFECBB;
     font-size: 62.5%; /* (62.5/100) * 16px = 10px */
-    --font-size--basic: 1.6rem;
-    --font-size--M: 1.8rem;
-    --font-size--L: 2.2rem;
-    --font-size--XL: 2.4rem;
+    --font-size--basic: calc(1.6rem + 0.1vmin);
+    --font-size--M: calc(1.6rem + 1.1vmin);
+    --font-size--L: calc(1.6rem + 1.4vmin);
+    --font-size--XL: calc(1.6rem + 1.6vmin);
 }
 
 @font-face {
     font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 400;
-    src: local(''),
-    url("../fonts/NotoSans-Regular.ttf") format('truetype');
+    src: local(''), url("../fonts/NotoSans-Regular.ttf") format('truetype');
 }
 
 @font-face {
@@ -49,15 +48,22 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans semi-bold';
+    font-family: 'Noto Sans Arab';
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     src: local(''),
-    url("../fonts/NotoSans-SemiBold.ttf") format('truetype');
+    url("../fonts/NotoSansArabic-Regular.ttf") format('truetype');
 }
 
 @font-face {
-    font-family: 'Noto Sans Japan semi-bold';
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''), url("../fonts/NotoSans-SemiBold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Japan';
     font-style: normal;
     font-weight: 500;
     src: local(''),
@@ -65,7 +71,7 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans Korea semi-bold';
+    font-family: 'Noto Sans Korea';
     font-style: normal;
     font-weight: 500;
     src: local(''),
@@ -73,7 +79,7 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans China semi-bold';
+    font-family: 'Noto Sans China';
     font-style: normal;
     font-weight: 500;
     src: local(''),
@@ -81,7 +87,16 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans bold';
+    font-family: 'Noto Sans Arab';
+    font-style: normal;
+    font-weight: 500;
+    src: local(''),
+    url("../fonts/NotoSansArabic-SemiBold.ttf") format('truetype');
+}
+
+
+@font-face {
+    font-family: 'Noto Sans';
     font-style: normal;
     font-weight: 700;
     src: local(''),
@@ -89,7 +104,7 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans Japan bold';
+    font-family: 'Noto Sans Japan';
     font-style: normal;
     font-weight: 700;
     src: local(''),
@@ -97,7 +112,7 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans Korea bold';
+    font-family: 'Noto Sans Korea';
     font-style: normal;
     font-weight: 700;
     src: local(''),
@@ -105,11 +120,19 @@
 }
 
 @font-face {
-    font-family: 'Noto Sans China bold';
+    font-family: 'Noto Sans China';
     font-style: normal;
     font-weight: 700;
     src: local(''),
     url("../fonts/NotoSansTC-Bold.ttf") format('truetype');
+}
+
+@font-face {
+    font-family: 'Noto Sans Arab';
+    font-style: normal;
+    font-weight: 700;
+    src: local(''),
+    url("../fonts/NotoSansArabic-Bold.ttf") format('truetype');
 }
 
 /*

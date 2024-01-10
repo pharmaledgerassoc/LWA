@@ -41,16 +41,13 @@ function MainController() {
   this.checkOnboarding = function () {
     let usrAgreedTerms = getCookie("usr_agreed_terms");
     if (!usrAgreedTerms) {
-      let welcomeText = getTranslation("onboarding_welcome");
-      document.querySelector(".welcome-container").innerHTML = `<h1>${welcomeText}</h1>`;
+      document.querySelector(".welcome-container #onbording-text").classList.remove("hiddenElement")
       document.querySelector(".content-container").classList.add("hiddenElement");
       document.querySelector(".explain-container").classList.add("hiddenElement");
       document.querySelector(".scan-button-container").classList.add("hiddenElement");
     } else {
-      let welcomeText = getTranslation("welcome");
       document.querySelector(".terms-content-container").classList.add("hiddenElement");
-      document.querySelector(".welcome-container").innerHTML = `<h1>${welcomeText}</h1>`;
-      /* document.querySelector(".content-container").innerHTML = `<div class="icon-div"></div>`;*/
+      document.querySelector(".welcome-container #welcome-text").classList.remove("hiddenElement");
     }
     document.querySelector("#app_version_number").innerHTML = `${environment.appBuildVersion}`;
   }

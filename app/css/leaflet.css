@@ -23,7 +23,7 @@
 #leaflet-content,
 #leaflet-content p,
 #leaflet-content h4 {
-    font-size: var(--font-size--M);
+    font-size: var(--font-size--basic);
 }
 
 #leaflet-content .select-lang-text {
@@ -39,7 +39,6 @@
 
 #leaflet-content h2 {
     font-weight: 700;
-    font-size: var(--font-size--M);
     margin-right: 1rem;
 }
 
