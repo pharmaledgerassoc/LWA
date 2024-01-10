@@ -364,7 +364,7 @@ b {
     border-radius: 5vh;
     border: 0;
     font-weight: 700;
-    font-size: var(--font-size--basic);
+    font-size: var(--font-size--L);
     text-align: center;
     position: absolute;
     right: 4vh;
@@ -662,14 +662,14 @@ b {
     border-radius: 62px;
     border: 0;
     color: #fff;
-    font-size: var(--font-size--basic);
+    font-size: var(--font-size--L);
     font-weight: 700;
     height: 56px;
 }
 
 .go-back-button {
     font-weight: 700;
-    font-size: var(--font-size--basic);
+    font-size: var(--font-size--L);
     line-height: 140%;
     text-align: center;
     color: #516266;
