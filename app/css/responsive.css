@@ -20,19 +20,27 @@ body {
     flex-direction: column;
 }
 
-body[app-lang="ko"] {
+button {
+    font-family: "Noto Sans";
+}
+
+body[app-lang="ko"],
+body[app-lang="ko"] button {
     font-family: "Noto Sans", "Noto Sans Korea"
 }
 
-body[app-lang="zh"] {
+body[app-lang="zh"],
+body[app-lang="zh"] button {
     font-family: "Noto Sans", "Noto Sans China"
 }
 
-body[app-lang="ja"] {
+body[app-lang="ja"],
+body[app-lang="ja"] button {
     font-family: "Noto Sans", "Noto Sans Japan"
 }
 
-body[app-lang="ar"] {
+body[app-lang="ar"],
+body[app-lang="ar"] button {
     font-family: "Noto Sans", "Noto Sans Arab"
 }
 
