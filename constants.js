@@ -110,8 +110,8 @@ const constants = {
     },
     xl_font: {
       100: {
-        "safari": "calc(1.6rem + 1.6vmin)",
-        "chrome": "calc(1.6rem + 1.6vmin)"
+        "safari": "calc(1.6rem + 2vmin)",
+        "chrome": "calc(1.6rem + 2vmin)"
       }, //24px
       110: {
         "safari": "calc(1.6rem/1.1 + 1.7vmin)",
