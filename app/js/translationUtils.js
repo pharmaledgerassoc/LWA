@@ -38,8 +38,8 @@ const langSubtypesMap = {
   "zh-hk": "zh",
   "nb": "no",
   "nn": "no",
-  "it-CH": "it",
-  "it-IT": "no",
+  "it-ch": "it",
+  "it-it": "it",
 }
 
 function transformToISOStandardLangCode(code) {
