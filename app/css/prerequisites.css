@@ -13,7 +13,7 @@
     --font-size--basic: calc(1.6rem + 0.1vmin);
     --font-size--M: calc(1.6rem + 1.1vmin);
     --font-size--L: calc(1.6rem + 1.4vmin);
-    --font-size--XL: calc(1.6rem + 1.6vmin);
+    --font-size--XL: calc(1.6rem + 2vmin);
 }
 
 @font-face {

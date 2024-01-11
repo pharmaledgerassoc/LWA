@@ -281,7 +281,6 @@ function saveFontZoom() {
 }
 
 function zoomFont(scaleFactor, ignoreBrowser) {
-  console.log("zoom = ", scaleFactor);
   if(scaleFactor === "100"){
     return
   }
@@ -307,14 +306,11 @@ function addResizeListener() {
 }
 
 function setFontSize() {
-  return;
-  let testFontContainer = document.querySelector("#font-control");
-  testFontContainer.innerHTML = `<span>A-W</span>`;
   saveFontZoom();
   updateFontZoom();
   addResizeListener();
+  let testFontContainer = document.querySelector("#font-control");
   testFontContainer.innerHTML = "";
-
 }
 
 function loadAppVersion() {
@@ -348,6 +344,7 @@ export {
   getFontSizeInMillimeters,
   saveFontZoom,
   setFontSize,
+  zoomFont,
   loadAppVersion,
   load404Err
 }

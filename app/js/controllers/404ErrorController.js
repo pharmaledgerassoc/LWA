@@ -3,8 +3,7 @@ import {setFontSize} from "../../../utils.js";
 
 window.onload = async (event) => {
   await translate();
+  setTimeout(setFontSize, 0);
 }
-
-document.getElementsByTagName("body").onload = setFontSize();
 
 

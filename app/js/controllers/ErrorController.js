@@ -55,6 +55,6 @@ window.onload = async (event) => {
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
 
   window.errorController = errorController;
+  setTimeout(setFontSize, 0);
 }
 
-document.getElementsByTagName("body").onload = setFontSize();
