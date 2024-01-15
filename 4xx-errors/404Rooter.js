@@ -14,7 +14,7 @@ window.onload = () => {
     return item !== "";
   })
   if (!urlParts.includes(`/${environment.appBuildVersion}`)) {
-    let pageWithQuerry = urlParts[urlParts.length - 1] || "main.html";
+    let pageWithQuerry = urlParts[urlParts.length - 1];
 
     Object.keys(appPagesMap).forEach(key => {
       if (pageWithQuerry.startsWith(key)) {
@@ -22,6 +22,9 @@ window.onload = () => {
         pageWithQuerry.replace(regexPattern, appPagesMap[key]);
       }
     })
+    if (!Object.values(appPagesMap).find(val => pageWithQuerry.startsWith(val))) {
+      pageWithQuerry = "main.html";
+    }
     let newUrl = environment.enableRootVersion ? `${window.location.origin}/${environment.appBuildVersion}/${pageWithQuerry}` : `${window.location.origin}/lwa/app/${pageWithQuerry}`;
 
     window.location.href = newUrl;
