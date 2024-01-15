@@ -322,14 +322,6 @@ function loadAppVersion() {
   goToPage(appRootPage);
 }
 
-function load404Err() {
-  let err404Page = `/app/404.html`;
-  if (environment.enableRootVersion) {
-    err404Page = `/${environment.appBuildVersion}/404.html`;
-  }
-  window.location.href = window.location.origin + err404Page;
-}
-
 export {
   convertFromISOtoYYYY_HM,
   convertToLastMonthDay,
@@ -346,6 +338,5 @@ export {
   saveFontZoom,
   setFontSize,
   zoomFont,
-  loadAppVersion,
-  load404Err
+  loadAppVersion
 }
