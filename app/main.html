@@ -12,86 +12,86 @@
     <div class="loader"></div>
 </div>
 
-<div class="page-container fill-available-width hiddenElement">
+<div id="home-page" class="page-container fill-available-width hiddenElement">
     <div id="font-control">ABC</div>
     <!--    <div id="font-test">ABC</div>-->
-        <div class="icon-container" role="banner">
-            <!-- <div class="pharmaledger-logo">
-             </div>-->
-            <!-- <img class="pharmaledger-logo" src="images/app-icon.png" alt="PharmaLedger Association Logo">
-     -->
-            <button id="hamburger-menu-button" class="menu-icon" tabindex="1" aria-label="menu"
-                    aria-expanded="false"></button>
-            <ul class="app-menu-container hidden" role="list">
-                <li id="terms-link" class="forward-to-page" modal-name="terms" role="listitem" tabindex="2">
-                    <div class="label" translate="fwd_terms"></div>
-                    <div class="fwd-icon"></div>
-                </li>
-                <li id="privacy-link" class="forward-to-page" modal-name="privacy" role="listitem"
-                    tabindex="3">
-                    <div class="label" translate="fwd_privacy"></div>
-                    <div class="fwd-icon"></div>
-                </li>
-                <li id="about-link" class="forward-to-page" modal-name="about" role="listitem"
-                    tabindex="4">
-                    <div class="label" translate="fwd_about"></div>
-                    <div class="fwd-icon"></div>
-                </li>
-                <li id="help-link" class="forward-to-page" modal-name="help" role="listitem"
-                    tabindex="5">
-                    <div class="label" translate="fwd_help"></div>
-                    <div class="fwd-icon"></div>
-                </li>
-                <li class="more-options-link" role="listitem" tabindex="6">
-                    <span translate="app_version"></span> <span id="app_version_number"></span>
-                </li>
-            </ul>
-        </div>
-        <div class="welcome-container" role="main" tabindex="0">
-            <div role="heading" aria-level="1" id="welcome-text" translate="welcome" class="hiddenElement"></div>
-            <div role="heading" aria-level="1" id="onbording-text" translate="onboarding_welcome"
-                 class="hiddenElement"></div>
-        </div>
-        <div class="terms-content-container" role="contentinfo">
-            <div class="terms-container">
-                <div class="extra-text" translate="disagree_extra_text"></div>
-                <div class="terms-content" translate="terms_content"></div>
-                <div class="terms-buttons-container">
-                    <button id="disagree-button" class="scan-button terms-button disagree"
-                            translate="disagree"></button>
-                    <button id="agree-button" class="scan-button terms-button agree"
-                            translate="agree"></button>
-                </div>
+    <div class="icon-container" role="banner">
+        <!-- <div class="pharmaledger-logo">
+         </div>-->
+        <!-- <img class="pharmaledger-logo" src="images/app-icon.png" alt="PharmaLedger Association Logo">
+ -->
+        <button id="hamburger-menu-button" class="menu-icon" tabindex="1" aria-label="menu"
+                aria-expanded="false"></button>
+        <ul class="app-menu-container hidden" role="list">
+            <li id="terms-link" class="forward-to-page" modal-name="terms" role="listitem" tabindex="2">
+                <div class="label" translate="fwd_terms"></div>
+                <div class="fwd-icon"></div>
+            </li>
+            <li id="privacy-link" class="forward-to-page" modal-name="privacy" role="listitem"
+                tabindex="3">
+                <div class="label" translate="fwd_privacy"></div>
+                <div class="fwd-icon"></div>
+            </li>
+            <li id="about-link" class="forward-to-page" modal-name="about" role="listitem"
+                tabindex="4">
+                <div class="label" translate="fwd_about"></div>
+                <div class="fwd-icon"></div>
+            </li>
+            <li id="help-link" class="forward-to-page" modal-name="help" role="listitem"
+                tabindex="5">
+                <div class="label" translate="fwd_help"></div>
+                <div class="fwd-icon"></div>
+            </li>
+            <li class="more-options-link" role="listitem" tabindex="6">
+                <span translate="app_version"></span> <span id="app_version_number"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="welcome-container" role="main" tabindex="0">
+        <div role="heading" aria-level="1" id="welcome-text" translate="welcome" class="hiddenElement"></div>
+        <div role="heading" aria-level="1" id="onbording-text" translate="onboarding_welcome"
+             class="hiddenElement"></div>
+    </div>
+    <div class="terms-content-container" role="contentinfo">
+        <div class="terms-container">
+            <div class="extra-text" translate="disagree_extra_text"></div>
+            <div class="terms-content" translate="terms_content"></div>
+            <div class="terms-buttons-container">
+                <button id="disagree-button" class="scan-button terms-button disagree"
+                        translate="disagree"></button>
+                <button id="agree-button" class="scan-button terms-button agree"
+                        translate="agree"></button>
             </div>
-        </div>
-        <div class="content-container">
-            <img src="images/medicine-pack.gif" alt="How to scan animated gif"/>
-        </div>
-        <div class="explain-container" tabindex="0">
-            <div translate="scan_explain"></div>
-        </div>
-        <div class="scan-button-container">
-            <button id="scan-button" class="scan-button full_width">
-                <div translate="scan_button"></div>
-            </button>
         </div>
     </div>
-    <div id="settings-modal" class="modal-container info-modal hiddenElement">
-        <div class="modal-body">
-            <div class="modal-header left-aligned-header">
-                <div class="icon-title-container">
-                    <div role="heading" aria-level="1" class="modal-title bold-title" tabindex="2"></div>
-                    <!--<div class="modal-icon"></div>-->
-                </div>
-                <div role="heading" aria-level="2" class="modal-subtitle" tabindex="3"></div>
-                <button id="close-modal-button" class="close-modal" aria-label="close" tabindex="1"></button>
-            </div>
-            <div class="modal-content" tabindex="4">
-                <div class="generated-content-container"></div>
-            </div>
-        </div>
-        <button id="go-home-button" class="scan-button go-home-button" translate="go_home"></button>
+    <div class="content-container">
+        <img src="images/medicine-pack.gif" alt="How to scan animated gif"/>
     </div>
+    <div class="explain-container" tabindex="0">
+        <div translate="scan_explain"></div>
+    </div>
+    <div class="scan-button-container">
+        <button id="scan-button" class="scan-button full_width">
+            <div translate="scan_button"></div>
+        </button>
+    </div>
+</div>
+<div id="settings-modal" class="modal-container info-modal hiddenElement">
+    <div class="modal-body">
+        <div class="modal-header left-aligned-header">
+            <div class="icon-title-container">
+                <div role="heading" aria-level="1" class="modal-title bold-title" tabindex="2"></div>
+                <!--<div class="modal-icon"></div>-->
+            </div>
+            <div role="heading" aria-level="2" class="modal-subtitle" tabindex="3"></div>
+            <button id="close-modal-button" class="close-modal" aria-label="close" tabindex="1"></button>
+        </div>
+        <div class="modal-content" tabindex="4">
+            <div class="generated-content-container"></div>
+        </div>
+    </div>
+    <button id="go-home-button" class="scan-button go-home-button" translate="go_home"></button>
+</div>
 
 </div>
 
