@@ -218,20 +218,20 @@ function updateFontZoom(value, ignoreBrowser) {
     zoom = 110;
   }
 
-  if (zoom >= 114 && zoom <= 130) {
+  if (zoom >= 114 && zoom <= 135) {
     zoom = 130;
   }
-  if (zoom > 130 && zoom <= 150) {
+  if (zoom > 135 && zoom <= 155) {
     zoom = 150;
   }
 
-  if (zoom > 150 && zoom < 200) {
+  if (zoom > 155 && zoom < 200) {
     zoom = 175;
   }
-  if (zoom >= 200 && zoom < 250) {
+  if (zoom >= 200 && zoom < 255) {
     zoom = 200;
   }
-  if (zoom >= 250 && zoom < 300) {
+  if (zoom >= 255 && zoom < 300) {
     zoom = 250;
   }
   if (zoom >= 300) {
@@ -281,12 +281,12 @@ function saveFontZoom() {
 }
 
 function zoomFont(scaleFactor, ignoreBrowser) {
-  if(scaleFactor === "100"){
+  if (scaleFactor === "100") {
     return
   }
   let visualViewportDelta = window.visualViewport.scale;// > 2 ? window.visualViewport.scale / 2 : 1
   let currentBrowser = ignoreBrowser ? "safari" : getBrowser();
-  document.documentElement.style.setProperty('--font-size--basic', constants.FONT_SCALE_MAP.basic_font[scaleFactor][currentBrowser] );
+  document.documentElement.style.setProperty('--font-size--basic', constants.FONT_SCALE_MAP.basic_font[scaleFactor][currentBrowser]);
   document.documentElement.style.setProperty('--font-size--M', constants.FONT_SCALE_MAP.m_font[scaleFactor][currentBrowser]);
   document.documentElement.style.setProperty('--font-size--L', constants.FONT_SCALE_MAP.l_font[scaleFactor][currentBrowser]);
   document.documentElement.style.setProperty('--font-size--XL', constants.FONT_SCALE_MAP.xl_font[scaleFactor][currentBrowser]);
@@ -306,11 +306,12 @@ function addResizeListener() {
 }
 
 function setFontSize() {
+  let testFontContainer = document.querySelector("#font-control");
+  testFontContainer.innerText = "ABC";
   saveFontZoom();
   updateFontZoom();
   addResizeListener();
-  let testFontContainer = document.querySelector("#font-control");
-  testFontContainer.innerHTML = "";
+  testFontContainer.innerText = "";
 }
 
 function loadAppVersion() {
@@ -319,14 +320,6 @@ function loadAppVersion() {
     appRootPage = `/${environment.appBuildVersion}/main.html`;
   }
   goToPage(appRootPage);
-}
-
-function load404Err() {
-  let err404Page = `app/404.html`;
-  if (environment.enableRootVersion) {
-    err404Page = `${environment.appBuildVersion}/404.html`;
-  }
-  window.location.href = (window.location.href.split("4xx-errors")[0] + err404Page);
 }
 
 export {
@@ -345,6 +338,5 @@ export {
   saveFontZoom,
   setFontSize,
   zoomFont,
-  loadAppVersion,
-  load404Err
+  loadAppVersion
 }
