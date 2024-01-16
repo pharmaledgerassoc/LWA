@@ -1,4 +1,4 @@
-import {goToPage, setFontSize} from "../../../utils.js"
+import {goToPage} from "../../../utils.js"
 import {getTranslation, translate} from "../translationUtils.js";
 
 window.onload = async (event) => {
@@ -55,6 +55,5 @@ window.onload = async (event) => {
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
 
   window.errorController = errorController;
-  setTimeout(setFontSize, 0);
 }
 

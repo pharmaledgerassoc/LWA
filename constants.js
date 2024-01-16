@@ -3,6 +3,7 @@ const constants = {
   EPI_DOMAIN: "_epiDomain_",
   FONT_ZOOM: "_fontZoom_",
   APP_LANG: "_appLang_",
+  USR_AGREED_TERMS:"usr_agreed_terms",
   monthNames: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   FONT_SCALE_MAP: {
     /*body, h4*/

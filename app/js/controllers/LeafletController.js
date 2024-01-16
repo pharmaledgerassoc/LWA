@@ -1,5 +1,5 @@
 import {
-  goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence, setFontSize
+  goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence
 } from "../../../utils.js"
 import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
@@ -11,7 +11,9 @@ enableConsolePersistence();
 
 window.onload = async (event) => {
   await translate();
-  setTimeout(setFontSize, 0);
+  setTimeout(() => {
+    document.querySelector(".modal-header .close-modal").style.position = "absolute";
+  }, 0);
 }
 
 const sanitationRegex = /(<iframe>([\s\S]*)<\/iframe>)|(<script>([\s\S]*)<\/script>)/g;

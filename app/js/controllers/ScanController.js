@@ -2,7 +2,7 @@ import {
   convertFromISOtoYYYY_HM,
   goToErrorPage,
   goToPage,
-  enableConsolePersistence, setFontSize,
+  enableConsolePersistence,
 } from "../../../utils.js";
 import interpretGS1scan from "../utils/interpretGS1scan/interpretGS1scan.js";
 import ScanService from "../services/ScanService.js";
@@ -13,7 +13,9 @@ import constants from "../../../constants.js";
 enableConsolePersistence();
 window.onload = async (event) => {
   await translate();
-  setTimeout(setFontSize, 0);
+  setTimeout(() => {
+    document.querySelector(".modal-header .close-modal").style.position = "absolute";
+  }, 0);
 }
 
 
@@ -150,7 +152,6 @@ function ScanController() {
     document.getElementById("close-modal-button").addEventListener("click", (event) => {
       this.closeModal(event.currentTarget.getAttribute("modal-id"));
     })
-
   }
 
   addEventListeners();

@@ -1,5 +1,5 @@
 import {translate} from "../translationUtils.js";
-import {goToPage, setFontSize} from "../../../utils.js";
+import {goToPage} from "../../../utils.js";
 
 window.onload = async (event) => {
   await translate();
@@ -20,7 +20,6 @@ window.onload = async (event) => {
 
   const error404Controller = new Error404Controller();
   window.error404Controller = error404Controller;
-  setTimeout(setFontSize, 0);
 }
 
 
