@@ -4,6 +4,22 @@ import constants from "../../constants.js";
 const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt", "pt-br", "uk", "zh", "it", "no", "pl"];
 
 const langSubtypesMap = {
+  "ar-ae": "ar",
+  "ar-dz": "ar",
+  "ar-bh": "ar",
+  "ar-eg": "ar",
+  "ar-iq": "ar",
+  "ar-jo": "ar",
+  "ar-kw": "ar",
+  "ar-lb": "ar",
+  "ar-ly": "ar",
+  "ar-ma": "ar",
+  "ar-om": "ar",
+  "ar-qa": "ar",
+  "ar-sa": "ar",
+  "ar-sy": "ar",
+  "ar-tn": "ar",
+  "ar-ye": "ar",
   "de-de": "de",
   "es-ar": "es",
   "es-bo": "es",
