@@ -65,7 +65,7 @@ const data = {
         "</p>" +
         "<p>" +
         "    Postępuj zgodnie z instrukcjami na stronie startowej aplikacji, gdzie na zdjęciu pokazane jest, jak odnaleźć kod Data Matrix na opakowaniu produktu leczniczego. Po znalezieniu kodu " +
-        "    <b>DataMatrix</b> kliknij przycisk „Skanuj kod <b>DataMatrix</b>”. Zezwól aplikacji na korzystanie z aparatu, aby umożliwić zeskanowanie kodu <b>DataMatrix</b>. Użyj aparatu, aby dostosować ostrość kodu <b>DataMatrix</b>. Po pomyślnym zeskanowaniu kodu z opakowania wyświetli się, <b>EPI</b> Możesz kliknąć przycisk „+”, aby uzyskać więcej szczegółów." +
+        "    <b>DataMatrix</b> kliknij przycisk „Skanuj kod <b>DataMatrix</b>”. Zezwól aplikacji na korzystanie z aparatu, aby umożliwić zeskanowanie kodu <b>DataMatrix</b>. Użyj aparatu, aby dostosować ostrość kodu <b>DataMatrix</b>. Po pomyślnym zeskanowaniu kodu z opakowania wyświetli się <b>EPI</b> Możesz kliknąć przycisk „+”, aby uzyskać więcej szczegółów." +
         "</p><p><b><h2>Dlaczego mój skan kodu DataMatrix nie wyświetla wyników?</h2></b></p><p>" +
         "    Jest kilka powodów, dla których skanowanie kodu <b>DataMatrix</b> na opakowaniu produktu leczniczego nie skutkuje wyświetleniem EPI. Jednym z nich może być zła ostrość obrazu. Spróbuj zeskanować kod w dobrze oświetlonym miejscu, tak aby był on dobrze widoczny na ekranie. Jeśli utrzymanie ręki w pozycji nieruchomej stanowi trudność, spróbuj użyć stołu w celu stabilizacji dłoni." +
         "</p></div>"
