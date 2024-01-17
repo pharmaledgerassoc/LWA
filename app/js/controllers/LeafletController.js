@@ -12,7 +12,9 @@ enableConsolePersistence();
 window.onload = async (event) => {
   await translate();
   setTimeout(() => {
-    document.querySelector(".modal-header .close-modal").style.position = "absolute";
+    document.querySelectorAll(".modal-header .close-modal").forEach(elem => {
+      elem.style.position = "absolute";
+    })
   }, 0);
 }
 
@@ -75,7 +77,7 @@ function LeafletController() {
     setTextDirectionForLanguage(lang, "#leaflet-content");
     setTextDirectionForLanguage(lang, ".modal-body .page-header");
 
-    document.querySelector("#leaflet-lang-select").setAttribute('style', 'display:none !important');
+    document.querySelector("#leaflet-lang-select").classList.add("hiddenElement");
   }
 
   this.scanAgainHandler = function () {
@@ -87,17 +89,17 @@ function LeafletController() {
   }
 
   this.closeModal = function (modalId) {
-    document.querySelector("#" + modalId).setAttribute('style', 'display:none !important');
+    document.querySelector("#" + modalId).classList.add("hiddenElement");
     if (modalId === "leaflet-lang-select") {
       goToPage("/main.html");
     }
-    document.getElementById("settings-modal").style.display = "block";
+    document.getElementById("settings-modal").classList.remove("hiddenElement");
   }
 
   let self = this;
 
   let showXML = function (result) {
-    document.getElementById("settings-modal").style.display = "block";
+    document.getElementById("settings-modal").classList.remove("hiddenElement");
     try {
       renderLeaflet(result);
     } catch (e) {
@@ -107,15 +109,14 @@ function LeafletController() {
   }
 
   let showAvailableLanguages = function (result) {
-    document.getElementById("settings-modal").style.display = "none";
     // document.querySelector(".product-name").innerText = translations[window.currentLanguage]["select_lang_title"];
     // document.querySelector(".product-description").innerText = translations[window.currentLanguage]["select_lang_subtitle"];
     // let langList = `<div class="select-lang-text">${translations[window.currentLanguage]["select_lang_text"]}</div><select class="languages-list">`;
     document.querySelector(".loader-container").setAttribute('style', 'display:none');
     if (result.availableLanguages.length >= 1) {
       let langSelectContainer = document.querySelector("#leaflet-lang-select");
-      langSelectContainer.setAttribute('style', 'display:flex !important');
-      document.querySelector(".proceed-button.no-leaflet").setAttribute('style', 'display:none');
+      langSelectContainer.classList.remove("hiddenElement");
+      document.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
       //  document.querySelector(".text-section.no-leaflet").setAttribute('style', 'display:none');
       let languagesContainer = document.querySelector(".languages-container");
       /*
@@ -164,7 +165,6 @@ function LeafletController() {
 
 }
 
-document.querySelector(".loader-container").setAttribute('style', 'display:block');
 const leafletController = new LeafletController();
 
 

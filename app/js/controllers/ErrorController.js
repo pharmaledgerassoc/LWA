@@ -20,17 +20,17 @@ window.onload = async (event) => {
       case "013":
       case "099":
         document.querySelector(".modal-title.header-title").innerHTML = getTranslation("product_not_found_title");
-        document.querySelector(".page-content .error-text").innerHTML = `<p> <b>${getTranslation("product_not_found")} </b></p> <p>${getTranslation("err_code")} ${errorCode}</p>`;
+        document.querySelector(".modal-content .error-text").innerHTML = `<p> <b>${getTranslation("product_not_found")} </b></p> <p>${getTranslation("err_code")} ${errorCode}</p>`;
         break;
       case "011":
         document.querySelector(".modal-title.header-title").innerHTML = getTranslation("product_not_loaded_title");
-        document.querySelector(".page-content .error-text").innerHTML = `<p> <b>${getTranslation("product_not_loaded")} </b></p>`;
+        document.querySelector(".modal-content .error-text").innerHTML = `<p> <b>${getTranslation("product_not_loaded")} </b></p>`;
         break;
       case "004":
       case "007":
       case "012":
         document.querySelector(".modal-title.header-title").innerHTML = getTranslation("product_not_loaded_title");
-        document.querySelector(".page-content .error-text").innerHTML = `<p> <b>${getTranslation("system_busy")} </b></p>`;
+        document.querySelector(".modal-content .error-text").innerHTML = `<p> <b>${getTranslation("system_busy")} </b></p>`;
         break;
     }
 

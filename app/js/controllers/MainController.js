@@ -1,5 +1,5 @@
 import {goToPage} from "../../../utils.js"
-import {getTranslation, translate} from "../translationUtils.js";
+import {translate} from "../translationUtils.js";
 import environment from "../../../environment.js";
 import constants from "../../../constants.js";
 

@@ -36,8 +36,8 @@ function ScanController() {
   }
 
   this.closeModal = function (modalId) {
-    document.querySelector("#" + modalId).setAttribute('style', 'display:none !important');
-    if (document.querySelector("#scan-error").style.display === 'none') {
+    document.querySelector("#" + modalId).classList.add("hiddenElement");
+    if (document.querySelector("#scan-error").classList.contains("hiddenElement")) {
       document.querySelector(".scan-cancel").setAttribute("tabindex", "1");
       document.querySelector(".camera-switch").setAttribute("tabindex", "2");
     }
@@ -53,7 +53,7 @@ function ScanController() {
       modal.querySelector(".modal-title").innerHTML = getTranslation("scan_parse_error");
       modal.querySelector(".modal-content").innerHTML = `<div>${getTranslation("scan_parse_error_message")}  ${err.scanResult}</div>`;
     }
-    modal.setAttribute('style', 'display: flex');
+    modal.classList.remove("hiddenElement");
     modal.focus();
     //  goToPage("error.html")
   }

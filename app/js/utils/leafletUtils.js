@@ -116,7 +116,7 @@ let validateLeafletFiles = function (htmlContent, leafletImages, uploadedImages)
 let renderLeaflet = function (leafletData) {
   document.querySelector(".product-name").innerText = leafletData.productData.name;
   document.querySelector(".product-description").innerText = leafletData.productData.description;
-  /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
+   /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
   let xmlService = new XMLDisplayService("#leaflet-content");
   let resultDocument = xmlService.getHTMLFromXML(leafletData.xmlContent);
   let leafletImages = resultDocument.querySelectorAll("img");

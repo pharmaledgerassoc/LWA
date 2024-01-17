@@ -1,5 +1,6 @@
 import environment from "../environment.js";
 
+const fallbackPage = "main.html"
 const appPagesMap = {
   "index": "main.html",
   "main": "main.html",
@@ -22,16 +23,29 @@ window.onload = () => {
       }
     })
     if (!Object.values(appPagesMap).find(val => pageWithQuerry.startsWith(val))) {
-      pageWithQuerry = "main.html";
+      pageWithQuerry = fallbackPage;
     }
     let newUrl = environment.enableRootVersion ? `${window.location.origin}/${environment.appBuildVersion}/${pageWithQuerry}` : `${window.location.origin}/lwa/app/${pageWithQuerry}`;
-
-    window.location.href = newUrl;
+    validateAndRedirect(newUrl);
     return;
   }
+  goTo404ErrPage();
+}
+
+function goTo404ErrPage() {
   let err404Page = `/app/404.html`;
   if (environment.enableRootVersion) {
     err404Page = `/${environment.appBuildVersion}/404.html`;
   }
   window.location.href = window.location.origin + err404Page;
+}
+
+function validateAndRedirect(url) {
+  let validPagesRegex = Object.values(appPagesMap).join("|");
+  const regexPattern = new RegExp(`^${window.location.origin}/${environment.appBuildVersion}/(${validPagesRegex})$`);
+  if (regexPattern.test(url)) {
+    window.location.href = url;
+  } else {
+    goTo404ErrPage()
+  }
 }

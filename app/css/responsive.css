@@ -153,6 +153,11 @@ b {
 
 .page-container.error-page .page-header {
     background: var(--green-200);
+    display: flex;
+}
+
+.page-container.error-page .icon-title-container {
+    display: flex;
 }
 
 .icon-container {
@@ -323,7 +328,9 @@ b {
 
 .hiddenElement {
     visibility: hidden;
-    height: 0;
+    height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
     display: block;
 }
 
@@ -406,6 +413,14 @@ b {
     padding: min(3vh, 3vw);
 }
 
+.error-page .modal-content {
+    height: 100%;
+}
+
+.modal-container.popup-modal {
+    display: flex;
+}
+
 .popup-modal .modal-content {
     top: -15px;
     border-radius: 15px 15px 30px 30px;
@@ -440,7 +455,7 @@ b {
     border: 0;
 }
 
-.modal-header .modal-icon {
+.error-page .modal-header .modal-icon {
     position: relative;
     background-size: contain !important;
     background: url(./../images/error-icon.svg) no-repeat;
@@ -467,7 +482,7 @@ b {
 }
 
 .modal-header.left-aligned-header .modal-icon {
-    height: 75%;
+    height: 90%;
     aspect-ratio: 1;
     background-position: center;
 }
@@ -480,7 +495,6 @@ b {
     justify-content: center;
     flex-grow: 1;
     word-break: break-word;
-    display: none;
     background: rgba(0, 0, 0, 0.7);
     z-index: 100;
 }
@@ -515,7 +529,7 @@ b {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-top: 2vh;
+    padding: 2vmax 0;
 }
 
 .modal-header.left-aligned-header .icon-title-container {
@@ -533,10 +547,6 @@ b {
 .modal-header.left-aligned-header .modal-title {
     text-align: left;
     margin-right: 12px;
-}
-
-.modal-header .modal-subtitle {
-    width: 100%;
 }
 
 .modal-header h1 {
@@ -678,28 +688,6 @@ b {
     width: 100%;
     border: 0;
     background: none;
-}
-
-.leaflet-page .page-content,
-.error-page .page-content {
-    position: relative;
-    color: #04313B;
-    background: #fff;
-    font-size: var(--font-size--basic);
-    flex-grow: 1;
-}
-
-.error-page .page-content {
-    padding: min(3vh, 3vw);
-}
-
-
-.leaflet-content-wrapper {
-    margin-bottom: 16vh;
-}
-
-.leaflet-page.info-modal .modal-body {
-    margin: 0;
 }
 
 /*RTL rules*/

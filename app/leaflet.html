@@ -22,7 +22,7 @@
     <div class="loader"></div>
 </div>
 
-<div id="settings-modal" class="page-container fill-available-width leaflet-page info-modal">
+<div id="settings-modal" class="page-container fill-available-width leaflet-page info-modal hiddenElement">
 
     <div class="modal-body">
         <div class="page-header modal-header left-aligned-header">
@@ -32,7 +32,7 @@
             </div>
             <div class="product-description" tabindex="0"></div>
         </div>
-        <div class="page-content">
+        <div class="modal-content">
             <div class="leaflet-content-wrapper">
                 <div id="leaflet-content">
                 </div>
@@ -43,13 +43,13 @@
         </div>
     </div>
 </div>
-<div id="expired-modal" class="modal-container popup-modal error-modal">
+<div id="expired-modal" class="modal-container popup-modal error-modal hiddenElement">
     <div class="modal-body">
         <div class="modal-header centered-header">
             <div class="icon-title-container">
                 <div class="modal-icon"></div>
-                <h1 class="modal-title bold-title" id="expired-title" translate="leaflet_expired_title"
-                    role="alert"></h1>
+                <div class="modal-title bold-title" id="expired-title" translate="leaflet_expired_title"
+                     role="alert"></div>
             </div>
             <button class="close-modal" modal-id="expired-modal" tabindex="0"
                     aria-label="close error message"></button>
@@ -57,7 +57,7 @@
         <div class="modal-content" translate="leaflet_expired_message" role="alert"></div>
     </div>
 </div>
-<div id="incorrect-date-modal" class="modal-container popup-modal error-modal">
+<div id="incorrect-date-modal" class="modal-container popup-modal error-modal hiddenElement">
     <div class="modal-body">
         <div class="modal-header centered-header">
             <div class="icon-title-container">
@@ -71,7 +71,7 @@
         <div class="modal-content" translate="leaflet_incorrect_date_message"></div>
     </div>
 </div>
-<div id="leaflet-lang-select" class="modal-container popup-modal warning-modal">
+<div id="leaflet-lang-select" class="modal-container popup-modal warning-modal hiddenElement">
     <div class="modal-body">
         <div class="modal-header centered-header">
             <div class="icon-title-container">
