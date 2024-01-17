@@ -9,11 +9,10 @@ const appPagesMap = {
 };
 
 window.onload = () => {
-  debugger;
   let urlParts = location.href.split(location.origin)[1].split("/").filter(function (item) {
     return item !== "";
   })
-  if (!urlParts.includes(`/${environment.appBuildVersion}`)) {
+  if (!urlParts.includes(`${environment.appBuildVersion}`)) {
     let pageWithQuerry = urlParts[urlParts.length - 1];
 
     Object.keys(appPagesMap).forEach(key => {
