@@ -17,7 +17,7 @@ window.onload = () => {
 
     let pageWithQuerry = urlParts[urlParts.length - 1];
 
-    if (!Object.key(appPagesMap).find(key => key !== "index" && pageWithQuerry.startsWith(key))) {
+    if (!Object.keys(appPagesMap).find(key => key !== "index" && pageWithQuerry.startsWith(key))) {
       pageWithQuerry = fallbackPage;
     } else {
       //assure compatibility with v2.1 version
