@@ -37,7 +37,7 @@ function constructUrl(page, query) {
 }
 
 function validateAndRedirect(url) {
-  const regexPattern = new RegExp(`^${window.location.origin}/${environment.appBuildVersion})$`);
+  const regexPattern = new RegExp(`^${window.location.origin}/${environment.appBuildVersion}$`);
   if (regexPattern.test(url)) {
     window.location.href = url;
   } else {
