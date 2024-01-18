@@ -2,9 +2,8 @@ import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.j
 import constants from "../../../constants.js";
 
 let showExpired = function () {
-  document.getElementById("settings-modal").style.display = "none";
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
-  document.querySelector("#expired-modal").setAttribute('style', 'display:flex !important');
+  document.querySelector("#expired-modal").classList.remove("hiddenElement");
   focusModalHeader();
 }
 

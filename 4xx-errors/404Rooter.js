@@ -10,26 +10,30 @@ const appPagesMap = {
 };
 
 window.onload = () => {
-  let urlParts = location.href.split(location.origin)[1].split("/").filter(function (item) {
-    return item !== "";
-  })
-  if (!urlParts.includes(`${environment.appBuildVersion}`)) {
+  try {
+    let urlParts = location.href.split(location.origin)[1].split("/").filter(function (item) {
+      return item !== "";
+    })
+
     let pageWithQuerry = urlParts[urlParts.length - 1];
 
-    Object.keys(appPagesMap).forEach(key => {
-      if (pageWithQuerry.startsWith(key)) {
-        let regexPattern = new RegExp(key + '.*?\\.html');
-        pageWithQuerry.replace(regexPattern, appPagesMap[key]);
-      }
-    })
     if (!Object.values(appPagesMap).find(val => pageWithQuerry.startsWith(val))) {
       pageWithQuerry = fallbackPage;
+    } else {
+      //assure compatibility with v2.1 version
+      Object.keys(appPagesMap).forEach(key => {
+        if (pageWithQuerry.startsWith(key)) {
+          let regexPattern = new RegExp(key + '.*?\\.html');
+          pageWithQuerry.replace(regexPattern, appPagesMap[key]);
+        }
+      })
     }
     let newUrl = environment.enableRootVersion ? `${window.location.origin}/${environment.appBuildVersion}/${pageWithQuerry}` : `${window.location.origin}/lwa/app/${pageWithQuerry}`;
     validateAndRedirect(newUrl);
-    return;
+  } catch (e) {
+    goTo404ErrPage()
   }
-  goTo404ErrPage();
+
 }
 
 function goTo404ErrPage() {
@@ -46,6 +50,6 @@ function validateAndRedirect(url) {
   if (regexPattern.test(url)) {
     window.location.href = url;
   } else {
-    goTo404ErrPage()
+    throw new Error("Invalid or potentially harmful URL.")
   }
 }
