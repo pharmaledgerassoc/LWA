@@ -1,7 +1,7 @@
 import {setTextDirectionForLanguage} from "../../utils.js";
 import constants from "../../constants.js";
 
-const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt", "pt-br", "uk", "zh", "it", "no", "pl"];
+const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt-br", "uk", "it", "no", "pl"];
 
 const langSubtypesMap = {
   "ar-ae": "ar",
