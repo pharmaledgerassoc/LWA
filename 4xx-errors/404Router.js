@@ -1,6 +1,6 @@
 import environment from "../environment.js";
 
-const appPages = ["main.html", "scan.html", "leaflet.html", "error.html"];
+const appPages = ["main.html", "scan.html", "leaflet.html", "error.html", "about-page.html", "help-page.html", "privacy-page.html", "terms-page.html"];
 
 window.onload = () => {
   try {

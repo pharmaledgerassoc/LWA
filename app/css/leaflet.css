@@ -102,10 +102,9 @@
     background-position: center;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 3.5vmax;
-    /* height: 24px; */
-    aspect-ratio: 1;
-    margin-top: 1.3vmax;
+    width: 24px;
+    height: 24px;
+    margin-left: 5px;
 }
 
 .leaflet-accordion-item.active:before {
