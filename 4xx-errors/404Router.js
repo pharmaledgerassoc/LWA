@@ -12,7 +12,7 @@ window.onload = () => {
     let page = pageWithQuery[0];
     let query = pageWithQuery[1]
 
-    if (appPages.indexOf(page) !== -1) {
+    if (appPages.indexOf(page) === -1) {
       validateAndRedirect(constructUrl("main.html"));
     } else {
       validateAndRedirect(constructUrl(page, query));
@@ -37,8 +37,7 @@ function constructUrl(page, query) {
 }
 
 function validateAndRedirect(url) {
-  let validPagesRegex = Object.values(appPagesMap).join("|");
-  const regexPattern = new RegExp(`^${window.location.origin}/${environment.appBuildVersion}/(${validPagesRegex})$`);
+  const regexPattern = new RegExp(`^${window.location.origin}/${environment.appBuildVersion})$`);
   if (regexPattern.test(url)) {
     window.location.href = url;
   } else {
