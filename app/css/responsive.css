@@ -740,6 +740,7 @@ body[dir="RTL"] .scan-button.go-home-button {
 body[dir="RTL"] .modal-header.left-aligned-header .modal-title {
     margin-left: 12px;
     margin-right: unset;
+    text-align: right;
 }
 
 body[dir="RTL"] .terms-container .terms-buttons-container {
