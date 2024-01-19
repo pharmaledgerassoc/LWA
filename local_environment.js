@@ -7,5 +7,6 @@ export default {
   "gto_TimePerCall": 3000,
   "gto_TotalWaitTime": 15000,
   "enableEpiDomain": true,
+  "enableRootVersion": false,
   "bdnsUrl": "http://127.0.0.1:8080/bdns"
 }

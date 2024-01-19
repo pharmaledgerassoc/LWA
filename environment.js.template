@@ -7,5 +7,6 @@ export default {
   "gto_TimePerCall": ${gto_time_per_call},
   "gto_TotalWaitTime": ${gto_total_wait_time},
   "enableEpiDomain": true,
+  "enableRootVersion": true,
   "bdnsUrl": "${bdns_url}"
 }

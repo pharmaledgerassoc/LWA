@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="./../css/main.css" rel="stylesheet">
-    <script src="./../js/controllers/404ErrorController.js" type="module"></script>
+    <script src="/4xx-errors/4xxRouter.js" type="module"></script>
     <title>PharmaLedger</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="../favicon/android-chrome-512x512.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+    <link rel="shortcut icon" href="../favicon/favicon.ico">
+    <link rel="manifest" href="../favicon/site.webmanifest">
+
 </head>
-
 <body>
-<div class="page-container error-page">
-
-    <div class="page-header modal-header left-aligned-header">
-        <div class="icon-title-container">
-            <div class="modal-title header-title" translate="product_not_found_title"></div>
-            <div class="modal-icon"></div>
-        </div>
-        <div class="modal-subtitle header-subtitle hiddenElement" translate="error_subtitle"></div>
-    </div>
-
-    <div class="page-content">
-        <br/>
-        Oops! It seems there was a problem with your request. <br/>
-        Please double-check the information you provided and try again. <br/>
-        If the issue persists, feel free to contact our support team for assistance. <br/>
-        We apologize for any inconvenience this may have caused.
-    </div>
+<div class="loader-container main-page-loader">
+    <div class="loader"></div>
 </div>
-
 </body>
 </html>
