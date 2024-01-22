@@ -15,7 +15,7 @@ function MainController() {
   }
 
   this.checkOnboarding = function () {
-    let usrAgreedTerms = localStorage.getItem(constants.USR_AGREED_TERMS);
+    let usrAgreedTerms = JSON.parse(localStorage.getItem(constants.USR_AGREED_TERMS));
     if (!usrAgreedTerms) {
       document.querySelector(".welcome-container #onbording-text").classList.remove("hiddenElement")
       document.querySelector(".content-container").classList.add("hiddenElement");
