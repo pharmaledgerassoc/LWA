@@ -17,7 +17,7 @@ Attributes – Optional data points like weight, dimensions, and expiration date
 
 When encoded and scanned, the URI enables the lookup of the product’s digital identity and associated information.
 * */
-const gs1DigitalLinkRegex = /\/01\/(\d{14})\/10\/(\w{1,20})\?17=(\d{6})/;
+const gs1DigitalLinkRegex = /\/01\/(\d{14})\/?(10\/([a-zA-Z0-9]{1,20}))?(\?17=(\d{6}))?/;
 
 window.onload = () => {
     try {
@@ -42,13 +42,27 @@ window.onload = () => {
 
 function getGS1Url() {
     let gs1Url;
-    let gs1Split = document.referrer.split(window.location.origin);
+    let gs1Split;
+    if (document.referrer && window.location.href.includes("404-errors")) {
+        gs1Split = document.referrer.split(window.location.origin);
+    } else {
+        gs1Split = window.location.href.split(window.location.origin);
+    }
+
     if (gs1Split && gs1Split[1] && gs1DigitalLinkRegex.test(gs1Split[1])) {
         const matchesArr = gs1Split[1].match(gs1DigitalLinkRegex);
-        const gtin = matchesArr[1];
-        const batchNumber = matchesArr[2];
-        const expiry = matchesArr[3];
-        gs1Url = `/leaflet.html?gtin=${gtin}&batch=${batchNumber}&expiry=${expiry}`;
+        if (matchesArr && matchesArr.length > 0) {
+            const gtin = matchesArr[1];
+            const batchNumber = matchesArr[3];
+            const expiry = matchesArr[5];
+            gs1Url = `/leaflet.html?gtin=${gtin}`
+            if (batchNumber) {
+                gs1Url = gs1Url + `&batch=${batchNumber}`
+            }
+            if (expiry) {
+                gs1Url = gs1Url + `&expiry=${expiry}`
+            }
+        }
     }
     return gs1Url;
 }
