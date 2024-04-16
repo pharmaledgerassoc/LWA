@@ -1,10 +1,9 @@
 import {
-  convertFromISOtoYYYY_HM,
   goToErrorPage,
   goToPage,
   enableConsolePersistence,
+  parseGS1Code
 } from "../../../utils.js";
-import interpretGS1scan from "../utils/interpretGS1scan/interpretGS1scan.js";
 import ScanService from "../services/ScanService.js";
 import {getTranslation, translate} from "../translationUtils.js";
 import constants from "../../../constants.js";
@@ -82,48 +81,10 @@ function ScanController() {
     }, 100);
   }
 
-  this.parseGS1Code = function (scannedBarcode) {
-    let gs1FormatFields;
-    try {
-      gs1FormatFields = interpretGS1scan.interpretScan(scannedBarcode);
-    } catch (e) {
-      throw e;
-      return;
-    }
-
-    return this.parseGs1Fields(gs1FormatFields.ol);
-  }
-
-  this.parseGs1Fields = function (orderedList) {
-    const gs1Fields = {};
-    const fieldsConfig = {
-      "GTIN": "gtin",
-      "BATCH/LOT": "batchNumber",
-      "SERIAL": "serialNumber",
-      "USE BY OR EXPIRY": "expiry"
-    };
-
-    orderedList.map(el => {
-      let fieldName = fieldsConfig[el.label];
-      gs1Fields[fieldName] = el.value;
-    })
-
-    if (gs1Fields.expiry) {
-      try {
-        gs1Fields.expiry = convertFromISOtoYYYY_HM(gs1Fields.expiry);
-      } catch (e) {
-        gs1Fields.expiry = null;
-      }
-
-    }
-
-    return gs1Fields;
-  }
-
   this.processGS1Fields = function (scanResultText) {
     let gs1Fields = null;
     try {
-      gs1Fields = this.parseGS1Code(scanResultText);
+      gs1Fields = parseGS1Code(scanResultText);
       goToPage(`/leaflet.html?gtin=${gs1Fields.gtin}&batch=${gs1Fields.batchNumber}&expiry=${gs1Fields.expiry}`);
     } catch (err) {
       if (err.message) {
