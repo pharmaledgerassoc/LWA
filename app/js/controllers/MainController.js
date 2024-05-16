@@ -6,116 +6,202 @@ import constants from "../../../constants.js";
 
 function MainController() {
 
-  this.toggleMenu = function () {
-    let menuButton = document.getElementById("hamburger-menu-button");
-    let menuExpanded = menuButton.getAttribute("aria-expanded") != "true";
-    menuButton.setAttribute("aria-expanded", menuExpanded);
-    let menuContainer = document.querySelector(".app-menu-container");
-    menuContainer.classList.toggle("hidden");
-  }
-
-  this.checkOnboarding = function () {
-    let usrAgreedTerms = JSON.parse(localStorage.getItem(constants.USR_AGREED_TERMS));
-    if (!usrAgreedTerms) {
-      document.querySelector(".welcome-container #onbording-text").classList.remove("hiddenElement")
-      document.querySelector(".content-container").classList.add("hiddenElement");
-      document.querySelector(".explain-container").classList.add("hiddenElement");
-      document.querySelector(".scan-button-container").classList.add("hiddenElement");
-    } else {
-      document.querySelector(".terms-content-container").classList.add("hiddenElement");
-      document.querySelector(".welcome-container #welcome-text").classList.remove("hiddenElement");
+    this.toggleMenu = function () {
+        let menuButton = document.getElementById("hamburger-menu-button");
+        let menuExpandedAttr = menuButton.getAttribute("aria-expanded") === "true";
+        menuButton.setAttribute("aria-expanded", !menuExpandedAttr);
+        let menuContainer = document.querySelector(".app-menu-container");
+        menuContainer.classList.toggle("hidden");
+        if (menuExpandedAttr) {
+            document.querySelector(".page-content-section").removeAttribute("inert");
+        } else {
+            document.querySelector(".page-content-section").setAttribute("inert", "");
+        }
     }
-    document.querySelector("#app_version_number").innerHTML = `${environment.appBuildVersion}`;
-  }
 
-  this.submitTerms = function (status) {
-    if (status) {
-      localStorage.setItem(constants.USR_AGREED_TERMS, true);
+    this.checkOnboarding = function () {
+        let usrAgreedTerms = JSON.parse(localStorage.getItem(constants.USR_AGREED_TERMS));
+        if (!usrAgreedTerms) {
+            document.querySelector(".welcome-container #onbording-text").classList.remove("hiddenElement")
+            document.querySelector(".content-container").classList.add("hiddenElement");
+            document.querySelector(".explain-container").classList.add("hiddenElement");
+            document.querySelector(".scan-button-container").classList.add("hiddenElement");
+        } else {
+            document.querySelector(".terms-content-container").classList.add("hiddenElement");
+            document.querySelector(".welcome-container #welcome-text").classList.remove("hiddenElement");
+        }
+        document.querySelector("#app_version_number").innerHTML = `${environment.appBuildVersion}`;
     }
-    location.reload();
-  }
 
-  this.scanHandler = async function () {
-    goToPage("/scan.html")
-  }
-
-  this.showModal = function (key) {
-    this.toggleMenu();
-    goToPage(`/${key}-page.html`)
-  }
-
-
-  let addEventListeners = () => {
-    let menuContainer = document.querySelector(".app-menu-container");
-    let menuButton = document.getElementById("hamburger-menu-button");
-
-    const focusableElements = document.querySelectorAll('.app-menu-container li');
-
-    // Add event listener to the menu to capture the Tab key press
-    menuContainer.addEventListener("keydown", (event) => {
-      if (event.key === "Tab") {
-        event.preventDefault(); // Prevent the default tab behavior
-
-        for (let i = 0; i < focusableElements.length; i++) {
-          if (focusableElements[i] === document.activeElement) {
-            let nextIndex = (i + 1) % focusableElements.length;
-            focusableElements[nextIndex].focus();
-            break;
-          }
+    this.submitTerms = function (status) {
+        if (status) {
+            localStorage.setItem(constants.USR_AGREED_TERMS, true);
         }
-      }
-    });
+        location.reload();
+    }
+
+    this.scanHandler = async function () {
+        goToPage("/scan.html")
+    }
+
+    this.showModal = function (key) {
+        this.toggleMenu();
+        goToPage(`/${key}-page.html`)
+    }
 
 
-    let liElements = menuContainer.querySelectorAll('li.forward-to-page');
-    liElements.forEach(function (li) {
-      li.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" || event.key === " ") {
-          li.click();
-        }
-      });
-    });
+    let addEventListeners = () => {
+        let menuContainer = document.querySelector(".app-menu-container");
+        let menuButton = document.getElementById("hamburger-menu-button");
+        const focusableElements = [...document.querySelectorAll('.app-menu-container li')];
+        let firstFocusableEl = focusableElements[0];
+        let lastFocusableEl = focusableElements[focusableElements.length - 1];
+        let KEYCODE_TAB = 9;
 
-    document.getElementById("hamburger-menu-button").addEventListener("click", this.toggleMenu);
-    document.addEventListener('keydown', evt => {
-      if (evt.key === 'Escape') {
-        if (!menuContainer.classList.contains("hidden")) {
-          menuContainer.classList.add("hidden");
-        }
-      }
-    });
-    document.querySelector("body").addEventListener("click", (event) => {
-      if (event.target != menuContainer && event.target != menuButton) {
-        menuContainer.classList.add("hidden");
-      }
-    })
-    document.querySelectorAll(".app-menu-container li.forward-to-page").forEach(item => {
-      item.addEventListener("click", (event) => {
-        this.showModal(event.currentTarget.getAttribute("modal-name"))
-      })
-    })
-    document.getElementById("disagree-button").addEventListener("click", () => {
-      this.submitTerms(false)
-    })
-    document.getElementById("agree-button").addEventListener("click", () => {
-      this.submitTerms(true)
-    })
-    document.getElementById("scan-button").addEventListener("click", this.scanHandler)
+        menuButton.addEventListener("keydown", (event) => {
+            switch (event.key) {
+                case ' ':
+                case 'Enter':
+                case 'ArrowDown':
+                case 'Down':
+                    this.toggleMenu();
+                    firstFocusableEl.focus();
+                    event.stopPropagation();
+                    event.preventDefault();
+                    break;
 
-  }
-  addEventListeners();
+                case 'Up':
+                case 'ArrowUp':
+                    this.toggleMenu();
+                    lastFocusableEl.focus();
+                    event.stopPropagation();
+                    event.preventDefault();
+                    break;
+                default:
+                    break;
+            }
+        })
+        // Add event listener to the menu to capture the Tab key press and trap focus in menu
+
+
+        menuContainer.addEventListener('keydown', function (e) {
+            let activeIndex = focusableElements.findIndex((item) => document.activeElement === item);
+            if (activeIndex < 0) {
+                activeIndex = 0;
+            }
+            switch (e.key) {
+                case 'Up':
+                case 'ArrowUp':
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    if (activeIndex === 0) {
+                        lastFocusableEl.focus();
+                    } else {
+                        focusableElements[activeIndex - 1].focus();
+                    }
+
+                    break;
+
+                case 'ArrowDown':
+                case 'Down':
+                    e.stopPropagation();
+                    e.preventDefault();
+                    if (activeIndex === focusableElements.length - 1) {
+                        firstFocusableEl.focus();
+                    } else {
+                        focusableElements[activeIndex + 1].focus();
+                    }
+                    break;
+                case 'Home':
+                case 'PageUp':
+                    e.stopPropagation();
+                    e.preventDefault();
+                    firstFocusableEl.focus();
+                    break;
+
+                case 'End':
+                case 'PageDown':
+                    e.stopPropagation();
+                    e.preventDefault();
+                    lastFocusableEl.focus();
+                    break;
+            }
+
+            let isTabPressed = (e.key === 'Tab' || e.keyCode === KEYCODE_TAB);
+            if (!isTabPressed) {
+                return;
+            }
+
+            if (e.shiftKey) /* shift + tab */ {
+                if (document.activeElement === firstFocusableEl) {
+                    lastFocusableEl.focus();
+                    e.preventDefault();
+                }
+            } else /* tab */ {
+                if (document.activeElement === lastFocusableEl) {
+                    firstFocusableEl.focus();
+                    e.preventDefault();
+                }
+            }
+        });
+
+
+        let liElements = menuContainer.querySelectorAll('li.forward-to-page');
+
+        liElements.forEach(function (li) {
+            li.addEventListener("keydown", function (event) {
+                if (event.key === "Enter" || event.key === " ") {
+                    li.click();
+                }
+            });
+        });
+
+        document.getElementById("hamburger-menu-button").addEventListener("click", this.toggleMenu);
+        document.addEventListener('keydown', evt => {
+            if (!menuContainer.classList.contains("hidden")) {
+                switch (evt.key) {
+                    case 'Escape':
+                    case'Esc':
+                        menuContainer.classList.add("hidden");
+                        menuButton.focus();
+                        break;
+                }
+            }
+
+        });
+        document.querySelector("body").addEventListener("click", (event) => {
+            if (event.target != menuContainer && event.target != menuButton) {
+                menuContainer.classList.add("hidden");
+            }
+        })
+        document.querySelectorAll(".app-menu-container li.forward-to-page").forEach(item => {
+            item.addEventListener("click", (event) => {
+                this.showModal(event.currentTarget.getAttribute("modal-name"))
+            })
+        })
+        document.getElementById("disagree-button").addEventListener("click", () => {
+            this.submitTerms(false)
+        })
+        document.getElementById("agree-button").addEventListener("click", () => {
+            this.submitTerms(true)
+        })
+        document.getElementById("scan-button").addEventListener("click", this.scanHandler)
+
+    }
+    addEventListeners();
 }
 
 const mainController = new MainController();
 
 window.onload = async (event) => {
-  await translate();
-  mainController.checkOnboarding();
-  document.querySelector(".page-container").classList.remove("hiddenElement");
-  document.querySelector(".loader-container").setAttribute('style', 'display:none');
-  setTimeout(() => {
-    document.querySelector(".app-menu-container ").style.position = "absolute";
-  }, 0);
+    await translate();
+    mainController.checkOnboarding();
+    document.querySelector(".page-container").classList.remove("hiddenElement");
+    document.querySelector(".loader-container").setAttribute('style', 'display:none');
+    setTimeout(() => {
+        document.querySelector(".app-menu-container ").style.position = "absolute";
+    }, 0);
 }
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);

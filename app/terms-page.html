@@ -23,15 +23,17 @@
 
 <div id="settings-modal" class="modal-container info-modal">
     <div class="modal-body terms">
-        <div class="modal-header left-aligned-header">
-            <div class="icon-title-container">
-                <div role="heading" aria-level="1" class="modal-title bold-title" tabindex="2"
-                     translate="terms_modal_title"></div>
+        <header>
+            <div class="modal-header left-aligned-header">
+                <button class="close-modal" aria-label="close" tabindex="1"></button>
+                <div class="icon-title-container">
+                    <div role="heading" aria-level="1" class="modal-title bold-title" tabindex="2"
+                         translate="terms_modal_title"></div>
+                </div>
+                <div role="heading" aria-level="2" class="modal-subtitle" tabindex="3"
+                     translate="terms_modal_subtitle"></div>
             </div>
-            <div role="heading" aria-level="2" class="modal-subtitle" tabindex="3"
-                 translate="terms_modal_subtitle"></div>
-            <button class="close-modal" aria-label="close" tabindex="1"></button>
-        </div>
+        </header>
         <div class="modal-content" tabindex="4" translate="terms_content"></div>
     </div>
     <button id="go-home-button" class="scan-button go-home-button" translate="go_home"></button>
