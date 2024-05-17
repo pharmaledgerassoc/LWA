@@ -216,6 +216,12 @@ b {
     margin: 5vh 4vh;
 }
 
+.page-content-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
 .welcome-container {
     align-self: center;
     font-weight: 700;
@@ -464,11 +470,11 @@ b {
 }
 
 .warning-modal .modal-header {
-    background: linear-gradient(0deg, #FFFAED, #FFFAED), #FFFFFF;
+    background: #FFFAED;
 }
 
 .error-modal .modal-header {
-    background: linear-gradient(0deg, rgba(248, 100, 88, 0.1), rgba(248, 100, 88, 0.1)), #FFFFFF;
+    background: rgba(248, 100, 88, 0.1);
 }
 
 .error-modal .modal-header .modal-icon {
