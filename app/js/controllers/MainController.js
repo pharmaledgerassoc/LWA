@@ -49,7 +49,6 @@ function MainController() {
         goToPage(`/${key}-page.html`)
     }
 
-
     let addEventListeners = () => {
         let menuContainer = document.querySelector(".app-menu-container");
         let menuButton = document.getElementById("hamburger-menu-button");
@@ -208,6 +207,17 @@ const urlParams = new URLSearchParams(queryString);
 let epiDomain = urlParams.get("setdomain") || localStorage.getItem(constants.EPI_DOMAIN) || environment.epiDomain;
 localStorage.setItem(constants.EPI_DOMAIN, epiDomain);
 
+const systemEnvironmentsDomainsMap = {
+    "LOCAL-DEV": "http://localhost:8080",
+    "DEV": "http://dev.pladevs.com",
+    "PLA-PREQA": "http://preqa.pladevs.com",
+    "PLA-QA": "http://lpwa.plaqa.org"
+}
 
+let val = Object.values(systemEnvironmentsDomainsMap).find((item) => item === window.location.origin)
+if (val) {
+    let key = Object.keys(systemEnvironmentsDomainsMap).find(key => systemEnvironmentsDomainsMap[key] === val);
+    document.querySelector(".system-env").innerText = key + " TEST SYSTEM"
+}
 window.mainController = mainController;
 

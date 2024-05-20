@@ -161,12 +161,17 @@ b {
     display: flex;
 }
 
+.system-env {
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}
+
 .icon-container {
     height: max(5vh, 5vw);
     min-height: max(5vh, 5vw);
     position: relative;
-    background: url("../images/app-icon.png") no-repeat;
-    background-position: center;
+    background: url("../images/app-icon.png") no-repeat center;
     background-size: contain;
     display: flex;
     justify-content: end;
