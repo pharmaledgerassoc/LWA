@@ -760,12 +760,11 @@ body[dir="RTL"] .terms-container .terms-buttons-container {
 }
 
 body[dir="RTL"] .modal-content .languages-container .language-item-container input {
-    margin-right: unset;
-    margin-left: 15px;
+    margin-right: 10px;
 }
 
 body[dir="RTL"] .modal-content .languages-container .language-item-container .language-flag {
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 /*---------------------------------------------*/
