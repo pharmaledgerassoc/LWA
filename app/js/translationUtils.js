@@ -1,86 +1,41 @@
 import {setTextDirectionForLanguage} from "../../utils.js";
 import constants from "../../constants.js";
 
-const supportedLanguageCodes = ['ar', 'bg', 'de', 'en', 'es', 'es-419', 'et', 'fi', 'fr', 'hr', 'hu', 'it', 'ko', 'lv', 'nl', 'no', 'pl', 'pt-br', 'ro', 'uk'];
-
-const langSubtypesMap = {
-    "ar-ae": "ar",
-    "ar-bh": "ar",
-    "ar-dz": "ar",
-    "ar-eg": "ar",
-    "ar-iq": "ar",
-    "ar-jo": "ar",
-    "ar-kw": "ar",
-    "ar-lb": "ar",
-    "ar-ly": "ar",
-    "ar-ma": "ar",
-    "ar-om": "ar",
-    "ar-qa": "ar",
-    "ar-sa": "ar",
-    "ar-sy": "ar",
-    "ar-tn": "ar",
-    "ar-ye": "ar",
-    "bg-bg": "bg",
-    "de-de": "de",
-    "en-au": "en",
-    "en-bz": "en",
-    "en-ca": "en",
-    "en-gb": "en",
-    "en-ie": "en",
-    "en-jm": "en",
-    "en-nz": "en",
-    "en-ph": "en",
-    "en-tt": "en",
-    "en-us": "en",
-    "en-za": "en",
-    "en-zw": "en",
-    "es-419": "es",
-    "es-ar": "es",
-    "es-bo": "es",
-    "es-cl": "es",
-    "es-co": "es",
-    "es-cr": "es",
-    "es-do": "es",
-    "es-ec": "es",
-    "es-es": "es",
-    "es-gt": "es",
-    "es-mx": "es",
-    "es-ni": "es",
-    "es-pa": "es",
-    "es-pe": "es",
-    "es-pr": "es",
-    "es-py": "es",
-    "es-sv": "es",
-    "es-us": "es",
-    "es-uy": "es",
-    "es-ve": "es",
-    "et-ee": "et",
-    "fi-fi": "fi",
-    "fr-be": "fr",
-    "fr-ca": "fr",
-    "fr-fr": "fr",
-    "hr-ba": "hr",
-    "hr-hr": "hr",
-    "hu-hu": "hu",
-    "it-ch": "it",
-    "it-it": "it",
-    "ko-kr": "ko",
-    "lv-lv": "lv",
-    "nb": "no",
-    "nb-no": "no",
-    "nl-nl": "nl",
-    "nn": "no",
-    "nn-no": "no",
-    "pl-pl": "pl",
-    "pt-pt": "pt",
-    "ro-md": "ro",
-    "ro-ro": "ro",
-    "uk-ua": "uk",
-    "zh-cn": "zh",
-    "zh-hans": "zh",
-    "zh-hant": "zh",
-    "zh-hk": "zh"
+function getLangSubtypesMap(languageCodesMap) {
+    let result = {}
+    Object.keys(languageCodesMap).forEach(key => {
+        languageCodesMap[key].forEach(langSubtype => {
+            result[langSubtype] = key
+        })
+    });
+    return result
 }
+
+const supportedLanguageCodesMap = {
+    'ar': ["ar-ae", "ar-bh", "ar-dz", "ar-eg", "ar-iq", "ar-jo", "ar-kw", "ar-lb", "ar-ly", "ar-ma", "ar-om", "ar-qa", "ar-sa", "ar-sy", "ar-tn", "ar-ye"],
+    'bg': ["bg-bg"],
+    'de': ["de-de"],
+    'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw"],
+    'es': ["es-419", "es-ar", "es-bo", "es-cl", "es-co", "es-cr", "es-do", "es-ec", "es-es", "es-gt", "es-mx", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve"],
+    'et': ["et-ee"],
+    'fi': ["fi-fi"],
+    'fr': ["fr-be", "fr-ca", "fr-fr"],
+    'hr': ["hr-ba", "hr-hr"],
+    'hu': ["hu-hu"],
+    'it': ["it-ch", "it-it"],
+    'ko': ["ko-kr"],
+    'lv': ["lv-lv"],
+    'nl': ["nl-nl"],
+    'no': ["nb", "nb-no", "nn", "nn-no"],
+    'pl': ["pl-pl"],
+    'pt': ["pt-pt"],
+    'pt-br': [],
+    'ro': ["ro-md", "ro-ro"],
+    'uk': ["uk-ua"],
+    'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
+}
+
+const langSubtypesMap = getLangSubtypesMap(supportedLanguageCodesMap);
 
 
 function transformToISOStandardLangCode(code) {
@@ -111,7 +66,7 @@ function setDefaultLanguage() {
     let appLang = urlParams.get("lang") || window.navigator.language.toLowerCase() || localStorage.getItem(constants.APP_LANG);
     appLang = transformToISOStandardLangCode(appLang);
     appLang = langSubtypesMap[appLang.toLowerCase()] || appLang;
-    appLang = supportedLanguageCodes.includes(appLang) ? appLang : "en";
+    appLang = Object.keys(supportedLanguageCodesMap).includes(appLang) ? appLang : "en";
     localStorage.setItem(constants.APP_LANG, appLang);
     document.querySelector("body").setAttribute("app-lang", appLang);
     document.documentElement.lang = appLang;
