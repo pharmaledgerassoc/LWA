@@ -28,8 +28,7 @@ const supportedLanguageCodesMap = {
     'nl': ["nl-nl"],
     'no': ["nb", "nb-no", "nn", "nn-no"],
     'pl': ["pl-pl"],
-    'pt': ["pt-pt"],
-    'pt-br': [],
+    'pt-br': ["pt", "pt-pt"],
     'ro': ["ro-md", "ro-ro"],
     'uk': ["uk-ua"],
     'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
