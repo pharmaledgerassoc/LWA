@@ -1,0 +1,80 @@
+name: deploy
+
+on:
+  workflow_call:
+    inputs:
+      aws_role_to_assume_arn:
+        required: true
+        type: string
+
+      network_name:
+        required: true
+        type:     string
+      fqdn:
+        required: true
+        type:     string
+      
+      prevent_github_organization:
+        required: true
+        type:     string
+        default:  "true"
+      github_organization:
+        required: true
+        type:     string
+        default:  "pharmaledgerassoc"
+      
+env:
+  TERRAFORM_VERSION: "1.8.3"
+  NODE_VERSION:      "20"
+
+  GIT_USERNAME: "terraform"
+  GIT_EMAIL:    "terraform@pharmaledger.org"
+
+  AWS_IAM_ROLE_ARN_TO_ASSUME: ${{ inputs.aws_role_to_assume_arn }}
+
+  NETWORK_NAME: ${{ inputs.network_name }}
+  FQDN:         ${{ inputs.fqdn }}
+
+  PREVENT_GITHUB_ORGANIZATION: ${{ inputs.prevent_github_organization }}
+  GITHUB_ORGANIZATION:         ${{ inputs.github_organization }}
+  
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+
+jobs:
+  npm:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        shell: bash
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3.3.0
+
+      - name: install
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: build
+        run: |
+          export PREVENT_GITHUB_ORGANIZATION=${{ env.PREVENT_GITHUB_ORGANIZATION }}
+          export GITHUB_ORGANIZATION=${{ env.GITHUB_ORGANIZATION }}
+          
+          cd ./code
+
+          npm install
+
+          rm -rf lib/zxing-wrapper/package.json node_modules
+
+          zip -r build.zip *
+
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: build.zip
+          path: ./code/build.zip
+          retention-days: 1
