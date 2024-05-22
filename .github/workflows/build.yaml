@@ -15,11 +15,9 @@ on:
         type:     string
       
       prevent_github_organization:
-        required: true
         type:     string
         default:  "true"
       github_organization:
-        required: true
         type:     string
         default:  "pharmaledgerassoc"
       
