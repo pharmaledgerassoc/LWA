@@ -479,7 +479,7 @@ b {
 }
 
 .error-modal .modal-header {
-    background: rgba(248, 100, 88, 0.1);
+    background: var(--red-100);
 }
 
 .error-modal .modal-header .modal-icon {
