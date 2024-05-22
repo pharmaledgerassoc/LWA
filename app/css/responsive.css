@@ -178,6 +178,12 @@ b {
     margin: min(3vh, 3vw);
 }
 
+.menu-nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
 .menu-icon {
     background: url(../images/new-menu-icon.svg) no-repeat top;
     background-size: contain;
