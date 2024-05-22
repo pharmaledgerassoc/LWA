@@ -15,6 +15,7 @@ const supportedLanguageCodesMap = {
     'ar': ["ar-ae", "ar-bh", "ar-dz", "ar-eg", "ar-iq", "ar-jo", "ar-kw", "ar-lb", "ar-ly", "ar-ma", "ar-om", "ar-qa", "ar-sa", "ar-sy", "ar-tn", "ar-ye"],
     'bg': ["bg-bg"],
     'de': ["de-de"],
+    'el': ["el-gr"],
     'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw"],
     'es': ["es-419", "es-ar", "es-bo", "es-cl", "es-co", "es-cr", "es-do", "es-ec", "es-es", "es-gt", "es-mx", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve"],
     'et': ["et-ee"],
@@ -24,12 +25,15 @@ const supportedLanguageCodesMap = {
     'hu': ["hu-hu"],
     'it': ["it-ch", "it-it"],
     'ko': ["ko-kr"],
+    'lt': ["lt-lt"],
     'lv': ["lv-lv"],
     'nl': ["nl-nl"],
     'no': ["nb", "nb-no", "nn", "nn-no"],
     'pl': ["pl-pl"],
     'pt-br': ["pt", "pt-pt"],
     'ro': ["ro-md", "ro-ro"],
+    'sk': ["sk-sk"],
+    'sl': ["sl-si"],
     'uk': ["uk-ua"],
     'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
 }
