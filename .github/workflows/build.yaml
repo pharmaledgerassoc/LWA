@@ -1,4 +1,4 @@
-name: deploy
+name: build
 
 on:
   workflow_call:
@@ -15,18 +15,26 @@ on:
         type:     string
       
       prevent_github_organization:
-        type:     string
-        default:  "true"
+        type:    string
+        default: "true"
       github_organization:
+        type:    string
+        default: "pharmaledgerassoc"
+
+    secrets:
+      gh_token:
+        required: true
         type:     string
-        default:  "pharmaledgerassoc"
-      
+
 env:
   TERRAFORM_VERSION: "1.8.3"
   NODE_VERSION:      "20"
 
   GIT_USERNAME: "terraform"
   GIT_EMAIL:    "terraform@pharmaledger.org"
+
+  GH_TOKEN:     ${{ secrets.gh_token }}
+  GH_REPO_NAME: "pharmaledgerassoc/LWA"
 
   AWS_IAM_ROLE_ARN_TO_ASSUME: ${{ inputs.aws_role_to_assume_arn }}
 
@@ -51,6 +59,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3.3.0
+        with:
+          token:      ${{ env.GH_TOKEN }}
+          repository: ${{ env.GH_REPO_NAME }}
+          path: "./LWA"
+          ref: ${{ env.CICD_AUTOMATION_BRANCH }}
 
       - name: install
         uses: actions/setup-node@v3.6.0
@@ -62,7 +75,7 @@ jobs:
           export PREVENT_GITHUB_ORGANIZATION=${{ env.PREVENT_GITHUB_ORGANIZATION }}
           export GITHUB_ORGANIZATION=${{ env.GITHUB_ORGANIZATION }}
           
-          cd ./code
+          cd ./LWA/code
 
           npm install
 
@@ -73,6 +86,6 @@ jobs:
       - name: upload
         uses: actions/upload-artifact@v4
         with:
-          name: build.zip
-          path: ./code/build.zip
+          name:           build.zip
+          path:           ./LWA/code/build.zip
           retention-days: 1
