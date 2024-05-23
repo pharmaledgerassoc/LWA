@@ -7,10 +7,18 @@ on:
         required: true
         type: string
 
+      version:
+        required: true
+        type:     string
+
       network_name:
         required: true
         type:     string
       fqdn:
+        required: true
+        type:     string
+
+      gh_repo_ref:
         required: true
         type:     string
       
@@ -26,17 +34,16 @@ on:
         required: true
 
 env:
-  TERRAFORM_VERSION: "1.8.3"
   NODE_VERSION:      "20"
 
-  GIT_USERNAME: "terraform"
-  GIT_EMAIL:    "terraform@pharmaledger.org"
-
   GH_TOKEN:     ${{ secrets.gh_token }}
+  
   GH_REPO_NAME: "pharmaledgerassoc/LWA"
-  GH_REPO_REF:  "release/2.2"
+  GH_REPO_REF:  ${{ inputs.gh_repo_ref }}
 
   AWS_IAM_ROLE_ARN_TO_ASSUME: ${{ inputs.aws_role_to_assume_arn }}
+
+  VERSION: ${{ inputs.version }}
 
   NETWORK_NAME: ${{ inputs.network_name }}
   FQDN:         ${{ inputs.fqdn }}
@@ -80,6 +87,8 @@ jobs:
           npm install
 
           rm -rf lib/zxing-wrapper/package.json node_modules
+
+          mv app ${{ env.VERSION }}
 
           zip -r build.zip *
 
