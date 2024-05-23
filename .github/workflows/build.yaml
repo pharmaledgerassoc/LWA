@@ -7,10 +7,6 @@ on:
         required: true
         type: string
 
-      version:
-        required: true
-        type:     string
-
       network_name:
         required: true
         type:     string
@@ -42,8 +38,6 @@ env:
   GH_REPO_REF:  ${{ inputs.gh_repo_ref }}
 
   AWS_IAM_ROLE_ARN_TO_ASSUME: ${{ inputs.aws_role_to_assume_arn }}
-
-  VERSION: ${{ inputs.version }}
 
   NETWORK_NAME: ${{ inputs.network_name }}
   FQDN:         ${{ inputs.fqdn }}
@@ -88,7 +82,7 @@ jobs:
 
           rm -rf lib/zxing-wrapper/package.json node_modules
 
-          mv app ${{ env.VERSION }}
+          mv app ${{ env.GH_REPO_REF }}
 
           zip -r build.zip *
 
