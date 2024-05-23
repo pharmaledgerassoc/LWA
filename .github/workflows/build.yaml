@@ -82,7 +82,9 @@ jobs:
 
           rm -rf lib/zxing-wrapper/package.json node_modules
 
-          mv app ${{ env.GH_REPO_REF }}
+          VERSION=$(echo ${{ env.GH_REPO_REF }} | grep -Po "\d\.\d")
+
+          mv app $VERSION
 
           zip -r build.zip *
 
