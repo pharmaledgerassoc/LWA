@@ -74,8 +74,6 @@ jobs:
         run: |
           export PREVENT_GITHUB_ORGANIZATION=${{ env.PREVENT_GITHUB_ORGANIZATION }}
           export GITHUB_ORGANIZATION=${{ env.GITHUB_ORGANIZATION }}
-
-          ls -la
           
           cd ./LWA/code
 
