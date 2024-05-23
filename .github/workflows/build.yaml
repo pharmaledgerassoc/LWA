@@ -58,11 +58,11 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3.3.0
-        with:
-          token:      ${{ env.GH_TOKEN }}
-          repository: ${{ env.GH_REPO_NAME }}
-          path: "./LWA"
-          ref: ${{ env.CICD_AUTOMATION_BRANCH }}
+#        with:
+#          token:      ${{ env.GH_TOKEN }}
+#          repository: ${{ env.GH_REPO_NAME }}
+#          path:       "./LWA"
+#          ref:        ${{ env.CICD_AUTOMATION_BRANCH }}
 
       - name: install
         uses: actions/setup-node@v3.6.0
@@ -73,6 +73,8 @@ jobs:
         run: |
           export PREVENT_GITHUB_ORGANIZATION=${{ env.PREVENT_GITHUB_ORGANIZATION }}
           export GITHUB_ORGANIZATION=${{ env.GITHUB_ORGANIZATION }}
+
+          ls -la
           
           cd ./LWA/code
 
