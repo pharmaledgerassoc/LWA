@@ -66,3 +66,9 @@ jobs:
           cd ./LWA/terraform
 
           /bin/bash ./init.sh
+
+      - name: terraform apply
+        run: |
+          cd ./LWA/terraform
+
+          terraform plan
