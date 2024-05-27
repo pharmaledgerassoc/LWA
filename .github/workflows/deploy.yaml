@@ -112,8 +112,8 @@ jobs:
 
       - name: git commit & push
         run: |
-          export GH_TOKEN=${{ secrets.gh_token }}
-
+          git config --global url."https://${{ secrets.gh_token }}@github.com/".insteadOf "https://github.com/"
+          
           git config --global user.email "terraform@pharmaledger.org"
           git config --global user.name "terraform"
 
