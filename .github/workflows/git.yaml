@@ -73,7 +73,7 @@ jobs:
         run: |          
           cd ./LWA/terraform
 
-          terraform state pull > ./private/${{ inputs.network }}/${{ inputs.fqdn }}/terraform.tfstate
+          terraform state pull > ../../private/${{ inputs.network }}/${{ inputs.fqdn }}/terraform.tfstate
       
       - name: git commit & push
         run: |
