@@ -50,9 +50,9 @@ jobs:
           ref:        ${{ env.GH_REPO_REF }}
           
       - name: install
-            uses: hashicorp/setup-terraform@v3
-            with:
-              terraform_version: ${{ env.TERRAFORM_VERSION }}
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
 
       - name: terraform init
         run: |
