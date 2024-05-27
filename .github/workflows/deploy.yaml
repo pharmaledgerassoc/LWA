@@ -53,8 +53,10 @@ jobs:
 
       - name: unzip build
         run: |
-          mkdir -p ./LWA/build
+          ls -la
           
+          mkdir -p ./LWA/build
+
           unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/build
 
       - name: aws credentials
