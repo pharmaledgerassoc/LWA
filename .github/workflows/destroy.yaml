@@ -41,7 +41,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region:     ${{ env.TF_VAR_aws_region }}
-          role-to-assume: ${{ inputs.aws_iam_role_to_assume_arn }}
+          role-to-assume: ${{ env.AWS_IAM_ROLE_TO_ASSUME_ARN }}
 
       - name: checkout
         uses: actions/checkout@v4
