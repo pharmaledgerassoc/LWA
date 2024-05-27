@@ -29,6 +29,9 @@ jobs:
       - name: env
         run: |
            for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+
+           echo "TF_VAR_network=${{ inputs.network }}" >> $GITHUB_ENV
+           echo "TF_VAR_fqdn=${{ inputs.fqdn }}" >> $GITHUB_ENV
         
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
