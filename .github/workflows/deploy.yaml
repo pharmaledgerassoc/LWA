@@ -41,8 +41,8 @@ jobs:
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region:     "eu-west-1"
-          role-to-assume: "arn:aws:iam::256240847244:role/GitHubActions"
+          aws-region:     ${{ env.TF_VAR_aws_region }}
+          role-to-assume: ${{ env.AWS_BUILD_IAM_ROLE_TO_ASSUME_ARN }}
 
       - name: checkout
         uses: actions/checkout@v4
@@ -54,7 +54,7 @@ jobs:
 
       - name: download build
         run: |
-          aws s3 cp s3://lwa-build-256240847244/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip lwa-build-${{ env.TF_VAR_app_build_version }}.zip
+          aws s3 cp s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip lwa-build-${{ env.TF_VAR_app_build_version }}.zip
 
       - name: unzip build
         run: |
@@ -68,7 +68,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-region:     ${{ env.TF_VAR_aws_region }}
-          role-to-assume: ${{ env.AWS_ROLE_TO_ASSUME_ARN }}
+          role-to-assume: ${{ env.AWS_IAM_ROLE_TO_ASSUME_ARN }}
           
       - name: install
         uses: hashicorp/setup-terraform@v3
