@@ -1,14 +1,29 @@
-name: build
+name: deploy
 
 on:
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      network:
+        required: true
+        type:     string
+      fqdn:
+        required: true
+        type:     string
+    
+    secrets:
+      gh_token:
+        required: true
 
+env:
+  GIT_USERNAME: "terraform"
+  GIT_EMAIL:    "terraform@pharmaledger.org"
+  
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read  # This is required for actions/checkout
 
 jobs:
-  npm:
+  terraform:
     runs-on: ubuntu-latest
     
     defaults:
@@ -21,39 +36,53 @@ jobs:
 
       - name: env
         run: |
-           for var in $(cat ./env); do echo "${var}" >> $GITHUB_ENV ; done
+           for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
 
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region:     ${{ env.AWS_REGION }}
-          role-to-assume: ${{ env.AWS_IAM_ROLE_TO_ASSUME_ARN }}
+          aws-region:     ${{ env.TF_VAR_aws_region }}
+          role-to-assume: ${{ env.AWS_BUILD_IAM_ROLE_TO_ASSUME_ARN }}
 
-      - name: install
-        uses: actions/setup-node@v4
+      - name: checkout
+        uses: actions/checkout@v4
         with:
-          node-version: ${{ env.NODE_VERSION }}
+          token:      ${{ secrets.gh_token }}
+          repository: ${{ env.TF_VAR_gh_repo_name }}
+          ref:        ${{ env.TF_VAR_gh_repo_ref }}
+          path:       "./LWA"
 
-      - name: build
-        run: |          
-          cd ./code
-
-          npm install
-
-          rm -rf lib/zxing-wrapper/package.json \
-          node_modules \
-          octopus.json \
-          package.json \
-          bdns.json \
-          environment.js \
-          local_environment.js
-
-          mv app ${{ env.APP_BUILD_VERSION }}
-
-          zip -r lwa-build-${{ env.APP_BUILD_VERSION }}.zip *
-
-          mv lwa-build-${{ env.APP_BUILD_VERSION }}.zip ../
-
-      - name: upload build
+      - name: download build
         run: |
-          aws s3 cp --quiet lwa-build-${{ env.APP_BUILD_VERSION }}.zip s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.APP_BUILD_VERSION }}/lwa-build-${{ env.APP_BUILD_VERSION }}.zip
+          aws s3 cp --quiet s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip lwa-build-${{ env.TF_VAR_app_build_version }}.zip
+
+      - name: unzip build
+        run: |
+          ls -la
+
+          mkdir ./LWA/terraform/build
+
+          unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/terraform/build
+
+      - name: aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region:     ${{ env.TF_VAR_aws_region }}
+          role-to-assume: ${{ env.AWS_IAM_ROLE_TO_ASSUME_ARN }}
+          
+      - name: install
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: terraform init
+        run: |
+          cd ./LWA/terraform
+
+          /bin/bash ./init.sh
+
+      - name: terraform apply
+        run: |          
+          cd ./LWA/terraform
+
+          terraform apply --auto-approve
