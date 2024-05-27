@@ -1,0 +1,66 @@
+name: cloudfront-invalidate-cache
+
+on:
+  workflow_call:
+    inputs:
+      network:
+        required: true
+        type:     string
+      fqdn:
+        required: true
+        type:     string
+    
+    secrets:
+      gh_token:
+        required: true
+  
+jobs:
+  invalidate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: env
+        run: |
+           for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+        
+      - name: aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region:     ${{ env.TF_VAR_aws_region }}
+          role-to-assume: ${{ env.AWS_IAM_ROLE_TO_ASSUME_ARN }}
+
+      - name: terraform setup
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: terraform init
+        run: |
+          cd ./LWA/terraform
+
+          /bin/bash ./init.sh
+
+      - name: get cloudfront distribution id
+        run: |
+          cd ./LWA/terraform
+
+          echo "CLOUDFRONT_DISTRIBUTION_ID=$(terraform output cloudfront_distribution_id)" >> $GITHUB_ENV
+
+      - name: invalidate cloudfront distribution cache
+        run: |
+          echo "CLOUDFRONT_INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id "${{ env.CLOUDFRONT_DISTRIBUTION_ID }}" --paths "/*" --query Invalidation.Id)" >> $GITHUB_ENV
+
+      - name: wait for cloudfront distribution cache invalidation is completed
+        run: |
+          CLOUDFRONT_INVALIDATION_STATUS="InProgress"
+          
+          while [ "${CLOUDFRONT_INVALIDATION_STATUS}" != "Completed" ]
+          do
+            CLOUDFRONT_INVALIDATION_STATUS=$(aws cloudfront get-invalidation --id "${{ env.CLOUDFRONT_INVALIDATION_ID }}" --distribution-id "${{ env.CLOUDFRONT_DISTRIBUTION_ID }}" --query Invalidation.Status --output text)
+
+            sleep 15
+
+            echo "CloudFront invalidation '${{ env.CLOUDFRONT_INVALIDATION_ID }}' status: ${CLOUDFRONT_INVALIDATION_STATUS}"
+          done

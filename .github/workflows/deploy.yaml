@@ -85,4 +85,4 @@ jobs:
         run: |          
           cd ./LWA/terraform
 
-          terraform plan
+          terraform apply --auto-approve
