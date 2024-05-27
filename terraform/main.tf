@@ -11,11 +11,8 @@ resource "local_file" "bdns_json" {
   content = file(var.bdns_json_file_path)
 }
 
-data "http" "environment_js_template" {
-  url = local.https_url_environment_js_template
-}
 data "template_file" "environment_js" {
-  template = data.http.environment_js_template.response_body
+  template = file(var.environment_js_template_file_path)
   vars = {
     epi_domain          = var.epi_domain,
     app_build_version   = var.app_build_version,

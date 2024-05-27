@@ -1,8 +1,6 @@
 # --- locals.tf ---
 
 locals {
-  https_url_environment_js_template = "https://raw.githubusercontent.com/${var.gh_repo_name}/${var.gh_repo_ref}/environment.js.template"
-
   bdns_url = "https://${var.fqdn}/bdns.json"
 
   csp_frame_src               = "https://pharmaledger.org/"

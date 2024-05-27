@@ -22,6 +22,9 @@ variable "app_build_version" {
 variable "bdns_json_file_path" {
   type = string
 }
+variable "environment_js_template_file_path" {
+  type = string
+}
 
 variable "gh_repo_name" {
   type    = string
