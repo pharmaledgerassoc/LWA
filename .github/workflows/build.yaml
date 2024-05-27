@@ -38,7 +38,7 @@ jobs:
         
       - name: build
         run: |          
-          cd ./LWA/code
+          cd ./code
 
           npm install
 
@@ -47,6 +47,8 @@ jobs:
           mv app ${{ inputs.app_build_version }}
 
           zip -r lwa-build-${{ inputs.app_build_version }}.zip *
+
+          mv lwa-build-${{ inputs.app_build_version }}.zip ../
 
       - name: upload build
         run: |
