@@ -1,0 +1,79 @@
+name: destroy
+
+on:
+  workflow_call:
+    inputs:
+      network:
+        required: true
+        type:     string
+      fqdn:
+        required: true
+        type:     string
+
+      aws_region:
+        required: true
+        type:     string
+      aws_account_id:
+        required: true
+        type:     string
+      aws_iam_role_to_assume_arn:
+        required: true
+        type:     string
+    
+    secrets:
+      gh_token:
+        required: true
+  
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: write  # This is required for actions/checkout
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        shell: bash
+    
+    steps:
+      - name: aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ inputs.aws_iam_role_to_assume_arn }}
+
+      - name: download env
+        run: |
+          aws s3 cp --quiet s3://tf-state-${{ inputs.aws_region }}-${{ inputs.aws_account_id }}/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/env ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env
+
+      - name: env
+        run: |
+           for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+
+           echo "TF_VAR_network=${{ inputs.network }}" >> $GITHUB_ENV
+           echo "TF_VAR_fqdn=${{ inputs.fqdn }}" >> $GITHUB_ENV
+
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          token:      ${{ secrets.gh_token }}
+          repository: ${{ env.TF_VAR_gh_repo_name }}
+          ref:        ${{ env.TF_VAR_gh_repo_ref }}
+          path:       "./LWA"
+          
+      - name: terraform setup
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: terraform init
+        run: |
+          cd ./LWA/terraform
+
+          /bin/bash ./init.sh
+
+      - name: terraform destroy
+        run: |          
+          cd ./LWA/terraform
+
+          terraform destroy --auto-approve 
