@@ -42,12 +42,12 @@ jobs:
 
           rm -rf lib/zxing-wrapper/package.json node_modules
 
-          mv app ${{ inputs.app_build_version }}
+          mv app ${{ env.APP_BUILD_VERSION }}
 
-          zip -r lwa-build-${{ inputs.app_build_version }}.zip *
+          zip -r lwa-build-${{ env.APP_BUILD_VERSION }}.zip *
 
-          mv lwa-build-${{ inputs.app_build_version }}.zip ../
+          mv lwa-build-${{ env.APP_BUILD_VERSION }}.zip ../
 
       - name: upload build
         run: |
-          aws s3 cp lwa-build-${{ inputs.app_build_version }}.zip s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ inputs.app_build_version }}/lwa-build-${{ inputs.app_build_version }}.zip
+          aws s3 cp lwa-build-${{ env.APP_BUILD_VERSION }}.zip s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.APP_BUILD_VERSION }}/lwa-build-${{ env.APP_BUILD_VERSION }}.zip
