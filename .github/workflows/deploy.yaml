@@ -68,11 +68,7 @@ jobs:
           /bin/bash ./init.sh
 
       - name: terraform apply
-        run: |
-          for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env ); do export "${var}"; done
-          
+        run: |          
           cd ./LWA/terraform
-
-          env
 
           terraform plan
