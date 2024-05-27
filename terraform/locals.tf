@@ -15,7 +15,7 @@ locals {
   s3_object_js   = setsubtract(fileset("${path.module}/LWA", "**/*.js"), ["environment.js", "local_environment.js"])
   s3_object_json = setsubtract(fileset("${path.module}/LWA", "**/*.json"), ["bdns.json", "package.json", "octopus.json", "lib/zxing-wrapper/package.json"])
 
-  bdns_json_local_path = "../networks/${var.network_name}/bdns.json"
+  bdns_json_local_path = "../networks/${var.network}/bdns.json"
 
   cloudfront_default_root_object = "index.html"
 

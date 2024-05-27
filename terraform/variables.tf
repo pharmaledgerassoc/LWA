@@ -39,7 +39,7 @@ variable "gto_total_wait_time" {
   default = 15000
 }
 
-variable "network_name" {
+variable "network" {
   type    = string
   default = ""
 }
