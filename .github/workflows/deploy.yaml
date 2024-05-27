@@ -71,4 +71,6 @@ jobs:
         run: |
           cd ./LWA/terraform
 
+          for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env ); do export "${var}"; done
+
           terraform plan
