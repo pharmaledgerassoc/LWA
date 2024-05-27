@@ -13,10 +13,6 @@ on:
     secrets:
       gh_token:
         required: true
-
-env:
-  GIT_USERNAME: "terraform"
-  GIT_EMAIL:    "terraform@pharmaledger.org"
   
 permissions:
   id-token: write # This is required for requesting the JWT

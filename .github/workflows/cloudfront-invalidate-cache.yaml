@@ -9,6 +9,11 @@ on:
       fqdn:
         required: true
         type:     string
+
+      invalidation_path:
+        required: true
+        type:     string
+        default:  "/*"
     
     secrets:
       gh_token:
@@ -58,7 +63,7 @@ jobs:
 
       - name: invalidate cloudfront distribution cache
         run: |
-          echo "CLOUDFRONT_INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id "${{ env.CLOUDFRONT_DISTRIBUTION_ID }}" --paths "/*" --query Invalidation.Id)" >> $GITHUB_ENV
+          echo "CLOUDFRONT_INVALIDATION_ID=$(aws cloudfront create-invalidation --distribution-id "${{ env.CLOUDFRONT_DISTRIBUTION_ID }}" --paths "${{ inputs.invalidation_path }}" --query Invalidation.Id)" >> $GITHUB_ENV
 
       - name: wait for cloudfront distribution cache invalidation is completed
         run: |

@@ -1,0 +1,44 @@
+name: deploy
+
+on:
+  workflow_call:
+    inputs:
+      network:
+        required: true
+        type:     string
+      fqdn:
+        required: true
+        type:     string
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
+
+jobs:
+  bdns:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        shell: bash
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: env
+        run: |
+           for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+
+           echo "TF_VAR_network=${{ inputs.network }}" >> $GITHUB_ENV
+           echo "TF_VAR_fqdn=${{ inputs.fqdn }}" >> $GITHUB_ENV 
+
+      - name: aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region:     ${{ env.TF_VAR_aws_region }}
+          role-to-assume: ${{ env.AWS_IAM_ROLE_TO_ASSUME_ARN }}
+
+      - name: upload
+        run: |
+          aws s3 cp --quiet ./networks/${{ inputs.network }}/bdns.json s3://${{ inputs.fqdn }}/bdns.json   
