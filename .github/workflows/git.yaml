@@ -1,4 +1,4 @@
-name: deploy
+name: git
 
 on:
   workflow_call:
@@ -19,7 +19,7 @@ permissions:
   contents: read  # This is required for actions/checkout
 
 jobs:
-  terraform:
+  commit_and_push:
     runs-on: ubuntu-latest
     
     defaults:
@@ -51,18 +51,6 @@ jobs:
           ref:        ${{ env.TF_VAR_gh_repo_ref }}
           path:       "./LWA"
 
-      - name: download build
-        run: |
-          aws s3 cp --quiet s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip lwa-build-${{ env.TF_VAR_app_build_version }}.zip
-
-      - name: unzip build
-        run: |
-          ls -la
-
-          mkdir ./LWA/terraform/build
-
-          unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/terraform/build
-
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -73,6 +61,7 @@ jobs:
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
+          terraform_wrapper: false
 
       - name: terraform init
         run: |
@@ -80,12 +69,14 @@ jobs:
 
           /bin/bash ./init.sh
 
-      - name: terraform apply
+      - name: terraform state pull
         run: |          
           cd ./LWA/terraform
 
-          terraform apply --auto-approve
+          terraform state pull > ./private/${{ inputs.network }}/${{ inputs.fqdn }}/terraform.tfstate
       
-      - name: upload env
+      - name: git commit & push
         run: |
-          aws s3 cp --quiet ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env tf-state-${AWS_REGION}-${AWS_ACCOUNT_ID}/${TF_VAR_network}/LWA/${TF_VAR_fqdn}/env
+          git add ./private/${{ inputs.network }}/${{ inputs.fqdn }}/terraform.tfstate
+          git commit -m "Managed by Terraform - ./private/${{ inputs.network }}/${{ inputs.fqdn }}/terraform.tfstate"
+          git pull && git push 
