@@ -46,14 +46,14 @@ jobs:
         uses: actions/checkout@v4
         with:
           token:      ${{ secrets.gh_token }}
-          repository: ${{ env.GH_REPO_NAME }}
-          ref:        ${{ env.GH_REPO_REF }}
+          repository: ${{ env.TF_VAR_gh_repo_name }}
+          ref:        ${{ env.TF_VAR_gh_repo_ref }}
           path:       "./LWA"
 
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region:     ${{ env.AWS_REGION }}
+          aws-region:     ${{ env.TF_VAR_aws_region }}
           role-to-assume: ${{ env.AWS_ROLE_TO_ASSUME_ARN }}
           
       - name: install
