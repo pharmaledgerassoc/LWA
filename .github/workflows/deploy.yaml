@@ -38,6 +38,12 @@ jobs:
         run: |
            for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
 
+      - name: aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region:     "eu-west-1"
+          role-to-assume: "arn:aws:iam::256240847244:role/GitHubActions"
+
       - name: checkout
         uses: actions/checkout@v4
         with:
@@ -48,8 +54,8 @@ jobs:
 
       - name: download build
         uses: actions/download-artifact@v4
-        with:
-          name: lwa-build-${{ env.TF_VAR_app_build_version }}.zip
+        run: |
+          aws s3 cp s3://lwa-build-256240847244/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip lwa-build-${{ env.TF_VAR_app_build_version }}.zip
 
       - name: unzip build
         run: |
