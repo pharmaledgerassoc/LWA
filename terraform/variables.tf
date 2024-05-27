@@ -23,6 +23,17 @@ variable "bdns_json_file_path" {
   type = string
 }
 
+variable "gh_repo_name" {
+  type    = string
+}
+variable "gh_repo_ref" {
+  type    = string
+}
+
+variable "build_dir_path" {
+  type = string
+}
+
 variable "time_per_call" {
   type    = number
   default = 10000
@@ -44,16 +55,6 @@ variable "gto_total_wait_time" {
 }
 
 variable "network" {
-  type    = string
-  default = ""
-}
-
-variable "lwa_repo" {
-  type    = string
-  default = ""
-}
-
-variable "lwa_branch" {
   type    = string
   default = ""
 }

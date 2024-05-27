@@ -1,7 +1,7 @@
 # --- locals.tf ---
 
 locals {
-  https_url_environment_js_template = "https://raw.githubusercontent.com/${var.lwa_repo}/${var.lwa_branch}/environment.js.template"
+  https_url_environment_js_template = "https://raw.githubusercontent.com/${var.gh_repo_name}/${var.gh_repo_ref}/environment.js.template"
 
   bdns_url = "https://${var.fqdn}/bdns.json"
 

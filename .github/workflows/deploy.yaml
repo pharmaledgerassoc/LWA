@@ -3,10 +3,6 @@ name: build
 on:
   workflow_call:
     inputs:
-      aws_role_to_assume_arn:
-        required: true
-        type: string
-
       network:
         required: true
         type:     string
@@ -49,6 +45,17 @@ jobs:
           repository: ${{ env.TF_VAR_gh_repo_name }}
           ref:        ${{ env.TF_VAR_gh_repo_ref }}
           path:       "./LWA"
+
+      - name: download build
+        uses: actions/download-artifact@v4
+        with:
+          name: lwa-build-${{ env.TF_VAR_app_build_version }}.zip
+
+      - name: unzip build
+        run: |
+          mkdir -p ./LWA/build
+          
+          unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/build
 
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
