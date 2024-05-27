@@ -98,7 +98,7 @@ jobs:
 
       - name: mv updated bdns.json and environment.js
         run: |
-          mv bdns.json environment.js ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/
+          mv bdns.json environment.js ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/
       
       - name: terraform state pull
         run: |          
