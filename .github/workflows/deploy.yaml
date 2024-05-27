@@ -80,6 +80,8 @@ jobs:
 
           /bin/bash ./init.sh
 
+          mv ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/bdns.json ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/environment.js . 2>/dev/null
+
       - name: terraform apply
         run: |          
           cd ./LWA/terraform
@@ -100,6 +102,6 @@ jobs:
 
       - name: git commit & push
         run: |
-          git add ./private/${{ inputs.network }}/${{ inputs.fqdn }}
-          git commit -m "Managed by Terraform - ./private/${{ inputs.network }}/${{ inputs.fqdn }}"
+          git add ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}
+          git commit -m "Managed by Terraform - ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}"
           git pull && git push 
