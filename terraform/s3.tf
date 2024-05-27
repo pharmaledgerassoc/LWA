@@ -104,7 +104,7 @@ resource "aws_s3_object" "css" {
 }
 
 resource "aws_s3_object" "js" {
-  for_each = local.s3_object_js
+  for_each = fileset("${path.module}/build", "**/*.js")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
@@ -114,7 +114,7 @@ resource "aws_s3_object" "js" {
 }
 
 resource "aws_s3_object" "json" {
-  for_each = local.s3_object_json
+  for_each = fileset("${path.module}/build", "**/*.json")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value

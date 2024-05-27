@@ -12,9 +12,6 @@ locals {
 
   csp_connect_src = "https://${var.fqdn} ${join(" ", [for url in distinct(regexall("https://[^\"/]+", file(var.bdns_json_file_path))) : url])}"
 
-  s3_object_js   = setsubtract(fileset("${path.module}/LWA", "**/*.js"), ["environment.js", "local_environment.js"])
-  s3_object_json = setsubtract(fileset("${path.module}/LWA", "**/*.json"), ["bdns.json", "package.json", "octopus.json", "lib/zxing-wrapper/package.json"])
-
   cloudfront_default_root_object = "index.html"
 
   custom_error_response_4xx = flatten([

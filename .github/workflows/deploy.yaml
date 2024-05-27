@@ -54,7 +54,7 @@ jobs:
 
       - name: download build
         run: |
-          aws s3 cp s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip lwa-build-${{ env.TF_VAR_app_build_version }}.zip
+          aws s3 cp --quiet s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip lwa-build-${{ env.TF_VAR_app_build_version }}.zip
 
       - name: unzip build
         run: |

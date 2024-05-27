@@ -40,7 +40,13 @@ jobs:
 
           npm install
 
-          rm -rf lib/zxing-wrapper/package.json node_modules
+          rm -rf lib/zxing-wrapper/package.json \
+          node_modules \
+          octopus.json \
+          package.json \
+          bdns.json \
+          environment.js \
+          local_environment.js
 
           mv app ${{ env.APP_BUILD_VERSION }}
 
@@ -50,4 +56,4 @@ jobs:
 
       - name: upload build
         run: |
-          aws s3 cp lwa-build-${{ env.APP_BUILD_VERSION }}.zip s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.APP_BUILD_VERSION }}/lwa-build-${{ env.APP_BUILD_VERSION }}.zip
+          aws s3 cp --quiet lwa-build-${{ env.APP_BUILD_VERSION }}.zip s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ env.APP_BUILD_VERSION }}/lwa-build-${{ env.APP_BUILD_VERSION }}.zip
