@@ -74,32 +74,32 @@ resource "aws_s3_object" "environment_js" {
 }
 
 resource "aws_s3_object" "html" {
-  for_each = fileset("{var.build_dir_path}", "**/*.html")
+  for_each = fileset("${path.module}/build", "**/*.html")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "text/html; charset=utf-8"
 }
 
 resource "aws_s3_object" "svg" {
-  for_each = fileset("{var.build_dir_path}", "**/*.svg")
+  for_each = fileset("${path.module}/build", "**/*.svg")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "image/svg+xml"
 }
 
 resource "aws_s3_object" "css" {
-  for_each = fileset("{var.build_dir_path}", "**/*.css")
+  for_each = fileset("${path.module}/build", "**/*.css")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "text/css"
 }
 
@@ -108,8 +108,8 @@ resource "aws_s3_object" "js" {
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "application/javascript; charset=utf-8"
 }
 
@@ -118,67 +118,67 @@ resource "aws_s3_object" "json" {
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "application/json"
 }
 
 resource "aws_s3_object" "png" {
-  for_each = fileset("{var.build_dir_path}", "**/*.png")
+  for_each = fileset("${path.module}/build", "**/*.png")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "image/png"
 }
 
 resource "aws_s3_object" "jpg" {
-  for_each = fileset("{var.build_dir_path}", "**/*.jpg")
+  for_each = fileset("${path.module}/build", "**/*.jpg")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "image/jpg"
 }
 
 resource "aws_s3_object" "gif" {
-  for_each = fileset("{var.build_dir_path}", "**/*.gif")
+  for_each = fileset("${path.module}/build", "**/*.gif")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "image/gif"
 }
 
 resource "aws_s3_object" "ico" {
-  for_each = fileset("{var.build_dir_path}", "**/*.ico")
+  for_each = fileset("${path.module}/build", "**/*.ico")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "image/x-icon"
 }
 
 resource "aws_s3_object" "ttf" {
-  for_each = fileset("{var.build_dir_path}", "**/*.ttf")
+  for_each = fileset("${path.module}/build", "**/*.ttf")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "application/octet-stream"
 }
 
 resource "aws_s3_object" "manifest" {
-  for_each = fileset("{var.build_dir_path}", "**/*.webmanifest")
+  for_each = fileset("${path.module}/build", "**/*.webmanifest")
 
   bucket       = module.s3_bucket.s3_bucket_id
   key          = each.value
-  source       = "{var.build_dir_path}/${each.value}"
-  etag         = filemd5("{var.build_dir_path}/${each.value}")
+  source       = "${path.module}/build/${each.value}"
+  etag         = filemd5("${path.module}/build/${each.value}")
   content_type = "application/manifest+json"
 }

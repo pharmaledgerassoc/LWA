@@ -60,9 +60,9 @@ jobs:
         run: |
           ls -la
 
-          mkdir ./LWA/build
+          mkdir ./LWA/terraform/build
 
-          unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/build
+          unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/terraform/build
 
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4

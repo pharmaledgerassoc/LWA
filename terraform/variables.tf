@@ -30,10 +30,6 @@ variable "gh_repo_ref" {
   type    = string
 }
 
-variable "build_dir_path" {
-  type = string
-}
-
 variable "time_per_call" {
   type    = number
   default = 10000
