@@ -57,8 +57,6 @@ jobs:
 
       - name: unzip build
         run: |
-          ls -la
-
           mkdir ./LWA/terraform/build
 
           unzip -q lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/terraform/build
