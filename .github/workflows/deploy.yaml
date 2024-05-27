@@ -85,7 +85,21 @@ jobs:
           cd ./LWA/terraform
 
           terraform apply --auto-approve
+
+          mv bdns.json environment.js ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/
       
+      - name: terraform state pull
+        run: |          
+          cd ./LWA/terraform
+
+          terraform state pull > ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/terraform.tfstate
+
       - name: upload env
         run: |
           aws s3 cp --quiet ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env s3://tf-state-${AWS_REGION}-${AWS_ACCOUNT_ID}/${TF_VAR_network}/LWA/${TF_VAR_fqdn}/env
+
+      - name: git commit & push
+        run: |
+          git add ./private/${{ inputs.network }}/${{ inputs.fqdn }}
+          git commit -m "Managed by Terraform - ./private/${{ inputs.network }}/${{ inputs.fqdn }}"
+          git pull && git push 
