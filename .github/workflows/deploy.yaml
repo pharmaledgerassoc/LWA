@@ -16,9 +16,12 @@ jobs:
         shell: bash
     
     steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
       - name: env
         run: |
-           for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+           for var in $(cat ./env); do echo "${var}" >> $GITHUB_ENV ; done
 
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -31,10 +34,7 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: checkout
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ env.GH_REPO_REF }}
+      
         
       - name: build
         run: |          
