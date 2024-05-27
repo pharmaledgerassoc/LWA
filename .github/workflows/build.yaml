@@ -2,18 +2,7 @@ name: build
 
 on:
   workflow_call: 
-    inputs:
-      network:
-        required: true
-        type:     string
-      fqdn:
-        required: true
-        type:     string
 
-    secrets:
-      gh_token:
-        required: true
-  
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read  # This is required for actions/checkout
@@ -27,47 +16,38 @@ jobs:
         shell: bash
     
     steps:
-      - name: checkout
-        uses: actions/checkout@v4
-
       - name: env
         run: |
            for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
-      
+
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-region:     "eu-west-1"
-          role-to-assume: "arn:aws:iam::256240847244:role/GitHubActions"
+          aws-region:     ${{ env.AWS_REGION }}
+          role-to-assume: ${{ env.AWS_IAM_ROLE_TO_ASSUME_ARN }}
 
-      - name: checkout
-        uses: actions/checkout@v4
-        with:
-          token:      ${{ secrets.GH_TOKEN }}
-          repository: ${{ env.TF_VAR_gh_repo_name }}
-          ref:        ${{ env.TF_VAR_gh_repo_ref }}
-          path:       "./LWA"
-          
       - name: install
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.GH_REPO_REF }}
+        
       - name: build
-        run: |
-          export PREVENT_GITHUB_ORGANIZATION=${{ env.PREVENT_GITHUB_ORGANIZATION }}
-          export GITHUB_ORGANIZATION=${{ env.GITHUB_ORGANIZATION }}
-          
+        run: |          
           cd ./LWA/code
 
           npm install
 
           rm -rf lib/zxing-wrapper/package.json node_modules
 
-          mv app ${{ env.TF_VAR_app_build_version }}
+          mv app ${{ inputs.app_build_version }}
 
-          zip -r lwa-build-${{ env.TF_VAR_app_build_version }}.zip *
+          zip -r lwa-build-${{ inputs.app_build_version }}.zip *
 
       - name: upload build
         run: |
-          aws s3 cp lwa-build-${{ env.TF_VAR_app_build_version }}.zip s3://lwa-build-256240847244/${{ env.TF_VAR_app_build_version }}/lwa-build-${{ env.TF_VAR_app_build_version }}.zip
+          aws s3 cp lwa-build-${{ inputs.app_build_version }}.zip s3://${{ env.AWS_BUILD_S3_BUCKET_NAME }}/${{ inputs.app_build_version }}/lwa-build-${{ inputs.app_build_version }}.zip
