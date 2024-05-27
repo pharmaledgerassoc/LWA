@@ -108,10 +108,13 @@ jobs:
 
       - name: upload env
         run: |
-          aws s3 cp --quiet ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env s3://tf-state-${AWS_REGION}-${AWS_ACCOUNT_ID}/${TF_VAR_network}/LWA/${TF_VAR_fqdn}/env
+          aws s3 cp --quiet ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env s3://tf-state-${{ env.AWS_REGION }}-${{ env.AWS_ACCOUNT_ID }}/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/env
 
       - name: git commit & push
         run: |
+          git config --global user.email "terraform@pharmaledger.org"
+          git config --global user.name "terraform"
+
           git add ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}
           git commit -m "Managed by Terraform - ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}"
           git pull && git push 
