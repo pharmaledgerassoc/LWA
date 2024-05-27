@@ -167,11 +167,11 @@ function MainController() {
                         break;
                 }
             }
-
         });
+
         document.querySelector("body").addEventListener("click", (event) => {
-            if (event.target != menuContainer && event.target != menuButton) {
-                menuContainer.classList.add("hidden");
+            if (event.target != menuContainer && event.target != menuButton && !menuContainer.classList.contains("hidden")) {
+                this.toggleMenu();
             }
         })
         document.querySelectorAll(".app-menu-container li.forward-to-page").forEach(item => {
