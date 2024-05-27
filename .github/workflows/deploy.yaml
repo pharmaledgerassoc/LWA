@@ -80,7 +80,15 @@ jobs:
 
           /bin/bash ./init.sh
 
-          mv ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/bdns.json ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/environment.js . 2>/dev/null
+      - name: mv existing bdns.json and environment.js
+        run: |    
+          if [ -f ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/bdns.json ]; then
+            mv ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/bdns.json ./LWA/terraform/
+          fi
+          
+          if [ -f ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/environment.js ]; then
+            mv ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/environment.js ./LWA/terraform/
+          fi
 
       - name: terraform apply
         run: |          
@@ -88,6 +96,8 @@ jobs:
 
           terraform apply --auto-approve
 
+      - name: mv updated bdns.json and environment.js
+        run: |
           mv bdns.json environment.js ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/
       
       - name: terraform state pull
