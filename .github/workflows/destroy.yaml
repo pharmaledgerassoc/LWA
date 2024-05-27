@@ -9,16 +9,6 @@ on:
       fqdn:
         required: true
         type:     string
-
-      aws_region:
-        required: true
-        type:     string
-      aws_account_id:
-        required: true
-        type:     string
-      aws_iam_role_to_assume_arn:
-        required: true
-        type:     string
     
     secrets:
       gh_token:
@@ -37,14 +27,8 @@ jobs:
         shell: bash
     
     steps:
-      - name: aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ inputs.aws_iam_role_to_assume_arn }}
-
-      - name: download env
-        run: |
-          aws s3 cp --quiet s3://tf-state-${{ inputs.aws_region }}-${{ inputs.aws_account_id }}/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/env ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env
+      - name: checkout
+        uses: actions/checkout@v4
 
       - name: env
         run: |
@@ -52,6 +36,12 @@ jobs:
 
            echo "TF_VAR_network=${{ inputs.network }}" >> $GITHUB_ENV
            echo "TF_VAR_fqdn=${{ inputs.fqdn }}" >> $GITHUB_ENV
+
+      - name: aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-region:     ${{ env.TF_VAR_aws_region }}
+          role-to-assume: ${{ inputs.aws_iam_role_to_assume_arn }}
 
       - name: checkout
         uses: actions/checkout@v4
@@ -76,4 +66,17 @@ jobs:
         run: |          
           cd ./LWA/terraform
 
-          terraform destroy --auto-approve 
+          terraform destroy --auto-approve
+      
+      - name: remove configuration
+        run: |
+          rm -rf ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}
+
+      - name: git commit & push
+        run: |
+          git config --global user.email "terraform@pharmaledger.org"
+          git config --global user.name "terraform"
+
+          git add ./private/${{ inputs.network }}/LWA
+          git commit -m "Managed by Terraform - ./private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}"
+          git pull && git push 

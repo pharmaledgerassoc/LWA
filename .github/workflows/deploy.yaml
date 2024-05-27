@@ -106,10 +106,6 @@ jobs:
 
           terraform state pull > ../../private/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/terraform.tfstate
 
-      - name: upload env
-        run: |
-          aws s3 cp --quiet ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env s3://tf-state-${{ env.AWS_REGION }}-${{ env.AWS_ACCOUNT_ID }}/${{ inputs.network }}/LWA/${{ inputs.fqdn }}/env
-
       - name: git commit & push
         run: |
           git config --global user.email "terraform@pharmaledger.org"
