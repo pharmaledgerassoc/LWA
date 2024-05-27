@@ -40,7 +40,7 @@ jobs:
 
       - name: env
         run: |
-           for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+           for var in $(cat ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env); do export "${var}"; do echo "${var}" >> $GITHUB_ENV ; done
 
       - name: checkout
         uses: actions/checkout@v4
