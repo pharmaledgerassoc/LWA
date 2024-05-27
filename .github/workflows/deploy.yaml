@@ -61,7 +61,7 @@ jobs:
 
           mkdir ./LWA/terraform/build
 
-          unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/terraform/build
+          unzip -q lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/terraform/build
 
       - name: aws credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -88,4 +88,4 @@ jobs:
       
       - name: upload env
         run: |
-          aws s3 cp --quiet ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env tf-state-${AWS_REGION}-${AWS_ACCOUNT_ID}/${TF_VAR_network}/LWA/${TF_VAR_fqdn}/env
+          aws s3 cp --quiet ./private/${{ inputs.network }}/LWA/${{inputs.fqdn}}/env s3://tf-state-${AWS_REGION}-${AWS_ACCOUNT_ID}/${TF_VAR_network}/LWA/${TF_VAR_fqdn}/env
