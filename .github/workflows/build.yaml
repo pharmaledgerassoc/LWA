@@ -40,6 +40,7 @@ jobs:
           token:      ${{ secrets.GH_TOKEN }}
           repository: ${{ env.GH_REPO_NAME }}
           ref:        ${{ env.GH_REPO_REF }}
+          path:       "./LWA"
           
       - name: install
         uses: actions/setup-node@v4
