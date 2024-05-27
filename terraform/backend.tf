@@ -1,4 +1,4 @@
-# --- 7-lwa-app-deployment-pla/backend.tf ---
+# --- backend.tf ---
 
 terraform {
   backend "s3" {}

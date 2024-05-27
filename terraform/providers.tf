@@ -1,4 +1,4 @@
-# ---  7-lwa-app-deployment-pla/providers.tf ---
+# --- providers.tf ---
 
 terraform {
   required_version = "~> 1.5"

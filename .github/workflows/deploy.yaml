@@ -7,14 +7,10 @@ on:
         required: true
         type: string
 
-      network_name:
+      network:
         required: true
         type:     string
       fqdn:
-        required: true
-        type:     string
-      
-      gh_repo_ref:
         required: true
         type:     string
     
@@ -23,23 +19,43 @@ on:
         required: true
 
 env:
-  TERRAFORM_VERSION: "1.8.3"
-
   GIT_USERNAME: "terraform"
   GIT_EMAIL:    "terraform@pharmaledger.org"
-
-  GH_TOKEN:     ${{ secrets.gh_token }}
-  GH_REPO_NAME: "pharmaledgerassoc/LWA"
-  GH_REPO_REF:  ${{ inputs.gh_repo_ref }}
-
-  AWS_IAM_ROLE_ARN_TO_ASSUME: ${{ inputs.aws_role_to_assume_arn }}
-
-  NETWORK_NAME: ${{ inputs.network_name }}
-  FQDN:         ${{ inputs.fqdn }}
-
-  PREVENT_GITHUB_ORGANIZATION: ${{ inputs.prevent_github_organization }}
-  GITHUB_ORGANIZATION:         ${{ inputs.github_organization }}
   
 permissions:
   id-token: write # This is required for requesting the JWT
   contents: read  # This is required for actions/checkout
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    
+    defaults:
+      run:
+        shell: bash
+    
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: env
+        run: |
+           for var in $(cat ${{ inputs.network }}/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          token:      ${{ secrets.gh_token }}
+          repository: ${{ env.GH_REPO_NAME }}
+          ref:        ${{ env.GH_REPO_REF }}
+          
+      - name: install
+            uses: hashicorp/setup-terraform@v3
+            with:
+              terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: terraform init
+        run: |
+          cd ./LWA/terraform
+
+          /bin/bash ./init.sh

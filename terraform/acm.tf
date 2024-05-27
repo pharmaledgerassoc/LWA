@@ -1,9 +1,9 @@
-# --- 7-lwa-app-deployment-pla/acm.tf ---
+# --- acm.tf ---
 
 resource "aws_acm_certificate" "main" {
   provider                  = aws.us_east_1
-  domain_name               = local.fqdn
-  subject_alternative_names = ["www.${local.fqdn}"]
+  domain_name               = var.fqdn
+  subject_alternative_names = ["www.${var.fqdn}"]
   validation_method         = "DNS"
 
   lifecycle {

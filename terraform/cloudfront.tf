@@ -1,4 +1,4 @@
-# --- 7-lwa-app-deployment-pla/cloudfront.tf ---
+# --- cloudfront.tf ---
 
 data "aws_cloudfront_cache_policy" "main" {
   name = "Managed-CachingOptimized"
@@ -12,7 +12,7 @@ resource "random_pet" "viewer_response_function" {
   length = 1
 }
 resource "aws_cloudfront_function" "viewer_response_function" {
-  name = "${replace(local.fqdn, ".", "-")}_csp_${random_pet.viewer_response_function.id}"
+  name = "${replace(var.fqdn, ".", "-")}_csp_${random_pet.viewer_response_function.id}"
 
   runtime = "cloudfront-js-1.0"
   publish = true
@@ -29,17 +29,17 @@ module "cloudfront" {
   ]
 
   source  = "terraform-aws-modules/cloudfront/aws"
-  version = "~> 3.2.1"
+  version = "~> 3.4.0"
 
-  aliases             = [local.fqdn, "www.${local.fqdn}"]
+  aliases             = [var.fqdn, "www.${var.fqdn}"]
   http_version        = "http2and3"
-  comment             = local.fqdn
+  comment             = var.fqdn
   is_ipv6_enabled     = false
   wait_for_deployment = true
 
   create_origin_access_control = true
   origin_access_control = {
-    "${local.fqdn}.s3.eu-west-1.amazon.aws.com" : {
+    "${var.fqdn}.s3.eu-west-1.amazon.aws.com" : {
       "description" : "",
       "origin_type" : "s3",
       "signing_behavior" : "always",
@@ -48,14 +48,14 @@ module "cloudfront" {
   }
 
   origin = {
-    "${local.fqdn}.s3.eu-west-1.amazon.aws.com" = {
+    "${var.fqdn}.s3.eu-west-1.amazon.aws.com" = {
       domain_name           = module.s3_bucket.s3_bucket_bucket_regional_domain_name
-      origin_access_control = "${local.fqdn}.s3.eu-west-1.amazon.aws.com"
+      origin_access_control = "${var.fqdn}.s3.eu-west-1.amazon.aws.com"
     }
   }
 
   default_cache_behavior = {
-    target_origin_id = "${local.fqdn}.s3.eu-west-1.amazon.aws.com"
+    target_origin_id = "${var.fqdn}.s3.eu-west-1.amazon.aws.com"
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
 
@@ -86,7 +86,7 @@ module "cloudfront" {
 }
 
 resource "aws_route53_record" "main" {
-  name = local.fqdn
+  name = var.fqdn
   type = "A"
 
   zone_id = data.aws_route53_zone.main.zone_id
@@ -101,7 +101,7 @@ resource "aws_route53_record" "main" {
   allow_overwrite = true
 }
 resource "aws_route53_record" "www" {
-  name = "www.${local.fqdn}"
+  name = "www.${var.fqdn}"
   type = "A"
 
   zone_id = data.aws_route53_zone.main.zone_id

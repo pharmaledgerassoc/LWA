@@ -1,49 +1,18 @@
 name: build
 
 on:
-  workflow_call:
+  workflow_call: 
     inputs:
-      aws_role_to_assume_arn:
-        required: true
-        type: string
-
-      network_name:
+      network:
         required: true
         type:     string
       fqdn:
         required: true
         type:     string
 
-      gh_repo_ref:
-        required: true
-        type:     string
-      
-      prevent_github_organization:
-        type:    string
-        default: "true"
-      github_organization:
-        type:    string
-        default: "pharmaledgerassoc"
-
     secrets:
       gh_token:
         required: true
-
-env:
-  NODE_VERSION:      "20"
-
-  GH_TOKEN:     ${{ secrets.gh_token }}
-  
-  GH_REPO_NAME: "pharmaledgerassoc/LWA"
-  GH_REPO_REF:  ${{ inputs.gh_repo_ref }}
-
-  AWS_IAM_ROLE_ARN_TO_ASSUME: ${{ inputs.aws_role_to_assume_arn }}
-
-  NETWORK_NAME: ${{ inputs.network_name }}
-  FQDN:         ${{ inputs.fqdn }}
-
-  PREVENT_GITHUB_ORGANIZATION: ${{ inputs.prevent_github_organization }}
-  GITHUB_ORGANIZATION:         ${{ inputs.github_organization }}
   
 permissions:
   id-token: write # This is required for requesting the JWT
@@ -59,15 +28,21 @@ jobs:
     
     steps:
       - name: checkout
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v4
+
+      - name: env
+        run: |
+           for var in $(cat ${{ inputs.network }}/${{inputs.fqdn}}/env); do echo "${var}" >> $GITHUB_ENV ; done
+
+      - name: checkout
+        uses: actions/checkout@v4
         with:
-          token:      ${{ env.GH_TOKEN }}
+          token:      ${{ secrets.GH_TOKEN }}
           repository: ${{ env.GH_REPO_NAME }}
           ref:        ${{ env.GH_REPO_REF }}
-          path:       "./LWA"
           
       - name: install
-        uses: actions/setup-node@v3.6.0
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -88,7 +63,7 @@ jobs:
 
           zip -r build.zip *
 
-      - name: upload
+      - name: upload artifact
         uses: actions/upload-artifact@v4
         with:
           name:           build.zip

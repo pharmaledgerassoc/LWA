@@ -4,6 +4,9 @@ variable "aws_region" {
   type = string
 }
 
+variable "fqdn" {
+  type = string
+}
 variable "dns_domain" {
   type = string
 }
@@ -37,16 +40,6 @@ variable "gto_total_wait_time" {
 }
 
 variable "network_name" {
-  type    = string
-  default = ""
-}
-
-variable "bdns_json_url" {
-  type    = string
-  default = ""
-}
-
-variable "hostname" {
   type    = string
   default = ""
 }
