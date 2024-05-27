@@ -54,8 +54,8 @@ jobs:
       - name: unzip build
         run: |
           ls -la
-          
-          mkdir -p ./LWA/build
+
+          mkdir ./LWA/build
 
           unzip lwa-build-${{ env.TF_VAR_app_build_version }}.zip -d ./LWA/build
 
