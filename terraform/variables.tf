@@ -19,6 +19,10 @@ variable "app_build_version" {
   type = string
 }
 
+variable "bdns_json_file_path" {
+  type = string
+}
+
 variable "time_per_call" {
   type    = number
   default = 10000

@@ -10,12 +10,10 @@ locals {
 
   csp_script_src_unsafe_hashes = "sha256-XkPjGMp0z+c11Qt/zG8pIkC1TIiA9lf9XEXevRQbMTU="
 
-  csp_connect_src = "https://${var.fqdn} ${join(" ", [for url in distinct(regexall("https://[^\"/]+", file(local.bdns_json_local_path))) : url])}"
+  csp_connect_src = "https://${var.fqdn} ${join(" ", [for url in distinct(regexall("https://[^\"/]+", file(var.bdns_json_file_path))) : url])}"
 
   s3_object_js   = setsubtract(fileset("${path.module}/LWA", "**/*.js"), ["environment.js", "local_environment.js"])
   s3_object_json = setsubtract(fileset("${path.module}/LWA", "**/*.json"), ["bdns.json", "package.json", "octopus.json", "lib/zxing-wrapper/package.json"])
-
-  bdns_json_local_path = "../networks/${var.network}/bdns.json"
 
   cloudfront_default_root_object = "index.html"
 

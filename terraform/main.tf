@@ -8,7 +8,7 @@ data "aws_route53_zone" "main" {
 resource "local_file" "bdns_json" {
   filename = "${path.module}/bdns.json"
 
-  content = file(local.bdns_json_local_path)
+  content = file(var.bdns_json_file_path)
 }
 
 data "http" "environment_js_template" {
