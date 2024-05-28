@@ -620,22 +620,6 @@ b {
     background: var(--grey);
 }
 
-.modal-content .languages-container .language-item-container .language-flag {
-    vertical-align: baseline;
-    width: 5rem;
-    position: relative;
-    border-radius: 50%;
-    height: 100%;
-    margin-right: 10px;
-    aspect-ratio: 1;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    max-width: 32px;
-    min-width: 32px;
-    box-shadow: inset 0 0 10px var(--grey);
-}
-
 .modal-content .languages-container .language-item-container .language-label {
     flex-grow: 1;
     word-break: keep-all;
@@ -775,7 +759,7 @@ body[dir="RTL"] .modal-content .languages-container .language-item-container inp
     margin-right: 10px;
 }
 
-body[dir="RTL"] .modal-content .languages-container .language-item-container .language-flag {
+body[dir="RTL"] .modal-content .languages-container .language-item-container .language-label {
     margin-left: 10px;
 }
 
