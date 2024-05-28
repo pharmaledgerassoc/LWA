@@ -501,9 +501,13 @@ b {
 }
 
 .modal-header.left-aligned-header .modal-icon {
-    height: 90%;
-    aspect-ratio: 1;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    max-width: 30%;
+    height: auto;
 }
 
 .modal-container {
@@ -556,6 +560,8 @@ b {
     width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
     width: fill-available;
     position: relative;
+    display: flex;
+    align-items: stretch;
 }
 
 .modal-header.centered-header .modal-title {
@@ -565,7 +571,7 @@ b {
 
 .modal-header.left-aligned-header .modal-title {
     text-align: left;
-    margin-right: 12px;
+    margin-right: 6vmax;
 }
 
 .modal-header h1 {
