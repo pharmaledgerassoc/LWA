@@ -79,6 +79,7 @@ b {
 .bold-title {
     font-size: var(--font-size--XL);
     font-weight: 700;
+    width: calc(100% - 4vmax - 5px);
 }
 
 .fill-available-width {
@@ -506,7 +507,7 @@ b {
     width: -moz-available; /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
     width: fill-available;
-    max-width: 30%;
+    max-width: 25%;
     height: auto;
 }
 
@@ -560,8 +561,12 @@ b {
     width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
     width: fill-available;
     position: relative;
-    display: flex;
     align-items: stretch;
+    gap: 12px;
+}
+
+.modal-header.left-aligned-header .icon-title-container h1.bold-title {
+    width: auto;
 }
 
 .modal-header.centered-header .modal-title {
@@ -571,7 +576,6 @@ b {
 
 .modal-header.left-aligned-header .modal-title {
     text-align: left;
-    margin-right: 6vmax;
 }
 
 .modal-header h1 {
@@ -746,9 +750,12 @@ body[dir="RTL"] .scan-button.go-home-button {
 }
 
 body[dir="RTL"] .modal-header.left-aligned-header .modal-title {
-    margin-left: 12px;
     margin-right: unset;
     text-align: right;
+}
+
+body[dir="RTL"] .modal-header.left-aligned-header .modal-icon {
+    background-position: right;
 }
 
 body[dir="RTL"] .terms-container .terms-buttons-container {
