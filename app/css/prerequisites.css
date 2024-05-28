@@ -9,11 +9,12 @@
     --red-100: #FEEFEE;
     --yellow-200: #FFCB45;
     --yellow-100: #FFECBB;
-   /* font-size: 62.5%; !* (62.5/100) * 16px = 10px *!*/
-    --font-size--basic: calc(1.6rem + 0.1vmin);
-    --font-size--M: calc(1.6rem + 0.65vmin);
-    --font-size--L: calc(1.6rem + 1.7vmin);
-    --font-size--XL: calc(1.6rem + 2.3vmin);
+    --font-scale: 1;
+    /* font-size: 62.5%; !* (62.5/100) * 16px = 10px *!*/
+    --font-size--basic: calc((1.6rem + 0.1vmin) * var(--font-scale));
+    --font-size--M: calc((1.6rem + 0.65vmin) * var(--font-scale));
+    --font-size--L: calc((1.6rem + 1.7vmin) * var(--font-scale));
+    --font-size--XL: calc((1.6rem + 2.3vmin) * var(--font-scale));
 }
 
 @font-face {

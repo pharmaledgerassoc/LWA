@@ -23,7 +23,6 @@
 </div>
 
 <div id="settings-modal" class="page-container fill-available-width leaflet-page info-modal hiddenElement">
-
     <div class="modal-body">
         <div class="page-header modal-header left-aligned-header">
             <div class="icon-title-container" tabindex="0">
@@ -72,19 +71,24 @@
     </div>
 </div>
 <div id="leaflet-lang-select" class="modal-container popup-modal warning-modal hiddenElement">
-    <div class="modal-body">
+    <div class="modal-body" tabindex="0">
         <div class="modal-header centered-header">
-            <div class="icon-title-container">
-                <div class="modal-icon"></div>
-                <h1 class="modal-title bold-title" id="lang-title" translate="select_lang_title" role="alert"></h1>
-            </div>
             <button class="close-modal" modal-id="leaflet-lang-select"
-                    aria-label="close"></button>
+                    aria-label="close" tabindex="1"></button>
+            <div class="icon-title-container">
+                <div class="modal-icon" aria-label="alert-icon" role="img" tabindex="2"></div>
+                <h1 class="modal-title bold-title" id="lang-title" role="heading" aria-level="1"
+                    translate="select_lang_title" role="alert"
+                    tabindex="3"></h1>
+            </div>
+
         </div>
         <div class="modal-content" role="alert">
-            <div class="text-section has-leaflets" translate="leaflet_lang_select_message"></div>
+            <div class="text-section has-leaflets" role="heading" aria-level="2"
+                 translate="leaflet_lang_select_message"></div>
             <!-- <div class="text-section no-leaflet" translate="no_leaflet_message"></div>-->
-            <div class="languages-container" role="radiogroup"></div>
+            <div class="languages-container" role="radiogroup" aria-label="leaflet available languages"
+                 tabindex="2"></div>
             <button id="proceed-button" class="proceed-button has-leaflets"
                     translate="lang_proceed"></button>
             <div id="modal-scan-again-button" class="proceed-button no-leaflet"

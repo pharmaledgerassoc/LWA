@@ -22,62 +22,77 @@
 </div>
 
 <div id="home-page" class="page-container fill-available-width hiddenElement">
-    <div class="icon-container" role="banner">
-        <button id="hamburger-menu-button" class="menu-icon" tabindex="1" aria-label="menu"
-                aria-expanded="false"></button>
-        <ul class="app-menu-container hidden" role="list">
-            <li id="terms-link" class="forward-to-page" modal-name="terms" role="listitem" tabindex="2">
-                <div class="label" translate="fwd_terms"></div>
-                <div class="fwd-icon"></div>
-            </li>
-            <li id="privacy-link" class="forward-to-page" modal-name="privacy" role="listitem"
-                tabindex="3">
-                <div class="label" translate="fwd_privacy"></div>
-                <div class="fwd-icon"></div>
-            </li>
-            <li id="about-link" class="forward-to-page" modal-name="about" role="listitem"
-                tabindex="4">
-                <div class="label" translate="fwd_about"></div>
-                <div class="fwd-icon"></div>
-            </li>
-            <li id="help-link" class="forward-to-page" modal-name="help" role="listitem"
-                tabindex="5">
-                <div class="label" translate="fwd_help"></div>
-                <div class="fwd-icon"></div>
-            </li>
-            <li class="more-options-link" role="listitem" tabindex="6">
-                <span translate="app_version"></span> <span id="app_version_number"></span>
-            </li>
-        </ul>
-    </div>
-    <div class="welcome-container" role="main" tabindex="0">
-        <div role="heading" aria-level="1" id="welcome-text" translate="welcome" class="hiddenElement"></div>
-        <div role="heading" aria-level="1" id="onbording-text" translate="onboarding_welcome"
-             class="hiddenElement"></div>
-    </div>
-    <div class="terms-content-container" role="contentinfo">
-        <div class="terms-container">
-            <div class="extra-text" translate="disagree_extra_text"></div>
-            <div class="terms-content" translate="terms_content"></div>
-            <div class="terms-buttons-container">
-                <button id="disagree-button" class="scan-button terms-button disagree"
-                        translate="disagree"></button>
-                <button id="agree-button" class="scan-button terms-button agree"
-                        translate="agree"></button>
+    <header>
+        <div class="icon-container" role="banner">
+            <nav class="menu-nav-container">
+                <button type="button"
+                        id="hamburger-menu-button"
+                        aria-haspopup="true"
+                        aria-controls="menu-items-list"
+                        aria-label="menu button"
+                        aria-expanded="false"
+                        class="menu-icon"
+                        tabindex="1">
+                </button>
+                <ul class="app-menu-container hidden" id="menu-items-list" role="menu"
+                    aria-labelledby="hamburger-menu-button">
+                    <li id="terms-link" class="forward-to-page" modal-name="terms" role="listitem" tabindex="2">
+                        <div class="label" translate="fwd_terms"></div>
+                        <div class="fwd-icon"></div>
+                    </li>
+                    <li id="privacy-link" class="forward-to-page" modal-name="privacy" role="listitem"
+                        tabindex="3">
+                        <div class="label" translate="fwd_privacy"></div>
+                        <div class="fwd-icon"></div>
+                    </li>
+                    <li id="about-link" class="forward-to-page" modal-name="about" role="listitem"
+                        tabindex="4">
+                        <div class="label" translate="fwd_about"></div>
+                        <div class="fwd-icon"></div>
+                    </li>
+                    <li id="help-link" class="forward-to-page" modal-name="help" role="listitem"
+                        tabindex="5">
+                        <div class="label" translate="fwd_help"></div>
+                        <div class="fwd-icon"></div>
+                    </li>
+                    <li class="more-options-link app-version-item" role="listitem" tabindex="6">
+                        <span translate="app_version"></span> <span id="app_version_number"></span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section class="page-content-section">
+        <div class="welcome-container" role="main" tabindex="0">
+            <div role="heading" aria-level="1" id="welcome-text" translate="welcome" class="hiddenElement"></div>
+            <div role="heading" aria-level="1" id="onbording-text" translate="onboarding_welcome"
+                 class="hiddenElement"></div>
+            <span class="system-env"></span>
+        </div>
+        <div class="terms-content-container" role="contentinfo">
+            <div class="terms-container">
+                <div class="extra-text" translate="disagree_extra_text"></div>
+                <div class="terms-content" translate="terms_content"></div>
+                <div class="terms-buttons-container">
+                    <button id="disagree-button" class="scan-button terms-button disagree"
+                            translate="disagree"></button>
+                    <button id="agree-button" class="scan-button terms-button agree"
+                            translate="agree"></button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="content-container">
-        <img src="images/medicine-pack.gif" alt="How to scan animated gif"/>
-    </div>
-    <div class="explain-container" tabindex="0">
-        <div translate="scan_explain"></div>
-    </div>
-    <div class="scan-button-container">
-        <button id="scan-button" class="scan-button full_width">
-            <div translate="scan_button"></div>
-        </button>
-    </div>
+        <div class="content-container">
+            <img src="images/medicine-pack.gif" alt="How to scan animated gif"/>
+        </div>
+        <div class="explain-container" tabindex="0">
+            <div translate="scan_explain"></div>
+        </div>
+        <div class="scan-button-container">
+            <button id="scan-button" class="scan-button full_width">
+                <div translate="scan_button"></div>
+            </button>
+        </div>
+    </section>
 </div>
 
 </div>

@@ -1,117 +1,100 @@
 import {setTextDirectionForLanguage} from "../../utils.js";
 import constants from "../../constants.js";
 
-const supportedLanguageCodes = ["ar", "de", "en", "es", "es-419", "fr", "ko", "nl", "pt-br", "uk", "it", "no", "pl"];
-
-const langSubtypesMap = {
-  "ar-ae": "ar",
-  "ar-dz": "ar",
-  "ar-bh": "ar",
-  "ar-eg": "ar",
-  "ar-iq": "ar",
-  "ar-jo": "ar",
-  "ar-kw": "ar",
-  "ar-lb": "ar",
-  "ar-ly": "ar",
-  "ar-ma": "ar",
-  "ar-om": "ar",
-  "ar-qa": "ar",
-  "ar-sa": "ar",
-  "ar-sy": "ar",
-  "ar-tn": "ar",
-  "ar-ye": "ar",
-  "de-de": "de",
-  "es-ar": "es",
-  "es-bo": "es",
-  "es-cl": "es",
-  "es-co": "es",
-  "es-cr": "es",
-  "es-do": "es",
-  "es-ec": "es",
-  "es-sv": "es",
-  "es-gt": "es",
-  "es-mx": "es",
-  "es-ni": "es",
-  "es-pa": "es",
-  "es-py": "es",
-  "es-pe": "es",
-  "es-pr": "es",
-  "es-uy": "es",
-  "es-ve": "es",
-  "es-us": "es",
-  "es-es": "es",
-  "es-419": "es",
-  "fr-fr": "fr",
-  "fr-be": "fr",
-  "fr-ca": "fr",
-  "ko-kr": "ko",
-  "nl-nl": "nl",
-  "pt-pt": "pt",
-  "uk-ua": "uk",
-  "zh-cn": "zh",
-  "zh-hans": "zh",
-  "zh-hant": "zh",
-  "zh-hk": "zh",
-  "nb": "no",
-  "nn": "no",
-  "nb-no": "no",
-  "nn-no": "no",
-  "it-ch": "it",
-  "it-it": "it",
-  "pl-pl": "pl"
+function getLangSubtypesMap(languageCodesMap) {
+    let result = {}
+    Object.keys(languageCodesMap).forEach(key => {
+        languageCodesMap[key].forEach(langSubtype => {
+            result[langSubtype] = key
+        })
+    });
+    return result
 }
 
+const supportedLanguageCodesMap = {
+    'ar': ["ar-ae", "ar-bh", "ar-dz", "ar-eg", "ar-iq", "ar-jo", "ar-kw", "ar-lb", "ar-ly", "ar-ma", "ar-om", "ar-qa", "ar-sa", "ar-sy", "ar-tn", "ar-ye"],
+    'bg': ["bg-bg"],
+    'cs': ["cs-cz"],
+    'de': ["de-de"],
+    'el': ["el-gr"],
+    'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw"],
+    'es': ["es-419", "es-ar", "es-bo", "es-cl", "es-co", "es-cr", "es-do", "es-ec", "es-es", "es-gt", "es-mx", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve"],
+    'et': ["et-ee"],
+    'fi': ["fi-fi"],
+    'fr': ["fr-be", "fr-ca", "fr-fr"],
+    'hr': ["hr-ba", "hr-hr"],
+    'hu': ["hu-hu"],
+    'it': ["it-ch", "it-it"],
+    'ko': ["ko-kr"],
+    'lt': ["lt-lt"],
+    'lv': ["lv-lv"],
+    'nl': ["nl-nl"],
+    'no': ["nb", "nb-no", "nn", "nn-no"],
+    'pl': ["pl-pl"],
+    'pt': ["pt", "pt-pt"],
+    'pt-br': [],
+    'ro': ["ro-md", "ro-ro"],
+    'sk': ["sk-sk"],
+    'sl': ["sl-si"],
+    'uk': ["uk-ua"],
+    'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
+}
+
+const langSubtypesMap = getLangSubtypesMap(supportedLanguageCodesMap);
+
+
 function transformToISOStandardLangCode(code) {
-  //language codes on phones have "_" instead of "-" and for base languages ends with "_"
-  let replaceValue = "-";
-  if (code.slice(-1) === "_") {
-    replaceValue = "";
-  }
-  return code.replace("_", replaceValue);
+    //language codes on phones have "_" instead of "-" and for base languages ends with "_"
+    let replaceValue = "-";
+    if (code.slice(-1) === "_") {
+        replaceValue = "";
+    }
+    return code.replace("_", replaceValue);
 }
 
 async function fetchTranslation(langCode) {
-  try {
-    const dataModule = await import(`./../translations/${langCode}.js`);
-    return dataModule.default
-    // You can now use the 'translations' object for localization in your application
-  } catch (error) {
-    alert(`An error has occurred: ${error.message} on fetching translation for ${langCode} 
+    try {
+        const dataModule = await import(`./../translations/${langCode}.js`);
+        return dataModule.default
+        // You can now use the 'translations' object for localization in your application
+    } catch (error) {
+        alert(`An error has occurred: ${error.message} on fetching translation for ${langCode} 
     Possible network issue!!! Check your network connection and try again`);
-  }
+    }
 }
 
 let currentAppTranslation;
 
 function setDefaultLanguage() {
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  let appLang = urlParams.get("lang") || window.navigator.language.toLowerCase() || localStorage.getItem(constants.APP_LANG);
-  appLang = transformToISOStandardLangCode(appLang);
-  appLang = langSubtypesMap[appLang.toLowerCase()] || appLang;
-  appLang = supportedLanguageCodes.includes(appLang) ? appLang : "en";
-  localStorage.setItem(constants.APP_LANG, appLang);
-  document.querySelector("body").setAttribute("app-lang", appLang);
-  setTextDirectionForLanguage(appLang);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let appLang = urlParams.get("lang") || window.navigator.language.toLowerCase() || localStorage.getItem(constants.APP_LANG);
+    appLang = transformToISOStandardLangCode(appLang);
+    appLang = langSubtypesMap[appLang.toLowerCase()] || appLang;
+    appLang = Object.keys(supportedLanguageCodesMap).includes(appLang) ? appLang : "en";
+    localStorage.setItem(constants.APP_LANG, appLang);
+    document.querySelector("body").setAttribute("app-lang", appLang);
+    document.documentElement.lang = appLang;
+    setTextDirectionForLanguage(appLang);
 }
 
 export async function translate() {
-  setDefaultLanguage();
-  let matches = document.querySelectorAll("[translate]");
-  currentAppTranslation = await fetchTranslation(localStorage.getItem(constants.APP_LANG));
-  matches.forEach((item) => {
-    item.innerHTML = currentAppTranslation[item.getAttribute('translate')];
-  });
+    setDefaultLanguage();
+    let matches = document.querySelectorAll("[translate]");
+    currentAppTranslation = await fetchTranslation(localStorage.getItem(constants.APP_LANG));
+    matches.forEach((item) => {
+        item.innerHTML = currentAppTranslation[item.getAttribute('translate')];
+    });
 }
 
 export function getTranslation(key) {
-  setDefaultLanguage();
-  if (!currentAppTranslation) {
-    fetchTranslation(localStorage.getItem(constants.APP_LANG)).then(result => {
-      currentAppTranslation = result;
-      return currentAppTranslation[key];
-    });
-  } else {
-    return currentAppTranslation[key];
-  }
+    setDefaultLanguage();
+    if (!currentAppTranslation) {
+        fetchTranslation(localStorage.getItem(constants.APP_LANG)).then(result => {
+            currentAppTranslation = result;
+            return currentAppTranslation[key];
+        });
+    } else {
+        return currentAppTranslation[key];
+    }
 }

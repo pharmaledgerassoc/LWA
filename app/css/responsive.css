@@ -161,16 +161,27 @@ b {
     display: flex;
 }
 
+.system-env {
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}
+
 .icon-container {
     height: max(5vh, 5vw);
     min-height: max(5vh, 5vw);
     position: relative;
-    background: url("../images/app-icon.png") no-repeat;
-    background-position: center;
+    background: url("../images/app-icon.png") no-repeat center;
     background-size: contain;
     display: flex;
     justify-content: end;
     margin: min(3vh, 3vw);
+}
+
+.menu-nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
 }
 
 .menu-icon {
@@ -214,6 +225,12 @@ b {
 
 .app-menu-container > div {
     margin: 5vh 4vh;
+}
+
+.page-content-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .welcome-container {
@@ -444,6 +461,7 @@ b {
 #settings-modal .modal-header .close-modal {
     background: url(./../images/close-modal-white.svg) no-repeat center;
     background-size: contain;
+    z-index: 10;
 }
 
 .modal-header .close-modal {
@@ -463,11 +481,11 @@ b {
 }
 
 .warning-modal .modal-header {
-    background: linear-gradient(0deg, #FFFAED, #FFFAED), #FFFFFF;
+    background: #FFFAED;
 }
 
 .error-modal .modal-header {
-    background: linear-gradient(0deg, rgba(248, 100, 88, 0.1), rgba(248, 100, 88, 0.1)), #FFFFFF;
+    background: var(--red-100);
 }
 
 .error-modal .modal-header .modal-icon {
@@ -483,9 +501,13 @@ b {
 }
 
 .modal-header.left-aligned-header .modal-icon {
-    height: 90%;
-    aspect-ratio: 1;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    max-width: 30%;
+    height: auto;
 }
 
 .modal-container {
@@ -538,6 +560,8 @@ b {
     width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
     width: fill-available;
     position: relative;
+    display: flex;
+    align-items: stretch;
 }
 
 .modal-header.centered-header .modal-title {
@@ -547,7 +571,7 @@ b {
 
 .modal-header.left-aligned-header .modal-title {
     text-align: left;
-    margin-right: 12px;
+    margin-right: 6vmax;
 }
 
 .modal-header h1 {
@@ -748,12 +772,11 @@ body[dir="RTL"] .terms-container .terms-buttons-container {
 }
 
 body[dir="RTL"] .modal-content .languages-container .language-item-container input {
-    margin-right: unset;
-    margin-left: 15px;
+    margin-right: 10px;
 }
 
 body[dir="RTL"] .modal-content .languages-container .language-item-container .language-flag {
-    margin-right: 10px;
+    margin-left: 10px;
 }
 
 /*---------------------------------------------*/
