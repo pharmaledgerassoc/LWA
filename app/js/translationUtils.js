@@ -36,8 +36,8 @@ const supportedLanguageCodesMap = {
     'ro': ["ro-md", "ro-ro"],
     'sk': ["sk-sk"],
     'sl': ["sl-si"],
-    'uk': ["uk-ua"],
-    'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
+    'uk': ["uk-ua"]
+    // 'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
 }
 
 const langSubtypesMap = getLangSubtypesMap(supportedLanguageCodesMap);
