@@ -18,7 +18,8 @@ const supportedLanguageCodesMap = {
     'de': ["de-de"],
     'el': ["el-gr"],
     'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw"],
-    'es': ["es-419", "es-ar", "es-bo", "es-cl", "es-co", "es-cr", "es-do", "es-ec", "es-es", "es-gt", "es-mx", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve"],
+    'es': ["es-es"],
+    'es-419': ["es-419", "es-ar", "es-bo", "es-cl", "es-co", "es-cr", "es-do", "es-ec", "es-gt", "es-mx", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve"],
     'et': ["et-ee"],
     'fi': ["fi-fi"],
     'fr': ["fr-be", "fr-ca", "fr-fr"],
@@ -36,8 +37,8 @@ const supportedLanguageCodesMap = {
     'ro': ["ro-md", "ro-ro"],
     'sk': ["sk-sk"],
     'sl': ["sl-si"],
-    'uk': ["uk-ua"],
-    'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
+    'uk': ["uk-ua"]
+    // 'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
 }
 
 const langSubtypesMap = getLangSubtypesMap(supportedLanguageCodesMap);

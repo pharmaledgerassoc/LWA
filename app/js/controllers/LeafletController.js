@@ -124,18 +124,32 @@ function LeafletController() {
             */
             let selectedItem = null;
             result.availableLanguages.forEach((lang, index) => {
-                let langRadio = `
-         <input type="radio" inert="" name="languages" ${index === 0 ? "checked" : ""} value="${lang.value}" id="${lang.value}">
-         <div class="language-label" inert="" lang-label="${lang.label}">${lang.label} - (${lang.nativeName})</div>
-         <div class="language-flag" inert="" style="background-image: url(./images/flags/${lang.value}.svg);"></div>
-        `;
+
+                // Create the radio input element
+                let radioInput = document.createElement('input');
+                radioInput.type = "radio";
+                radioInput.name = "languages";
+                radioInput.value = lang.value;
+                radioInput.id = lang.value;
+                radioInput.defaultChecked = index === 0;
+
+                // Create the div element for the label
+                let labelDiv = document.createElement('div');
+                labelDiv.classList.add("language-label");
+                labelDiv.setAttribute("lang-label", lang.label);
+                labelDiv.textContent = `${lang.label} - (${lang.nativeName})`;
+
                 let radioFragment = document.createElement('label');
                 radioFragment.classList.add("language-item-container");
                 radioFragment.setAttribute("role", "radio");
                 radioFragment.setAttribute("tabindex", 0);
                 radioFragment.setAttribute("aria-checked", index === 0);
-                radioFragment.innerHTML = langRadio;
                 radioFragment.setAttribute("aria-label", lang.label + " language");
+
+                // Append the radioInput and label elements to the container
+                radioFragment.appendChild(radioInput);
+                radioFragment.appendChild(labelDiv);
+
                 if (index === 0) {
                     selectedItem = radioFragment;
                 }
