@@ -108,13 +108,21 @@ function LeafletController() {
 
     }
 
-    let escapeHtml = function (unsafe) {
-        return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+    function escapeHTML(value) {
+        if (value != null) {
+            let div = document.createElement("div");
+            let text = document.createTextNode(value);
+            div.appendChild(text);
+            return div.innerHTML;
+        }
+        return '';
+    }
+
+    function escapeHTMLAttribute(value) {
+        if (value != null) {
+            return ('' + value).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r\n/g, '&#13;').replace(/[\r\n]/g, '&#13;');
+        }
+        return '';
     }
 
     let showAvailableLanguages = function (result) {
@@ -137,24 +145,24 @@ function LeafletController() {
 
                 // Create the radio input element
                 let radioInput = document.createElement('input');
-                radioInput.type = "radio";
-                radioInput.name = "languages";
-                radioInput.value = escapeHtml(lang.value);
-                radioInput.id = escapeHtml(lang.value);
+                radioInput.setAttribute("type", "radio");
+                radioInput.setAttribute("name", "languages");
+                radioInput.setAttribute("value", escapeHTMLAttribute(lang.value));
+                radioInput.setAttribute("id", escapeHTMLAttribute(lang.value));
                 radioInput.defaultChecked = index === 0;
 
                 // Create the div element for the label
                 let labelDiv = document.createElement('div');
                 labelDiv.classList.add("language-label");
-                labelDiv["lang-label"] = escapeHtml(lang.label);
-                labelDiv.textContent = `${escapeHtml(lang.label)} - (${escapeHtml(lang.nativeName)})`;
+                labelDiv.setAttribute("lang-label", escapeHTMLAttribute(lang.label));
+                labelDiv.textContent = escapeHTML(`${lang.label} - (${lang.nativeName})`);
 
                 let radioFragment = document.createElement('label');
                 radioFragment.classList.add("language-item-container");
-                radioFragment.role = "radio";
-                radioFragment.tabindex = 0;
-                radioFragment["aria-checked"] = index === 0;
-                radioFragment["aria-label"] = escapeHtml(lang.label) + " language";
+                radioFragment.setAttribute("role", "radio");
+                radioFragment.setAttribute("tabindex", "0");
+                radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
+                radioFragment.setAttribute("aria-label", escapeHTMLAttribute(lang.label) + " language");
 
                 // Append the radioInput and label elements to the container
                 radioFragment.appendChild(radioInput);
@@ -163,11 +171,12 @@ function LeafletController() {
                 if (index === 0) {
                     selectedItem = radioFragment;
                 }
+
                 radioFragment.querySelector("input").addEventListener("change", (event) => {
                     if (selectedItem) {
-                        selectedItem.setAttribute("aria-checked", false);
+                        selectedItem.setAttribute("aria-checked", "false");
                     }
-                    radioFragment.setAttribute("aria-checked", true);
+                    radioFragment.setAttribute("aria-checked", "true");
                     selectedItem = radioFragment;
                 })
 
@@ -176,8 +185,10 @@ function LeafletController() {
                         radioFragment.querySelector("input").checked = true;
                     }
                 })
+
                 languagesContainer.appendChild(radioFragment);
             });
+
             focusModalHeader();
         } else {
             goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Product found but no associated leaflet`));
