@@ -108,7 +108,17 @@ function LeafletController() {
 
     }
 
+    let escapeHtml = function (unsafe) {
+        return unsafe
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
     let showAvailableLanguages = function (result) {
+
         // document.querySelector(".product-name").innerText = translations[window.currentLanguage]["select_lang_title"];
         // document.querySelector(".product-description").innerText = translations[window.currentLanguage]["select_lang_subtitle"];
         // let langList = `<div class="select-lang-text">${translations[window.currentLanguage]["select_lang_text"]}</div><select class="languages-list">`;
@@ -129,22 +139,22 @@ function LeafletController() {
                 let radioInput = document.createElement('input');
                 radioInput.type = "radio";
                 radioInput.name = "languages";
-                radioInput.value = lang.value;
-                radioInput.id = lang.value;
+                radioInput.value = escapeHtml(lang.value);
+                radioInput.id = escapeHtml(lang.value);
                 radioInput.defaultChecked = index === 0;
 
                 // Create the div element for the label
                 let labelDiv = document.createElement('div');
                 labelDiv.classList.add("language-label");
-                labelDiv.setAttribute("lang-label", lang.label);
-                labelDiv.textContent = `${lang.label} - (${lang.nativeName})`;
+                labelDiv["lang-label"] = escapeHtml(lang.label);
+                labelDiv.textContent = `${escapeHtml(lang.label)} - (${escapeHtml(lang.nativeName)})`;
 
                 let radioFragment = document.createElement('label');
                 radioFragment.classList.add("language-item-container");
-                radioFragment.setAttribute("role", "radio");
-                radioFragment.setAttribute("tabindex", 0);
-                radioFragment.setAttribute("aria-checked", index === 0);
-                radioFragment.setAttribute("aria-label", lang.label + " language");
+                radioFragment.role = "radio";
+                radioFragment.tabindex = 0;
+                radioFragment["aria-checked"] = index === 0;
+                radioFragment["aria-label"] = escapeHtml(lang.label) + " language";
 
                 // Append the radioInput and label elements to the container
                 radioFragment.appendChild(radioInput);
