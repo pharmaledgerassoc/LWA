@@ -359,6 +359,39 @@ function parseGs1Fields(orderedList) {
     return gs1Fields;
 }
 
+function escapeHTML(value) {
+    if (value != null) {
+        let div = document.createElement("div");
+        let text = document.createTextNode(value);
+        div.appendChild(text);
+        return div.innerHTML;
+    }
+    return '';
+}
+
+function escapeHTMLAttribute(value) {
+    if (value != null) {
+        return ('' + value).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r\n/g, '&#13;').replace(/[\r\n]/g, '&#13;');
+    }
+    return '';
+}
+
+function sanitizeLogMessage(message) {
+    if (typeof message !== 'string') {
+        message = JSON.stringify(message);
+    }
+    // Implement sanitization logic
+    // For example, stripping out potentially dangerous characters
+    return message.replace('\\n', '').replace('\\r', '');
+}
+
+function sanitizeLogErr(message) {
+    // Ensure the message is a string
+    if (typeof message === 'object') {
+        message = JSON.stringify(message, Object.getOwnPropertyNames(message))
+    }
+    return message.replace('\\n', '').replace('\\r', '');
+}
 
 export {
     convertFromISOtoYYYY_HM,
@@ -378,5 +411,9 @@ export {
     zoomFont,
     loadAppVersion,
     parseGs1Fields,
-    parseGS1Code
+    parseGS1Code,
+    escapeHTML,
+    escapeHTMLAttribute,
+    sanitizeLogMessage,
+    sanitizeLogErr
 }
