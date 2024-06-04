@@ -378,18 +378,14 @@ function escapeHTMLAttribute(value) {
 
 function sanitizeLogMessage(message) {
     if (typeof message !== 'string') {
-        message = JSON.stringify(message);
+        if (message instanceof Error) {
+            message = JSON.stringify(message, Object.getOwnPropertyNames(message));
+        } else {
+            message = JSON.stringify(message);
+        }
     }
-    // Implement sanitization logic
-    // For example, stripping out potentially dangerous characters
-    return message.replace('\\n', '').replace('\\r', '');
-}
-
-function sanitizeLogErr(message) {
-    // Ensure the message is a string
-    if (typeof message === 'object') {
-        message = JSON.stringify(message, Object.getOwnPropertyNames(message))
-    }
+// Implement sanitization logic
+// For example, stripping out potentially dangerous characters
     return message.replace('\\n', '').replace('\\r', '');
 }
 
@@ -414,6 +410,5 @@ export {
     parseGS1Code,
     escapeHTML,
     escapeHTMLAttribute,
-    sanitizeLogMessage,
-    sanitizeLogErr
+    sanitizeLogMessage
 }

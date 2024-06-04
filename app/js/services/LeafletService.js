@@ -5,7 +5,7 @@ import RequestWizard from "./RequestWizard.js";
 import {ERROR_TYPES} from "./RequestWizard.js";
 import LightSmartUrl from "../utils/LightSmartUrl.js";
 
-import {goToErrorPage, sanitizeLogErr, validateGTIN} from "../../../utils.js";
+import {goToErrorPage, sanitizeLogMessage, validateGTIN} from "../../../utils.js";
 
 const validateGtinOwnerResponse = function (response) {
   return new Promise((resolve) => {
@@ -78,7 +78,7 @@ class LeafletService {
           respond.json().then((result) => {
             resolve(result)
           }).catch(e => {
-            console.log(sanitizeLogErr(e));
+            console.log(sanitizeLogMessage(e));
             reject(e);
           })
         }).catch(err => {
@@ -140,7 +140,7 @@ class LeafletService {
             let gtinOwnerDomain = result.domain;
             resolve(gtinOwnerDomain);
           }).catch((err) => {
-              console.log(sanitizeLogErr(err));
+              console.log(sanitizeLogMessage(err));
               reject(new CustomError(constants.errorCodes.unknown_error));
               return;
           });
