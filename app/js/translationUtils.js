@@ -36,7 +36,7 @@ const supportedLanguageCodesMap = {
     'pt': ["pt", "pt-pt"],
     'pt-br': [],
     'ro': ["ro-md", "ro-ro"],
-    'se': [],
+    'se': ["se-se", "se-fi", "se-no"],
     'sk': ["sk-sk"],
     'sl': ["sl-si"],
     'uk': ["uk-ua"]
