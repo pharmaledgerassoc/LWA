@@ -16,6 +16,7 @@ const supportedLanguageCodesMap = {
     'bg': ["bg-bg"],
     'cs': ["cs-cz"],
     'de': ["de-de"],
+    'dk': ["dk-cz"],
     'el': ["el-gr"],
     'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw"],
     'es': ["es-es"],
@@ -35,6 +36,7 @@ const supportedLanguageCodesMap = {
     'pt': ["pt", "pt-pt"],
     'pt-br': [],
     'ro': ["ro-md", "ro-ro"],
+    'se': [],
     'sk': ["sk-sk"],
     'sl': ["sl-si"],
     'uk': ["uk-ua"]
