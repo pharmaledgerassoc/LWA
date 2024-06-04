@@ -378,10 +378,14 @@ function escapeHTMLAttribute(value) {
 
 function sanitizeLogMessage(message) {
     if (typeof message !== 'string') {
-        if (message instanceof Error) {
-            message = JSON.stringify(message, Object.getOwnPropertyNames(message));
-        } else {
-            message = JSON.stringify(message);
+        try {
+            if (message instanceof Error) {
+                message = JSON.stringify(message, Object.getOwnPropertyNames(message));
+            } else {
+                message = JSON.stringify(message);
+            }
+        } catch (e) {
+            return message;
         }
     }
 // Implement sanitization logic
