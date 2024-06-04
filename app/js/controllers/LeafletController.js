@@ -1,5 +1,5 @@
 import {
-    goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence
+    goToErrorPage, goToPage, isExpired, setTextDirectionForLanguage, enableConsolePersistence, escapeHTML, escapeHTMLAttribute
 } from "../../../utils.js"
 import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
@@ -106,23 +106,6 @@ function LeafletController() {
             goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
         }
 
-    }
-
-    function escapeHTML(value) {
-        if (value != null) {
-            let div = document.createElement("div");
-            let text = document.createTextNode(value);
-            div.appendChild(text);
-            return div.innerHTML;
-        }
-        return '';
-    }
-
-    function escapeHTMLAttribute(value) {
-        if (value != null) {
-            return ('' + value).replace(/&/g, '&amp;').replace(/'/g, '&#39;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r\n/g, '&#13;').replace(/[\r\n]/g, '&#13;');
-        }
-        return '';
     }
 
     let showAvailableLanguages = function (result) {
