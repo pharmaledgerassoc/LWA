@@ -1,6 +1,7 @@
 import {defaultXslContent, acodisXslContent} from "./leafletXSL.js"
 import CustomError from "../../utils/CustomError.js";
 import constants from "../../../../constants.js";
+import {escapeHTML} from "../../../../utils.js"
 
 class XMLDisplayService {
   constructor(containerIdSelector) {
@@ -62,7 +63,7 @@ class XMLDisplayService {
   searchInHtml = function (searchQuery) {
     let domElement = document.querySelector(this.containerIdSelector);
     let cleanHtml = domElement.innerHTML.replace(/(<mark>|<\/mark>)/gim, '');
-    domElement.innerHTML = cleanHtml;
+    domElement.innerHTML = escapeHTML(cleanHtml);
     if (searchQuery === "") {
       return
     }

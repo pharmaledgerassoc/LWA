@@ -2,7 +2,7 @@ import {
   goToErrorPage,
   goToPage,
   enableConsolePersistence,
-  parseGS1Code
+  parseGS1Code, sanitizeLogMessage
 } from "../../../utils.js";
 import ScanService from "../services/ScanService.js";
 import {getTranslation, translate} from "../translationUtils.js";
@@ -68,7 +68,7 @@ function ScanController() {
         if (!result) {
           return;
         }
-        console.log("Scan result:", result);
+        console.log("Scan result:", sanitizeLogMessage(result));
         this.scanService.stop();
         clearInterval(this.scanInterval);
         scanResult = result.text;

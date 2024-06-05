@@ -15,6 +15,7 @@ const supportedLanguageCodesMap = {
     'ar': ["ar-ae", "ar-bh", "ar-dz", "ar-eg", "ar-iq", "ar-jo", "ar-kw", "ar-lb", "ar-ly", "ar-ma", "ar-om", "ar-qa", "ar-sa", "ar-sy", "ar-tn", "ar-ye"],
     'bg': ["bg-bg"],
     'cs': ["cs-cz"],
+    'da': ["da-dk"],
     'de': ["de-de"],
     'el': ["el-gr"],
     'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw"],
@@ -37,6 +38,7 @@ const supportedLanguageCodesMap = {
     'ro': ["ro-md", "ro-ro"],
     'sk': ["sk-sk"],
     'sl': ["sl-si"],
+    'sv': ["sv-fi", "sv-se"],
     'uk': ["uk-ua"]
     // 'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
 }
