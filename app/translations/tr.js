@@ -23,7 +23,7 @@ const data = {
     "onboarding_welcome": "Neredeyse bitti! <br>Lütfen şartları ve koşulları okuyun ve kabul edin.",
     "disagree": "Katılmıyorum",
     "agree": "Katılıyorum",
-    "disagree_extra_text":  "\“PharmaLedger\" uygulaması, hüküm ve koşulları kabul edene kadar kullanılamayacaktır. Lütfen hüküm ve koşulları okuyun.",
+    "disagree_extra_text":  "\"PharmaLedger\" uygulaması, hüküm ve koşulları kabul edene kadar kullanılamayacaktır. Lütfen hüküm ve koşulları okuyun.",
     "fwd_privacy": "Gizlilik Politikası",
     "fwd_terms": "Şartlar ve Koşullar",
     "fwd_help": "Yardım",
