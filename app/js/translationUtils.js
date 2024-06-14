@@ -39,6 +39,7 @@ const supportedLanguageCodesMap = {
     'sk': ["sk-sk"],
     'sl': ["sl-si"],
     'sv': ["sv-fi", "sv-se"],
+    'tr': ["tr-tr"],
     'uk': ["uk-ua"]
     // 'zh': ["zh-cn", "zh-hans", "zh-hant", "zh-hk"]
 }
