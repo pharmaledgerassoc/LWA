@@ -79,6 +79,7 @@ b {
 .bold-title {
     font-size: var(--font-size--XL);
     font-weight: 700;
+    width: calc(100% - 4vmax - 5px);
 }
 
 .fill-available-width {
@@ -161,16 +162,27 @@ b {
     display: flex;
 }
 
+.system-env {
+    color: red;
+    text-align: center;
+    font-size: 18px;
+}
+
 .icon-container {
     height: max(5vh, 5vw);
     min-height: max(5vh, 5vw);
     position: relative;
-    background: url("../images/app-icon.png") no-repeat;
-    background-position: center;
+    background: url("../images/app-icon.png") no-repeat center;
     background-size: contain;
     display: flex;
     justify-content: end;
     margin: min(3vh, 3vw);
+}
+
+.menu-nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: end;
 }
 
 .menu-icon {
@@ -214,6 +226,12 @@ b {
 
 .app-menu-container > div {
     margin: 5vh 4vh;
+}
+
+.page-content-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .welcome-container {
@@ -420,6 +438,7 @@ b {
 
 .modal-container.popup-modal {
     display: flex;
+    overflow: auto;
 }
 
 .popup-modal .modal-content {
@@ -444,6 +463,7 @@ b {
 #settings-modal .modal-header .close-modal {
     background: url(./../images/close-modal-white.svg) no-repeat center;
     background-size: contain;
+    z-index: 10;
 }
 
 .modal-header .close-modal {
@@ -463,11 +483,11 @@ b {
 }
 
 .warning-modal .modal-header {
-    background: linear-gradient(0deg, #FFFAED, #FFFAED), #FFFFFF;
+    background: #FFFAED;
 }
 
 .error-modal .modal-header {
-    background: linear-gradient(0deg, rgba(248, 100, 88, 0.1), rgba(248, 100, 88, 0.1)), #FFFFFF;
+    background: var(--red-100);
 }
 
 .error-modal .modal-header .modal-icon {
@@ -483,9 +503,13 @@ b {
 }
 
 .modal-header.left-aligned-header .modal-icon {
-    height: 90%;
-    aspect-ratio: 1;
-    background-position: center;
+    display: flex;
+    align-items: center;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
+    max-width: 25%;
+    height: auto;
 }
 
 .modal-container {
@@ -538,16 +562,21 @@ b {
     width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
     width: fill-available;
     position: relative;
+    align-items: stretch;
+    gap: 12px;
+}
+
+.modal-header.left-aligned-header .icon-title-container h1.bold-title {
+    width: auto;
 }
 
 .modal-header.centered-header .modal-title {
     text-align: center;
-    margin: 0 0 24px 0;
+    margin: 0 auto 24px;
 }
 
 .modal-header.left-aligned-header .modal-title {
     text-align: left;
-    margin-right: 12px;
 }
 
 .modal-header h1 {
@@ -594,22 +623,6 @@ b {
 
 .modal-content .languages-container .language-item-container:has(input[name='languages']:checked) {
     background: var(--grey);
-}
-
-.modal-content .languages-container .language-item-container .language-flag {
-    vertical-align: baseline;
-    width: 5rem;
-    position: relative;
-    border-radius: 50%;
-    height: 100%;
-    margin-right: 10px;
-    aspect-ratio: 1;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
-    max-width: 32px;
-    min-width: 32px;
-    box-shadow: inset 0 0 10px var(--grey);
 }
 
 .modal-content .languages-container .language-item-container .language-label {
@@ -738,9 +751,12 @@ body[dir="RTL"] .scan-button.go-home-button {
 }
 
 body[dir="RTL"] .modal-header.left-aligned-header .modal-title {
-    margin-left: 12px;
     margin-right: unset;
     text-align: right;
+}
+
+body[dir="RTL"] .modal-header.left-aligned-header .modal-icon {
+    background-position: right;
 }
 
 body[dir="RTL"] .terms-container .terms-buttons-container {
@@ -748,12 +764,11 @@ body[dir="RTL"] .terms-container .terms-buttons-container {
 }
 
 body[dir="RTL"] .modal-content .languages-container .language-item-container input {
-    margin-right: unset;
-    margin-left: 15px;
+    margin-right: 10px;
 }
 
-body[dir="RTL"] .modal-content .languages-container .language-item-container .language-flag {
-    margin-right: 10px;
+body[dir="RTL"] .modal-content .languages-container .language-item-container .language-label {
+    margin-left: 10px;
 }
 
 /*---------------------------------------------*/
