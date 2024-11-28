@@ -63,7 +63,7 @@ function LeafletController() {
             if (result.resultStatus === "no_xml_for_lang") {
                 showAvailableLanguages(result)
             }
-            let recalled = true; // to replace with flag from product data
+            let recalled = false; // to replace with flag from product data. set to true in order to test product recall
             if (recalled) {
                 showRecalledMessage(result);
             }
