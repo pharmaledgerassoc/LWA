@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node ./node_modules/octopus/scripts/run dependencies devmode"
+    "postinstall": "node ./node_modules/octopus/scripts/run dependencies devmode",
+    "translate": "node bin/translations.cjs"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
     "octopus": "git+http://github.com/opendsu/octopus.git"
   },
   "devDependencies": {
-    "@vitalets/google-translate-api": "9.2.0"
+    "@vitalets/google-translate-api": "9.2.0",
+    "google-translate-api-x": "^10.7.2"
   }
 }
