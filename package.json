@@ -23,5 +23,8 @@
   "dependencies": {
     "jspdf": "2.5.2",
     "octopus": "git+http://github.com/opendsu/octopus.git"
+  },
+  "devDependencies": {
+    "@vitalets/google-translate-api": "9.2.0"
   }
 }
