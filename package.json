@@ -26,7 +26,6 @@
     "octopus": "git+http://github.com/opendsu/octopus.git"
   },
   "devDependencies": {
-    "@vitalets/google-translate-api": "9.2.0",
-    "google-translate-api-x": "^10.7.2"
+    "google-translate-api-x": "10.7.2"
   }
 }
