@@ -6,6 +6,7 @@ const data = {
   "cancel": "Ακύρωση",
   "change_camera": "Αλλάξτε κάμερα",
   "scan_again": "Σαρώστε πάλι",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "Δεν αναγνωρίζεται",
   "product_not_loaded_title": "Οι πληροφορίες για το προϊόν δεν είναι διαθέσιμες.",
   "product_not_found": "Αυτό το προϊόν δεν βρέθηκε.",

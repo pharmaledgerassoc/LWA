@@ -6,6 +6,7 @@ const data = {
   "cancel": "取消",
   "change_camera": "改变相机",
   "scan_again": "再次扫描",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "未被识别",
   "product_not_loaded_title": "产品信息不可用",
   "error_subtitle": "未验证的产品",

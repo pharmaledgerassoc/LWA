@@ -6,6 +6,7 @@ const data = {
     "cancel": "Peruuta",
     "change_camera": "Vaihda kameraa",
     "scan_again": "Skannaa uudelleen",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Ei tunnistettu",
     "product_not_loaded_title": "Tuotetietoja ei ole saatavilla.",
     "product_not_found": "tuotetta ei löydy.",

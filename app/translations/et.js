@@ -6,6 +6,7 @@ const data = {
     "cancel": "Tühista",
     "change_camera": "Vahetage kaamerat",
     "scan_again": "Skaneeri uuesti",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Ei tuvastatud",
     "product_not_loaded_title": "Toote teave pole saadaval",
     "product_not_found": "Seda toodet ei leitud.",

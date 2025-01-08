@@ -6,6 +6,7 @@ const data = {
     "cancel": "Відмінити",
     "change_camera": "Змінити камеру",
     "scan_again": "Відсканувати ще раз",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Не розпізнано",
     "product_not_loaded_title": "нформація про продукт недоступна.",
     "error_subtitle": "Unverified Product",

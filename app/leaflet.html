@@ -13,7 +13,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
     <link rel="shortcut icon" href="../favicon/favicon.ico">
     <link rel="manifest" href="../favicon/site.webmanifest">
-
+    <script src="lib/jspdf/jspdf.es.js"></script>
+    <script nomodule src="lib/jspdf/jspdf.umd.js"></script>
 </head>
 
 <body>
@@ -30,6 +31,8 @@
                 <!--<div class="modal-icon leaflet-title-icon hiddenElement"></div>-->
             </div>
             <div class="product-description" tabindex="0"></div>
+            <button id="leaftlet-print" class="print-button"
+                    translate="leaflet_print" tabindex="1"></button>
         </div>
         <div class="modal-content">
             <div class="leaflet-content-wrapper">

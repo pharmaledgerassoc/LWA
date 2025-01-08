@@ -6,6 +6,7 @@ import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
 import {focusModalHeader, renderLeaflet, showExpired, showIncorrectDate} from "../utils/leafletUtils.js"
 import {translate} from "../translationUtils.js";
+import {PrintService} from "../services/PrintService.js";
 
 enableConsolePersistence();
 
@@ -21,6 +22,31 @@ window.onload = async (event) => {
 const sanitationRegex = /(<iframe>([\s\S]*)<\/iframe>)|(<script>([\s\S]*)<\/script>)/g;
 
 function LeafletController() {
+
+    let printService = new PrintService();
+
+    function generateFileName(){
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let gtin = urlParams.get("gtin");
+        let batch = urlParams.get("batch");
+        let lang = localStorage.getItem(constants.APP_LANG) || "en"
+        return `leaflet_${lang}_${gtin.toLowerCase()}${batch ? `_${batch.toUpperCase()}`: ""}`
+    }
+
+    this.printLeaflet = function(){
+        if (printService.isPrinting())
+            return console.log("Printer is still active. please wait");
+        const leafletEl = document.getElementById("leaflet-content");
+        if (!leafletEl)
+            return console.error("No element found");
+        const fileName = generateFileName()
+        printService.print(leafletEl, fileName)
+          .then(() => {
+              console.log(`Printing to ${fileName}.pdf finished`)
+          })
+          .catch(e => console.error) // TODO
+    }
 
     let getLeaflet = function (lang) {
         const queryString = window.location.search;
@@ -71,7 +97,6 @@ function LeafletController() {
             goToErrorPage(err.errorCode, err)
         })
     };
-
 
     this.getLangLeaflet = function () {
         document.querySelector(".loader-container").setAttribute('style', 'display:block');
@@ -206,6 +231,7 @@ function LeafletController() {
 
     let addEventListeners = () => {
         document.getElementById("scan-again-button").addEventListener("click", this.scanAgainHandler);
+        document.getElementById("print-button").addEventListener("click", this.printLeaflet);
         document.getElementById("modal-scan-again-button").addEventListener("click", this.scanAgainHandler);
         document.getElementById("go-back-button").addEventListener("click", this.goHome);
         document.querySelectorAll(".modal-container.popup-modal .close-modal").forEach(item => {

@@ -6,6 +6,7 @@ const data = {
   "cancel": "취소",
   "change_camera": "카메라를 바꾸세요",
   "scan_again": "다시 스캔하기",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "인식되지 않음.",
   "product_not_loaded_title": "제품 정보를 볼 수 없습니다.",
   "error_subtitle": "인증되지 않은 제품",

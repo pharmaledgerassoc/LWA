@@ -6,6 +6,7 @@ const data = {
   "cancel": "Atšaukti",
   "change_camera": "Keisti kamerą",
   "scan_again": "Dar kartą nuskaityti",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "Neatpažintas",
   "product_not_loaded_title": "Informacijos apie produktą nėra.",
   "error_subtitle": "Unverified Product",

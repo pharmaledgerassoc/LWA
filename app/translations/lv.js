@@ -6,6 +6,7 @@ const data = {
     "cancel": "Atcelt",
     "change_camera": "Mainīt kameru",
     "scan_again": "Vēlreiz skenēt",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Nav atpazīts",
     "product_not_loaded_title": "Informācija par produktu nav pieejama.",
     "product_not_found": "Šo produktu nevar atrast.",

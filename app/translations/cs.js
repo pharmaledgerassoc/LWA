@@ -6,6 +6,7 @@ const data = {
     "cancel": "Zrušit",
     "change_camera": "Zvolit jiný fotoaparát",
     "scan_again": "Znovu naskenovat",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Nenalezeno",
     "product_not_loaded_title": "Informace o přípravku nejsou dostupné.",
     "product_not_found": "Léčivý přípravek nebyl nalezen.",

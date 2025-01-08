@@ -12,6 +12,27 @@
           "commit": "a580226efc56ca6556060308850b43d16708ed85"
         }
       ]
+    },
+    {
+      "name": "jsPDF",
+      "actions": [
+        {
+          "type": "copy",
+          "src": "./node_modules/jspdf/dist/jspdf.es.js",
+          "target": "./app/lib/jspdf/jspdf.es.js",
+          "options": {
+            "overwrite": true
+          }
+        },
+        {
+          "type": "copy",
+          "src": "./node_modules/jspdf/dist/jspdf.umd.js",
+          "target": "./app/lib/jspdf/jspdf.umd.js",
+          "options": {
+            "overwrite": true
+          }
+        }
+      ]
     }
   ]
 }

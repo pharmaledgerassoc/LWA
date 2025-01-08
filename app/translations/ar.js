@@ -6,6 +6,7 @@ const data = {
   "cancel": "الغاء",
   "change_camera": "بدل الكاميرا",
   "scan_again": "امسح مرة أخرىً",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "لم يتم التعرف على المنتوج",
   "product_not_loaded_title": "معلومات المنتج غير متوفرة.",
   "error_subtitle": "منتج غير موثوق",

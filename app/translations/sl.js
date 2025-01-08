@@ -6,6 +6,7 @@ const data = {
   "cancel": "Prekliči",
   "change_camera": "Zamenjajte kamero",
   "scan_again": "Ponovno skeniranje",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "Ni prepoznano",
   "product_not_loaded_title": "Informacije o izdelku niso na voljo.",
   "error_subtitle": "Unverified Product",

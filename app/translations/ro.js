@@ -6,6 +6,7 @@ const data = {
     "cancel": "Anulați",
     "change_camera": "Schimbați camera",
     "scan_again": "Scanați Iar",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Negăsit",
     "product_not_loaded_title": "Informațiile despre produs nu sunt disponibile.",
     "product_not_found": "Acest produs nu poate fi găsit",

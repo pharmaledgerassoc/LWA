@@ -6,6 +6,7 @@ const data = {
   "cancel": "Avbryt",
   "change_camera": "Byt kamera",
   "scan_again": "Skanna igen",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "Ej igenkänd",
   "product_not_loaded_title": "Produktinformation ej tillgänglig.",
   "error_subtitle": "Unverified Product",

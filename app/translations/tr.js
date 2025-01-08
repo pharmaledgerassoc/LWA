@@ -6,6 +6,7 @@ const data = {
     "cancel": "İptal",
     "change_camera": "Kamerayı değiştir",
     "scan_again": "Tekrar Tara",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Tanınmıyor",
     "product_not_loaded_title": "Ürün bilgisi mevcut değil.",
     "product_not_found": "Bu ürün bulunamıyor.",

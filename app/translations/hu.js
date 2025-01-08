@@ -6,6 +6,7 @@ const data = {
   "cancel": "Mégse",
   "change_camera": "Kamera váltása",
   "scan_again": "Beolvasás újra",
+  "leaflet_print": "Print - TO TRANSLATE",
   "product_not_found_title": "Nem azonosítható",
   "product_not_loaded_title": "Nincs elérhető betegtájékoztató.",
   "error_subtitle": "Unverified Product",

@@ -6,6 +6,7 @@ const data = {
     "cancel": "Anuluj",
     "change_camera": "Zmień aparat",
     "scan_again": "Skanuj ponownie",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Nierozpoznany",
     "product_not_loaded_title": "Informacja o produkcie jest niedostępna",
     "product_not_found": "Nie można znaleźć tego produktu",

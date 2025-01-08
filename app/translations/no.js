@@ -6,6 +6,7 @@ const data = {
     "cancel": "Avbryt skanning",
     "change_camera": "Endre kamera",
     "scan_again": "Skann på nytt",
+  "leaflet_print": "Print - TO TRANSLATE",
     "product_not_found_title": "Ikke gjenkjent",
     "product_not_loaded_title": "Produktinformasjon ikke tilgjengelig.",
     "product_not_found": "Dette produktet kan ikke bli funnet.",
