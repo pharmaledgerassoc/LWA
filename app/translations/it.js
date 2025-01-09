@@ -44,7 +44,8 @@ const data = {
   "leaflet_print_title": "Informazioni di stampa",
   "leaflet_print_description": "Le attuali informazioni selezionate verranno stampate come PDF.",
   "leaflet_print_description2": "Vuoi procedere?",
-  "leaflet_print_button": "Procedere"
+  "leaflet_print_button": "Procedere",
+  "leaflet_print_button_back": "Torna indietro"
 }
 
 export default data;

@@ -44,7 +44,8 @@ const data = {
   "leaflet_print_title": "Skriv ut informasjon",
   "leaflet_print_description": "Gjeldende valgt informasjon vil bli skrevet ut som PDF.",
   "leaflet_print_description2": "Vil du fortsette?",
-  "leaflet_print_button": "Fortsette"
+  "leaflet_print_button": "Fortsette",
+  "leaflet_print_button_back": "Gå tilbake"
 }
 
 export default data;

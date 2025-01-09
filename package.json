@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/pharmaledgerassoc/LWA#readme",
   "dependencies": {
+    "html2canvas": "^1.4.1",
     "jspdf": "2.5.2",
     "octopus": "git+http://github.com/opendsu/octopus.git"
   },

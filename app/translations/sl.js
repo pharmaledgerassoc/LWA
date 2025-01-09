@@ -48,7 +48,8 @@ const data = {
   "leaflet_print_title": "Podatki o tiskanju",
   "leaflet_print_description": "Trenutni izbrani podatki bodo natisnjeni kot PDF.",
   "leaflet_print_description2": "Ali želite nadaljevati?",
-  "leaflet_print_button": "Nadaljevati"
+  "leaflet_print_button": "Nadaljevati",
+  "leaflet_print_button_back": "Pojdi nazaj"
 }
 
 export default data;

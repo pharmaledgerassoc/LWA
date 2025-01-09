@@ -117,7 +117,9 @@ function LeafletController() {
         goToPage("/main.html")
     }
 
-    this.closeModal = function (modalId) {
+    this.closeModal = function (evt) {
+        const modalId = evt.currentTarget.getAttribute("modal-id")
+
         document.querySelector("#" + modalId).classList.add("hiddenElement");
         if (modalId === "leaflet-lang-select") {
             goToPage("/main.html");
@@ -229,16 +231,24 @@ function LeafletController() {
         }
     }
 
+
+    this.showPrintModal = function () {
+        document.querySelector(".loader-container").setAttribute('style', 'display:none');
+        const modalContainer = document.querySelector("#print-modal")
+        modalContainer.classList.remove("hiddenElement");
+        document.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
+    }
+
     let addEventListeners = () => {
         document.getElementById("scan-again-button").addEventListener("click", this.scanAgainHandler);
-        document.getElementById("print-button").addEventListener("click", this.printLeaflet);
+        document.getElementById("modal-print-button").addEventListener("click", this.printLeaflet);
+        document.getElementById("print-modal-button").addEventListener("click", this.showPrintModal);
         document.getElementById("modal-scan-again-button").addEventListener("click", this.scanAgainHandler);
         document.getElementById("go-back-button").addEventListener("click", this.goHome);
+        document.getElementById("modal-print-go-back-button").addEventListener("click", this.closeModal);
         document.querySelectorAll(".modal-container.popup-modal .close-modal").forEach(item => {
-            item.addEventListener("click", (event) => {
-                this.closeModal(event.currentTarget.getAttribute("modal-id"))
-            })
-        })
+            item.addEventListener("click", this.closeModal);
+        });
         document.getElementById("proceed-button").addEventListener("click", this.getLangLeaflet)
 
     }

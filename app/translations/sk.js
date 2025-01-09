@@ -48,7 +48,8 @@ const data = {
   "leaflet_print_title": "Informácie",
   "leaflet_print_description": "Aktuálne vybrané informácie budú vytlačené ako PDF.",
   "leaflet_print_description2": "Chceš pokračovať?",
-  "leaflet_print_button": "Postupovať"
+  "leaflet_print_button": "Postupovať",
+  "leaflet_print_button_back": "Vrátiť sa"
 }
 
 export default data;

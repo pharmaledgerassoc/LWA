@@ -13,8 +13,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
     <link rel="shortcut icon" href="../favicon/favicon.ico">
     <link rel="manifest" href="../favicon/site.webmanifest">
-    <script src="lib/jspdf/jspdf.es.js"></script>
-    <script nomodule src="lib/jspdf/jspdf.umd.js"></script>
+    <script src="lib/jspdf/jspdf.umd.js"></script>
+    <script src="lib/html2canvas/html2canvas.js"></script>
 </head>
 
 <body>
@@ -26,13 +26,14 @@
 <div id="settings-modal" class="page-container fill-available-width leaflet-page info-modal hiddenElement">
     <div class="modal-body">
         <div class="page-header modal-header left-aligned-header">
-            <div class="icon-title-container" tabindex="0">
+            <div id="print-modal-button" class="modal-icon print-button" translate="leaflet_print" aria-label="print-icon" role="img" tabindex="0"></div>
+<!--            <button id="leaftlet-print" class="print-button"-->
+<!--                     tabindex="0"></button>-->
+            <div class="icon-title-container" tabindex="1">
                 <h1 class="product-name bold-title"></h1>
                 <!--<div class="modal-icon leaflet-title-icon hiddenElement"></div>-->
             </div>
             <div class="product-description" tabindex="0"></div>
-            <button id="leaftlet-print" class="print-button"
-                    translate="leaflet_print" tabindex="1"></button>
         </div>
         <div class="modal-content">
             <div class="leaflet-content-wrapper">
@@ -122,7 +123,7 @@
 
     </div>
 </div>
-<div id="print-modal" class="modal-container popup-modal hiddenElement">
+<div id="print-modal" class="modal-container popup-modal warning-modal hiddenElement">
     <div class="modal-body" tabindex="0">
         <div class="modal-header centered-header">
             <button class="close-modal" modal-id="print-modal"
@@ -148,8 +149,8 @@
 <!--                 translate="scan_again"></div>-->
             <div id="modal-print-button" class="proceed-button"
                  translate="leaflet_print_button"></div>
-            <button id="go-back-button-2" class="go-back-button go-home-button"
-                    translate="go_home"></button>
+            <button id="modal-print-go-back-button" modal-id="print-modal" class="go-back-button go-home-button"
+                    translate="leaflet_print_button_back"></button>
         </div>
 
     </div>

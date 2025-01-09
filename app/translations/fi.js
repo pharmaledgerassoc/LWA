@@ -44,7 +44,8 @@ const data = {
   "leaflet_print_title": "Tulostustiedot",
   "leaflet_print_description": "Nykyiset valitut tiedot tulostetaan PDF: ksi.",
   "leaflet_print_description2": "Haluatko edetä?",
-  "leaflet_print_button": "Edetä"
+  "leaflet_print_button": "Edetä",
+  "leaflet_print_button_back": "Palata takaisin"
 }
 
 export default data;

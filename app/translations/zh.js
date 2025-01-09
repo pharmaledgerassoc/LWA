@@ -48,7 +48,8 @@ const data = {
   "leaflet_print_title": "打印信息",
   "leaflet_print_description": "当前选定的信息将以PDF打印。",
   "leaflet_print_description2": "你想继续吗？",
-  "leaflet_print_button": "继续"
+  "leaflet_print_button": "继续",
+  "leaflet_print_button_back": "回去"
 }
 
 export default data;

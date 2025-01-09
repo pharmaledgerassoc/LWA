@@ -48,7 +48,8 @@ const data = {
   "leaflet_print_title": "인쇄 정보",
   "leaflet_print_description": "현재 선택된 정보는 PDF로 인쇄됩니다.",
   "leaflet_print_description2": "진행 하시겠습니까?",
-  "leaflet_print_button": "진행하다"
+  "leaflet_print_button": "진행하다",
+  "leaflet_print_button_back": "돌아 가라"
 }
 
 export default data;

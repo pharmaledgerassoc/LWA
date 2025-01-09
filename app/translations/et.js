@@ -44,7 +44,8 @@ const data = {
   "leaflet_print_title": "Trükiteave",
   "leaflet_print_description": "Praegune valitud teave trükitakse PDF -na.",
   "leaflet_print_description2": "Kas soovite jätkata?",
-  "leaflet_print_button": "Harima"
+  "leaflet_print_button": "Harima",
+  "leaflet_print_button_back": "Tagasi minema"
 }
 
 export default data;

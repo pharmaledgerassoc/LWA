@@ -48,7 +48,8 @@ const data = {
   "leaflet_print_title": "Spausdinti informaciją",
   "leaflet_print_description": "Dabartinė pasirinkta informacija bus atspausdinta kaip PDF.",
   "leaflet_print_description2": "Ar norite tęsti?",
-  "leaflet_print_button": "Eik"
+  "leaflet_print_button": "Eik",
+  "leaflet_print_button_back": "Grįžk atgal"
 }
 
 export default data;

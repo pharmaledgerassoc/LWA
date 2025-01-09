@@ -44,7 +44,8 @@ const data = {
   "leaflet_print_title": "Πληροφορίες εκτύπωσης",
   "leaflet_print_description": "Οι τρέχουσες επιλεγμένες πληροφορίες θα εκτυπωθούν ως PDF.",
   "leaflet_print_description2": "Θέλετε να προχωρήσετε;",
-  "leaflet_print_button": "Προχωρώ"
+  "leaflet_print_button": "Προχωρώ",
+  "leaflet_print_button_back": "Πάω πίσω"
 }
 
 export default data;

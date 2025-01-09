@@ -48,7 +48,8 @@ const data = {
   "leaflet_print_title": "Інформація про друк",
   "leaflet_print_description": "Поточна вибрана інформація буде надрукована як PDF.",
   "leaflet_print_description2": "Ви хочете продовжити?",
-  "leaflet_print_button": "Тривати"
+  "leaflet_print_button": "Тривати",
+  "leaflet_print_button_back": "Повернутися"
 }
 
 export default data;

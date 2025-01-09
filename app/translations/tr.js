@@ -44,7 +44,8 @@ const data = {
   "leaflet_print_title": "Baskı Bilgileri",
   "leaflet_print_description": "Mevcut seçilen bilgiler PDF olarak yazdırılacaktır.",
   "leaflet_print_description2": "Devam etmek ister misin?",
-  "leaflet_print_button": "İlerlemek"
+  "leaflet_print_button": "İlerlemek",
+  "leaflet_print_button_back": "Geri gitmek"
 }
 
 export default data;

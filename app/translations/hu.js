@@ -48,7 +48,8 @@ const data = {
   "leaflet_print_title": "Nyomtatási információk",
   "leaflet_print_description": "Az aktuális kiválasztott információt PDF -ként nyomtatják ki.",
   "leaflet_print_description2": "Szeretne folytatni?",
-  "leaflet_print_button": "Folytatódik"
+  "leaflet_print_button": "Folytatódik",
+  "leaflet_print_button_back": "Visszamegy"
 }
 
 export default data;

@@ -44,7 +44,8 @@ const data = {
   "leaflet_print_title": "Informații tipărite",
   "leaflet_print_description": "Informațiile selectate curente vor fi tipărite ca PDF.",
   "leaflet_print_description2": "Doriți să continuați?",
-  "leaflet_print_button": "Procedează"
+  "leaflet_print_button": "Procedează",
+  "leaflet_print_button_back": "Întoarce-te"
 }
 
 export default data;
