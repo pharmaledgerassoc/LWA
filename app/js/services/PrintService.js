@@ -1,6 +1,20 @@
 const { jsPDF } = window.jspdf
 
 /**
+ *
+ * @type {{margins: number}}
+ */
+
+const defaultLayoutOpts = {
+  margins: 10,
+  orientation: 'portrait',
+  unit: 'px',
+  format: "a4",
+  defaultFontSize: 12,
+  lineSpacing: 1.2
+}
+
+/**
  * @prop {jsPDF} _pdf
  */
 class Layout {
@@ -17,12 +31,12 @@ class Layout {
 
   /**
    *
-   * @param {jsPDF} pdf
    * @param {number} columns
+   * @param {{}} [opts]
    */
-  constructor(columns = 1, opts = {margins: 10}) {
+  constructor(columns = 1, opts) {
     this._columns = Math.floor(Math.max(columns, 1));
-    this._opts = opts
+    this._opts = Object.assign({}, opts || {}, defaultLayoutOpts)
   }
 
   /**
@@ -33,8 +47,8 @@ class Layout {
     this._currentPage = undefined;
     this._currentColumn = 1;
     this._currentHeight = 0;
-    this.tracker = [];
-    this._pdf = new jsPDF();
+    this._tracker = [];
+    this._pdf = new jsPDF(this._opts);
     this._addPage();
   }
 
@@ -61,14 +75,33 @@ class Layout {
     return el.textContent.replaceAll(/((?:\\n|\n)\s*)+/g, "\n").trim()
   }
 
+  /**
+   * @description checks if the font is loaded and if not loads it
+   * @param {string} fontName
+   * @param {"normal" | "bold"} style
+   * @private
+   */
   async _checkFont(fontName, style){
-    const list = this._pdf.getFontList();
-    if (!Object.keys(list).includes(fontName))
+    let list = this._pdf.getFontList();
+    if (!Object.keys(list).includes(fontName)){
       await this._loadFont(fontName, style);
-    else {
-      const types = Object.keys(list).find(f => f.name.toLowerCase() === fontName.toLowerCase());
-      if (!types.find(t => t.toLowerCase() === style.toLowerCase()))
+    } else {
+
+      const font = Object.keys(list).find(f => {
+        f = f.name  || f;
+        if (!f || !fontName)
+          throw new Error("Should be impossible")
+        return f.toLowerCase() === fontName.toLowerCase()
+      });
+
+      const types = list[font];
+      if (!types.find(t => {
+        if (!t || !style)
+          throw new Error("Should be impossible")
+        return t.toLowerCase() === style.toLowerCase()
+      })){
         await this._loadFont(fontName, style);
+      }
     }
   }
 
@@ -85,7 +118,7 @@ class Layout {
     }
   }
 
-  _checkFontStyle(style, weight){
+  _parseFontStyle(style, weight){
     if (!style) {
       switch (weight) {
         case "bold":
@@ -99,6 +132,30 @@ class Layout {
       }
     }
     return style === "italic" ? "SemiBold" : style;
+  }
+
+  /**
+   *
+   * @param {string} fontSize in the <decimal><unit> format
+   * where unit can be `pt`, `px`, `in`, `mm`, `cm`
+   * @returns {number}
+   * @private
+   */
+  _parseFontSize(fontSize){
+    const regexp = /([\d.]+)(pt|px|in|mm|cm)/g
+    const match = regexp.exec(fontSize);
+    if (!match)
+      return this._opts.defaultFontSize;
+    const size = parseFloat(match[1]);
+    if (isNaN(size))
+      throw new Error("Could not parse font size");
+    const units = match[2];
+    switch (units){
+      case "px":
+        return Math.floor(size);
+      default:
+        throw new Error(`Unsupported font size unit: ${units}`)
+    }
   }
 
   /**
@@ -122,20 +179,13 @@ class Layout {
         fontStyle = "italic";
       default:
         const font = style.fontFamily.replaceAll("\"", "");
-        const fontSize = parseInt(style.fontSize);
+        const fontSize = this._parseFontSize(style.fontSize);
         const fontWeight = style.fontWeight;
         this._pdf.setFontSize(fontSize);
-        fontStyle = this._checkFontStyle(fontStyle, fontWeight)
+        fontStyle = this._parseFontStyle(fontStyle, fontWeight)
         await this._checkFont(font, fontStyle);
         this._pdf.setFont(font, fontStyle);
-        const list = this._pdf.getFontList();
-        const {w, h} = this._pdf.getTextDimensions(text, {
-          font: font,
-          fontSize: fontSize,
-          fontWeight: fontWeight,
-          maxWidth: this._maxWidth,
-          scaleFactor: this._scaleFactor
-        })
+        const {w, h} = this._pdf.getTextDimensions(text)
         return h;
     }
   }
@@ -152,10 +202,12 @@ class Layout {
       else
         this._addPage()
 
-      this._currentHeight = height
-    } else {
-      this._currentHeight += height
+      this._currentHeight = 0
     }
+  }
+
+  _incrementHeight(height){
+    this._currentHeight = this._currentHeight + height
   }
 
   /**
@@ -168,7 +220,8 @@ class Layout {
     const height = await this._style(el, text);
     this._evaluateBlockPosition(height)
     const xCoord = this._opts.margins + (this._columns - this._currentColumn) * this._pageWidth/this._columns;
-    const yCoord = this._opts.margins;
+    const yCoord = this._currentHeight;
+    this._incrementHeight(height);
     this._pdf.text(text, xCoord, yCoord, { maxWidth: this._maxWidth });
   }
 
@@ -308,8 +361,15 @@ export class PrintService {
     });
     const elements = this._extractLeafletContent(el);
     const layout = new Layout();
-    for (const elem of elements)
-      await layout.addBlock(elem)
+    for (let i= 0; i <= elements.length - 1 ; i ++) {
+      const elem = elements[i];
+      try {
+        await layout.addBlock(elem);
+        console.log(`Processed block ${i}`)
+      } catch (e) {
+        console.error(`Failed to add block ${i}: ${e.message}`);
+      }
+    }
     result = layout.result();
     return result;
   }
@@ -331,10 +391,7 @@ export class PrintService {
       const cfg = {
           callback: function(doc) {
             try {
-              const pdfDataUri = this.pdf.output('datauristring');
-              const newTab = window.open();
-              newTab?.document.write(`<iframe width='100%' height='100%' src='${pdfDataUri}'></iframe>`)
-              // doc.save(`${fileName}.pdf`);
+              doc.save(`${fileName}.pdf`);
               self.printing = false;
             } catch (e){
               return reject(e)
@@ -351,7 +408,6 @@ export class PrintService {
             await this._printByHtml(el, cfg);
             break;
           case "generated":
-            await this._printByBuilding(el, cfg);
             const pdfDataUri = await this._printByBuilding(el, cfg);
             const newTab = window.open();
             newTab?.document.write(`<iframe width='100%' height='100%' src='${pdfDataUri}'></iframe>`)
