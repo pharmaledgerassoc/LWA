@@ -8,7 +8,7 @@ const { jsPDF } = window.jspdf
 const defaultLayoutOpts = {
   margins: 10,
   orientation: 'portrait',
-  unit: 'px',
+  unit: 'pt',
   format: "a4",
   defaultFontSize: 12,
   lineSpacing: 1.2
@@ -49,20 +49,21 @@ class Layout {
     this._currentHeight = 0;
     this._tracker = [];
     this._pdf = new jsPDF(this._opts);
-    this._addPage();
+    this._addPage(true);
   }
 
   /**
    * @description initializes a new page
    * @private
    */
-  _addPage(){
+  _addPage(countOnly = false){
     if(typeof this._currentPage === 'undefined'){
       this._currentPage = 0;
     } else {
       this._currentPage++;
     }
-    this._pdf.addPage();
+    if (!countOnly)
+      this._pdf.addPage();
   }
 
   /**
