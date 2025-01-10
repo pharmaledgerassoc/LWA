@@ -968,3 +968,7 @@ body[dir="RTL"] .modal-content .languages-container .language-item-container .la
 .modal-header.centered-header {
     padding: min(3vh, 3vw);
 }
+
+.proceed-button.print-button {
+    width: unset;
+}
