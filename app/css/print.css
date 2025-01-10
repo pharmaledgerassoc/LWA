@@ -49,4 +49,12 @@
         display: none !important;
     }
 
+    table {
+        max-width: 80% !important;
+    }
+
+    image {
+        max-width: 80% !important;
+    }
+
 }

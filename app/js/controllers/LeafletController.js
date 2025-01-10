@@ -6,7 +6,6 @@ import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
 import {focusModalHeader, renderLeaflet, showExpired, showIncorrectDate} from "../utils/leafletUtils.js"
 import {translate} from "../translationUtils.js";
-import {PrintService} from "../services/PrintService.js";
 
 enableConsolePersistence();
 
@@ -23,8 +22,6 @@ const sanitationRegex = /(<iframe>([\s\S]*)<\/iframe>)|(<script>([\s\S]*)<\/scri
 
 function LeafletController() {
 
-    let printService = new PrintService();
-
     function generateFileName(){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -37,17 +34,6 @@ function LeafletController() {
     this.printLeaflet = function(evt){
         this.closeModal(evt)
         this.showPrintVersion()
-        // if (printService.isPrinting())
-        //     return console.log("Printer is still active. please wait");
-        // const leafletEl = document.getElementById("leaflet-content");
-        // if (!leafletEl)
-        //     return console.error("No element found");
-        // const fileName = generateFileName()
-        // printService.print(leafletEl, fileName)
-        //   .then(() => {
-        //       console.log(`Printing to ${fileName}.pdf finished`)
-        //   })
-        //   .catch(e => console.error)
     }
 
     let getLeaflet = function (lang) {
