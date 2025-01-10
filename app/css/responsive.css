@@ -965,3 +965,7 @@ body[dir="RTL"] .modal-content .languages-container .language-item-container .la
     background: url(./../images/simple-print-icon.svg) no-repeat;
     background-position: center;
 }
+
+.modal-header.centered-header {
+    padding: min(3vh, 3vw);
+}
