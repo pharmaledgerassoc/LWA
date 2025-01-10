@@ -31,21 +31,23 @@ function LeafletController() {
         let gtin = urlParams.get("gtin");
         let batch = urlParams.get("batch");
         let lang = localStorage.getItem(constants.APP_LANG) || "en"
-        return `leaflet_${lang}_${gtin.toLowerCase()}${batch ? `_${batch.toUpperCase()}`: ""}`
+        return `leaflet_${gtin.toLowerCase()}${batch ? `_${batch.toUpperCase()}`: ""}_${lang}`
     }
 
-    this.printLeaflet = function(){
-        if (printService.isPrinting())
-            return console.log("Printer is still active. please wait");
-        const leafletEl = document.getElementById("leaflet-content");
-        if (!leafletEl)
-            return console.error("No element found");
-        const fileName = generateFileName()
-        printService.print(leafletEl, fileName)
-          .then(() => {
-              console.log(`Printing to ${fileName}.pdf finished`)
-          })
-          .catch(e => console.error) // TODO
+    this.printLeaflet = function(evt){
+        this.closeModal(evt)
+        this.showPrintVersion()
+        // if (printService.isPrinting())
+        //     return console.log("Printer is still active. please wait");
+        // const leafletEl = document.getElementById("leaflet-content");
+        // if (!leafletEl)
+        //     return console.error("No element found");
+        // const fileName = generateFileName()
+        // printService.print(leafletEl, fileName)
+        //   .then(() => {
+        //       console.log(`Printing to ${fileName}.pdf finished`)
+        //   })
+        //   .catch(e => console.error)
     }
 
     let getLeaflet = function (lang) {
@@ -231,7 +233,6 @@ function LeafletController() {
         }
     }
 
-
     this.showPrintModal = function () {
         document.querySelector(".loader-container").setAttribute('style', 'display:none');
         const modalContainer = document.querySelector("#print-modal")
@@ -239,9 +240,20 @@ function LeafletController() {
         document.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
     }
 
+    this.showPrintVersion = function () {
+        const windowName = window.document.title;
+        window.onbeforeprint = (evt) => {
+            evt.target.document.title = generateFileName();
+        }
+        window.print()
+        window.onafterprint = (evt) => {
+            evt.target.document.title = windowName;
+        }
+    }
+
     let addEventListeners = () => {
         document.getElementById("scan-again-button").addEventListener("click", this.scanAgainHandler);
-        document.getElementById("modal-print-button").addEventListener("click", this.printLeaflet);
+        document.getElementById("modal-print-button").addEventListener("click", this.printLeaflet.bind(this));
         document.getElementById("print-modal-button").addEventListener("click", this.showPrintModal);
         document.getElementById("modal-scan-again-button").addEventListener("click", this.scanAgainHandler);
         document.getElementById("go-back-button").addEventListener("click", this.goHome);
