@@ -20,4 +20,5 @@ eg: `npm run translations -- key en leaflet_print Prints some things`
 `npm run translations -- delete <key>`<br>
 eg: `npm run translations -- delete leaflet_print` (not implemented)
 
+
 LIMITATIONS: This does not properly translate HTML, just plain strings
