@@ -6,8 +6,7 @@
     @page
     {
         size: portrait;
-        margin: 0.3in 1in 0.3in 1in !important;
-        /*margin: 0mm;  !* this affects the margin in the printer settings *!*/
+        margin: 0;  /* this affects the margin in the printer settings */
     }
 
     body
