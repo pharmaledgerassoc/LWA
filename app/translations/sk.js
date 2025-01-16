@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "Aktuálne vybrané informácie budú vytlačené ako PDF.",
   "leaflet_print_description2": "Chceš pokračovať?",
   "leaflet_print_button": "Postupovať",
-  "leaflet_print_button_back": "Vrátiť sa"
+  "leaflet_print_button_back": "Vrátiť sa",
+  "recalled_product_title": "Pripomenutý produkt",
+  "leaflet_recalled_product": "Produkt je pripomenutý!",
+  "leaflet_recalled_batch": "Dávka je pripomenutá!",
+  "recalled_product_message": "Tento produkt bol stiahnutý, prosím, vráťte lekársky balík vášmu emitentovi.",
+  "recalled_product_name": "Názov produktu: {0}",
+  "recalled_batch_title": "Pripomenutá dávka",
+  "recalled_batch_name": "Názov dávky {0}",
+  "recalled_batch_message": "Táto šarža bola odvolaná, prosím, vráťte liekového balíka svojmu emitentovi."
 }
 
 export default data;

@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "Den nuvarande valda informationen kommer att skrivas ut som PDF.",
   "leaflet_print_description2": "Vill du fortsätta?",
   "leaflet_print_button": "Fortsätta",
-  "leaflet_print_button_back": "Återgå"
+  "leaflet_print_button_back": "Återgå",
+  "recalled_product_title": "Återkallad produkt",
+  "leaflet_recalled_product": "Produkten återkallas!",
+  "leaflet_recalled_batch": "Batch återkallas!",
+  "recalled_product_message": "Den här produkten har återkallats, vänligen returnera medicinpaketet till din emittent.",
+  "recalled_product_name": "Produktnamn: {0}",
+  "recalled_batch_title": "Återkallad sats",
+  "recalled_batch_name": "Batchnamn {0}",
+  "recalled_batch_message": "Detta parti har återkallats, vänligen returnera medicinpaketet till din emittent."
 }
 
 export default data;

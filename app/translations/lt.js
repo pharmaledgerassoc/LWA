@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "Dabartinė pasirinkta informacija bus atspausdinta kaip PDF.",
   "leaflet_print_description2": "Ar norite tęsti?",
   "leaflet_print_button": "Eik",
-  "leaflet_print_button_back": "Grįžk atgal"
+  "leaflet_print_button_back": "Grįžk atgal",
+  "recalled_product_title": "Prisimintas produktas",
+  "leaflet_recalled_product": "Produktas primenamas!",
+  "leaflet_recalled_batch": "Partija prisiminta!",
+  "recalled_product_message": "Šis produktas buvo atšauktas, prašome grąžinti vaistų paketą savo emitentui.",
+  "recalled_product_name": "Produkto pavadinimas: {0}",
+  "recalled_batch_title": "Prisiminė partija",
+  "recalled_batch_name": "Partijos pavadinimas {0}",
+  "recalled_batch_message": "Ši partija buvo atšaukta, prašau grąžinti vaistų paketą savo emitentui."
 }
 
 export default data;

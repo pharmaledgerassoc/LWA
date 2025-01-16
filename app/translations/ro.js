@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Informațiile selectate curente vor fi tipărite ca PDF.",
   "leaflet_print_description2": "Doriți să continuați?",
   "leaflet_print_button": "Procedează",
-  "leaflet_print_button_back": "Întoarce-te"
+  "leaflet_print_button_back": "Întoarce-te",
+  "recalled_product_title": "Produs amintit",
+  "leaflet_recalled_product": "Produsul este reamintit!",
+  "leaflet_recalled_batch": "Lotul este reamintit!",
+  "recalled_product_message": "Acest produs a fost reamintit, vă rugăm să returnați pachetul de medicamente către emitentul dumneavoastră.",
+  "recalled_product_name": "Numele produsului: {0}",
+  "recalled_batch_title": "Lot amintit",
+  "recalled_batch_name": "Numele lotului {0}",
+  "recalled_batch_message": "Acest lot a fost reamintit, vă rugăm să returnați pachetul de medicamente către emitentul dumneavoastră."
 }
 
 export default data;

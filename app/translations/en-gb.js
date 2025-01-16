@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "The current selected information will be printed as PDF.",
   "leaflet_print_description2": "Do you want to proceed?",
   "leaflet_print_button": "Proceed",
-  "leaflet_print_button_back": "Go back"
+  "leaflet_print_button_back": "Go back",
+  "recalled_product_title": "Recalled Product",
+  "leaflet_recalled_product": "Product is recalled!",
+  "leaflet_recalled_batch": "Batch is recalled!",
+  "recalled_product_message": "This product has been recalled, please return the medicine pack to your issuer.",
+  "recalled_product_name": "Product Name: {0}",
+  "recalled_batch_title": "Recalled Batch",
+  "recalled_batch_name": "Batch Name {0}",
+  "recalled_batch_message": "This batch has been recalled, please return the medicine pack to your issuer."
 }
 
 export default data;

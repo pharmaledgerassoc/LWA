@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Текущата избрана информация ще бъде отпечатана като PDF.",
   "leaflet_print_description2": "Искате ли да продължите?",
   "leaflet_print_button": "Продължете",
-  "leaflet_print_button_back": "Върнете се"
+  "leaflet_print_button_back": "Върнете се",
+  "recalled_product_title": "Припомнен продукт",
+  "leaflet_recalled_product": "Продуктът се припомня!",
+  "leaflet_recalled_batch": "Партида се припомня!",
+  "recalled_product_message": "Този продукт е отзован, моля, върнете пакета за медицина на вашия емитент.",
+  "recalled_product_name": "Име на продукта: {0}",
+  "recalled_batch_title": "Припомнена партида",
+  "recalled_batch_name": "Име на партида {0}",
+  "recalled_batch_message": "Тази партида е припомнена, моля, върнете пакета за медицина на вашия емитент."
 }
 
 export default data;

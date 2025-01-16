@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "현재 선택된 정보는 PDF로 인쇄됩니다.",
   "leaflet_print_description2": "진행 하시겠습니까?",
   "leaflet_print_button": "진행하다",
-  "leaflet_print_button_back": "돌아 가라"
+  "leaflet_print_button_back": "돌아 가라",
+  "recalled_product_title": "리콜 된 제품",
+  "leaflet_recalled_product": "제품이 리콜됩니다!",
+  "leaflet_recalled_batch": "배치가 리콜됩니다!",
+  "recalled_product_message": "이 제품은 리콜되었습니다. 의약품 팩을 발행자에게 반환하십시오.",
+  "recalled_product_name": "제품 이름 : {0}",
+  "recalled_batch_title": "회수 된 배치",
+  "recalled_batch_name": "배치 이름 {0}",
+  "recalled_batch_message": "이 배치는 리콜되었습니다. 의학 팩을 발행자에게 반환하십시오."
 }
 
 export default data;

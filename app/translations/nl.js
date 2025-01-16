@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "De huidige geselecteerde informatie wordt afgedrukt als PDF.",
   "leaflet_print_description2": "Wil je doorgaan?",
   "leaflet_print_button": "Doorgaan",
-  "leaflet_print_button_back": "Teruggaan"
+  "leaflet_print_button_back": "Teruggaan",
+  "recalled_product_title": "Geroepen product",
+  "leaflet_recalled_product": "Product wordt teruggeroepen!",
+  "leaflet_recalled_batch": "Batch wordt teruggeroepen!",
+  "recalled_product_message": "Dit product is teruggeroepen, stuur het medicijnpakket terug aan uw emittent.",
+  "recalled_product_name": "Productnaam: {0}",
+  "recalled_batch_title": "Teruggeroepen batch",
+  "recalled_batch_name": "Batchnaam {0}",
+  "recalled_batch_message": "Deze batch is teruggeroepen, stuur het medicijnpakket terug aan uw emittent."
 }
 
 export default data;

@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Mevcut seçilen bilgiler PDF olarak yazdırılacaktır.",
   "leaflet_print_description2": "Devam etmek ister misin?",
   "leaflet_print_button": "İlerlemek",
-  "leaflet_print_button_back": "Geri gitmek"
+  "leaflet_print_button_back": "Geri gitmek",
+  "recalled_product_title": "Geri çağrılan ürün",
+  "leaflet_recalled_product": "Ürün geri çağrılır!",
+  "leaflet_recalled_batch": "Parti hatırlanır!",
+  "recalled_product_message": "Bu ürün geri çağrıldı, lütfen ilaç paketini ihraççınıza iade edin.",
+  "recalled_product_name": "Ürün Adı: {0}",
+  "recalled_batch_title": "Geri çağırılan parti",
+  "recalled_batch_name": "Toplu adı {0}",
+  "recalled_batch_message": "Bu parti geri çağrıldı, lütfen ilaç paketini ihraççınıza geri döndürün."
 }
 
 export default data;

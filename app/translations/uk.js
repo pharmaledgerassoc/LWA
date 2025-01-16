@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "Поточна вибрана інформація буде надрукована як PDF.",
   "leaflet_print_description2": "Ви хочете продовжити?",
   "leaflet_print_button": "Тривати",
-  "leaflet_print_button_back": "Повернутися"
+  "leaflet_print_button_back": "Повернутися",
+  "recalled_product_title": "Згаданий продукт",
+  "leaflet_recalled_product": "Продукт згадується!",
+  "leaflet_recalled_batch": "Партія згадується!",
+  "recalled_product_message": "Цей продукт відкликано, будь ласка, поверніть пакет ліків своєму емітенту.",
+  "recalled_product_name": "Назва продукту: {0}",
+  "recalled_batch_title": "Нагадав партію",
+  "recalled_batch_name": "Пакетне ім'я {0}",
+  "recalled_batch_message": "Ця партія була відкликана, будь ласка, поверніть пакет ліків своєму емітенту."
 }
 
 export default data;

@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Nykyiset valitut tiedot tulostetaan PDF: ksi.",
   "leaflet_print_description2": "Haluatko edetä?",
   "leaflet_print_button": "Edetä",
-  "leaflet_print_button_back": "Palata takaisin"
+  "leaflet_print_button_back": "Palata takaisin",
+  "recalled_product_title": "Palautettu tuote",
+  "leaflet_recalled_product": "Tuote palautetaan!",
+  "leaflet_recalled_batch": "Erä palautetaan!",
+  "recalled_product_message": "Tämä tuote on palautettu palauttamaan lääketieteen paketti liikkeeseenlaskijallesi.",
+  "recalled_product_name": "Tuotteen nimi: {0}",
+  "recalled_batch_title": "Muistellut erä",
+  "recalled_batch_name": "Erän nimi {0}",
+  "recalled_batch_message": "Tämä erä on palautettu palauttamaan lääketieteen paketti liikkeeseenlaskijallesi."
 }
 
 export default data;

@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Trenutne odabrane informacije bit će ispisane kao PDF.",
   "leaflet_print_description2": "Želite li nastaviti?",
   "leaflet_print_button": "Nastaviti",
-  "leaflet_print_button_back": "Vratiti se"
+  "leaflet_print_button_back": "Vratiti se",
+  "recalled_product_title": "Povučeni proizvod",
+  "leaflet_recalled_product": "Proizvod se opoziva!",
+  "leaflet_recalled_batch": "Serija se opoziva!",
+  "recalled_product_message": "Ovaj je proizvod povučen, vratite paket lijekova svom izdavaču.",
+  "recalled_product_name": "Naziv proizvoda: {0}",
+  "recalled_batch_title": "Prisjećena serija",
+  "recalled_batch_name": "Batch ime {0}",
+  "recalled_batch_message": "Ova serija je povučena, molim vas, vratite paket lijekova svom izdavaču."
 }
 
 export default data;

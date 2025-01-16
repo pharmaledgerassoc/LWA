@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "Az aktuális kiválasztott információt PDF -ként nyomtatják ki.",
   "leaflet_print_description2": "Szeretne folytatni?",
   "leaflet_print_button": "Folytatódik",
-  "leaflet_print_button_back": "Visszamegy"
+  "leaflet_print_button_back": "Visszamegy",
+  "recalled_product_title": "Visszahívott termék",
+  "leaflet_recalled_product": "A terméket visszahívják!",
+  "leaflet_recalled_batch": "A tételt visszahívják!",
+  "recalled_product_message": "Ezt a terméket visszahívták, kérjük, adja vissza a gyógyszercsomagot a kibocsátójának.",
+  "recalled_product_name": "Termék neve: {0}",
+  "recalled_batch_title": "Visszahívott tétel",
+  "recalled_batch_name": "Kötegelt név {0}",
+  "recalled_batch_message": "Ezt a tételt visszahívták, kérjük, adja vissza a gyógyszercsomagot a kibocsátójának."
 }
 
 export default data;

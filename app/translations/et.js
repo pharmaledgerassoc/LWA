@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Praegune valitud teave trükitakse PDF -na.",
   "leaflet_print_description2": "Kas soovite jätkata?",
   "leaflet_print_button": "Harima",
-  "leaflet_print_button_back": "Tagasi minema"
+  "leaflet_print_button_back": "Tagasi minema",
+  "recalled_product_title": "Meenutatud toode",
+  "leaflet_recalled_product": "Toodet tuletatakse tagasi!",
+  "leaflet_recalled_batch": "Partii tuletatakse tagasi!",
+  "recalled_product_message": "See toode on tagasi kutsutud, palun tagastage ravimipakk oma emitendile.",
+  "recalled_product_name": "Toote nimi: {0}",
+  "recalled_batch_title": "Meenutas partii",
+  "recalled_batch_name": "Paarinimi {0}",
+  "recalled_batch_message": "See partii on tagasi kutsutud, palun tagastage ravimipakk oma emitendile."
 }
 
 export default data;

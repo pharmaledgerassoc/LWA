@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Obecne wybrane informacje zostaną wydrukowane jako PDF.",
   "leaflet_print_description2": "Chcesz kontynuować?",
   "leaflet_print_button": "Przystępować",
-  "leaflet_print_button_back": "Wracać"
+  "leaflet_print_button_back": "Wracać",
+  "recalled_product_title": "Przywołany produkt",
+  "leaflet_recalled_product": "Produkt jest wycofany!",
+  "leaflet_recalled_batch": "Partia jest odwołana!",
+  "recalled_product_message": "Ten produkt został odwołany: Zwróć pakiet medycyny swojemu emitentowi.",
+  "recalled_product_name": "Nazwa produktu: {0}",
+  "recalled_batch_title": "Przywołano partię",
+  "recalled_batch_name": "Nazwa partii {0}",
+  "recalled_batch_message": "Ta partia została odwołana, zwróć pakiet medycyny swojemu emitentowi."
 }
 
 export default data;

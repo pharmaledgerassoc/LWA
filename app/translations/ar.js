@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "سيتم طباعة المعلومات المحددة الحالية على أنها PDF.",
   "leaflet_print_description2": "هل تريد المتابعة؟",
   "leaflet_print_button": "يتابع",
-  "leaflet_print_button_back": "عُد"
+  "leaflet_print_button_back": "عُد",
+  "recalled_product_title": "تم استدعاء المنتج",
+  "leaflet_recalled_product": "يتم استدعاء المنتج!",
+  "leaflet_recalled_batch": "يتم استدعاء دفعة!",
+  "recalled_product_message": "تم استدعاء هذا المنتج ، يرجى إعادة حزمة الأدوية إلى المصدر.",
+  "recalled_product_name": "اسم المنتج: {0}",
+  "recalled_batch_title": "يتذكر دفعة",
+  "recalled_batch_name": "اسم الدُفعة {0}",
+  "recalled_batch_message": "تم استدعاء هذه الدفعة ، يرجى إعادة حزمة الطب إلى المصدر الخاص بك."
 }
 
 export default data;

@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "当前选定的信息将以PDF打印。",
   "leaflet_print_description2": "你想继续吗？",
   "leaflet_print_button": "继续",
-  "leaflet_print_button_back": "回去"
+  "leaflet_print_button_back": "回去",
+  "recalled_product_title": "召回产品",
+  "leaflet_recalled_product": "产品被召回！",
+  "leaflet_recalled_batch": "批次被召回！",
+  "recalled_product_message": "该产品已被召回，请将药品包退还给您的发行人。",
+  "recalled_product_name": "产品名称：{0}",
+  "recalled_batch_title": "召回批次",
+  "recalled_batch_name": "批处理名称{0}",
+  "recalled_batch_message": "该批次已被召回，请将药品包退还给您的发行人。"
 }
 
 export default data;

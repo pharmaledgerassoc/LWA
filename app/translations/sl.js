@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "Trenutni izbrani podatki bodo natisnjeni kot PDF.",
   "leaflet_print_description2": "Ali želite nadaljevati?",
   "leaflet_print_button": "Nadaljevati",
-  "leaflet_print_button_back": "Pojdi nazaj"
+  "leaflet_print_button_back": "Pojdi nazaj",
+  "recalled_product_title": "Odpoklican izdelek",
+  "leaflet_recalled_product": "Izdelek je odpoklican!",
+  "leaflet_recalled_batch": "Serija je odpoklicana!",
+  "recalled_product_message": "Ta izdelek je bil odpoklican, prosimo, vrnite paket medicine svojemu izdajatelju.",
+  "recalled_product_name": "Ime izdelka: {0}",
+  "recalled_batch_title": "Odpoklicana serija",
+  "recalled_batch_name": "Ime serije {0}",
+  "recalled_batch_message": "Ta serija je bila odpoklicana, prosimo, vrnite paket medicine svojemu izdajatelju."
 }
 
 export default data;

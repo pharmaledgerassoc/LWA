@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Οι τρέχουσες επιλεγμένες πληροφορίες θα εκτυπωθούν ως PDF.",
   "leaflet_print_description2": "Θέλετε να προχωρήσετε;",
   "leaflet_print_button": "Προχωρώ",
-  "leaflet_print_button_back": "Πάω πίσω"
+  "leaflet_print_button_back": "Πάω πίσω",
+  "recalled_product_title": "Ανακληθείσα προϊόν",
+  "leaflet_recalled_product": "Το προϊόν ανακαλείται!",
+  "leaflet_recalled_batch": "Ανακαλείται η παρτίδα!",
+  "recalled_product_message": "Το προϊόν αυτό έχει ανακληθεί, παρακαλούμε να επιστρέψετε το πακέτο φαρμάκων στον εκδότη σας.",
+  "recalled_product_name": "Όνομα προϊόντος: {0}",
+  "recalled_batch_title": "Υπενθυμίζεται παρτίδα",
+  "recalled_batch_name": "Όνομα παρτίδας {0}",
+  "recalled_batch_message": "Αυτή η παρτίδα έχει ανακληθεί, επιστρέψτε το πακέτο φαρμάκων στον εκδότη σας."
 }
 
 export default data;

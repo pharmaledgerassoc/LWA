@@ -49,7 +49,15 @@ const data = {
   "leaflet_print_description": "Les informations sélectionnées actuelles seront imprimées sous forme de PDF.",
   "leaflet_print_description2": "Voulez-vous continuer?",
   "leaflet_print_button": "Procéder",
-  "leaflet_print_button_back": "Remonter"
+  "leaflet_print_button_back": "Remonter",
+  "recalled_product_title": "Produit rappelé",
+  "leaflet_recalled_product": "Le produit est rappelé!",
+  "leaflet_recalled_batch": "Le lot est rappelé!",
+  "recalled_product_message": "Ce produit a été rappelé, veuillez retourner le pack de médicaments à votre émetteur.",
+  "recalled_product_name": "Nom du produit: {0}",
+  "recalled_batch_title": "Lot rappelé",
+  "recalled_batch_name": "Nom de lot {0}",
+  "recalled_batch_message": "Ce lot a été rappelé, veuillez retourner le pack de médicaments à votre émetteur."
 }
 
 export default data;

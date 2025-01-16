@@ -45,7 +45,15 @@ const data = {
   "leaflet_print_description": "Pašreizējā atlasītā informācija tiks izdrukāta kā PDF.",
   "leaflet_print_description2": "Vai vēlaties turpināt?",
   "leaflet_print_button": "Turpināt",
-  "leaflet_print_button_back": "Atgriezties"
+  "leaflet_print_button_back": "Atgriezties",
+  "recalled_product_title": "Atsaukts produkts",
+  "leaflet_recalled_product": "Produkts tiek atsaukts!",
+  "leaflet_recalled_batch": "Partija tiek atsaukta!",
+  "recalled_product_message": "Šis produkts ir atsaukts, lūdzu, atgrieziet zāļu pakotni savam emitentam.",
+  "recalled_product_name": "Produkta nosaukums: {0}",
+  "recalled_batch_title": "Atsaukta partija",
+  "recalled_batch_name": "Partijas nosaukums {0}",
+  "recalled_batch_message": "Šī partija ir atsaukta, lūdzu, atgrieziet zāļu paketi savam emitentam."
 }
 
 export default data;
