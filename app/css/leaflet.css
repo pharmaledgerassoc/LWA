@@ -174,17 +174,23 @@ button:not([disabled]) {
 .leaflet-page #recalled-bar {
     background: #058798;
     position: fixed;
-    bottom: 9vh;
-    width: calc(100% - 20px);
+    bottom: 10vh;
+    width: 100%;
+    box-sizing: border-box;
     left: 0;
     overflow-x: hidden;
     border: 3px solid #27494e;
 } 
 
-.leaflet-page #recalled-bar  p {
+.leaflet-page #recalled-bar p {
     font-size: 3rem;
     line-height: 0px;
     font-weight: 500;
     color: white;
     text-align: center;  
 }
+
+
+/* #recalled-modal.warning-modal .modal-header .modal-icon {
+    background: url(./../images/modal-info-icon.svg) no-repeat center;
+} */

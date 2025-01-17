@@ -216,7 +216,6 @@ function LeafletController() {
         if (recalled) {
             const batchRecalled = batchData?.batchRecall; 
             const recalledMessageContainer = document.querySelector(".recalled-message-container");
-            const recallInformation = document.createElement("p");
 
             modalLeaflet.classList.add('recalled');
             recalledBar.classList.add('visible');
@@ -224,15 +223,20 @@ function LeafletController() {
             
             if (batchRecalled) { 
                 recalledContainer.querySelector("#recalled-title").textContent = getTranslation('recalled_batch_title');
-                recalledContainer.querySelector(".recalled-message-container").innerHTML = getTranslation("recalled_batch_message"); 
-                recallInformation.innerHTML += getTranslation('recalled_batch_name',  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`);
+                recalledMessageContainer.innerHTML = getTranslation("recalled_batch_message",  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`); 
+                // recallInformation.innerHTML += getTranslation('recalled_batch_name',  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`);
                 recalledBar.querySelector('#recalled-bar-content').textContent =  getTranslation('leaflet_recalled_batch');
-            } 
- 
-            recallInformation.innerHTML += getTranslation('recalled_product_name', `<strong>${result.productData.nameMedicinalProduct}</strong>`);
+                recalledMessageContainer.innerHTML += "<br /><br />"+getTranslation('recalled_product_name', `<strong>${result.productData.nameMedicinalProduct}</strong>`);
+            } else {
+                recalledMessageContainer.innerHTML += getTranslation('recalled_product_message',  `<strong>${result.productData.nameMedicinalProduct}</strong>`);
+            }
 
-            recalledMessageContainer.appendChild(recallInformation);
-
+            // recalledMessageContainer.appendChild(recallInformation);
+            
+            recalledContainer.querySelector(".close-modal").onclick = function() { 
+                recalledContainer.classList.add("hiddenElement");
+                modalLeaflet.classList.remove('recalled');
+            }; 
             recalledContainer.querySelector("#recalled-modal-procced").onclick = function() { 
                 recalledContainer.classList.add("hiddenElement");
                 modalLeaflet.classList.remove('recalled');
