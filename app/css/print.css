@@ -5,7 +5,8 @@
         size: portrait;
         /* Changing the margin to show the page numbers works mostly perfect,
         but on chrome it causes truncation for some reason...*/
-        margin: 50px 20px; 
+        /* margin: 50px 20px;  */
+        margin: 0.3in 1in 0.3in 1in !important;
         page-break-before: always !important;
     }
 
