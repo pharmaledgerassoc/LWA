@@ -257,10 +257,19 @@ function LeafletController() {
 
     this.showPrintVersion = function () {
         const windowName = window.document.title;
+        const content =  document.querySelector('#leaflet-content').cloneNode(true);
         window.onbeforeprint = (evt) => {
             evt.target.document.title = generateFileName();
+            
+            // removing html attributes to make table not responsive
+            content.querySelectorAll('[style], [nowrap]').forEach(element => {
+                element.removeAttribute('style');
+                element.removeAttribute('nowrap');
+                element.removeAttribute('xmlns');
+            });
+            document.querySelector('#print-content').innerHTML = content.innerHTML;
         }
-        window.print()
+        window.print();
         window.onafterprint = (evt) => {
             evt.target.document.title = windowName;
         }

@@ -190,6 +190,9 @@ button:not([disabled]) {
     text-align: center;  
 }
 
+#print-content {
+    display: none;
+}
 
 /* #recalled-modal.warning-modal .modal-header .modal-icon {
     background: url(./../images/modal-info-icon.svg) no-repeat center;
