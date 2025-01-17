@@ -6,29 +6,28 @@ const data = {
     "cancel": "Cancelar",
     "change_camera": "Mudar de câmera",
     "scan_again": "Digitalizar novamente",
-    "leaflet_print": "Imprimir",
     "product_not_found_title": "Não reconhecido",
     "product_not_loaded_title": "Folheto informativo não disponível.",
     "product_not_found": "Este produto não foi encontrado.",
     "product_not_loaded": "Infelizmente, nenhum folheto informativo foi carregado.",
     "system_busy": "O sistema está ocupado, por favor tente novamente mais tarde.",
     "err_code": "Código de erro",
-    "leaflet_incorrect_date_title": "Data incorreta",
-    "leaflet_incorrect_date_subtitle": "A data digitalizada está incorreta",
-    "leaflet_incorrect_date_message": "<b>insert msg here</b>.",
+    "err_code": "Error code", 
+    "leaflet_incorrect_date_title": "Incorrect date",
+    "leaflet_incorrect_date_subtitle": "Scanned date is incorrect",
+    "leaflet_incorrect_date_message": "<b> This product's date is incorrect</b>.",
     "leaflet_recalled_product": "Produto recolhido", 
     "leaflet_recalled_batch": "Lote recolhido",
+    "leaflet_expired_title": "Expirado",
+    "leaflet_expired_message": "<p> <b>Este produto foi identificado como expirado. </b> </p>",
     "recalled_product_title": "Produto recolhido",
     "recalled_product_message": "Este produto foi recolhido. Por favor, devolva o pacote de medicamentos ao seu emissor.",
     "recalled_product_name": "Nome do produto: {0}", 
     "recalled_batch_title": "Lote recolhido",
     "recalled_batch_message": "Este lote foi recolhido, por favor, devolva a embalagem do medicamento ao seu emissor.",
     "recalled_batch_name": "Nome do lote: {0}", 
-    "err_code": "Código de erro",
-    "leaflet_expired_title": "Expirado",
-    "leaflet_expired_message": "<p> <b>Este produto foi identificado como expirado. </b> </p>",
     "select_lang_title": "Língua indisponível",
-    "scan_error_title": "Erro de digitalização",
+    "scan_error_title": "Erro de digitalização",  
     "camera_error_message": "Algo correu mal e a câmera selecionada não pode ser acedida corretamente. Por favor, verifique as configurações da câmera do seu  dispositivo ou tente alterar a câmera no menu.",
     "leaflet_lang_select_message": "O folheto não está disponível na sua língua preferida. Pode escolher a  partir da lista de línguas disponíveis.",
     "lang_proceed": "Avançar",
@@ -49,15 +48,17 @@ const data = {
     "terms_content": "<h2>Termos e Condições para o Website e Aplicação de Folheto Informativo em formato eletrónico da PharmaLedger Association </h2><p>Ao aceder ou utilizar o website e aplicação de Folheto Informativo em formato eletrónico da PharmaLedger Association (os \"Serviços\"), concorda em ficar vinculado a estes termos e condições (os \"Termos\"). Não pode aceder ou usar os Serviços se não concordar com estes Termos. Os Serviços são realizados pela PharmaLedger Association (a \"Associação\") e destinam-se a ser utilizados por indivíduos que procuram informações sobre a sua medicação. Uma rede de várias partes fornece os Serviços, e o fabricante do seu medicamento fornece o folheto informativo apresentado através dos Serviços. A Associação atua como responsável pelo tratamento de dados destas informações. </p><h2>Utilização dos Serviços </h2><p>O Utilizador concorda em utilizar os Serviços apenas para fins legais e de uma forma que não infrinja os direitos, restrinja ou iniba a utilização e usofruto dos Serviços por qualquer terceiro. Tal restrição ou inibição inclui, sem limitação, conduta que é ilegal, ou que pode assediar ou causar sofrimento ou inconveniência a qualquer pessoa, e a transmissão de conteúdo obsceno ou ofensivo ou interrupção do fluxo normal de diálogo dentro dos Serviços. </p><h2>Propriedade Intelectual </h2><p>O conteúdo dos Serviços, incluindo, entre outros, mas não limitado a, texto, gráficos, imagens e software, é propriedade da Associação ou dos seus licenciadores e empresas associadas e está protegido por direitos de autor e outras leis de propriedade intelectual. Não pode usar qualquer conteúdo dos Serviços para qualquer fim comercial sem o consentimento expresso por escrito da Associação. </p><h2>Responsabilidade</h2><p>A Associação não faz representações ou garantias de qualquer tipo, expressas ou implícitas, quanto ao funcionamento dos Serviços ou das informações, conteúdos, materiais ou produtos incluídos nos Serviços. A Associação não será responsável por quaisquer danos de qualquer tipo decorrentes do uso dos Serviços, incluindo, mas não limitado a, danos diretos, indiretos, acidentais, punitivos e consequentes. </p><h2>Lei Aplicável </h2><p>Estes Termos e a sua utilização dos Serviços serão regidos e interpretados de acordo com as leis da Suíça e quaisquer litígios serão resolvidos nos tribunais de Basileia, Suíça. </p><h2>Alterações aos Termos</h2><p>A Associação reserva-se ao direito de alterar estes Termos a qualquer momento, e é da sua responsabilidade verificar estes Termos periodicamente para quaisquer alterações. O uso continuado dos Serviços após quaisquer alterações aos Termos terem sido feitas constituirá sua aceitação dos Termos revistos.</p><p><br></p>",
     "about_modal_subtitle": "Sobre nós",
     "about_modal_title": "PharmaLedger",
-    "about_content": "<h2>Sobre esta aplicação</h2><p>Esta aplicação é-lhe fornecida pela PharmaLedger®. Foi  desenvolvida em conjunto por organizações representativas de pacientes, empresas farmacêuticas e especialistas em tecnologia.</p><p>Esta permite que os utilizadores da aplicação visualizem  informações sobre os seus medicamentos através da digitalização do código de barras na embalagem do produto.<p>A informação apresentada é fornecida pelo Titular da Autorização de  Introdução no Mercado do produto.</p><h2>Sobre a PharmaLedger</h2><p>A PharmaLedger® é a marca da PharmaLedger Association  (PLA).</p><p>A PLA é uma associação global neutra e sem fins  lucrativos. O objetivo da Associação é criar e promover um  ecossistema de confiança digital na área da saúde.</p><p>A Associação promove a cooperação nos setores da saúde e das  ciências da vida e promove inovações e a sua implementação para benefício mútuo dos pacientes e de outras partes interessadas.</p>",
+    "about_content": "<h2>Sobre esta aplicação</h2>" +
+        "<p>Esta aplicação é-lhe fornecida pela PharmaLedger®. Foi  desenvolvida em conjunto por organizações representativas de pacientes, empresas farmacêuticas e especialistas em tecnologia.</p>" +
+        "<p>Esta permite que os utilizadores da aplicação visualizem  informações sobre os seus medicamentos através da digitalização do código de barras na embalagem do produto." +
+        "<p>A informação apresentada é fornecida pelo Titular da Autorização de  Introdução no Mercado do produto.</p>" +
+        "<h2>Sobre a PharmaLedger</h2>" +
+        "<p>A PharmaLedger® é a marca da PharmaLedger Association  (PLA).</p>" +
+        "<p>A PLA é uma associação global neutra e sem fins  lucrativos. O objetivo da Associação é criar e promover um  ecossistema de confiança digital na área da saúde.</p>" +
+        "<p>A Associação promove a cooperação nos setores da saúde e das  ciências da vida e promove inovações e a sua implementação para benefício mútuo dos pacientes e de outras partes interessadas.</p>",
     "help_modal_title": "Ajuda",
     "help_modal_subtitle": "Perguntas frequentes",
-    "help_content": "<div><p><b><h2>O que é EPI?</h2></b></p><p> <b>EPI</b> é uma abreviatura para <b>folheto informativo em formato eletrónico.</b> É uma versão eletrónica do folheto informativo em papel que normalmente encontra dentro de uma embalagem de um produto farmacêutico. Em alguns casos, o <b>EPI</b> pode ter substituído o folheto em papel.</p><p><b><h2>O que é PharmaLedger? </h2></b></p><p>A PharmaLedger Association (PLA) é uma associação sem fins lucrativos com sede na Suíça com o objetivo de permitir e promover um ambiente de confiança digital na saúde através de uma plataforma de código aberto padronizada e confiável. O PLA promove a colaboração e acelera a inovação e a adoção para alcançar benefícios mútuos nos domínios da saúde e das ciências da vida para pacientes e outras partes interessadas. A PLA foi formada em 2022 para continuar o trabalho do projeto PharmaLedger, um projeto de 3 anos financiado pela Comissão Europeia e pela indústria farmacêutica com o objetivo de provar o valor das soluções blockchain. Para mais informações, consultar https://pharmaledger.org.</p><p><b><h2>O que é o DataMatrix?</h2></b></p><p>É um tipo de código de barras na embalagem do seu produto. É um código de barras quadrado preto e branco e será semelhante a este:<br><img src=\"./images/barcode_example.png\" alt='DataMatrix barcode example'></p><p><b><h2>Como usar a aplicação? </h2></b></p><p>Siga as instruções na página inicial da <b>aplicação...</b> esta mostra uma imagem de onde encontrar o <b>DataMatrix</b> na sua embalagem do produto. Depois de encontrar o <b>DataMatrix</b>, clique no botão 'Digitalizar <b>DataMatrix</b>'. Permita que a aplicação use a câmera para que o <b>DataMatrix</b> possa ser digitalizado. Use a câmera para focar no <b>DataMatrix</b>. Uma vez que a embalagem seja digitalizada com sucesso, o <b>EPI</b> será exibido. Clique no botão '+' para obter mais detalhes. </p><p><b><h2>Por que é que a minha digitalização do DataMatrix não dá um resultado? </h2></b></p><p>Há várias razões pelas quais o <b>DataMatrix</b> na sua embalagem pode não fornecer um EPI. Uma das razões pode ser o foco da câmera. Por favor, tente digitalizar o código num lugar bem iluminado e deixe o código claramente visível no écran. Se tiver problemas para manter sua mão firme, pode tentar usar uma mesa para apoiar as suas mãos.</p></div>",
-    "leaflet_print_title": "Informações de impressão",
-    "leaflet_print_description": "As informações selecionadas atuais serão impressas como PDF.",
-    "leaflet_print_description2": "Você quer prosseguir?",
-    "leaflet_print_button": "Prosseguir",
-    "leaflet_print_button_back": "Volte"
-  }
-  
-  export default data;
+    "help_content": "<div><p><b><h2>O que é EPI?</h2></b></p><p> <b>EPI</b> é uma abreviatura para <b>folheto informativo em formato eletrónico.</b> É uma versão eletrónica do folheto informativo em papel que normalmente encontra dentro de uma embalagem de um produto farmacêutico. Em alguns casos, o <b>EPI</b> pode ter substituído o folheto em papel.</p><p><b><h2>O que é PharmaLedger? </h2></b></p><p>A PharmaLedger Association (PLA) é uma associação sem fins lucrativos com sede na Suíça com o objetivo de permitir e promover um ambiente de confiança digital na saúde através de uma plataforma de código aberto padronizada e confiável. O PLA promove a colaboração e acelera a inovação e a adoção para alcançar benefícios mútuos nos domínios da saúde e das ciências da vida para pacientes e outras partes interessadas. A PLA foi formada em 2022 para continuar o trabalho do projeto PharmaLedger, um projeto de 3 anos financiado pela Comissão Europeia e pela indústria farmacêutica com o objetivo de provar o valor das soluções blockchain. Para mais informações, consultar https://pharmaledger.org.</p><p><b><h2>O que é o DataMatrix?</h2></b></p><p>É um tipo de código de barras na embalagem do seu produto. É um código de barras quadrado preto e branco e será semelhante a este:<br><img src=\"./images/barcode_example.png\" alt='DataMatrix barcode example'></p><p><b><h2>Como usar a aplicação? </h2></b></p><p>Siga as instruções na página inicial da <b>aplicação...</b> esta mostra uma imagem de onde encontrar o <b>DataMatrix</b> na sua embalagem do produto. Depois de encontrar o <b>DataMatrix</b>, clique no botão 'Digitalizar <b>DataMatrix</b>'. Permita que a aplicação use a câmera para que o <b>DataMatrix</b> possa ser digitalizado. Use a câmera para focar no <b>DataMatrix</b>. Uma vez que a embalagem seja digitalizada com sucesso, o <b>EPI</b> será exibido. Clique no botão '+' para obter mais detalhes. </p><p><b><h2>Por que é que a minha digitalização do DataMatrix não dá um resultado? </h2></b></p><p>Há várias razões pelas quais o <b>DataMatrix</b> na sua embalagem pode não fornecer um EPI. Uma das razões pode ser o foco da câmera. Por favor, tente digitalizar o código num lugar bem iluminado e deixe o código claramente visível no écran. Se tiver problemas para manter sua mão firme, pode tentar usar uma mesa para apoiar as suas mãos.</p></div>"
+}
+
+export default data;
