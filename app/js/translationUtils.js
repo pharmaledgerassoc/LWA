@@ -102,3 +102,17 @@ export function getTranslation(key) {
         return currentAppTranslation[key];
     }
 }
+
+function parseResult(key, ...args) {
+    if(!args)
+        return key;
+    return stringFormat(key, args);
+};
+
+export function stringFormat(text, ...args) {
+    return (text || "").replace(/{(\d+)}/g, function(match, number) {
+        return typeof args[number] !== 'undefined'
+            ? args[number]
+            : match;
+    });
+};

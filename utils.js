@@ -123,7 +123,6 @@ function goToErrorPage(errorCode, error) {
     }
     console.log(JSON.stringify(error, Object.getOwnPropertyNames(error)));
     window.history.pushState({}, "", "index.html");
-
     goToPage(`/error.html?errorCode=${errCode}`)
 }
 

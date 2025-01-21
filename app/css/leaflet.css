@@ -143,3 +143,83 @@
     padding-left: 10%;
 }
 
+.leaflet-page .icon-title-container {
+    flex-direction: row !important;
+}
+
+.leaflet-page .icon-title-container > div:not(.print-icon-container) {
+    width: calc(100% - 80px);
+}
+
+.leaflet-page .icon-title-container #print-modal-button,
+.leaflet-page .icon-title-container .print-icon-container{
+    width: 80px;
+    text-align: center;
+    background-position: center top;
+}
+
+/* Blur leaft left of recalled product/batch until user confirm  */
+#settings-modal.recalled {
+    filter: blur(5px) !important;
+}
+
+#recalled-bar:not(.visible)  {
+    display: none;
+}
+ 
+.leaflet-page #recalled-bar {
+    background: #058798;
+    position: fixed;
+    bottom: 10vh;
+    width: 100%;
+    box-sizing: border-box;
+    left: 0;
+    overflow-x: hidden;
+    border: 3px solid #27494e;
+} 
+
+.leaflet-page #recalled-bar p {
+    font-size: 3rem;
+    line-height: 0px;
+    font-weight: 500;
+    color: white;
+    text-align: center;  
+}
+
+#print-container {
+    display: none;
+}
+
+.modal-container.hiddenElement > div,
+.page-container.hiddenElement > div{
+    animation: scaleDown .4s forwards;
+}
+
+.modal-container:not(.hiddenElement) > div,
+.page-container:not(.hiddenElement) > div{
+    animation: scaleUp .4s forwards;
+}
+
+
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(0.1);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.5);
+    }
+    to {
+        transform: scale(1);
+    }
+}
+
+/* #recalled-modal.warning-modal .modal-header .modal-icon {
+    background: url(./../images/modal-info-icon.svg) no-repeat center;
+} */

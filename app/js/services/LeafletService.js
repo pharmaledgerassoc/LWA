@@ -252,7 +252,9 @@ class LeafletService {
               if (globalTimer) {
                 clearTimeout(globalTimer);
               }
+              console.log(leafletResponse);
               leafletResponse.json().then(leaflet => {
+                console.log(leaflet);
                 resolve(leaflet);
               }).catch(err => {
                 reject({errorCode: constants.errorCodes.unknown_error});
