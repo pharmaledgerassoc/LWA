@@ -4,14 +4,20 @@ import {
 import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
-import {focusModalHeader, renderLeaflet, showExpired, showIncorrectDate} from "../utils/leafletUtils.js"
+import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation, showIncorrectDate} from "../utils/leafletUtils.js"
 import {translate, getTranslation} from "../translationUtils.js";
+
+const DocumentsTypes = {
+    LEAFLET: "leaflet",
+    INFO: "info"
+};
 
 enableConsolePersistence();
 
 window.onload = async (event) => {
     await translate();
     setTimeout(() => {
+        localStorage.removeItem(constants.LIST_OF_EXCIPIENTS);
         document.querySelectorAll(".modal-header .close-modal").forEach(elem => {
             elem.style.position = "absolute";
         })
@@ -23,10 +29,12 @@ const sanitationRegex = /(<iframe>([\s\S]*)<\/iframe>)|(<script>([\s\S]*)<\/scri
 function LeafletController() {
     
     this.loader = document.querySelector(".loader-container");
-    this.lastResult;
+    this.documents;
     this.activeModal;
+    this.defaultLanguage;
     this.selectedLanguage;
-
+    this.selectedDocument;
+    
     function generateFileName(){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -36,43 +44,46 @@ function LeafletController() {
         return `leaflet_${gtin.toLowerCase()}${batch ? `_${batch.toUpperCase()}`: ""}_${lang}`;
     }
 
+    this.getLangLeaflet = (lang) => {
+        this.showLoader(true);
+        getLeaflet(lang);  
+        setTextDirectionForLanguage(lang, "#leaflet-content");
+        setTextDirectionForLanguage(lang, ".modal-body .page-header");
+        document.querySelector("#leaflet-lang-select").classList.add("hiddenElement");
+    }
     
-    this.getActiveModal = () => {
+    this.getActiveModal = function() {
         if(!this.activeModal)
             this.activeModal = document.querySelector(".page-container:not(.hiddenElement), .popup-modal:not(.hiddenElement)");
-        return this.activeModal;
-        
+        return this.activeModal;   
     };
 
-    this.showModal = (modalId) => {
+    this.showModal = function (modalId)  {
+        const body = document.body;
         const activeModal = this.getActiveModal();
         const modal = document.querySelector(`#${modalId}`);
-        modal.classList.remove("hiddenElement");
         this.showLoader(false);
+        if(activeModal)
+            activeModal.classList.add("hiddenElement");
         setTimeout(() => {
-            
-            if(activeModal)
-                activeModal.classList.add("hiddenElement");
+            modal.classList.remove("hiddenElement");
         }, 0);
-        this.activeModal = modal;
-
-     
-
+        return this.activeModal = modal;
     };
 
-    this.showLoader = (show) => {
+    this.showLoader = function (show) {
         this.loader.hidden = !show;
     };
 
-    this.bindPrintFunction = function(evt){
-
+    this.printContent = function(evt){
         // get active modal
-        const modal = document.querySelector(".page-container:not(.hidden");
+        const modal = this.getActiveModal();
         this.closeModal(evt)
         this.showPrintVersion(modal.id);
     }
 
     const getLeaflet = (lang) => {
+      
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let gtin = urlParams.get("gtin");
@@ -86,33 +97,8 @@ function LeafletController() {
         let gto_TotalWaitTime = environment.gto_TotalWaitTime || 15000;
         let leafletService = new LeafletService(gtin, batch, expiry, lang, lsEpiDomain);
 
-        
-        this.showLoader(true);
+        this.showLoader(true); 
 
-        if(this.lastResult) {
-            const result = this.lastResult;
-            console.log(`result is`, result);
-
-            if (result.resultStatus === "xml_found") {
-                try {
-                    showXML(result);
-                    if (isExpired(expiry)) 
-                        showExpired();
-                    /* removed for  MVP1
-                    if (!getExpiryTime(expiry)) {
-                      showIncorrectDate();
-                    }*/
-                } catch (e) {
-                    goToErrorPage(e.errorCode, e)
-                }
-            }
-
-            if(result.resultStatus === "no_xml_for_lang") 
-                return showAvailableLanguages(result)
-            
-            return showRecalledMessage(result);
-        }
-        
         leafletService.getLeafletUsingCache(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime).then((result) => {
             //check for injections in result
             let tmp = JSON.stringify(result);
@@ -122,44 +108,36 @@ function LeafletController() {
             }
             
             // first await user select document type
-            this.lastResult = result;
-            showAvailableDocuments(result.availableLanguages);
-            // if (result.resultStatus === "xml_found") {
-            //     try {
-            //         showXML(result);
-            //         if (isExpired(expiry)) {
-            //             showExpired();
-            //         }
-
-            //         /* removed for  MVP1
-            //         if (!getExpiryTime(expiry)) {
-            //           showIncorrectDate();
-            //         }*/
-            //     } catch (e) {
-            //         goToErrorPage(e.errorCode, e)
-            //     }
-            // }
-
-            // if(result.resultStatus === "no_xml_for_lang") 
-            //     return showAvailableLanguages(result)
+            if(!this.documents) {
+                this.documents = showAvailableDocuments(result.availableLanguages?.length || result?.resultStatus === 'xml_found' || false);
+                return;
+            }
             
-            // showRecalledMessage(result);
+            if(result.resultStatus === "xml_found") {
+                try {
+                    showDocumentModal(result, true);
+                    if (isExpired(expiry)) 
+                        showExpired();
+                    /* removed for  MVP1
+                    if (!getExpiryTime(expiry)) {
+                      showIncorrectDate();
+                    }*/
+                } catch (e) {
+                    goToErrorPage(e.errorCode, e)
+                }
+            } 
+            
+            if(result.resultStatus === "no_xml_for_lang") 
+                return showAvailableLanguages(result)
+            
+            return showRecalledMessage(result);
+         
+        
         }).catch(err => {
             console.error(err);
             goToErrorPage(err.errorCode, err)
         })
     };
-
-    this.getLangLeaflet = () => {
-        this.showLoader(true);
-        let lang = document.querySelector("input[name='languages']:checked").value
-        this.leafletLang = lang;
-        getLeaflet(lang);
-        setTextDirectionForLanguage(lang, "#leaflet-content");
-        setTextDirectionForLanguage(lang, ".modal-body .page-header");
-
-        document.querySelector("#leaflet-lang-select").classList.add("hiddenElement");
-    }
 
     this.scanAgainHandler = function () {
         goToPage("/scan.html")
@@ -171,41 +149,50 @@ function LeafletController() {
 
     this.closeModal = function (evt) {
         console.log('closing modal');
-        console.log('evt is', evt);
+        console.log('evt is', evt.currentTarget.getAttribute('modal-id'));
         const modalId = (typeof evt === "string") ? evt : evt.currentTarget.getAttribute("modal-id")
-
+        if (['leaflet-lang-select', 'documents-modal'].includes(modalId)) 
+            return goToPage("/main.html");
         document.querySelector("#" + modalId).classList.add("hiddenElement");
-        if (modalId === "leaflet-lang-select") {
-            goToPage("/main.html");
-        }
-        document.getElementById("settings-modal").classList.remove("hiddenElement");
+
+        // document.getElementById("settings-modal").classList.remove("hiddenElement");
     }
 
-    let showXML = (result) => {
-        this.showModal("settings-modal");
+    let showDocumentModal = (result, hasLeaflet = true) => {
+       
         try {
-            renderLeaflet(result);
+            if(this.selectedDocument === DocumentsTypes.LEAFLET) {
+                this.showModal("settings-modal");
+                return renderLeaflet(result);
+            }
+            this.showModal("product-modal");
+            renderProductInformation(result, hasLeaflet);  
         } catch (e) {
             goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
         }
 
     }
 
-    let showAvailableLanguages = (result) => {
-        console.log('showing available languages');
-        console.log('result is', result);
-        // document.querySelector(".product-name").innerText = translations[window.currentLanguage]["select_lang_title"];
-        // document.querySelector(".product-description").innerText = translations[window.currentLanguage]["select_lang_subtitle"];
-        // let langList = `<div class="select-lang-text">${translations[window.currentLanguage]["select_lang_text"]}</div><select class="languages-list">`;
+    const showAvailableLanguages = (result) => {
 
         this.showLoader(false);
         
         if (result.availableLanguages.length >= 1) {
-            this.showModal('leaflet-lang-select');
-            console.log(this.activeModal);
-            this.activeModal.querySelector("proceed-button").addEventListener("click", this.getLangLeaflet)
+            const modal = this.showModal('leaflet-lang-select');
+            
+            modal.querySelector("#proceed-button").addEventListener("click", () => {
+                let lang = document.querySelector("input[name='languages']:checked").value;
+                this.defaultLanguage = lang;
+                this.leafletLang = lang; 
+                this.selectedLanguage = lang;
+                this.getLangLeaflet(lang)
+            })
 
-            this.activeModal.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
+            // modal.querySelector("#go-back-button").addEventListener("click", () => {
+            //     this.showModal('documents-modal');
+            // });
+            
+            modal.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
             //  document.querySelector(".text-section.no-leaflet").setAttribute('style', 'display:none');
             let languagesContainer = document.querySelector(".languages-container");
             /*
@@ -224,12 +211,12 @@ function LeafletController() {
 
                 // Create the div element for the label
                 let labelDiv = document.createElement('div');
-                labelDiv.classList.add("language-label");
-                labelDiv.setAttribute("lang-label", escapeHTMLAttribute(lang.label));
+                labelDiv.classList.add("radio-label");
+                labelDiv.setAttribute("radio-label", escapeHTMLAttribute(lang.label));
                 labelDiv.textContent = escapeHTML(`${lang.label} - (${lang.nativeName})`);
 
                 let radioFragment = document.createElement('label');
-                radioFragment.classList.add("language-item-container");
+                radioFragment.classList.add("radio-item-container");
                 radioFragment.setAttribute("role", "radio");
                 radioFragment.setAttribute("tabindex", "0");
                 radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
@@ -268,13 +255,22 @@ function LeafletController() {
         }
     };
     
-    let showAvailableDocuments = (hasLeaflet) => {
+    this.setSelectedDocument = function (evt) {
+        const modal = this.getActiveModal();
+        this.selectedDocument = modal.querySelector("input[type='radio']:checked")?.value;
+        if(this.selectedDocument === DocumentsTypes.LEAFLET)
+            this.selectedLanguage = 'en';
+        getLeaflet(this.defaultLanguage);
+
+    };
+
+    const showAvailableDocuments = (hasLeaflet) => {
         let documents = [
-            {text: 'document_patient_info', value: 'patient'},
-            {text: 'document_hcp', value: 'hcp'}
+            {text: 'document_patient_info', value: DocumentsTypes.INFO},
+            {text: 'document_hcp', value: DocumentsTypes.LEAFLET}
         ];
         if(!hasLeaflet) 
-            documents = documents.filter(doc => doc.value !== 'hcp');
+            documents = documents.filter(doc => doc.value !==  DocumentsTypes.LEAFLET);
         
         const modal = document.querySelector('#documents-modal');
         const container = modal.querySelector("#content-container");
@@ -284,7 +280,7 @@ function LeafletController() {
         documents.forEach((item, index) => {
             const radioInput = document.createElement('input');
             radioInput.setAttribute("type", "radio");
-            radioInput.setAttribute("name", "languages");
+            radioInput.setAttribute("name", "documents");
             radioInput.setAttribute("value", escapeHTMLAttribute(item.value));
             radioInput.setAttribute("id", escapeHTMLAttribute(item.value));
             radioInput.defaultChecked = index === 0;
@@ -293,12 +289,12 @@ function LeafletController() {
             const label =  getTranslation(item.text);
 
             const labelDiv = document.createElement('div');
-            labelDiv.classList.add("language-label");
+            labelDiv.classList.add("radio-label");
             labelDiv.setAttribute("lang-label", escapeHTMLAttribute(label));
             labelDiv.textContent = label;
 
             const radioFragment = document.createElement('label');
-            radioFragment.classList.add("language-item-container");
+            radioFragment.classList.add("radio-item-container");
             radioFragment.setAttribute("role", "radio");
             radioFragment.setAttribute("tabindex", "0");
             radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
@@ -327,6 +323,7 @@ function LeafletController() {
         })
         container.appendChild(radionParent);
         this.showModal('documents-modal');
+        return documents;
     };
 
     let showRecalledMessage = function (result) {
@@ -372,118 +369,55 @@ function LeafletController() {
         
     }
 
-    this.showPrintModal = () => {
+    this.showPrintModal = () => { 
         this.showLoader(false)
-        const modalContainer = document.querySelector("#print-modal")
-        modalContainer.classList.remove("hiddenElement");
+        const modal = document.querySelector("#print-modal")
+        modal.classList.remove("hiddenElement");
         document.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
     }
 
-    this.showPrintVersion = function (modal = 'settings-modal') {
+    this.showPrintVersion = (modal = 'settings-modal') => {
         const windowName = window.document.title;
         const content =  document.querySelector(`#${modal} .content-to-print`);
+        const printContent =  document.querySelector('#print-content');
         window.onbeforeprint = (evt) => {
             evt.target.document.title = generateFileName();
-            
             // removing html attributes to make table not responsive
             content.querySelectorAll('[style], [nowrap]').forEach(element => {
                 element.removeAttribute('style');
                 element.removeAttribute('nowrap');
                 element.removeAttribute('xmlns');
+           
             });
-            document.querySelector('#print-container').innerHTML = content.innerHTML;
+            printContent.innerHTML = content.innerHTML;
         }
         window.print();
         window.onafterprint = (evt) => {
             evt.target.document.title = windowName;
+            printContent.innerHTML = "";
         }
-    }
+    };
 
-    let showRecalledMessage = function (result) {
-        const {productData} = result;
-        const {productRecall, batchData} = productData; 
-        const recalled = productRecall || batchData?.batchRecall;
-        const recalledContainer = document.querySelector("#recalled-modal");
-        const modalLeaflet = document.getElementById("settings-modal");
-        const recalledBar = document.querySelector('#recalled-bar');
-        modalLeaflet.classList.remove('recalled');
-        if (recalled) {
-            const batchRecalled = batchData?.batchRecall; 
-            const recalledMessageContainer = document.querySelector(".recalled-message-container");
+ 
 
-            modalLeaflet.classList.add('recalled');
-            recalledBar.classList.add('visible');
-            recalledContainer.classList.remove("hiddenElement");
-            
-            if (batchRecalled) { 
-                recalledContainer.querySelector("#recalled-title").textContent = getTranslation('recalled_batch_title');
-                recalledMessageContainer.innerHTML = getTranslation("recalled_batch_message",  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`); 
-                // recallInformation.innerHTML += getTranslation('recalled_batch_name',  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`);
-                recalledBar.querySelector('#recalled-bar-content').textContent =  getTranslation('leaflet_recalled_batch');
-                recalledMessageContainer.innerHTML += "<br /><br />"+getTranslation('recalled_product_name', `<strong>${result.productData.nameMedicinalProduct}</strong>`);
-            } else {
-                recalledMessageContainer.innerHTML += getTranslation('recalled_product_message',  `<strong>${result.productData.nameMedicinalProduct}</strong>`);
-            }
-
-            // recalledMessageContainer.appendChild(recallInformation);
-            
-            recalledContainer.querySelector(".close-modal").onclick = function() { 
-                recalledContainer.classList.add("hiddenElement");
-                modalLeaflet.classList.remove('recalled');
-            }; 
-            recalledContainer.querySelector("#recalled-modal-procced").onclick = function() { 
-                recalledContainer.classList.add("hiddenElement");
-                modalLeaflet.classList.remove('recalled');
-            }; 
-            recalledContainer.querySelector("#recalled-modal-exit").onclick = function() { 
-                goToPage("/main.html")
-            }; 
-        }
-        
-    }
-
-    this.showPrintModal = function () {
-        document.querySelector(".loader-container").setAttribute('style', 'display:none');
-        const modalContainer = document.querySelector("#print-modal")
-        modalContainer.classList.remove("hiddenElement");
-        document.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
-    }
-
-    this.showPrintVersion = function () {
-        const windowName = window.document.title;
-        const content =  document.querySelector('#leaflet-content').cloneNode(true);
-        window.onbeforeprint = (evt) => {
-            evt.target.document.title = generateFileName();
-            
-            // removing html attributes to make table not responsive
-            content.querySelectorAll('[style], [nowrap]').forEach(element => {
-                element.removeAttribute('style');
-                element.removeAttribute('nowrap');
-                element.removeAttribute('xmlns');
-            });
-            document.querySelector('#print-content').innerHTML = content.innerHTML;
-        }
-        window.print();
-        window.onafterprint = (evt) => {
-            evt.target.document.title = windowName;
-        }
-    }
-
-    let addEventListeners = () => {
+    const addEventListeners = () => {
         document.getElementById("scan-again-button").addEventListener("click", this.scanAgainHandler);
-        document.getElementById("modal-print-button").addEventListener("click", this.bindPrintFunction.bind(this));
-        document.getElementById("print-modal-button").addEventListener("click", this.showPrintModal);
+        document.getElementById("modal-print-button").addEventListener("click", this.printContent.bind(this));
+        document.querySelectorAll("#print-modal-button").forEach(button => button.addEventListener("click", this.showPrintModal));
         document.getElementById("modal-scan-again-button").addEventListener("click", this.scanAgainHandler);
-        document.getElementById("go-back-button").addEventListener("click", this.goHome);
+        document.querySelectorAll("#go-back-button").forEach(button =>  button.addEventListener("click", this.goHome));
         document.getElementById("modal-print-go-back-button").addEventListener("click", this.closeModal);
         document.querySelectorAll(".modal-container.popup-modal .close-modal").forEach(item => {
             item.addEventListener("click", this.closeModal);
         });
-        document.getElementById("proceed-button").addEventListener("click", this.getLangLeaflet)
+        document.querySelector("#documents-modal #proceed-button").addEventListener("click", () => {
+            this.setSelectedDocument();
+        })
 
     }
+    this.defaultLanguage = localStorage.getItem(constants.APP_LANG) || "en";
     addEventListeners();
-    getLeaflet(localStorage.getItem(constants.APP_LANG) || "en");
+    getLeaflet(this.defaultLanguage);
 
 }
 

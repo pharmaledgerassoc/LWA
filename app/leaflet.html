@@ -24,7 +24,7 @@
     <div class="loader"></div>
 </div>
 
-<div id="print-container"></div>
+<div id="print-content">To Print</div>
 
 <div id="settings-modal" class="page-container fill-available-width leaflet-page info-modal hiddenElement">
     <div class="modal-body">
@@ -47,10 +47,83 @@
                 <button id="scan-again-button" class="scan-button go-home-button"
                         translate="scan_again"></button>
             </div>
-
         </div>
     </div>
 </div>
+
+<div id="product-modal" class="page-container fill-available-width leaflet-page info-modal hiddenElement">
+    <div class="modal-body">
+        <div class="page-header modal-header centered-header leaftlet-header">
+            <div class="icon-title-container" tabindex="1">
+                <div>
+                    <h1 class="product-name bold-title"></h1>
+                    <div class="product-description" tabindex="2"></div>
+                </div>
+                <div id="print-modal-button" class="modal-icon menu-print-icon" aria-label="print-icon" role="img" tabindex="2"></div>
+            </div>
+        </div>
+        <div class="modal-content">
+            <div class="product-information-wrapper content-to-print" id="product-content">
+                <h2>Product Information</h2>
+                <div class="data-wrapper">
+                    <div class="row">
+                        <div>Product Code:</div>
+                        <div data-attr="productCode"></div>
+                    </div>
+                    <div class="row">
+                        <div>Name of Drug:</div>
+                        <div data-attr="nameMedicinalProduct"></div>
+                    </div>
+                    <div class="row">
+                        <div>Brand Name:</div>
+                        <div data-attr="inventedName"></div>
+                    </div>
+                    <div class="row">
+                        <div>Generic Name:</div>
+                        <div data-attr="genericNameProduct"></div>
+                    </div>           
+                </div>
+                <div class="data-wrapper" hidden>
+                    <div>
+                        <h3>List Of Ecxipients:</h3>
+                        <div id="list-of-excipients"></div>
+                    </div>
+                </div>
+
+                <div class="data-wrapper">
+                    <div>
+                        <h3>Name and Adrress of Manufacturer:</h3>
+                        <div class="width-1-1">
+                            <div data-attr="manufacturerName" data-batch="true"></div>
+                            <div data-attr="manufacturerAddress" data-batch="true"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="data-wrapper">
+                    <div class="row">
+                        <div class="width-1-2">Batch:</div>
+                        <div class="width-1-2" data-attr="batchNumber" data-batch="true"></div>
+
+                    </div>
+                    <div class="row">
+                        <div class="width-1-2">Date of Manufacturing:</div>
+                        <div class="width-1-2" data-attr="dateOfManufacturing" data-batch="true"></div>
+                    </div>
+                    <div class="row">
+                        <div class="width-1-2">Date of Expiry:</div>
+                        <div class="width-1-2" data-attr="expiryDate" data-batch="true"></div>
+                    </div>
+                    <div class="row">
+                        <div class="width-1-2">Import License Number:</div>
+                        <div class="width-1-2" data-attr="importLicenceNumber" data-batch="true"></div>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
+    </div>
+</div>
+
 
 <div id="documents-modal" class="modal-container popup-modal warning-modal hiddenElement">
     <div class="modal-body" tabindex="0">
@@ -69,7 +142,6 @@
             <div class="text-section has-leaflets" role="heading" aria-level="2" translate="document_modal_message"></div>
             <div id="content-container" role="radiogroup" aria-label="leaflet available documents" tabindex="2"></div>
             <button id="proceed-button" class="proceed-button has-leaflets" translate="lang_proceed"></button>
-            <div id="modal-scan-again-button" class="proceed-button no-leaflet" translate="scan_again"></div>
             <button id="go-back-button" class="go-back-button go-home-button"  translate="go_home"></button>
         </div>
 
@@ -177,6 +249,6 @@
 
     </div>
 </div>
-</body>
 <script src="./js/controllers/LeafletController.js" type="module"></script>
+</body>
 </html>

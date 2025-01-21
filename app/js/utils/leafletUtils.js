@@ -138,12 +138,93 @@ let renderLeaflet = function (leafletData) {
 
   validateLeafletFiles(htmlContent, leafletImages, leafletData.leafletImages);
 
+  const contentContainer =  document.querySelector("#leaflet-content");
+  contentContainer.parentNode.hidden = false;
+
   document.querySelector("#leaflet-content").innerHTML = htmlContent;
   let leafletLinks = document.querySelectorAll(".leaflet-link");
   xmlService.activateLeafletInnerLinks(leafletLinks);
   handleLeafletAccordion();
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
   focusModalHeader();
+};
+
+
+const renderProductInformation = function (result, hasLeaflet = true) {
+    const modal = document.querySelector('#product-modal');
+
+    modal.querySelector(".product-name").innerText = result.productData.inventedName || result.productData.name;
+    modal.querySelector(".product-description").innerText = result.productData.nameMedicinalProduct || result.productData.description;
+     /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
+    let xmlService = new XMLDisplayService("#product-content");
+    let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
+
+   
+    const container = modal.querySelector('.product-information-wrapper');
+    const elements = container.querySelectorAll('[data-attr]');
+    const excipientsContainer = modal.querySelector('#list-of-excipients');
+    excipientsContainer.innerHTML = '';
+    excipientsContainer.closest('.data-wrapper').hidden = true;
+    const {productData} = result;
+    const {batchData} = productData;
+    const list = getListOfExcipients(resultDocument);
+    if(list) {
+        excipientsContainer.closest('.data-wrapper').hidden = false;
+        excipientsContainer.innerHTML = list?.innerHTML;
+    }
+
+    function parseDate(dateString, type) {
+        if(!dateString)
+            return "";
+        if(type === 'expiryDate') {
+            const d = dateString.substring(4, 6);
+            const m = dateString.substring(2, 4);
+            const y = dateString.substring(0, 2);
+            if(Number(d) === 0)
+                return `${m}/20${y}`;
+            return `${d}.${m}.20${y}`;
+        }
+        return new Date(dateString).toLocaleString('pt', {dateStyle: 'short'}).replace(/\//g, '.');
+    }
+    elements.forEach(element => {
+        const attr = element.getAttribute('data-attr');
+        const isBatch = element.hasAttribute('data-batch');
+        let value = "";
+        if(attr.includes('manufacturerAddress')) {
+            Object.keys(batchData || {}).forEach(key => {
+                if(key.includes('manufacturerAddress'))   
+                    value +=  batchData?.[key]?.length ? `${batchData[key]} <br />` : ''; 
+            })              
+        } else {
+            console.log(attr);
+            value = !isBatch ? productData?.[attr] : batchData?.[attr];
+            if((attr?.toLowerCase()).includes('date'))
+                value = parseDate(value, attr);
+        }
+        element.innerHTML = value;
+    })
+    modal.querySelector('.product-information-wrapper').hidden = false;
+   
+    document.querySelector(".loader-container").setAttribute('style', 'display:none');
+    focusModalHeader();
+}
+
+
+const getListOfExcipients = function(xmlContent) {
+    const sections = xmlContent.querySelectorAll(".leaflet-accordion-item");
+    for(let section of sections) {
+        const title = section.querySelector('h2')?.textContent;
+        if(title) {
+            const titleString = title.trimEnd().replace(/\s+/g, ' ').replace(/\s/g, '_').toLowerCase();
+            if(titleString === 'list_of_excipients') {
+                const list = section.querySelector('.leaflet-accordion-item-content');
+                if(list?.innerHTML) {
+                    return list;
+                    break;
+                }
+            } 
+        }
+    }
 }
 
 async function getFileContent(file, methodName = "readAsText") {
@@ -224,5 +305,6 @@ export {
   getFileContent,
   getFileContentAsBuffer,
   getBase64FileContent,
-  getImageAsBase64
+  getImageAsBase64,
+  renderProductInformation
 }

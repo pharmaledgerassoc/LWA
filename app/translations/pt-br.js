@@ -58,7 +58,7 @@ const data = {
     "leaflet_print_description2": "Você quer prosseguir?",
     "leaflet_print_button": "Prosseguir",
     "leaflet_print_button_back": "Volte",
-    "document_modal_title": "Por favor selectione",
+    "document_modal_title": "Por favor selecione",
     "document_modal_message": "Selecione o documento a ser exibido",
     "document_patient_info": "Informações para o paciente",
     "document_hcp": "Informações de Prescrição Médica (BPM)"

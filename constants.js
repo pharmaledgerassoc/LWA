@@ -1,4 +1,5 @@
 const constants = {
+  LIST_OF_EXCIPIENTS: "_listOfExcipients_",
   LAST_ERROR: "_lastError_",
   DEV_DEBUG: "_epiLog_",
   EPI_DOMAIN: "_epiDomain_",

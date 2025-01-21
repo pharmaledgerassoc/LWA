@@ -40,7 +40,7 @@
     button {
         display: none !important;
     }
-    /*
+    /* */
     .page-container:not(.print) {
         display: none !important;
     }
@@ -50,7 +50,7 @@
 
     .modal-container:not(.print) {
         display: none !important;
-    } */
+    }
 
     #print-content {
         display: block;

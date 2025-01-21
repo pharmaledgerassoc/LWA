@@ -212,6 +212,8 @@ class LeafletService {
       if (ownerDomain) {
         let leafletSources = this.getAnchoringServices(bdns, ownerDomain);
         let targets = this.prepareUrlsForLeafletCall(leafletSources);
+        targets.url = 'http://localhost:8080/integration/product/00000000000000';
+        console.log(targets);
 
         let validateResponse = (response) => {
           return new Promise((resolve) => {
@@ -253,9 +255,7 @@ class LeafletService {
               if (globalTimer) {
                 clearTimeout(globalTimer);
               }
-              console.log(leafletResponse);
               leafletResponse.json().then(leaflet => {
-                console.log(leaflet);
                 resolve(leaflet);
               }).catch(err => {
                 reject({errorCode: constants.errorCodes.unknown_error});

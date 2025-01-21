@@ -117,13 +117,15 @@ function goToPage(pageName) {
 }
 
 function goToErrorPage(errorCode, error) {
+    console.error(error);
+
     let errCode = errorCode || "010";
     if (!error) {
         error = new Error("goToErrorPage called with partial args!")
     }
     console.log(JSON.stringify(error, Object.getOwnPropertyNames(error)));
     window.history.pushState({}, "", "index.html");
-    goToPage(`/error.html?errorCode=${errCode}`)
+    // goToPage(`/error.html?errorCode=${errCode}`)
 }
 
 function setTextDirectionForLanguage(lang, selector) {

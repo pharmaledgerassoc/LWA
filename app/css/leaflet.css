@@ -1,8 +1,10 @@
 @import "prerequisites.css";
 
+[class*="-button"],
 button:not([disabled]) {
     cursor: pointer !important;
 }
+
 
 .product-name {
     font-size: var(--font-size--XL);
@@ -190,39 +192,56 @@ button:not([disabled]) {
     text-align: center;  
 }
 
-#print-container {
+#print-content {
     display: none;
 }
 
-.modal-container.hiddenElement > div,
+.data-wrapper {
+    margin-bottom: 1.5rem !important;
+}
+.data-wrapper h2, .data-wrapper h3 {
+    margin-top: 0px !important;
+}
+.data-wrapper div.row {
+    display: flex;
+}
+.data-wrapper div.row > div {
+    width: 50% !important;
+}
+.data-wrapper div.row > div:nth-child(1) {
+    font-weight: bold;
+}
+
+
+/* .modal-container:not(#print-modal).hiddenElement > div,
 .page-container.hiddenElement > div{
-    animation: scaleDown .4s forwards;
+    animation: fadeOut .2s forwards;
 }
 
-.modal-container:not(.hiddenElement) > div,
+.modal-container:not(#print-modal):not(.hiddenElement) > div,
 .page-container:not(.hiddenElement) > div{
-    animation: scaleUp .4s forwards;
+    animation: fadeIn .4s forwards;
 }
 
 
 
-@keyframes scaleDown {
+@keyframes fadeOut {
     from {
-        transform: scale(1);
+        opacity: 1;
     }
     to {
-        transform: scale(0.1);
+        opacity: .25;
     }
 }
 
-@keyframes scaleUp {
+@keyframes fadeIn {
     from {
-        transform: scale(0.5);
+        opacity: .25;
     }
     to {
-        transform: scale(1);
+        opacity: 1;
     }
-}
+} */
 
 /* #recalled-modal.warning-modal .modal-header .modal-icon {
     background: url(./../images/modal-info-icon.svg) no-repeat center;
