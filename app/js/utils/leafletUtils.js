@@ -196,12 +196,11 @@ const renderProductInformation = function (result, hasLeaflet = true) {
                     value +=  batchData?.[key]?.length ? `${batchData[key]} <br />` : ''; 
             })              
         } else {
-            console.log(attr);
             value = !isBatch ? productData?.[attr] : batchData?.[attr];
             if((attr?.toLowerCase()).includes('date'))
                 value = parseDate(value, attr);
         }
-        element.innerHTML = value;
+        element.innerHTML = value || "";
     })
     modal.querySelector('.product-information-wrapper').hidden = false;
    

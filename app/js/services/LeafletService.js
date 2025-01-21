@@ -212,8 +212,6 @@ class LeafletService {
       if (ownerDomain) {
         let leafletSources = this.getAnchoringServices(bdns, ownerDomain);
         let targets = this.prepareUrlsForLeafletCall(leafletSources);
-        targets.url = 'http://localhost:8080/integration/product/00000000000000';
-        console.log(targets);
 
         let validateResponse = (response) => {
           return new Promise((resolve) => {
