@@ -156,10 +156,14 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     modal.querySelector(".product-name").innerText = result.productData.inventedName || result.productData.name;
     modal.querySelector(".product-description").innerText = result.productData.nameMedicinalProduct || result.productData.description;
      /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
-    let xmlService = new XMLDisplayService("#product-content");
-    let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
-
    
+     let list = undefined;
+     if(result.xmlContent) {
+        let xmlService = new XMLDisplayService("#product-content");
+        let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
+        list = getListOfExcipients(resultDocument);
+     }
+
     const container = modal.querySelector('.product-information-wrapper');
     const elements = container.querySelectorAll('[data-attr]');
     const excipientsContainer = modal.querySelector('#list-of-excipients');
@@ -167,7 +171,6 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     excipientsContainer.closest('.data-wrapper').hidden = true;
     const {productData} = result;
     const {batchData} = productData;
-    const list = getListOfExcipients(resultDocument);
     if(list) {
         excipientsContainer.closest('.data-wrapper').hidden = false;
         excipientsContainer.innerHTML = list?.innerHTML;
