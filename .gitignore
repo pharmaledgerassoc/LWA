@@ -3,3 +3,4 @@ lib
 latest-change-set.txt
 .idea
 lang-codes/*.json
+lang-codes/reports/*.bkp
