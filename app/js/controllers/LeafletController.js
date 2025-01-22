@@ -276,8 +276,8 @@ function LeafletController() {
     const showAvailableDocuments = (result) => {
         const hasLeaflet = result.availableLanguages?.length || result?.resultStatus === 'xml_found' || false;
         let documents = [
-            {text: 'document_patient_info', value: DocumentsTypes.INFO},
-            {text: 'document_hcp', value: DocumentsTypes.LEAFLET}
+            {text: 'document_product_info', value: DocumentsTypes.INFO},
+            {text: 'document_patient_info', value: DocumentsTypes.LEAFLET}
         ];
 
         if(!hasLeaflet) 
