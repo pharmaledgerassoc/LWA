@@ -284,8 +284,9 @@ function LeafletController() {
             documents = documents.filter(doc => doc.value !==  DocumentsTypes.LEAFLET);
         
         const {markets} = result?.productData;
+        let hasPatientInformation = false;
         if(markets?.length) {
-            let hasPatientInformation = markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId))
+            hasPatientInformation = markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId))
             if(!hasPatientInformation)
                 documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
         }
