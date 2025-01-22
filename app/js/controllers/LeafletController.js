@@ -284,11 +284,9 @@ function LeafletController() {
             documents = documents.filter(doc => doc.value !==  DocumentsTypes.LEAFLET);
         
         const {markets} = result?.productData;
-        let hasPatientInformation = false;
 
-        if(!markets || markets.length < 1 || !markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId))){
+        if(!markets || markets.length < 1 || !markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId)))
             documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
-        }
         
         if(!documents?.length)
             return goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Has not documents for product`));
