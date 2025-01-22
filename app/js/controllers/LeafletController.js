@@ -286,13 +286,11 @@ function LeafletController() {
         const {markets} = result?.productData;
         let hasPatientInformation = false;
 
-        if(markets?.length) {
+        if(markets?.length) 
             hasPatientInformation = markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId))
-            if(!hasPatientInformation)
-                documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
-        } else {
+        
+        if(!hasPatientInformation)
             documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
-        }
         
         if(!documents?.length)
             return goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Has not documents for product`));
