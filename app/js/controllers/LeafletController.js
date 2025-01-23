@@ -158,21 +158,7 @@ function LeafletController() {
         // document.getElementById("settings-modal").classList.remove("hiddenElement");
     }
 
-    let showDocumentModal = (result, hasLeaflet = true) => {
-       
-        try {
-            if(this.selectedDocument === DocumentsTypes.LEAFLET) {
-                this.showModal("settings-modal");
-                return renderLeaflet(result);
-            }
-            this.showModal("product-modal");
-            renderProductInformation(result, hasLeaflet);  
-        } catch (e) {
-            console.error(e);
-            goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
-        }
 
-    }
 
     const showAvailableLanguages = (result) => {
 
@@ -183,9 +169,7 @@ function LeafletController() {
             const modal = this.showModal('leaflet-lang-select');
             if(this.selectedDocument === DocumentsTypes.INFO) {
                 modal.querySelector('#language-message').textContent = getTranslation("document_lang_select_message")
-
-                // modal.querySelector('#lang-title').textContent = "Attention!";
-                // modal.querySelector('#language-message').textContent = "Patient product informations are only available in English";
+                modal.querySelector('#lang-title').textContent = getTranslation("document_lang_select_title");
             }
             
             modal.querySelector("#proceed-button").addEventListener("click", () => {
@@ -263,12 +247,28 @@ function LeafletController() {
         }
     };
     
+    const showDocumentModal = (result, hasLeaflet = true) => {
+       
+        try {
+            if(this.selectedDocument === DocumentsTypes.LEAFLET) {
+                this.showModal("settings-modal");
+                return renderLeaflet(result);
+            }
+            this.showModal("product-modal");
+            renderProductInformation(result, hasLeaflet);  
+        } catch (e) {
+            console.error(e);
+            goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
+        }
+
+    };
+
     this.setSelectedDocument = async function (evt) {
         
         this.selectedDocument = document.querySelector("input[name='documents']:checked")?.value;
         if(this.selectedDocument === DocumentsTypes.INFO) {
             this.selectedLanguage = this.defaultLanguage = 'en';
-            // comente aqui para nao passar no modal language quando nao existir leaflets
+            // force show product information in english
             return showAvailableLanguages({availableLanguages: [{
                 "label": "English",
                 "value": "en",

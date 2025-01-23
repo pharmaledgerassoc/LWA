@@ -48,7 +48,8 @@ const data = {
   "document_modal_message": "Будь ласка, виберіть, який документ для відображення",
   "document_patient_info": "Інформація про пацієнта",
   "document_product_info": "Інформація про товар для пацієнтів",
-  "document_lang_select_message": "Інформація про товар доступна лише англійською мовою"
+  "document_lang_select_message": "Інформація про товар доступна лише англійською мовою",
+  "document_lang_select_title": "Ув'язнення"
 }
 
 export default data;

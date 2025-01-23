@@ -44,7 +44,8 @@ const data = {
   "document_modal_message": "Valitse näytettävä asiakirja",
   "document_patient_info": "Potilastieto",
   "document_product_info": "Tuotetiedot potilaille",
-  "document_lang_select_message": "Tuotetiedot ovat saatavana vain englanniksi"
+  "document_lang_select_message": "Tuotetiedot ovat saatavana vain englanniksi",
+  "document_lang_select_title": "Huomautus"
 }
 
 export default data;

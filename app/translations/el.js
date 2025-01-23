@@ -44,7 +44,8 @@ const data = {
   "document_modal_message": "Επιλέξτε ποιο έγγραφο θα εμφανιστεί",
   "document_patient_info": "Πληροφορίες ασθενούς",
   "document_product_info": "Πληροφορίες προϊόντος για ασθενείς",
-  "document_lang_select_message": "Οι πληροφορίες προϊόντων είναι διαθέσιμα μόνο στα Αγγλικά"
+  "document_lang_select_message": "Οι πληροφορίες προϊόντων είναι διαθέσιμα μόνο στα Αγγλικά",
+  "document_lang_select_title": "Ανακοίνωση"
 }
 
 export default data;

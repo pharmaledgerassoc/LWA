@@ -48,7 +48,8 @@ const data = {
   "document_modal_message": "Selecteer welk document moet worden weergegeven",
   "document_patient_info": "Patiëntinformatie",
   "document_product_info": "Productinformatie voor patiënten",
-  "document_lang_select_message": "Productinformatie is alleen beschikbaar in het Engels"
+  "document_lang_select_message": "Productinformatie is alleen beschikbaar in het Engels",
+  "document_lang_select_title": "Kennisgeving"
 }
 
 export default data;

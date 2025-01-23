@@ -48,7 +48,8 @@ const data = {
   "document_modal_message": "Please select which document to display",
   "document_patient_info": "Patient Information",
   "document_product_info": "Product Information for Patients",
-  "document_lang_select_message": "Product information are only available in English"
+  "document_lang_select_message": "Product information are only available in English",
+  "document_lang_select_title": "Notice"
 }
 
 export default data;

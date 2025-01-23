@@ -48,7 +48,8 @@ const data = {
   "document_modal_message": "Välj vilket dokument som ska visas",
   "document_patient_info": "Patientinformation",
   "document_product_info": "Produktinformation för patienter",
-  "document_lang_select_message": "Produktinformation finns endast på engelska"
+  "document_lang_select_message": "Produktinformation finns endast på engelska",
+  "document_lang_select_title": "Varsel"
 }
 
 export default data;

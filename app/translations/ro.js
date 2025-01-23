@@ -44,7 +44,8 @@ const data = {
   "document_modal_message": "Vă rugăm să selectați ce document este de afișat",
   "document_patient_info": "Informații despre pacient",
   "document_product_info": "Informații despre produs pentru pacienți",
-  "document_lang_select_message": "Informațiile despre produs sunt disponibile numai în engleză"
+  "document_lang_select_message": "Informațiile despre produs sunt disponibile numai în engleză",
+  "document_lang_select_title": "Observa"
 }
 
 export default data;

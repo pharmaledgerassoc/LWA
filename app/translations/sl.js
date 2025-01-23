@@ -48,7 +48,8 @@ const data = {
   "document_modal_message": "Izberite, kateri dokument za prikaz",
   "document_patient_info": "Podatki o bolniku",
   "document_product_info": "Informacije o izdelku za bolnike",
-  "document_lang_select_message": "Informacije o izdelku so na voljo samo v angleščini"
+  "document_lang_select_message": "Informacije o izdelku so na voljo samo v angleščini",
+  "document_lang_select_title": "Obvestilo"
 }
 
 export default data;

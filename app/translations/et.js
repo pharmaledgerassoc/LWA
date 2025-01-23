@@ -44,7 +44,8 @@ const data = {
   "document_modal_message": "Palun valige, millist dokumenti kuvada",
   "document_patient_info": "Patsientide teave",
   "document_product_info": "Tooteteave patsientidele",
-  "document_lang_select_message": "Tooteteave on saadaval ainult inglise keeles"
+  "document_lang_select_message": "Tooteteave on saadaval ainult inglise keeles",
+  "document_lang_select_title": "Teade"
 }
 
 export default data;
