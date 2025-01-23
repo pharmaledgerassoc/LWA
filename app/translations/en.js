@@ -57,13 +57,7 @@ const data = {
   "leaflet_print_description": "The current selected information will be printed as PDF.",
   "leaflet_print_description2": "Do you want to proceed?",
   "leaflet_print_button": "Proceed",
-  "leaflet_print_button_back": "Go back",
-  "document_modal_title": "Please Choose",
-  "document_modal_message": "Please select which document to display",
-  "document_patient_info": "Patient Information",
-  "document_product_info": "Product Information for Patients",
-  "document_hcp": "Prescribing Information (HCP)",
-  "document_lang_select_message": "Patient product informations are only available in English"  
+  "leaflet_print_button_back": "Go back"
 }
 
 export default data;
