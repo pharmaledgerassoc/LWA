@@ -182,7 +182,6 @@ function LeafletController() {
                 
             const modal = this.showModal('leaflet-lang-select');
             if(this.selectedDocument === DocumentsTypes.INFO) {
-              
                 modal.querySelector('#language-message').textContent = getTranslation("document_lang_select_message")
 
                 // modal.querySelector('#lang-title').textContent = "Attention!";
@@ -265,10 +264,18 @@ function LeafletController() {
     };
     
     this.setSelectedDocument = async function (evt) {
-        const modal = this.getActiveModal();
+        
         this.selectedDocument = document.querySelector("input[name='documents']:checked")?.value;
-        if(this.selectedDocument === DocumentsTypes.INFO) 
+        if(this.selectedDocument === DocumentsTypes.INFO) {
             this.selectedLanguage = this.defaultLanguage = 'en';
+            // comente aqui para nao passar no modal language quando nao existir leaflets
+            return showAvailableLanguages({availableLanguages: [{
+                "label": "English",
+                "value": "en",
+                "nativeName": "English"
+            }]}) 
+        }   
+          
         getLeaflet(this.defaultLanguage);
 
     };
