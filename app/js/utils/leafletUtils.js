@@ -183,10 +183,10 @@ const renderProductInformation = function (result, hasLeaflet = true) {
         if(!!genericName && Array.isArray(genericName) && genericName.length > 0)
           genericName = genericName[0];
 
-        if(!genericName)
+        if(!genericName || !genericName?.textContent?.length)
           genericName = getGenericName(resultDocument);
 
-        if(!list)
+        if(!list || !list?.length)
           list = getListOfExcipients(resultDocument);
      }
 
@@ -195,19 +195,19 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     const excipientsContainer = modal.querySelector('#list-of-excipients');
     const genericNameContainer = modal.querySelector('#generic-name');
     excipientsContainer.innerHTML = '';
-    genericNameContainer.innerHTML = '';
+    genericNameContainer.textContent = '';
     excipientsContainer.closest('.data-wrapper').hidden = true;
-    genericNameContainer.closest('.data-wrapper').hidden = true;
+    genericNameContainer.hidden = true;
     const {productData} = result;
     const {batchData} = productData;
     if(list) {
         excipientsContainer.closest('.data-wrapper').hidden = false;
         excipientsContainer.innerHTML = list?.innerHTML;
     }
-
+    
     if(genericName) {
-      genericNameContainer.closest('.data-wrapper').hidden = false;
-      genericNameContainer.innerHTML = genericName?.innerHTML;
+      genericNameContainer.hidden = false;
+      genericNameContainer.textContent = genericName?.textContent;
     }
 
     function parseDate(dateString, type) {
