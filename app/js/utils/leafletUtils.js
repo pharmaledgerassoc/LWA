@@ -1,6 +1,11 @@
 import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.js";
 import constants from "../../../constants.js";
 
+const TITLES = {
+  LIST_OF_EXCIPIENTS: 'list_of_excipients',
+  GENERIC_NAME: 'generic_name'
+}
+
 let showExpired = function () {
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
   document.querySelector("#expired-modal").classList.remove("hiddenElement");
@@ -158,22 +163,32 @@ const renderProductInformation = function (result, hasLeaflet = true) {
      /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
    
      let list = undefined;
+     let genericName = undefined;
      if(result.xmlContent) {
         let xmlService = new XMLDisplayService("#product-content");
         let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
         list = getListOfExcipients(resultDocument);
+        genericName = getGenericName(resultDocument);
      }
 
     const container = modal.querySelector('.product-information-wrapper');
     const elements = container.querySelectorAll('[data-attr]');
     const excipientsContainer = modal.querySelector('#list-of-excipients');
+    const genericNameContainer = modal.querySelector('#generic-name');
     excipientsContainer.innerHTML = '';
+    genericNameContainer.innerHTML = '';
     excipientsContainer.closest('.data-wrapper').hidden = true;
+    genericNameContainer.closest('.data-wrapper').hidden = true;
     const {productData} = result;
     const {batchData} = productData;
     if(list) {
         excipientsContainer.closest('.data-wrapper').hidden = false;
         excipientsContainer.innerHTML = list?.innerHTML;
+    }
+
+    if(genericName) {
+      genericNameContainer.closest('.data-wrapper').hidden = false;
+      genericNameContainer.innerHTML = genericName?.innerHTML;
     }
 
     function parseDate(dateString, type) {
@@ -211,22 +226,29 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     focusModalHeader();
 }
 
+const getContentFromTitle = function(xmlContent, text){
+  const sections = xmlContent.querySelectorAll(".leaflet-accordion-item");
+  for(let section of sections) {
+      const title = section.querySelector('h2')?.textContent;
+      if(title) {
+          const titleString = title.trimEnd().replace(/\s+/g, ' ').replace(/\s/g, '_').toLowerCase();
+          if(titleString.includes(text)) {
+              const list = section.querySelector('.leaflet-accordion-item-content');
+              if(list?.innerHTML) {
+                  return list;
+                  break;
+              }
+          } 
+      }
+  }
+}
 
 const getListOfExcipients = function(xmlContent) {
-    const sections = xmlContent.querySelectorAll(".leaflet-accordion-item");
-    for(let section of sections) {
-        const title = section.querySelector('h2')?.textContent;
-        if(title) {
-            const titleString = title.trimEnd().replace(/\s+/g, ' ').replace(/\s/g, '_').toLowerCase();
-            if(titleString === 'list_of_excipients') {
-                const list = section.querySelector('.leaflet-accordion-item-content');
-                if(list?.innerHTML) {
-                    return list;
-                    break;
-                }
-            } 
-        }
-    }
+  return getContentFromTitle(xmlContent, TITLES.LIST_OF_EXCIPIENTS);
+}
+
+const getGenericName = function(xmlContent) {
+  return getContentFromTitle(xmlContent, TITLES.GENERIC_NAME);
 }
 
 async function getFileContent(file, methodName = "readAsText") {
