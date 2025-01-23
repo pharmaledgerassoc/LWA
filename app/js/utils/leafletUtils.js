@@ -6,6 +6,11 @@ const TITLES = {
   GENERIC_NAME: 'generic_name'
 }
 
+const CLASSES = {
+  LIST_OF_EXCIPIENTS: 'list_excipients',
+  GENERIC_NAME: 'generic_name'
+}
+
 let showExpired = function () {
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
   document.querySelector("#expired-modal").classList.remove("hiddenElement");
@@ -167,8 +172,22 @@ const renderProductInformation = function (result, hasLeaflet = true) {
      if(result.xmlContent) {
         let xmlService = new XMLDisplayService("#product-content");
         let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
-        list = getListOfExcipients(resultDocument);
-        genericName = getGenericName(resultDocument);
+        let resultXml = xmlService.parseXmlstring(result.xmlContent);
+
+        list = xmlService.getElementsWithClass(resultXml, CLASSES.LIST_OF_EXCIPIENTS);
+        genericName = xmlService.getElementsWithClass(resultXml, CLASSES.GENERIC_NAME);
+
+        if(!!list && Array.isArray(list) && list.length > 0)
+          list = list[0]; 
+
+        if(!!genericName && Array.isArray(genericName) && genericName.length > 0)
+          genericName = genericName[0];
+
+        if(!genericName)
+          genericName = getGenericName(resultDocument);
+
+        if(!list)
+          list = getListOfExcipients(resultDocument);
      }
 
     const container = modal.querySelector('.product-information-wrapper');
