@@ -227,16 +227,9 @@ const renderProductInformation = function (result, hasLeaflet = true) {
         const attr = element.getAttribute('data-attr');
         const isBatch = element.hasAttribute('data-batch');
         let value = "";
-        if(attr.includes('manufacturerAddress')) {
-            Object.keys(batchData || {}).forEach(key => {
-                if(key.includes('manufacturerAddress'))   
-                    value +=  batchData?.[key]?.length ? `${batchData[key]} <br />` : ''; 
-            })              
-        } else {
-            value = !isBatch ? productData?.[attr] : batchData?.[attr];
-            if((attr?.toLowerCase()).includes('date'))
-                value = parseDate(value, attr);
-        }
+        value = !isBatch ? productData?.[attr] : batchData?.[attr];
+        if((attr?.toLowerCase()).includes('date'))
+            value = parseDate(value, attr);
         element.innerHTML = value || "";
     })
     modal.querySelector('.product-information-wrapper').hidden = false;
