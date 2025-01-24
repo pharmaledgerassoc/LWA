@@ -200,15 +200,16 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     genericNameContainer.hidden = true;
     const {productData} = result;
     const {batchData} = productData;
-    if(list) {
-        excipientsContainer.closest('.data-wrapper').hidden = false;
+
+    excipientsContainer.closest('.data-wrapper').hidden = false;
+
+    if(list) 
         excipientsContainer.innerHTML = list?.innerHTML;
-    }
     
-    if(genericName) {
-      genericNameContainer.hidden = false;
-      genericNameContainer.textContent = genericName?.textContent;
-    }
+    genericNameContainer.hidden = false;
+    if(genericName) 
+        genericNameContainer.textContent = genericName?.textContent;
+    
 
     function parseDate(dateString, type) {
         if(!dateString)
@@ -223,6 +224,7 @@ const renderProductInformation = function (result, hasLeaflet = true) {
         }
         return new Date(dateString).toLocaleString('pt', {dateStyle: 'short'}).replace(/\//g, '.');
     }
+    
     elements.forEach(element => {
         const attr = element.getAttribute('data-attr');
         const isBatch = element.hasAttribute('data-batch');
