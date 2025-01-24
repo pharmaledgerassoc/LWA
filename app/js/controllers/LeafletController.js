@@ -130,7 +130,7 @@ function LeafletController() {
             } 
             
             if(result.resultStatus === "no_xml_for_lang") 
-                return showAvailableLanguages(result)
+                return !this.selectedLanguage ? showAvailableLanguages(result) : showDocumentModal(result, false);
             
             return showRecalledMessage(result);
          
@@ -158,95 +158,6 @@ function LeafletController() {
         // document.getElementById("settings-modal").classList.remove("hiddenElement");
     }
 
-
-
-    const showAvailableLanguages = (result) => {
-
-        this.showLoader(false);
-        
-        if (result.availableLanguages.length >= 1) {
-                
-            const modal = this.showModal('leaflet-lang-select');
-            if(this.selectedDocument === DocumentsTypes.INFO) {
-                modal.querySelector('#language-message').textContent = getTranslation("document_lang_select_message")
-                modal.querySelector('#lang-title').textContent = getTranslation("document_lang_select_title");
-            }
-            
-            modal.querySelector("#proceed-button").addEventListener("click", () => {
-                let lang = document.querySelector("input[name='languages']:checked").value;
-                this.defaultLanguage = lang;
-                this.leafletLang = lang; 
-                this.selectedLanguage = lang;
-                this.getLangLeaflet(lang)
-            })
-
-            // modal.querySelector("#go-back-button").addEventListener("click", () => {
-            //     this.showModal('documents-modal');
-            // });
-            
-            modal.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
-            //  document.querySelector(".text-section.no-leaflet").setAttribute('style', 'display:none');
-            let languagesContainer = document.querySelector(".languages-container");
-            /*
-              site for flags https://flagpedia.net/download
-            */
-            let selectedItem = null;
-            result.availableLanguages.forEach((lang, index) => {
-
-                // Create the radio input element
-                let radioInput = document.createElement('input');
-                radioInput.setAttribute("type", "radio");
-                radioInput.setAttribute("name", "languages");
-                radioInput.setAttribute("value", escapeHTMLAttribute(lang.value));
-                radioInput.setAttribute("id", escapeHTMLAttribute(lang.value));
-                radioInput.defaultChecked = index === 0;
-
-                // Create the div element for the label
-                let labelDiv = document.createElement('div');
-                labelDiv.classList.add("radio-label");
-                labelDiv.setAttribute("radio-label", escapeHTMLAttribute(lang.label));
-                labelDiv.textContent = escapeHTML(`${lang.label} - (${lang.nativeName})`);
-
-                let radioFragment = document.createElement('label');
-                radioFragment.classList.add("radio-item-container");
-                radioFragment.setAttribute("role", "radio");
-                radioFragment.setAttribute("tabindex", "0");
-                radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
-                radioFragment.setAttribute("aria-label", escapeHTMLAttribute(lang.label) + " language");
-
-                // Append the radioInput and label elements to the container
-                radioFragment.appendChild(radioInput);
-                radioFragment.appendChild(labelDiv);
-
-                if (index === 0) {
-                    selectedItem = radioFragment;
-                }
-
-                radioFragment.querySelector("input").addEventListener("change", (event) => {
-                    if (selectedItem) {
-                        selectedItem.setAttribute("aria-checked", "false");
-                    }
-                    radioFragment.setAttribute("aria-checked", "true");
-                    selectedItem = radioFragment;
-                })
-
-                radioFragment.addEventListener("keydown", (event) => {
-                    if (event.key === "Enter" || event.key === " ") {
-                        radioFragment.querySelector("input").checked = true;
-                    }
-                })
-
-                languagesContainer.appendChild(radioFragment);
-            });
-
-            focusModalHeader();
-        } else {
-            goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Product found but no associated leaflet`));
-            /*      document.querySelector(".proceed-button.has-leaflets").setAttribute('style', 'display:none');
-                  document.querySelector(".text-section.has-leaflets").setAttribute('style', 'display:none');*/
-        }
-    };
-    
     const showDocumentModal = (result, hasLeaflet = true) => {
        
         try {
@@ -260,23 +171,6 @@ function LeafletController() {
             console.error(e);
             goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
         }
-
-    };
-
-    this.setSelectedDocument = async function (evt) {
-        
-        this.selectedDocument = document.querySelector("input[name='documents']:checked")?.value;
-        if(this.selectedDocument === DocumentsTypes.INFO) {
-            this.selectedLanguage = this.defaultLanguage = 'en';
-            // force show product information in english
-            return showAvailableLanguages({availableLanguages: [{
-                "label": "English",
-                "value": "en",
-                "nativeName": "English"
-            }]}) 
-        }   
-          
-        getLeaflet(this.defaultLanguage);
 
     };
 
@@ -360,6 +254,115 @@ function LeafletController() {
         return documents; 
     };
 
+    this.setSelectedDocument = async function (evt) {
+        
+        this.selectedDocument = document.querySelector("input[name='documents']:checked")?.value;
+        if(this.selectedDocument === DocumentsTypes.INFO) {
+            const browserLanguage = navigator.language;
+
+            this.selectedLanguage = this.defaultLanguage = browserLanguage.includes('en') ? 
+                'en' : browserLanguage;
+
+            if(!this.selectedLanguage.includes('en')) {
+                // force show product information in english
+                return showAvailableLanguages({availableLanguages: [{
+                    "label": "English",
+                    "value": "en",
+                    "nativeName": "English"
+                }]}) 
+            }
+        }   
+          
+        getLeaflet(this.defaultLanguage);
+
+    };
+
+    const showAvailableLanguages = (result) => {
+
+        this.showLoader(false);
+        
+        if (result.availableLanguages.length >= 1) {
+            const modal = this.showModal('leaflet-lang-select');
+            if(this.selectedDocument === DocumentsTypes.INFO) {
+                modal.querySelector('#language-message').textContent = getTranslation("document_lang_select_message")
+                modal.querySelector('#lang-title').textContent = getTranslation("document_lang_select_title");
+            }
+            
+            modal.querySelector("#proceed-button").addEventListener("click", () => {
+                let lang = document.querySelector("input[name='languages']:checked").value;
+                this.defaultLanguage = lang;
+                this.leafletLang = lang; 
+                this.selectedLanguage = lang;
+                this.getLangLeaflet(lang)
+            })
+
+            // modal.querySelector("#go-back-button").addEventListener("click", () => {
+            //     this.showModal('documents-modal');
+            // });
+            
+            modal.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
+            //  document.querySelector(".text-section.no-leaflet").setAttribute('style', 'display:none');
+            let languagesContainer = document.querySelector(".languages-container");
+            /*
+              site for flags https://flagpedia.net/download
+            */
+            let selectedItem = null;
+            result.availableLanguages.forEach((lang, index) => {
+
+                // Create the radio input element
+                let radioInput = document.createElement('input');
+                radioInput.setAttribute("type", "radio");
+                radioInput.setAttribute("name", "languages");
+                radioInput.setAttribute("value", escapeHTMLAttribute(lang.value));
+                radioInput.setAttribute("id", escapeHTMLAttribute(lang.value));
+                radioInput.defaultChecked = index === 0;
+
+                // Create the div element for the label
+                let labelDiv = document.createElement('div');
+                labelDiv.classList.add("radio-label");
+                labelDiv.setAttribute("radio-label", escapeHTMLAttribute(lang.label));
+                labelDiv.textContent = escapeHTML(`${lang.label} - (${lang.nativeName})`);
+
+                let radioFragment = document.createElement('label');
+                radioFragment.classList.add("radio-item-container");
+                radioFragment.setAttribute("role", "radio");
+                radioFragment.setAttribute("tabindex", "0");
+                radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
+                radioFragment.setAttribute("aria-label", escapeHTMLAttribute(lang.label) + " language");
+
+                // Append the radioInput and label elements to the container
+                radioFragment.appendChild(radioInput);
+                radioFragment.appendChild(labelDiv);
+
+                if (index === 0) {
+                    selectedItem = radioFragment;
+                }
+
+                radioFragment.querySelector("input").addEventListener("change", (event) => {
+                    if (selectedItem) {
+                        selectedItem.setAttribute("aria-checked", "false");
+                    }
+                    radioFragment.setAttribute("aria-checked", "true");
+                    selectedItem = radioFragment;
+                })
+
+                radioFragment.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                        radioFragment.querySelector("input").checked = true;
+                    }
+                })
+
+                languagesContainer.appendChild(radioFragment);
+            });
+
+            focusModalHeader();
+        } else {
+            goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Product found but no associated leaflet`));
+            /*      document.querySelector(".proceed-button.has-leaflets").setAttribute('style', 'display:none');
+                  document.querySelector(".text-section.has-leaflets").setAttribute('style', 'display:none');*/
+        }
+    };
+    
     let showRecalledMessage = function (result) {
         const {productData} = result;
         const {productRecall, batchData} = productData; 
@@ -431,8 +434,6 @@ function LeafletController() {
             printContent.innerHTML = "";
         }
     };
-
- 
 
     const addEventListeners = () => {
         document.getElementById("scan-again-button").addEventListener("click", this.scanAgainHandler);

@@ -212,6 +212,24 @@ button:not([disabled]) {
     font-weight: bold;
 }
 
+#list-of-excipients {
+    margin-top: -10px !important;
+    /* margin-left: 1rem; */
+}
+
+#list-of-excipients b {
+    font-size: 16px !important;
+}
+
+#manufacturer-data {
+    /* margin-left: 1rem; */
+}
+#manufacturer-data > div:nth-child(1) {
+    margin: 5px 0 !important;
+}
+
+
+
 
 /* .modal-container:not(#print-modal).hiddenElement > div,
 .page-container.hiddenElement > div{

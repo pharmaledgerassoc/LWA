@@ -200,16 +200,19 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     genericNameContainer.hidden = true;
     const {productData} = result;
     const {batchData} = productData;
-    if(list) {
-        excipientsContainer.closest('.data-wrapper').hidden = false;
+
+    excipientsContainer.closest('.data-wrapper').hidden = false;
+    
+    if(list)  {
         excipientsContainer.innerHTML = list?.innerHTML;
+    } else {
+        excipientsContainer.innerHTML = `<br />`;
     }
     
-    if(genericName) {
-      genericNameContainer.hidden = false;
-      genericNameContainer.textContent = genericName?.textContent;
-    }
-
+    genericNameContainer.hidden = false;
+    if(genericName) 
+        genericNameContainer.textContent = genericName?.textContent;
+    
     function parseDate(dateString, type) {
         if(!dateString)
             return "";

@@ -79,6 +79,10 @@ b {
     font-weight: 700;
 }
 
+.bold {
+    font-weight: 700;
+}
+
 .bold-title {
     font-size: var(--font-size--XL);
     font-weight: 700;
