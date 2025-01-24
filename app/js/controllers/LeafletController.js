@@ -130,7 +130,7 @@ function LeafletController() {
             } 
             
             if(result.resultStatus === "no_xml_for_lang") 
-                return showAvailableLanguages(result)
+                return !this.selectedLanguage ? showAvailableLanguages(result) : showDocumentModal(result, false);
             
             return showRecalledMessage(result);
          
@@ -158,7 +158,118 @@ function LeafletController() {
         // document.getElementById("settings-modal").classList.remove("hiddenElement");
     }
 
+    const showDocumentModal = (result, hasLeaflet = true) => {
+       
+        try {
+            if(this.selectedDocument === DocumentsTypes.LEAFLET) {
+                this.showModal("settings-modal");
+                return renderLeaflet(result);
+            }
+            this.showModal("product-modal");
+            renderProductInformation(result, hasLeaflet);  
+        } catch (e) {
+            console.error(e);
+            goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
+        }
 
+    };
+
+    const showAvailableDocuments = (result) => {
+        const hasLeaflet = result.availableLanguages?.length || result?.resultStatus === 'xml_found' || false;
+        let documents = [
+            {text: 'document_product_info', value: DocumentsTypes.INFO},
+            {text: 'document_patient_info', value: DocumentsTypes.LEAFLET}
+        ];
+
+        if(!hasLeaflet) 
+            documents = documents.filter(doc => doc.value !==  DocumentsTypes.LEAFLET);
+        
+        const {markets} = result?.productData;
+
+        if(!markets || markets.length < 1 || !markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId)))
+            documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
+        
+        if(!documents?.length)
+            return goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Has not documents for product`));
+
+        const modal = document.querySelector('#documents-modal');
+        const container = modal.querySelector("#content-container");
+        container.innerHTML = "";
+        let selectedItem = null;
+        const radionParent = document.createElement('div');
+        documents.forEach((item, index) => {
+            const radioInput = document.createElement('input');
+            radioInput.setAttribute("type", "radio");
+            radioInput.setAttribute("name", "documents");
+            radioInput.setAttribute("value", escapeHTMLAttribute(item.value));
+            radioInput.setAttribute("id", escapeHTMLAttribute(item.value));
+            radioInput.defaultChecked = index === 0;
+
+            // Create the div element for the label
+            const label =  getTranslation(item.text);
+
+            const labelDiv = document.createElement('div');
+            labelDiv.classList.add("radio-label");
+            labelDiv.setAttribute("radio-label", escapeHTMLAttribute(label));
+            labelDiv.textContent = label;
+
+            const radioFragment = document.createElement('label');
+            radioFragment.classList.add("radio-item-container");
+            radioFragment.setAttribute("role", "radio");
+            radioFragment.setAttribute("tabindex", "0");
+            radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
+            radioFragment.setAttribute("aria-label", escapeHTMLAttribute(label));
+
+            // Append the radioInput and label elements to the container
+            radioFragment.appendChild(radioInput);
+            radioFragment.appendChild(labelDiv);
+
+            if (index === 0) 
+                selectedItem = radioFragment;
+            
+            radioFragment.querySelector("input").addEventListener("change", (event) => {
+                if (selectedItem) 
+                    selectedItem.setAttribute("aria-checked", "false");
+                radioFragment.setAttribute("aria-checked", "true");
+                selectedItem = radioFragment;
+            })
+
+            radioFragment.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") 
+                    radioFragment.querySelector("input").checked = true;
+            })
+
+            radionParent.appendChild(radioFragment);
+        })
+        container.appendChild(radionParent);
+        this.showModal('documents-modal');
+        document.querySelector('#button-exit').addEventListener('click', () => {
+            window.location.href = decodeURIComponent(window.location.href);
+            // goToPage(decodeURIComponent(window.location.href));
+            // this.documents = undefined;
+            // this.selectedLanguage = undefined;
+            // this.leafletLang = undefined;
+            // getLeaflet(this.defaultLanguage);
+        });
+        return documents; 
+    };
+
+    this.setSelectedDocument = async function (evt) {
+        
+        this.selectedDocument = document.querySelector("input[name='documents']:checked")?.value;
+        if(this.selectedDocument === DocumentsTypes.INFO) {
+            this.selectedLanguage = this.defaultLanguage = 'en';
+            // force show product information in english
+            return showAvailableLanguages({availableLanguages: [{
+                "label": "English",
+                "value": "en",
+                "nativeName": "English"
+            }]}) 
+        }   
+          
+        getLeaflet(this.defaultLanguage);
+
+    };
 
     const showAvailableLanguages = (result) => {
 
@@ -247,119 +358,6 @@ function LeafletController() {
         }
     };
     
-    const showDocumentModal = (result, hasLeaflet = true) => {
-       
-        try {
-            if(this.selectedDocument === DocumentsTypes.LEAFLET) {
-                this.showModal("settings-modal");
-                return renderLeaflet(result);
-            }
-            this.showModal("product-modal");
-            renderProductInformation(result, hasLeaflet);  
-        } catch (e) {
-            console.error(e);
-            goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
-        }
-
-    };
-
-    this.setSelectedDocument = async function (evt) {
-        
-        this.selectedDocument = document.querySelector("input[name='documents']:checked")?.value;
-        if(this.selectedDocument === DocumentsTypes.INFO) {
-            this.selectedLanguage = this.defaultLanguage = 'en';
-            // force show product information in english
-            return showAvailableLanguages({availableLanguages: [{
-                "label": "English",
-                "value": "en",
-                "nativeName": "English"
-            }]}) 
-        }   
-          
-        getLeaflet(this.defaultLanguage);
-
-    };
-
-    const showAvailableDocuments = (result) => {
-        const hasLeaflet = result.availableLanguages?.length || result?.resultStatus === 'xml_found' || false;
-        let documents = [
-            {text: 'document_product_info', value: DocumentsTypes.INFO},
-            {text: 'document_patient_info', value: DocumentsTypes.LEAFLET}
-        ];
-
-        if(!hasLeaflet) 
-            documents = documents.filter(doc => doc.value !==  DocumentsTypes.LEAFLET);
-        
-        const {markets} = result?.productData;
-
-        if(!markets || markets.length < 1 || !markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId)))
-            documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
-        
-        if(!documents?.length)
-            return goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Has not documents for product`));
-
-        const modal = document.querySelector('#documents-modal');
-        const container = modal.querySelector("#content-container");
-        container.innerHTML = "";
-        let selectedItem = null;
-        const radionParent = document.createElement('div');
-        documents.forEach((item, index) => {
-            const radioInput = document.createElement('input');
-            radioInput.setAttribute("type", "radio");
-            radioInput.setAttribute("name", "documents");
-            radioInput.setAttribute("value", escapeHTMLAttribute(item.value));
-            radioInput.setAttribute("id", escapeHTMLAttribute(item.value));
-            radioInput.defaultChecked = index === 0;
-
-            // Create the div element for the label
-            const label =  getTranslation(item.text);
-
-            const labelDiv = document.createElement('div');
-            labelDiv.classList.add("radio-label");
-            labelDiv.setAttribute("radio-label", escapeHTMLAttribute(label));
-            labelDiv.textContent = label;
-
-            const radioFragment = document.createElement('label');
-            radioFragment.classList.add("radio-item-container");
-            radioFragment.setAttribute("role", "radio");
-            radioFragment.setAttribute("tabindex", "0");
-            radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
-            radioFragment.setAttribute("aria-label", escapeHTMLAttribute(label));
-
-            // Append the radioInput and label elements to the container
-            radioFragment.appendChild(radioInput);
-            radioFragment.appendChild(labelDiv);
-
-            if (index === 0) 
-                selectedItem = radioFragment;
-            
-            radioFragment.querySelector("input").addEventListener("change", (event) => {
-                if (selectedItem) 
-                    selectedItem.setAttribute("aria-checked", "false");
-                radioFragment.setAttribute("aria-checked", "true");
-                selectedItem = radioFragment;
-            })
-
-            radioFragment.addEventListener("keydown", (event) => {
-                if (event.key === "Enter" || event.key === " ") 
-                    radioFragment.querySelector("input").checked = true;
-            })
-
-            radionParent.appendChild(radioFragment);
-        })
-        container.appendChild(radionParent);
-        this.showModal('documents-modal');
-        document.querySelector('#button-exit').addEventListener('click', () => {
-            window.location.href = decodeURIComponent(window.location.href);
-            // goToPage(decodeURIComponent(window.location.href));
-            // this.documents = undefined;
-            // this.selectedLanguage = undefined;
-            // this.leafletLang = undefined;
-            // getLeaflet(this.defaultLanguage);
-        });
-        return documents; 
-    };
-
     let showRecalledMessage = function (result) {
         const {productData} = result;
         const {productRecall, batchData} = productData; 
@@ -431,8 +429,6 @@ function LeafletController() {
             printContent.innerHTML = "";
         }
     };
-
- 
 
     const addEventListeners = () => {
         document.getElementById("scan-again-button").addEventListener("click", this.scanAgainHandler);
