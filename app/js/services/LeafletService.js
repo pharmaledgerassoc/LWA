@@ -53,13 +53,14 @@ const prepareUrlsForMtimeCall = function (arrayOfUrls) {
 
 
 class LeafletService {
-  constructor(gtin, batch, expiry, leafletLang, epiDomain) {
+  constructor(gtin, batch, expiry, leafletLang, epiDomain, epiMarket) {
 
     this.gtin = gtin;
     this.batch = batch;
     this.expiry = expiry;
     this.leafletLang = leafletLang;
     this.epiDomain = epiDomain;
+    this.epiMarket = epiMarket;
 
     let gtinValidationResult = validateGTIN(this.gtin);
     if (!gtinValidationResult.isValid) {
@@ -174,6 +175,10 @@ class LeafletService {
       smartUrl = smartUrl.concatWith(`&batch=${this.batch}`);
     }
 
+    if (this.epiMarket) {
+      smartUrl = smartUrl.concatWith(`&epiMarket=${this.epiMarket}`);
+    }
+
     let header = {"epiProtocolVersion": environment.epiProtocolVersion || "1"};
 
     return smartUrl.getRequest({
@@ -232,6 +237,7 @@ class LeafletService {
           if (!leafletResponse) {
             return reject({errorCode: constants.errorCodes.unknown_error});
           }
+
           switch (leafletResponse.status) {
             case 400:
               leafletResponse.text().then(errorJSON => {

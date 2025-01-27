@@ -6,6 +6,7 @@ import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
 import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation, showIncorrectDate} from "../utils/leafletUtils.js"
 import {translate, getTranslation} from "../translationUtils.js";
+import {getCountry} from "../countriesUtils.js";
 
 const DocumentsTypes = {
     LEAFLET: "leaflet",
@@ -34,7 +35,8 @@ function LeafletController() {
     this.defaultLanguage;
     this.selectedLanguage;
     this.selectedDocument;
-    
+    this.selectedMarket = undefined;
+
     function generateFileName(){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -50,6 +52,15 @@ function LeafletController() {
         setTextDirectionForLanguage(lang, "#leaflet-content");
         setTextDirectionForLanguage(lang, ".modal-body .page-header");
         document.querySelector("#leaflet-lang-select").classList.add("hiddenElement");
+    }
+
+    this.getMarketLeaflet = () => {
+        this.showLoader(true);
+        const currentUrl = new URL(window.location.href);
+        currentUrl.searchParams.set("epiMarket", this.selectedMarket);
+        window.history.replaceState(null, "", currentUrl.toString());
+        getLeaflet(this.selectedLanguage);
+        document.querySelector("#epi-markets-modal").classList.add("hiddenElement");
     }
     
     this.getActiveModal = function() {
@@ -89,13 +100,14 @@ function LeafletController() {
         let gtin = urlParams.get("gtin");
         let batch = urlParams.get("batch");
         let expiry = urlParams.get("expiry");
+        let epiMarket = urlParams.get("epiMarket");
         let lsEpiDomain = environment.enableEpiDomain ? localStorage.getItem(constants.EPI_DOMAIN) : environment.epiDomain;
         lsEpiDomain = lsEpiDomain || environment.epiDomain;
         let timePerCall = environment.timePerCall || 10000;
         let totalWaitTime = environment.totalWaitTime || 60000;
         let gto_TimePerCall = environment.gto_TimePerCall || 3000;
         let gto_TotalWaitTime = environment.gto_TotalWaitTime || 15000;
-        let leafletService = new LeafletService(gtin, batch, expiry, lang, lsEpiDomain);
+        let leafletService = new LeafletService(gtin, batch, expiry, lang, lsEpiDomain, epiMarket);
 
         this.showLoader(true); 
 
@@ -113,7 +125,15 @@ function LeafletController() {
                 return;
             }
 
-                     
+            result.availableMarkets = [
+                {text: '', value: ""},
+                {text: 'US', value: "US"},
+                {text: 'PT', value: "PT"},
+            ];
+            if (this.selectedLanguage && typeof this.selectedMarket === "undefined" && result?.availableMarkets.length > 0) {
+                return showAvailableMarkets(result?.availableMarkets);
+            }
+
             if(result.resultStatus === "xml_found" || result.resultStatus.trim() === "has_no_leaflet") {
                 try {
                     showDocumentModal(result, result.resultStatus === "xml_found");
@@ -151,15 +171,79 @@ function LeafletController() {
 
     this.closeModal = function (evt) {
         const modalId = (typeof evt === "string") ? evt : evt.currentTarget.getAttribute("modal-id")
-        if (['leaflet-lang-select', 'documents-modal'].includes(modalId)) 
+        if (['leaflet-lang-select', 'documents-modal', 'epi-markets-modal'].includes(modalId))
             return goToPage("/main.html");
         document.querySelector("#" + modalId).classList.add("hiddenElement");
 
         // document.getElementById("settings-modal").classList.remove("hiddenElement");
     }
 
+    const showAvailableMarkets = (availableMarkets) => {
+        const modal = document.querySelector('#epi-markets-modal');
+        const container = modal.querySelector("#content-container");
+        container.innerHTML = "";
+        let selectedItem = null;
+        const radionParent = document.createElement('div');
+        availableMarkets.forEach((item, index) => {
+            const radioInput = document.createElement('input');
+            radioInput.setAttribute("type", "radio");
+            radioInput.setAttribute("name", "epi-market");
+            radioInput.setAttribute("value", escapeHTMLAttribute(item.value));
+            radioInput.setAttribute("id", escapeHTMLAttribute(item.value));
+            radioInput.defaultChecked = index === 0;
+
+            // Create the div element for the label
+            const label =  getCountry(item.text);
+
+            const labelDiv = document.createElement('div');
+            labelDiv.classList.add("radio-label");
+            labelDiv.setAttribute("radio-label", escapeHTMLAttribute(label));
+            labelDiv.textContent = label;
+
+            const radioFragment = document.createElement('label');
+            radioFragment.classList.add("radio-item-container");
+            radioFragment.setAttribute("role", "radio");
+            radioFragment.setAttribute("tabindex", "0");
+            radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
+            radioFragment.setAttribute("aria-label", escapeHTMLAttribute(label));
+
+            // Append the radioInput and label elements to the container
+            radioFragment.appendChild(radioInput);
+            radioFragment.appendChild(labelDiv);
+
+            if (index === 0)
+                selectedItem = index;
+
+            radioFragment.querySelector("input").addEventListener("change", (event) => {
+                if (selectedItem)
+                    selectedItem.setAttribute("aria-checked", "false");
+                radioFragment.setAttribute("aria-checked", "true");
+                selectedItem = radioFragment;
+            })
+
+            radioFragment.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ")
+                    radioFragment.querySelector("input").checked = true;
+            })
+
+            radionParent.appendChild(radioFragment);
+        })
+        container.appendChild(radionParent);
+        this.showModal('epi-markets-modal');
+        modal.querySelector('#epi-market-go-back-button').addEventListener('click', () => {
+            window.location.href = decodeURIComponent(window.location.href);
+        });
+
+        modal.querySelector('#epi-market-proceed-button').addEventListener('click', () => {
+            this.selectedMarket = document.querySelector("input[name='epi-market']:checked")?.value;
+            this.getMarketLeaflet();
+            // window.location.href = decodeURIComponent(window.location.href);
+        });
+
+        return availableMarkets;
+    };
+
     const showDocumentModal = (result, hasLeaflet = true) => {
-       
         try {
             if(this.selectedDocument === DocumentsTypes.LEAFLET) {
                 this.showModal("settings-modal");
