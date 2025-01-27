@@ -49,7 +49,9 @@ const data = {
   "document_patient_info": "Informacija apie pacientą",
   "document_product_info": "Informacija apie produktą pacientams",
   "document_lang_select_message": "Informacija apie produktą galima tik anglų kalba",
-  "document_lang_select_title": "Pranešimas"
+  "document_lang_select_title": "Pranešimas",
+  "epi_markets_modal_title": "Prašau pasirinkti",
+  "epi_market_modal_message": "Pasirinkite, kurią rinką rodyti"
 }
 
 export default data;

@@ -49,7 +49,9 @@ const data = {
   "document_patient_info": "Informácie o pacientovi",
   "document_product_info": "Informácie o produkte pre pacientov",
   "document_lang_select_message": "Informácie o produkte sú k dispozícii iba v angličtine",
-  "document_lang_select_title": "Oznámenie"
+  "document_lang_select_title": "Oznámenie",
+  "epi_markets_modal_title": "Vyberte si prosím",
+  "epi_market_modal_message": "Vyberte, ktorý trh sa má zobraziť"
 }
 
 export default data;

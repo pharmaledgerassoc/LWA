@@ -49,7 +49,9 @@ const data = {
   "document_patient_info": "معلومات المريض",
   "document_product_info": "معلومات المنتج للمرضى",
   "document_lang_select_message": "معلومات المنتج متوفرة فقط باللغة الإنجليزية",
-  "document_lang_select_title": "يلاحظ"
+  "document_lang_select_title": "يلاحظ",
+  "epi_markets_modal_title": "الرجاء الاختيار",
+  "epi_market_modal_message": "الرجاء تحديد أي سوق لعرضه"
 }
 
 export default data;

@@ -49,7 +49,9 @@ const data = {
   "document_patient_info": "Patientinformation",
   "document_product_info": "Produktinformation för patienter",
   "document_lang_select_message": "Produktinformation finns endast på engelska",
-  "document_lang_select_title": "Varsel"
+  "document_lang_select_title": "Varsel",
+  "epi_markets_modal_title": "Välj",
+  "epi_market_modal_message": "Välj vilken marknad som ska visas"
 }
 
 export default data;

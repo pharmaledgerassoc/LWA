@@ -45,7 +45,9 @@ const data = {
   "document_patient_info": "Πληροφορίες ασθενούς",
   "document_product_info": "Πληροφορίες προϊόντος για ασθενείς",
   "document_lang_select_message": "Οι πληροφορίες προϊόντων είναι διαθέσιμα μόνο στα Αγγλικά",
-  "document_lang_select_title": "Ανακοίνωση"
+  "document_lang_select_title": "Ανακοίνωση",
+  "epi_markets_modal_title": "Επιλέξτε",
+  "epi_market_modal_message": "Επιλέξτε ποια αγορά θα εμφανιστεί"
 }
 
 export default data;

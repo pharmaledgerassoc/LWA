@@ -45,7 +45,9 @@ const data = {
   "document_patient_info": "Informācija par pacientu",
   "document_product_info": "Informācija par produktu pacientiem",
   "document_lang_select_message": "Informācija par produktu ir pieejama tikai angļu valodā",
-  "document_lang_select_title": "Pamanīt"
+  "document_lang_select_title": "Pamanīt",
+  "epi_markets_modal_title": "Lūdzu, izvēlieties",
+  "epi_market_modal_message": "Lūdzu, atlasiet, kuru tirgu parādīt"
 }
 
 export default data;

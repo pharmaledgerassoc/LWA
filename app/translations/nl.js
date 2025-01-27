@@ -49,7 +49,9 @@ const data = {
   "document_patient_info": "Patiëntinformatie",
   "document_product_info": "Productinformatie voor patiënten",
   "document_lang_select_message": "Productinformatie is alleen beschikbaar in het Engels",
-  "document_lang_select_title": "Kennisgeving"
+  "document_lang_select_title": "Kennisgeving",
+  "epi_markets_modal_title": "Kies alstublieft",
+  "epi_market_modal_message": "Selecteer welke markt u moet weergeven"
 }
 
 export default data;

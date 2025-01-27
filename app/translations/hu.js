@@ -49,7 +49,9 @@ const data = {
   "document_patient_info": "Beteginformációk",
   "document_product_info": "Termékinformációk a betegek számára",
   "document_lang_select_message": "A termékinformációk csak angolul érhetők el",
-  "document_lang_select_title": "Értesítés"
+  "document_lang_select_title": "Értesítés",
+  "epi_markets_modal_title": "Kérjük, válasszon",
+  "epi_market_modal_message": "Kérjük, válassza ki, hogy melyik piacot jelenítse meg"
 }
 
 export default data;

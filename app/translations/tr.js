@@ -45,7 +45,9 @@ const data = {
   "document_patient_info": "Hasta bilgileri",
   "document_product_info": "Hastalar için ürün bilgileri",
   "document_lang_select_message": "Ürün bilgileri yalnızca İngilizce olarak mevcuttur",
-  "document_lang_select_title": "Fark etme"
+  "document_lang_select_title": "Fark etme",
+  "epi_markets_modal_title": "Lütfen Seçin",
+  "epi_market_modal_message": "Lütfen hangi pazarı görüntüleyeceğinizi seçin"
 }
 
 export default data;
