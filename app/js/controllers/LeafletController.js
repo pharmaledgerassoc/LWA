@@ -10,7 +10,8 @@ import {getCountry} from "../countriesUtils.js";
 
 const DocumentsTypes = {
     LEAFLET: "leaflet",
-    INFO: "info"
+    INFO: "info",
+    PRESCRIBING_INFO: "prescribingInfo"
 };
 
 enableConsolePersistence();
@@ -54,12 +55,11 @@ function LeafletController() {
         document.querySelector("#leaflet-lang-select").classList.add("hiddenElement");
     }
 
-    this.getMarketLeaflet = () => {
+    this.getMarketLeaflet = (lang) => {
         this.showLoader(true);
         const currentUrl = new URL(window.location.href);
-        currentUrl.searchParams.set("epiMarket", this.selectedMarket);
         window.history.replaceState(null, "", currentUrl.toString());
-        getLeaflet(this.selectedLanguage);
+        getLeaflet(lang);
         document.querySelector("#epi-markets-modal").classList.add("hiddenElement");
     }
     
@@ -125,13 +125,15 @@ function LeafletController() {
                 return;
             }
 
-            result.availableMarkets = [
-                {text: '', value: ""},
-                {text: 'US', value: "US"},
-                {text: 'PT', value: "PT"},
-            ];
-            if (this.selectedLanguage && typeof this.selectedMarket === "undefined" && result?.availableMarkets.length > 0) {
-                return showAvailableMarkets(result?.availableMarkets);
+            if ((this.selectedLanguage || !this.selectedLanguage && result.resultStatus === "xml_found") && typeof this.selectedMarket === "undefined" && Object.keys(result?.availableEpiMarkets || {}).length > 0) {
+                const language = this.selectedLanguage || this.defaultLanguage;
+                if (result.availableEpiMarkets?.[language]) {
+                    let availableMarkets = result.availableEpiMarkets[language];
+                    if (!this.selectedLanguage && result.resultStatus === "xml_found") {
+                        availableMarkets = ["", ...availableMarkets];
+                    }
+                    return showAvailableMarkets(language, availableMarkets);
+                }
             }
 
             if(result.resultStatus === "xml_found" || result.resultStatus.trim() === "has_no_leaflet") {
@@ -153,7 +155,6 @@ function LeafletController() {
                 return !this.selectedLanguage ? showAvailableLanguages(result) : showDocumentModal(result, false);
             
             return showRecalledMessage(result);
-         
         
         }).catch(err => {
             console.error(err);
@@ -178,7 +179,8 @@ function LeafletController() {
         // document.getElementById("settings-modal").classList.remove("hiddenElement");
     }
 
-    const showAvailableMarkets = (availableMarkets) => {
+    const showAvailableMarkets = (lang, availableMarkets) => {
+        console.log("$ showAvailableMarkets=", availableMarkets);
         const modal = document.querySelector('#epi-markets-modal');
         const container = modal.querySelector("#content-container");
         container.innerHTML = "";
@@ -188,12 +190,12 @@ function LeafletController() {
             const radioInput = document.createElement('input');
             radioInput.setAttribute("type", "radio");
             radioInput.setAttribute("name", "epi-market");
-            radioInput.setAttribute("value", escapeHTMLAttribute(item.value));
-            radioInput.setAttribute("id", escapeHTMLAttribute(item.value));
+            radioInput.setAttribute("value", escapeHTMLAttribute(item));
+            radioInput.setAttribute("id", escapeHTMLAttribute(item));
             radioInput.defaultChecked = index === 0;
 
             // Create the div element for the label
-            const label =  getCountry(item.text);
+            const label =  getCountry(item);
 
             const labelDiv = document.createElement('div');
             labelDiv.classList.add("radio-label");
@@ -236,7 +238,7 @@ function LeafletController() {
 
         modal.querySelector('#epi-market-proceed-button').addEventListener('click', () => {
             this.selectedMarket = document.querySelector("input[name='epi-market']:checked")?.value;
-            this.getMarketLeaflet();
+            this.getMarketLeaflet(lang);
             // window.location.href = decodeURIComponent(window.location.href);
         });
 
@@ -262,7 +264,8 @@ function LeafletController() {
         const hasLeaflet = result.availableLanguages?.length || result?.resultStatus === 'xml_found' || false;
         let documents = [
             {text: 'document_product_info', value: DocumentsTypes.INFO},
-            {text: 'document_patient_info', value: DocumentsTypes.LEAFLET}
+            {text: 'document_patient_info', value: DocumentsTypes.LEAFLET},
+            {text: 'document_prescribing_info', value: DocumentsTypes.PRESCRIBING_INFO}
         ];
 
         if(!hasLeaflet) 
