@@ -14,6 +14,10 @@ const DocumentsTypes = {
     PRESCRIBING_INFO: "prescribingInfo"
 };
 
+const parseEpiMarketValue = (epiMarket) => {
+    return epiMarket === "default" ? "" : epiMarket;
+}
+
 enableConsolePersistence();
 
 window.onload = async (event) => {
@@ -109,7 +113,8 @@ function LeafletController() {
         let totalWaitTime = environment.totalWaitTime || 60000;
         let gto_TimePerCall = environment.gto_TimePerCall || 3000;
         let gto_TotalWaitTime = environment.gto_TotalWaitTime || 15000;
-        let leafletService = new LeafletService(gtin, batch, expiry, lang, lsEpiDomain, epiMarket);
+
+        let leafletService = new LeafletService(gtin, batch, expiry, lang || this.defaultLanguage, lsEpiDomain, parseEpiMarketValue(this.selectedEpiMarket));
 
         this.showLoader(true);
 
@@ -141,6 +146,10 @@ function LeafletController() {
                 if (result?.availableLanguages?.length > 0) {
                     availableEpiMarkets = ["", ...availableEpiMarkets]
                 }
+
+                if (availableEpiMarkets.length === 1) {
+                    return this.setSelectEpiMarket(availableEpiMarkets[0]);
+                }
                 // this.lastResponse = Object.assign(this.lastResponse, { parsedMarkets });
                 return showAvailableMarkets(language, availableEpiMarkets);
             }
@@ -161,9 +170,9 @@ function LeafletController() {
                 }
             }
 
-            if(result.resultStatus === "no_xml_for_lang") 
+            if(result.resultStatus === "no_xml_for_lang")
                 return !this.selectedLanguage ? showAvailableLanguages(result) : showDocumentModal(result, false);
-            
+
             return showRecalledMessage(result);
 
 
@@ -191,7 +200,6 @@ function LeafletController() {
     }
 
     const showAvailableMarkets = (lang, availableMarkets) => {
-        console.log("$ showAvailableMarkets=", availableMarkets);
         const modal = document.querySelector('#epi-markets-modal');
         const container = modal.querySelector("#content-container");
         container.innerHTML = "";
@@ -248,18 +256,22 @@ function LeafletController() {
         });
 
         modal.querySelector('#epi-market-proceed-button').addEventListener('click', () => {
-            this.selectedEpiMarket = modal.querySelector("input[name='epi-market']:checked")?.value;
-            const availableLanguages = this.lastResponse.availableEpiMarkets?.[this.selectedEpiMarket];
-            if(!availableLanguages || !this.selectedEpiMarket) {
-                this.selectedEpiMarket = "default";
-                return showAvailableLanguages(this.lastResponse);
-            }
-            showAvailableLanguages({availableLanguages});
-            // window.location.href = decodeURIComponent(window.location.href);
+            const value = modal.querySelector("input[name='epi-market']:checked")?.value;
+            this.setSelectEpiMarket(value);
         });
 
         return availableMarkets;
     };
+
+    this.setSelectEpiMarket = function (selectedMarket = null) {
+        this.selectedEpiMarket = selectedMarket;
+        const availableLanguages = this.lastResponse.availableEpiMarkets?.[this.selectedEpiMarket];
+        if(!availableLanguages || !this.selectedEpiMarket) {
+            this.selectedEpiMarket = "default";
+            return showAvailableLanguages(this.lastResponse);
+        }
+        showAvailableLanguages({availableLanguages});
+    }
 
     const showDocumentModal = (result, hasLeaflet = true) => {
         try {
@@ -277,7 +289,7 @@ function LeafletController() {
     };
 
     const showAvailableDocuments = (result) => {
-        
+
         const hasLeaflet = result.availableLanguages?.length || result?.resultStatus === 'xml_found' || result?.availableTypes?.includes(DocumentsTypes.LEAFLET) || false;
         const hasPrescribingInfo  = result?.availableTypes?.includes(DocumentsTypes.PRESCRIBING_INFO);
         let documents = [
@@ -370,22 +382,20 @@ function LeafletController() {
         this.selectedDocument = selectedDocument ?
             selectedDocument : document.querySelector("input[name='documents']:checked")?.value;
 
+        const browserLanguage = navigator.language;
         if(this.selectedDocument === DocumentsTypes.INFO) {
-            const browserLanguage = navigator.language;
             this.selectedLanguage = this.defaultLanguage = browserLanguage.includes('en') ?
                 'en' : browserLanguage;
 
             if(!this.selectedLanguage.includes('en')) {
                 // force show product information in english
                 return showAvailableLanguages({availableLanguages: [{
-                    "label": "English",
-                    "value": "en",
-                    "nativeName": "English"
-                }]})
+                        "label": "English",
+                        "value": "en",
+                        "nativeName": "English"
+                    }]})
             }
         }
-
-        if(this.selectedDocument === DocumentsTypes.PRESCRIBING_INFO) {}
 
         getLeaflet(this.defaultLanguage);
 
@@ -395,7 +405,7 @@ function LeafletController() {
 
         this.showLoader(false);
 
-        if (result.availableLanguages.length >= 1) {   
+        if (result.availableLanguages.length >= 1) {
 
             const modal = this.showModal('leaflet-lang-select');
             if(this.selectedDocument === DocumentsTypes.INFO) {
@@ -423,7 +433,7 @@ function LeafletController() {
             */
             let selectedItem = null;
             result.availableLanguages.forEach((lang, index) => {
-              
+
                 // Create the radio input element
                 let radioInput = document.createElement('input');
                 radioInput.setAttribute("type", "radio");
@@ -480,23 +490,23 @@ function LeafletController() {
 
     let showRecalledMessage = function (result) {
         const {productData} = result;
-        const {productRecall, batchData} = productData; 
+        const {productRecall, batchData} = productData;
         const recalled = productRecall || batchData?.batchRecall;
         const recalledContainer = document.querySelector("#recalled-modal");
         const modalLeaflet = document.getElementById("settings-modal");
         const recalledBar = document.querySelector('#recalled-bar');
         modalLeaflet.classList.remove('recalled');
         if (recalled) {
-            const batchRecalled = batchData?.batchRecall; 
+            const batchRecalled = batchData?.batchRecall;
             const recalledMessageContainer = document.querySelector(".recalled-message-container");
 
             modalLeaflet.classList.add('recalled');
             recalledBar.classList.add('visible');
             recalledContainer.classList.remove("hiddenElement");
-            
-            if (batchRecalled) { 
+
+            if (batchRecalled) {
                 recalledContainer.querySelector("#recalled-title").textContent = getTranslation('recalled_batch_title');
-                recalledMessageContainer.innerHTML = getTranslation("recalled_batch_message",  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`); 
+                recalledMessageContainer.innerHTML = getTranslation("recalled_batch_message",  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`);
                 // recallInformation.innerHTML += getTranslation('recalled_batch_name',  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`);
                 recalledBar.querySelector('#recalled-bar-content').textContent =  getTranslation('leaflet_recalled_batch');
                 recalledMessageContainer.innerHTML += "<br /><br />"+getTranslation('recalled_product_name', `<strong>${result.productData.nameMedicinalProduct}</strong>`);
@@ -505,20 +515,20 @@ function LeafletController() {
             }
 
             // recalledMessageContainer.appendChild(recallInformation);
-            
-            recalledContainer.querySelector(".close-modal").onclick = function() { 
+
+            recalledContainer.querySelector(".close-modal").onclick = function() {
                 recalledContainer.classList.add("hiddenElement");
                 modalLeaflet.classList.remove('recalled');
-            }; 
-            recalledContainer.querySelector("#recalled-modal-procced").onclick = function() { 
+            };
+            recalledContainer.querySelector("#recalled-modal-procced").onclick = function() {
                 recalledContainer.classList.add("hiddenElement");
                 modalLeaflet.classList.remove('recalled');
-            }; 
-            recalledContainer.querySelector("#recalled-modal-exit").onclick = function() { 
+            };
+            recalledContainer.querySelector("#recalled-modal-exit").onclick = function() {
                 goToPage("/main.html")
-            }; 
+            };
         }
-        
+
     }
 
     this.showPrintModal = () => {
