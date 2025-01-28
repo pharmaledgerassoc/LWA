@@ -382,10 +382,9 @@ function LeafletController() {
         this.selectedDocument = selectedDocument ?
             selectedDocument : document.querySelector("input[name='documents']:checked")?.value;
 
-        const browserLanguage = navigator.language;
+        const browserLanguage = this.getLanguageFromBrowser();
         if(this.selectedDocument === DocumentsTypes.INFO) {
-            this.selectedLanguage = this.defaultLanguage = browserLanguage.includes('en') ?
-                'en' : browserLanguage;
+            this.selectedLanguage = this.defaultLanguage = browserLanguage;
 
             if(!this.selectedLanguage.includes('en')) {
                 // force show product information in english
