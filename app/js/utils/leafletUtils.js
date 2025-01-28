@@ -241,31 +241,6 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     focusModalHeader();
 }
 
-const getContentFromTitle = function(xmlContent, text){
-  const sections = xmlContent.querySelectorAll(".leaflet-accordion-item");
-  for(let section of sections) {
-      const title = section.querySelector('h2')?.textContent;
-      if(title) {
-          const titleString = title.trimEnd().replace(/\s+/g, ' ').replace(/\s/g, '_').toLowerCase();
-          if(titleString.includes(text)) {
-              const list = section.querySelector('.leaflet-accordion-item-content');
-              if(list?.innerHTML) {
-                  return list;
-                  break;
-              }
-          }
-      }
-  }
-}
-
-const getListOfExcipients = function(xmlContent) {
-  return getContentFromTitle(xmlContent, TITLES.LIST_OF_EXCIPIENTS);
-}
-
-const getGenericName = function(xmlContent) {
-  return getContentFromTitle(xmlContent, TITLES.GENERIC_NAME);
-}
-
 async function getFileContent(file, methodName = "readAsText") {
   let fileReader = new FileReader();
   return new Promise((resolve, reject) => {
