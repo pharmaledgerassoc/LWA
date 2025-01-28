@@ -113,6 +113,9 @@ function LeafletController() {
 
         this.showLoader(true);
 
+        if (this.selectedDocument)
+            leafletService.leafletType = this.selectedDocument;
+
         leafletService.getLeafletUsingCache(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime).then((result) => {
             //check for injections in result
             let tmp = JSON.stringify(result);
@@ -133,16 +136,10 @@ function LeafletController() {
             if (Object.keys(result?.availableEpiMarkets || {}).length > 0 && !this.selectedEpiMarket) {
                 const language = this.selectedLanguage || this.defaultLanguage;
                 // let languages = [];
-                
+
                 let availableEpiMarkets = Object.keys(result?.availableEpiMarkets);
-                for (const [country, langs] of Object.entries(result?.availableEpiMarkets)) {
-                    for(const {value} of langs) {
-                        if(value === language || `${value}-${country}`.trim().toLowerCase() === language.toLowerCase()) {
-                            availableEpiMarkets = ["", ...availableEpiMarkets]
-                            break;
-                        }
-                    }
-                        
+                if (result?.availableLanguages?.length > 0) {
+                    availableEpiMarkets = ["", ...availableEpiMarkets]
                 }
                 // this.lastResponse = Object.assign(this.lastResponse, { parsedMarkets });
                 return showAvailableMarkets(language, availableEpiMarkets);
@@ -253,8 +250,10 @@ function LeafletController() {
         modal.querySelector('#epi-market-proceed-button').addEventListener('click', () => {
             this.selectedEpiMarket = modal.querySelector("input[name='epi-market']:checked")?.value;
             const availableLanguages = this.lastResponse.availableEpiMarkets?.[this.selectedEpiMarket];
-            if(!availableLanguages)
-                return getLeaflet(this.defaultLanguage);
+            if(!availableLanguages || !this.selectedEpiMarket) {
+                this.selectedEpiMarket = "default";
+                return showAvailableLanguages(this.lastResponse);
+            }
             showAvailableLanguages({availableLanguages});
             // window.location.href = decodeURIComponent(window.location.href);
         });

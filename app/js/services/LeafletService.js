@@ -61,6 +61,7 @@ class LeafletService {
     this.leafletLang = leafletLang;
     this.epiDomain = epiDomain;
     this.epiMarket = epiMarket;
+    this.leafletType = "leaflet";
 
     let gtinValidationResult = validateGTIN(this.gtin);
     if (!gtinValidationResult.isValid) {
@@ -169,7 +170,7 @@ class LeafletService {
     if(subDomain){
       urlPart += `/${subDomain}`;
     }
-    smartUrl = smartUrl.concatWith(`${urlPart}?leaflet_type=leaflet&lang=${this.leafletLang}&gtin=${this.gtin}`);
+    smartUrl = smartUrl.concatWith(`${urlPart}?leaflet_type=${this.leafletType}&lang=${this.leafletLang}&gtin=${this.gtin}`);
 
     if (this.batch) {
       smartUrl = smartUrl.concatWith(`&batch=${this.batch}`);
