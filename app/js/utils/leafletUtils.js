@@ -174,8 +174,8 @@ const renderProductInformation = function (result, hasLeaflet = true) {
         let resultDocument = xmlService.getHTMLFromXML(result.xmlContent);
         let resultXml = xmlService.parseXmlstring(result.xmlContent);
 
-        list = xmlService.getElementsWithClass(resultXml, CLASSES.LIST_OF_EXCIPIENTS);
-        genericName = xmlService.getElementsWithClass(resultXml, CLASSES.GENERIC_NAME);
+        list = xmlService.getElementsWithClass(resultXml, resultDocument, CLASSES.LIST_OF_EXCIPIENTS);
+        genericName = xmlService.getElementsWithClass(resultXml, resultDocument, CLASSES.GENERIC_NAME);
 
         if(!!list && Array.isArray(list) && list.length > 0)
           list = list[0];
@@ -184,10 +184,10 @@ const renderProductInformation = function (result, hasLeaflet = true) {
           genericName = genericName[0];
 
         if(!genericName || !genericName?.textContent?.length)
-          genericName = getGenericName(resultDocument);
+          genericName = xmlService.getItemFromParsedHtml(resultDocument, TITLES.GENERIC_NAME);
 
-        if(!list || !list?.length)
-          list = getListOfExcipients(resultDocument);
+        if(!list || !list?.textContent?.length)
+          list = xmlService.getItemFromParsedHtml(resultDocument, TITLES.LIST_OF_EXCIPIENTS);
      }
 
     const container = modal.querySelector('.product-information-wrapper');
