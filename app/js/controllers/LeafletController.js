@@ -395,9 +395,7 @@ function LeafletController() {
     const showAvailableLanguages = (result) => {
 
         this.showLoader(false);
-        
-        let languages = result.availableLanguage;
-        
+
         if (result.availableLanguages.length >= 1) {   
 
             const modal = this.showModal('leaflet-lang-select');
@@ -426,6 +424,9 @@ function LeafletController() {
             */
             let selectedItem = null;
             result.availableLanguages.forEach((lang, index) => {
+                // getting language data from lastresponse availableLanguages
+                if(typeof lang === 'string')
+                    lang = this.lastResponse.availableLanguages.forEach(l => l.value === lang);
 
                 // Create the radio input element
                 let radioInput = document.createElement('input');
@@ -570,13 +571,12 @@ function LeafletController() {
     }
     this.defaultLanguage = localStorage.getItem(constants.APP_LANG) || "en";
     addEventListeners();
-    // to remove
-    this.lastResponse = {
-        availableEpiMarkets: {"en": ["US", "BR"], "pt-BR": ["BR"], "pt": ["PT", "ES"]},
-        availableLanguages: ["en"],
-        productData: [],
-        availableTypes: ["leaflet", "prescribingInfo"]
-    };
+    // // to remove
+    // this.lastResponse = {
+    //     availableEpiMarkets: {"en": ["US", "BR"], "pt-BR": ["BR"], "pt": ["PT", "ES"]},
+    //     productData: [],
+    //     availableTypes: ["leaflet", "prescribingInfo"]
+    // };
     getLeaflet(this.defaultLanguage);
 
 }
