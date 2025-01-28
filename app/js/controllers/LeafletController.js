@@ -132,19 +132,19 @@ function LeafletController() {
 
             if (Object.keys(result?.availableEpiMarkets || {}).length > 0 && !this.selectedEpiMarket) {
                 const language = this.selectedLanguage || this.defaultLanguage;
+                // let languages = [];
                 
-                const parsedMarkets = {};
-                for (const [lang, countries] of Object.entries(result.availableEpiMarkets)) {
-                    for (const country of countries) {
-                        if (!parsedMarkets[country])
-                            parsedMarkets[country] = [];
-                        parsedMarkets[country].push(lang);
+                let availableEpiMarkets = Object.keys(result?.availableEpiMarkets);
+                for (const [country, langs] of Object.entries(result?.availableEpiMarkets)) {
+                    for(const {value} of langs) {
+                        if(value === language || `${value}-${country}`.trim().toLowerCase() === language.toLowerCase()) {
+                            availableEpiMarkets = ["", ...availableEpiMarkets]
+                            break;
+                        }
                     }
+                        
                 }
-                let availableEpiMarkets = Object.keys(parsedMarkets);
-                if(result.availableEpiMarkets?.[language]);
-                    availableEpiMarkets = ["", ...availableEpiMarkets];
-                this.lastResponse = Object.assign(this.lastResponse, { parsedMarkets });
+                // this.lastResponse = Object.assign(this.lastResponse, { parsedMarkets });
                 return showAvailableMarkets(language, availableEpiMarkets);
             }
 
@@ -252,7 +252,7 @@ function LeafletController() {
 
         modal.querySelector('#epi-market-proceed-button').addEventListener('click', () => {
             this.selectedEpiMarket = modal.querySelector("input[name='epi-market']:checked")?.value;
-            const availableLanguages = this.lastResponse.parsedMarkets?.[this.selectedEpiMarket];
+            const availableLanguages = this.lastResponse.availableEpiMarkets?.[this.selectedEpiMarket];
             if(!availableLanguages)
                 return getLeaflet(this.defaultLanguage);
             showAvailableLanguages({availableLanguages});
@@ -424,10 +424,7 @@ function LeafletController() {
             */
             let selectedItem = null;
             result.availableLanguages.forEach((lang, index) => {
-                // getting language data from lastresponse availableLanguages
-                if(typeof lang === 'string')
-                    lang = this.lastResponse.availableLanguages.forEach(l => l.value === lang);
-
+              
                 // Create the radio input element
                 let radioInput = document.createElement('input');
                 radioInput.setAttribute("type", "radio");
