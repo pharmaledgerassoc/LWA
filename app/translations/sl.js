@@ -49,9 +49,7 @@ const data = {
   "document_patient_info": "Podatki o bolniku",
   "document_product_info": "Informacije o izdelku za bolnike",
   "document_lang_select_message": "Informacije o izdelku so na voljo samo v angleščini",
-  "document_lang_select_title": "Obvestilo",
-  "epi_markets_modal_title": "Prosim izberite",
-  "epi_market_modal_message": "Izberite, kateri trg za prikaz"
+  "document_lang_select_title": "Obvestilo"
 }
 
 export default data;

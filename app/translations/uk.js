@@ -49,9 +49,7 @@ const data = {
   "document_patient_info": "Інформація про пацієнта",
   "document_product_info": "Інформація про товар для пацієнтів",
   "document_lang_select_message": "Інформація про товар доступна лише англійською мовою",
-  "document_lang_select_title": "Ув'язнення",
-  "epi_markets_modal_title": "Будь ласка, виберіть",
-  "epi_market_modal_message": "Виберіть, який ринок відобразити"
+  "document_lang_select_title": "Ув'язнення"
 }
 
 export default data;

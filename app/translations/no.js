@@ -45,9 +45,7 @@ const data = {
   "document_patient_info": "Pasientinformasjon",
   "document_product_info": "Produktinformasjon for pasienter",
   "document_lang_select_message": "Produktinformasjon er bare tilgjengelig på engelsk",
-  "document_lang_select_title": "Legg merke til",
-  "epi_markets_modal_title": "Vennligst velg",
-  "epi_market_modal_message": "Velg hvilket marked som skal vises"
+  "document_lang_select_title": "Legg merke til"
 }
 
 export default data;

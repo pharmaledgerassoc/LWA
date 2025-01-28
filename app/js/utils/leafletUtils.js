@@ -166,7 +166,7 @@ const renderProductInformation = function (result, hasLeaflet = true) {
     modal.querySelector(".product-name").innerText = result.productData.inventedName || result.productData.name;
     modal.querySelector(".product-description").innerText = result.productData.nameMedicinalProduct || result.productData.description;
      /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
-   
+
      let list = undefined;
      let genericName = undefined;
      if(result.xmlContent) {
@@ -178,7 +178,7 @@ const renderProductInformation = function (result, hasLeaflet = true) {
         genericName = xmlService.getElementsWithClass(resultXml, CLASSES.GENERIC_NAME);
 
         if(!!list && Array.isArray(list) && list.length > 0)
-          list = list[0]; 
+          list = list[0];
 
         if(!!genericName && Array.isArray(genericName) && genericName.length > 0)
           genericName = genericName[0];
@@ -203,13 +203,15 @@ const renderProductInformation = function (result, hasLeaflet = true) {
 
     excipientsContainer.closest('.data-wrapper').hidden = false;
 
-    if(list) 
+    if(list)  {
         excipientsContainer.innerHTML = list?.innerHTML;
-    
+    } else {
+        excipientsContainer.innerHTML = `<br />`;
+    }
+
     genericNameContainer.hidden = false;
-    if(genericName) 
+    if(genericName)
         genericNameContainer.textContent = genericName?.textContent;
-    
 
     function parseDate(dateString, type) {
         if(!dateString)
@@ -224,7 +226,6 @@ const renderProductInformation = function (result, hasLeaflet = true) {
         }
         return new Date(dateString).toLocaleString('pt', {dateStyle: 'short'}).replace(/\//g, '.');
     }
-    
     elements.forEach(element => {
         const attr = element.getAttribute('data-attr');
         const isBatch = element.hasAttribute('data-batch');
@@ -235,7 +236,7 @@ const renderProductInformation = function (result, hasLeaflet = true) {
         element.innerHTML = value || "";
     })
     modal.querySelector('.product-information-wrapper').hidden = false;
-   
+
     document.querySelector(".loader-container").setAttribute('style', 'display:none');
     focusModalHeader();
 }
@@ -252,7 +253,7 @@ const getContentFromTitle = function(xmlContent, text){
                   return list;
                   break;
               }
-          } 
+          }
       }
   }
 }
