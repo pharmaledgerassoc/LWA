@@ -49,7 +49,7 @@ const data = {
   "document_prescribing_info": "Tietojen määrääminen terveydenhuollon ammattilaisille",
   "epi_markets_modal_title": "Valitse markkinat",
   "epi_markets_modal_message": "Valitse markkinat",
-  "epi_markets_modal_no_market": "Ei maita",
+  "epi_markets_modal_no_market": "Ei maata",
   "country_af": "Afganistan",
   "country_ax": "Ålannin saaret",
   "country_al": "Albania",

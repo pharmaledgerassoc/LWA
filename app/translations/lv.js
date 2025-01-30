@@ -49,7 +49,7 @@ const data = {
   "document_prescribing_info": "Informācijas izrakstīšana veselības aprūpes speciālistiem",
   "epi_markets_modal_title": "Atlasīt tirgus",
   "epi_markets_modal_message": "Lūdzu, atlasiet savu tirgu",
-  "epi_markets_modal_no_market": "Nav valstis",
+  "epi_markets_modal_no_market": "Nav valsts",
   "country_af": "Afganistāna",
   "country_ax": "Åland salas",
   "country_al": "Albānija",

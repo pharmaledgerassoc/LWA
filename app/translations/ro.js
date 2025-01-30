@@ -49,7 +49,7 @@ const data = {
   "document_prescribing_info": "Prescrierea informațiilor pentru profesioniștii din domeniul sănătății",
   "epi_markets_modal_title": "Selectați piața",
   "epi_markets_modal_message": "Vă rugăm să selectați piața dvs.",
-  "epi_markets_modal_no_market": "Fără țări",
+  "epi_markets_modal_no_market": "Nici o țară",
   "country_af": "Afganistan",
   "country_ax": "Insulele Åland",
   "country_al": "Albania",

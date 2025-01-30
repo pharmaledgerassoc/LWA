@@ -49,7 +49,7 @@ const data = {
   "document_prescribing_info": "Tervishoiutöötajatele mõeldud teabe väljakirjutamine",
   "epi_markets_modal_title": "Valitud turg",
   "epi_markets_modal_message": "Valige oma turg",
-  "epi_markets_modal_no_market": "Riigi pole",
+  "epi_markets_modal_no_market": "Riik",
   "country_af": "Afganistan",
   "country_ax": "Ålandi saared",
   "country_al": "Albaania",
