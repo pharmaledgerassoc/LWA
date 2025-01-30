@@ -166,75 +166,71 @@ function LeafletController() {
             }
 
             showRecalledMessage(result);
-
-            return;
-
-
-
-
-            if(result.resultStatus === "xml_found" || result.resultStatus.trim() === "has_no_leaflet") {
-                try {
-                    showDocumentModal(result, result.resultStatus === "xml_found");
-                    if (isExpired(expiry) && this.selectedDocument === DocumentsTypes.LEAFLET)
-                        showExpired();
-                } catch (e) {
-                    console.error(e);
-                    goToErrorPage(e.errorCode, e)
-                }
-            }
-
-            return console.error("No xml_found")
-
-
-
-
-
-
-            this.lastResponse = Object.assign(this.lastResponse || {}, result);
-            result = this.lastResponse;
-
-            // first await user select document type
-            if(!this.documents) {
-                this.documents = showAvailableDocuments(result);
-                return;
-            }
-
-            if (Object.keys(result?.availableEpiMarkets || {}).length > 0 && !this.selectedEpiMarket) {
-                const language = this.selectedLanguage || this.defaultLanguage;
-                // let languages = [];
-
-                let availableEpiMarkets = Object.keys(result?.availableEpiMarkets);
-                if (result?.availableLanguages?.length > 0) {
-                    availableEpiMarkets = ["", ...availableEpiMarkets]
-                }
-
-                if (availableEpiMarkets.length === 1) {
-                    return this.setSelectEpiMarket(availableEpiMarkets[0]);
-                }
-                // this.lastResponse = Object.assign(this.lastResponse, { parsedMarkets });
-                return showAvailableMarkets(language, availableEpiMarkets);
-            }
-
-
-            if(result.resultStatus === "xml_found" || result.resultStatus.trim() === "has_no_leaflet") {
-                try {
-                    showDocumentModal(result, result.resultStatus === "xml_found");
-                    if (isExpired(expiry) && this.selectedDocument === DocumentsTypes.LEAFLET)
-                        showExpired();
-                    /* removed for  MVP1
-                    if (!getExpiryTime(expiry)) {
-                      showIncorrectDate();
-                    }*/
-                } catch (e) {
-                    console.error(e);
-                    goToErrorPage(e.errorCode, e)
-                }
-            }
-
-            if(result.resultStatus === "no_xml_for_lang")
-                return !this.selectedLanguage ? showAvailableLanguages(result) : showDocumentModal(result, false);
-
-            return showRecalledMessage(result);
+            //
+            //
+            // if(result.resultStatus === "xml_found" || result.resultStatus.trim() === "has_no_leaflet") {
+            //     try {
+            //         showDocumentModal(result, result.resultStatus === "xml_found");
+            //         if (isExpired(expiry) && this.selectedDocument === DocumentsTypes.LEAFLET)
+            //             showExpired();
+            //     } catch (e) {
+            //         console.error(e);
+            //         goToErrorPage(e.errorCode, e)
+            //     }
+            // }
+            //
+            // return console.error("No xml_found")
+            //
+            //
+            //
+            //
+            //
+            //
+            // this.lastResponse = Object.assign(this.lastResponse || {}, result);
+            // result = this.lastResponse;
+            //
+            // // first await user select document type
+            // if(!this.documents) {
+            //     this.documents = showAvailableDocuments(result);
+            //     return;
+            // }
+            //
+            // if (Object.keys(result?.availableEpiMarkets || {}).length > 0 && !this.selectedEpiMarket) {
+            //     const language = this.selectedLanguage || this.defaultLanguage;
+            //     // let languages = [];
+            //
+            //     let availableEpiMarkets = Object.keys(result?.availableEpiMarkets);
+            //     if (result?.availableLanguages?.length > 0) {
+            //         availableEpiMarkets = ["", ...availableEpiMarkets]
+            //     }
+            //
+            //     if (availableEpiMarkets.length === 1) {
+            //         return this.setSelectEpiMarket(availableEpiMarkets[0]);
+            //     }
+            //     // this.lastResponse = Object.assign(this.lastResponse, { parsedMarkets });
+            //     return showAvailableMarkets(language, availableEpiMarkets);
+            // }
+            //
+            //
+            // if(result.resultStatus === "xml_found" || result.resultStatus.trim() === "has_no_leaflet") {
+            //     try {
+            //         showDocumentModal(result, result.resultStatus === "xml_found");
+            //         if (isExpired(expiry) && this.selectedDocument === DocumentsTypes.LEAFLET)
+            //             showExpired();
+            //         /* removed for  MVP1
+            //         if (!getExpiryTime(expiry)) {
+            //           showIncorrectDate();
+            //         }*/
+            //     } catch (e) {
+            //         console.error(e);
+            //         goToErrorPage(e.errorCode, e)
+            //     }
+            // }
+            //
+            // if(result.resultStatus === "no_xml_for_lang")
+            //     return !this.selectedLanguage ? showAvailableLanguages(result) : showDocumentModal(result, false);
+            //
+            // return showRecalledMessage(result);
 
 
         }).catch(err => {
@@ -282,7 +278,7 @@ function LeafletController() {
             radioInput.defaultChecked = index === 0;
 
             // Create the div element for the label
-            const label = item.length ? getCountry(item, true) : getTranslation("epi_markets_modal_no_market");
+            const label = item !== "unspecified" ? getCountry(item, true) : getTranslation("epi_markets_modal_no_market");
 
             const labelDiv = document.createElement('div');
             labelDiv.classList.add("radio-label");
@@ -351,7 +347,6 @@ function LeafletController() {
                 renderProductInformation(result);
                 return;
             }
-
             this.showModal("settings-modal");
             renderLeaflet(result);
         } catch (e) {
