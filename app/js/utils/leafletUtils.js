@@ -206,7 +206,7 @@ const renderProductInformation = function (result) {
     if(list)  {
         excipientsContainer.innerHTML = list?.innerHTML;
     } else {
-        excipientsContainer.innerHTML = `<br />`;
+        excipientsContainer.innerHTML = ``;
     }
 
     genericNameContainer.hidden = false;

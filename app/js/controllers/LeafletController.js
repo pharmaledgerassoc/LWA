@@ -282,7 +282,7 @@ function LeafletController() {
             radioInput.defaultChecked = index === 0;
 
             // Create the div element for the label
-            const label = getCountry(item.toUpperCase());
+            const label = item.length ? getCountry(item, true) : getTranslation("epi_markets_modal_no_market");
 
             const labelDiv = document.createElement('div');
             labelDiv.classList.add("radio-label");
@@ -487,6 +487,7 @@ function LeafletController() {
         // showAvailableMarkets(this.defaultLanguage);
 
     };
+
 
     /**
      * Retrieves the browser's language in a standardized format.
