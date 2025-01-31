@@ -68,7 +68,6 @@ function LeafletController() {
     }
 
     this.getMarketLeaflet = (lang) => {
-        this.showLoader(true);
         const currentUrl = new URL(window.location.href);
         window.history.replaceState(null, "", currentUrl.toString());
         getLeaflet(lang);
@@ -107,6 +106,8 @@ function LeafletController() {
 
     const getLeaflet = (lang) => {
         console.log("$$$", this.gtin, this.batch, this.expiry)
+        
+        this.showLoader(true);
 
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -123,11 +124,9 @@ function LeafletController() {
 
         let leafletService = new LeafletService(gtin, batch, expiry, lang || this.defaultLanguage, lsEpiDomain, parseEpiMarketValue(this.selectedEpiMarket));
 
-        this.showLoader(true);
 
         if (this.selectedDocument)
             leafletService.leafletType = this.selectedDocument;
-
 
         return leafletService.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime).then((data) => {
             this.metadata = data;
@@ -136,7 +135,7 @@ function LeafletController() {
         }).catch(err => {
             console.error(err);
             goToErrorPage(err.errorCode, err)
-        })
+        }).finally(() =>  this.showLoader(false))
     };
 
     const getLeafletXML = () => {
@@ -148,8 +147,10 @@ function LeafletController() {
         let gto_TotalWaitTime = environment.gto_TotalWaitTime || 15000;
         const leafletService = new LeafletService(this.gtin, this.batch, this.expiry, this.selectedLanguage, lsEpiDomain, parseEpiMarketValue(this.selectedEpiMarket));
         leafletService.leafletType = this.selectedDocument === DocumentsTypes.INFO ? DocumentsTypes.PRESCRIBING_INFO : this.selectedDocument;
+        
+        this.showLoader(true);
+
         leafletService.getLeafletUsingCache(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime).then((result) => {
-            console.log("$ result=", result);
             //check for injections in result
             const tmp = JSON.stringify(result);
             if (!tmp || sanitationRegex.test(tmp))
@@ -163,9 +164,13 @@ function LeafletController() {
             } catch (e) {
                 console.error(e);
                 goToErrorPage(e.errorCode, e)
+            } finally {
+                this.showLoader(false);
             }
 
             showRecalledMessage(result);
+
+           
             //
             //
             // if(result.resultStatus === "xml_found" || result.resultStatus.trim() === "has_no_leaflet") {
@@ -263,6 +268,8 @@ function LeafletController() {
     const showAvailableMarkets = (availableMarkets) => {
         if (availableMarkets.length === 1)
             return this.setSelectEpiMarket(availableMarkets[0]);
+
+        this.showLoader(true);
 
         const modal = document.querySelector('#epi-markets-modal');
         const container = modal.querySelector("#content-container");
@@ -520,7 +527,9 @@ function LeafletController() {
      * @param {{label: string, value: string, nativeName: string}[]} languages
      */
     const showAvailableLanguages = (languages) => {
-        this.showLoader(false);
+        
+        this.showLoader(true);
+
         const browserLang = this.getLanguageFromBrowser();
         if (languages.length >= 1) {
             if (languages.map(r => r.value.toLowerCase()).includes(browserLang)) {
@@ -594,7 +603,7 @@ function LeafletController() {
 
                 languagesContainer.appendChild(radioFragment);
             });
-
+            this.showLoader(false);
             focusModalHeader();
         } else {
             goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Product found but no associated leaflet`));
