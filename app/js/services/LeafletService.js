@@ -53,13 +53,15 @@ const prepareUrlsForMtimeCall = function (arrayOfUrls) {
 
 
 class LeafletService {
-  constructor(gtin, batch, expiry, leafletLang, epiDomain) {
+  constructor(gtin, batch, expiry, leafletLang, epiDomain, epiMarket) {
 
     this.gtin = gtin;
     this.batch = batch;
     this.expiry = expiry;
     this.leafletLang = leafletLang;
     this.epiDomain = epiDomain;
+    this.epiMarket = epiMarket;
+    this.leafletType = "prescribingInfo";
 
     let gtinValidationResult = validateGTIN(this.gtin);
     if (!gtinValidationResult.isValid) {
@@ -168,14 +170,37 @@ class LeafletService {
     if(subDomain){
       urlPart += `/${subDomain}`;
     }
-    smartUrl = smartUrl.concatWith(`${urlPart}?leaflet_type=leaflet&lang=${this.leafletLang}&gtin=${this.gtin}`);
+    smartUrl = smartUrl.concatWith(`${urlPart}?leaflet_type=${this.leafletType}&lang=${this.leafletLang}&gtin=${this.gtin}`);
 
     if (this.batch) {
       smartUrl = smartUrl.concatWith(`&batch=${this.batch}`);
     }
 
+    if (this.epiMarket) {
+      smartUrl = smartUrl.concatWith(`&epiMarket=${this.epiMarket}`);
+    }
+
     let header = {"epiProtocolVersion": environment.epiProtocolVersion || "1"};
 
+    return smartUrl.getRequest({
+      method: "GET", headers: header
+    });
+  }
+
+  getLeafletMetadataRequest(leafletApiUrl, subDomain) {
+    let smartUrl = new LightSmartUrl(leafletApiUrl);
+    let urlPart = `/metadata/leaflet/${this.epiDomain}`;
+    if(subDomain){
+      urlPart += `/${subDomain}`;
+    }
+    smartUrl = smartUrl.concatWith(`${urlPart}?leaflet_type=${this.leafletType}&lang=${this.leafletLang}&gtin=${this.gtin}`);
+    if (this.batch)
+      smartUrl = smartUrl.concatWith(`&batch=${this.batch}`);
+
+    if (this.epiMarket)
+      smartUrl = smartUrl.concatWith(`&epiMarket=${this.epiMarket}`);
+
+    const header = {"epiProtocolVersion": environment.epiProtocolVersion || "1"};
     return smartUrl.getRequest({
       method: "GET", headers: header
     });
@@ -187,6 +212,136 @@ class LeafletService {
       newArray.push(this.getLeafletRequest(arrayOfUrls[i], subDomain));
     }
     return newArray;
+  }
+
+  /**
+   * Retrieves leaflet metadata with configurable timeouts.
+   *
+   * @param {number} timePerCall - Time per API call (ms).
+   * @param {number} totalWaitTime - Max total wait time (ms).
+   * @param {number} gto_TimePerCall - Time per GTO API call (ms).
+   * @param {number} gto_TotalWaitTime - Max total wait time for GTO (ms).
+   *
+   * @returns {Promise<{
+   *   productData: {
+   *     productCode: string,
+   *     epiProtocol: string,
+   *     lockId: string,
+   *     internalMaterialCode: string,
+   *     inventedName: string,
+   *     nameMedicinalProduct: string,
+   *     productRecall: boolean,
+   *     strengths: string[],
+   *     markets: string[],
+   *     description: string,
+   *     name: string,
+   *     productPhoto: string
+   *   },
+   *   availableDocuments: Record<string, Record<string, { label: string, value: string, nativeName: string }[]>>
+   * }>} Resolves to an object containing product metadata and available documents.
+   */
+  async getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime) {
+    const prepareUrlsForLeafletCall = (arrayOfUrls, subDomain) => {
+      let newArray = [];
+      for (let i = 0; i < arrayOfUrls.length; i++) {
+        newArray.push(this.getLeafletMetadataRequest(arrayOfUrls[i], subDomain));
+      }
+      return newArray;
+    }
+
+    return new Promise(async (resolve, reject) => {
+      let leafletResult = null;
+      let globalTimer = setTimeout(() => {
+        if (!leafletResult) {
+          reject({errorCode: constants.errorCodes.leaflet_timeout});
+          return
+        }
+      }, totalWaitTime);
+
+      let bdns = await this.getBDNS();
+      let ownerDomain;
+      try {
+        ownerDomain = await this.detectGTINOwner(this.gtin, bdns, gto_TimePerCall, gto_TotalWaitTime);
+      } catch (e) {
+        console.error(e);
+        let errorCode = e.code ? e.code : constants.errorCodes.gtin_not_created;
+        reject({errorCode});
+        return;
+      }
+      if (ownerDomain) {
+        let leafletSources = this.getAnchoringServices(bdns, ownerDomain);
+        let targets = prepareUrlsForLeafletCall(leafletSources);
+
+        let validateResponse = (response) => {
+          return new Promise((resolve) => {
+            if (response.status >= 500) {
+              return resolve(false);
+            }
+            if (response.status === 404) {
+              goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Product found but no associated leaflet for GTIN : ${this.gtin}`));
+              return;
+            }
+            resolve(true);
+          });
+        }
+
+        let requestWizard = new RequestWizard(timePerCall, totalWaitTime);
+        try {
+          let leafletResponse = await requestWizard.fetchMeAResponse(targets, validateResponse);
+          if (!leafletResponse) {
+            return reject({errorCode: constants.errorCodes.unknown_error});
+          }
+
+          switch (leafletResponse.status) {
+            case 400:
+              leafletResponse.text().then(errorJSON => {
+                try {
+                  errorJSON = JSON.parse(errorJSON);
+                } catch (err) {
+                  errorJSON = {code: constants.errorCodes.unknown_error};
+                }
+                return reject({errorCode: errorJSON.code});
+              }).catch(err => {
+                reject({errorCode: constants.errorCodes.unknown_error});
+              });
+            case 404:
+              return reject({errorCode: constants.errorCodes.no_uploaded_epi});
+            case 529:
+              return reject({errorCode: constants.errorCodes.get_dsu_timeout});
+            case 304:
+            case 200:
+              if (globalTimer) {
+                clearTimeout(globalTimer);
+              }
+              leafletResponse.json().then(leaflet => {
+                resolve(leaflet);
+              }).catch(err => {
+                reject({errorCode: constants.errorCodes.unknown_error});
+              });
+              return;
+            default:
+              reject({errorCode: constants.errorCodes.unknown_error});
+          }
+        } catch (err) {
+          if (err.code && err.code === ERROR_TYPES.MISCONFIGURATION) {
+            reject({errorCode: constants.errorCodes.misconfiguration});
+            return;
+          }
+          if (err.code && err.code === ERROR_TYPES.TIMEOUT) {
+            reject({errorCode: constants.errorCodes.leaflet_timeout});
+            return;
+          }
+          if (!err.errorCode) {
+            err.errorCode = constants.errorCodes.unknown_error;
+          }
+          reject(err);
+        }
+
+        return;
+      }
+
+      reject({errorCode: constants.errorCodes.unknown_error});
+    })
   }
 
   async getLeafletResult(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime) {
@@ -204,6 +359,7 @@ class LeafletService {
       try {
         ownerDomain = await this.detectGTINOwner(this.gtin, bdns, gto_TimePerCall, gto_TotalWaitTime);
       } catch (e) {
+        console.error(e);
         let errorCode = e.code ? e.code : constants.errorCodes.gtin_not_created;
         reject({errorCode});
         return;
@@ -231,6 +387,7 @@ class LeafletService {
           if (!leafletResponse) {
             return reject({errorCode: constants.errorCodes.unknown_error});
           }
+
           switch (leafletResponse.status) {
             case 400:
               leafletResponse.text().then(errorJSON => {
@@ -295,6 +452,7 @@ class LeafletService {
     }
 
     let targetEndpoints = [environment.cacheUrl];
+    console.log("$$$$$$$$$$$$$$$$$$ targetEndpoints=", targetEndpoints)
     const TAG_IDENTIFIER = "tag=KKKK";
     let identifyGtinOwner = (epiDomain, gtin) => {
       return new Promise(async (resolve, reject) => {

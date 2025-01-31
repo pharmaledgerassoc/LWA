@@ -1,0 +1,94 @@
+@media print {
+
+    @page
+    {
+        size: portrait;
+        /* Changing the margin to show the page numbers works mostly perfect,
+        but on chrome it causes truncation for some reason...*/
+        /* margin: 50px 20px;  */
+        margin: 0.3in 1in 0.3in 1in !important;
+        page-break-before: always !important;
+    }
+
+    body 
+    {
+        margin: 0px;  /* the margin on the content before printing */
+        height: unset;
+        color: black !important;
+    }
+    * {
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;  /* Firefox */
+    }
+    div, p, span {
+        color: black !important;
+    }
+
+    .container::-webkit-scrollbar {
+        display: none;  /* Safari and Chrome */
+    }
+
+    .leaflet-accordion-item-content {
+        height: fit-content;
+        display: block;
+        position: relative;
+        font-style: normal;
+        font-weight: 400;
+        overflow-x: auto;
+    }
+
+    button {
+        display: none !important;
+    }
+    /* */
+    .page-container:not(.print) {
+        display: none !important;
+    }
+    .page-header:not(.print) {
+        display: none !important;
+    }
+
+    .modal-container:not(.print) {
+        display: none !important;
+    }
+
+    #print-content {
+        display: block;
+    }
+
+    table {
+        page-break-inside: auto;
+        border: 2px solid black !important;
+        width: 100%;
+        border-collapse: collapse;
+    }
+    thead { 
+        display: table-header-group; 
+    }
+    th {
+        font-weight: bold;
+        font-size: 12px;
+        padding: 8px;
+    }
+    td {
+        font-size: 12px;
+        border: 1px solid black;
+        padding: 8px;
+    }
+    tr {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 80% !important;
+        max-height: 80% !important;
+        display: block;
+        margin: 0 auto;
+    }
+
+
+    #recalled-bar {
+        display: none;
+    }
+}
+
