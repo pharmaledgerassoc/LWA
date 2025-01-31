@@ -454,7 +454,8 @@ function LeafletController() {
         this.selectedDocument = selectedDocument ? selectedDocument : document.querySelector("input[name='documents']:checked")?.value;
         if (this.selectedDocument === DocumentsTypes.INFO) {
             this.selectedEpiMarket = "";
-            showAvailableLanguages([{
+            showAvailableLanguages([
+                            {
                                 "label": "English",
                                 "value": "en",
                                 "nativeName": "English"
@@ -462,8 +463,12 @@ function LeafletController() {
             return;
         }
 
-        const availableMarketsFromDocument = Object.keys(this.metadata.availableDocuments[this.selectedDocument]);
-        return showAvailableMarkets(availableMarketsFromDocument);
+        let marketsWithResult = {};
+        for(const [key, value] of Object.entries(this.metadata.availableDocuments[this.selectedDocument])) {
+            if(value && value?.length) 
+                marketsWithResult[key] = value;
+        }  
+        return showAvailableMarkets(marketsWithResult);
 
         // const browserLanguage = this.getLanguageFromBrowser();
         // if(this.selectedDocument === DocumentsTypes.INFO) {
