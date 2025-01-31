@@ -463,10 +463,10 @@ function LeafletController() {
             return;
         }
 
-        let marketsWithResult = {};
+        let marketsWithResult = [];
         for(const [key, value] of Object.entries(this.metadata.availableDocuments[this.selectedDocument])) {
             if(value && value?.length) 
-                marketsWithResult[key] = value;
+                marketsWithResult.push(key);
         }  
         return showAvailableMarkets(marketsWithResult);
 
