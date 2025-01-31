@@ -124,10 +124,8 @@ let validateLeafletFiles = function (htmlContent, leafletImages, uploadedImages)
 
 }
 
-let renderLeaflet = function (leafletData, language) {
-  
-  setTextDirectionForLanguage(language);
-  
+let renderLeaflet = function (leafletData) {
+    
   document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
   document.querySelector(".product-description").innerText = leafletData.productData.nameMedicinalProduct || leafletData.productData.description;
    /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/

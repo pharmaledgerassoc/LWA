@@ -23,7 +23,6 @@ enableConsolePersistence();
 window.onload = async (event) => {
     await translate();
     setTimeout(() => {
-        localStorage.removeItem(constants.LIST_OF_EXCIPIENTS);
         document.querySelectorAll(".modal-header .close-modal").forEach(elem => {
             elem.style.position = "absolute";
         })
@@ -108,7 +107,7 @@ function LeafletController() {
         }).catch(err => {
             console.error(err);
             goToErrorPage(err.errorCode, err)
-        }).finally(() =>  this.showLoader(false));
+        }).finally(() =>  this.showLoader(false))
     };
 
     const getLeafletXML = () => {
@@ -124,11 +123,9 @@ function LeafletController() {
 
             try {
                 showDocumentModal(result);
-                if (isExpired(this.expiry) && this.selectedDocument === DocumentsTypes.LEAFLET)
-                    showExpired();
             } catch (e) {
                 console.error(e);
-                goToErrorPage(e.errorCode, e);
+                goToErrorPage(e.errorCode, e)
             } finally {
                 this.showLoader(false);
             }
@@ -244,8 +241,12 @@ function LeafletController() {
                 renderProductInformation(result);
                 return;
             }
+            setTextDirectionForLanguage(this.selectedLanguage, "#settings-modal");
             this.showModal("settings-modal");
-            renderLeaflet(result, this.selectedLanguage);
+            renderLeaflet(result);
+            if (isExpired(this.expiry))
+                return showExpired(this.selectedLanguage);
+            showRecalledMessage(result, this.selectedLanguage);
         } catch (e) {
             console.error(e);
             goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
@@ -496,6 +497,7 @@ function LeafletController() {
             modalLeaflet.classList.add('recalled');
             recalledBar.classList.add('visible');
             recalledContainer.classList.remove("hiddenElement");
+
 
             if (batchRecalled) {
                 recalledContainer.querySelector("#recalled-title").textContent = getTranslation('recalled_batch_title');
