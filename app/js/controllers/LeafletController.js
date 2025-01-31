@@ -4,7 +4,7 @@ import {
 import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
-import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation, showIncorrectDate} from "../utils/leafletUtils.js"
+import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
 import {translate, getTranslation} from "../translationUtils.js";
 import {getCountry} from "../countriesUtils.js";
 
@@ -53,6 +53,8 @@ function LeafletController() {
     this.lastModal;
     this.metadata = undefined;
 
+    this.leafletService = new LeafletService(this.gtin, this.batch, this.expiry, this.defaultLanguage, this.lsEpiDomain);
+
     function generateFileName(){
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
@@ -94,9 +96,7 @@ function LeafletController() {
 
     const getLeafletMetadata = () => {
         this.showLoader(true);
-
-        let leafletService = new LeafletService(this.gtin, this.batch, this.expiry, this.defaultLanguage, this.lsEpiDomain);
-        leafletService.getLeafletMetadata(this.timePerCall, this.totalWaitTime, this.gto_TimePerCall, this.gto_TotalWaitTime).then((data) => {
+        this.leafletService.getLeafletMetadata(this.timePerCall, this.totalWaitTime, this.gto_TimePerCall, this.gto_TotalWaitTime).then((data) => {
             //check for injections in result
             const tmp = JSON.stringify(data);
             if (!tmp || sanitationRegex.test(tmp))
@@ -112,10 +112,11 @@ function LeafletController() {
 
     const getLeafletXML = () => {
         this.showLoader(true);
-        const leafletService = new LeafletService(this.gtin, this.batch, this.expiry, this.selectedLanguage, this.lsEpiDomain, parseEpiMarketValue(this.selectedEpiMarket));
-        leafletService.leafletType = this.selectedDocument === DocumentsTypes.INFO ? DocumentsTypes.PRESCRIBING_INFO : this.selectedDocument;
+        this.leafletService.leafletLang = this.selectedLanguage;
+        this.leafletService.epiMarket = parseEpiMarketValue(this.selectedEpiMarket);
+        this.leafletService.leafletType = this.selectedDocument === DocumentsTypes.INFO ? DocumentsTypes.PRESCRIBING_INFO : this.selectedDocument;
 
-        leafletService.getLeafletUsingCache(this.timePerCall, this.totalWaitTime, this.gto_TimePerCall, this.gto_TotalWaitTime).then((result) => {
+        this.leafletService.getLeafletUsingCache(this.timePerCall, this.totalWaitTime, this.gto_TimePerCall, this.gto_TotalWaitTime).then((result) => {
             //check for injections in result
             const tmp = JSON.stringify(result);
             if (!tmp || sanitationRegex.test(tmp))
