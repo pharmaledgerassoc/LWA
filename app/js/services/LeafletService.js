@@ -200,12 +200,9 @@ class LeafletService {
     if(subDomain){
       urlPart += `/${subDomain}`;
     }
-    smartUrl = smartUrl.concatWith(`${urlPart}?leaflet_type=${this.leafletType}&lang=${this.leafletLang}&gtin=${this.gtin}`);
+    smartUrl = smartUrl.concatWith(`${urlPart}?gtin=${this.gtin}`);
     if (this.batch)
       smartUrl = smartUrl.concatWith(`&batch=${this.batch}`);
-
-    if (this.epiMarket)
-      smartUrl = smartUrl.concatWith(`&epiMarket=${this.epiMarket}`);
 
     const header = {"epiProtocolVersion": environment.epiProtocolVersion || "1"};
     return smartUrl.getRequest({

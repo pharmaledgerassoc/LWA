@@ -53,6 +53,7 @@ function LeafletController() {
     this.lastModal;
     this.metadata = undefined;
 
+    this.defaultLanguage = localStorage.getItem(constants.APP_LANG) || "en";
     this.leafletService = new LeafletService(this.gtin, this.batch, this.expiry, this.defaultLanguage, this.lsEpiDomain);
 
     function generateFileName(){
@@ -571,7 +572,7 @@ function LeafletController() {
         })
 
     }
-    this.defaultLanguage = localStorage.getItem(constants.APP_LANG) || "en";
+
     addEventListeners();
     getLeafletMetadata();
 }
