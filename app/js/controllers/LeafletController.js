@@ -348,7 +348,7 @@ function LeafletController() {
                 return;
             }
             this.showModal("settings-modal");
-            renderLeaflet(result);
+            renderLeaflet(result, this.selectedLanguage);
         } catch (e) {
             console.error(e);
             goToErrorPage(constants.errorCodes.xml_parse_error, new Error("Unsupported format for XML file."))
