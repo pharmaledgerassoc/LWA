@@ -92,7 +92,7 @@ function LeafletController() {
         this.showPrintVersion(modal.id);
     }
 
-    const getLeaflet = () => {
+    const getLeafletMetadata = () => {
         this.showLoader(true);
 
         let leafletService = new LeafletService(this.gtin, this.batch, this.expiry, this.defaultLanguage, this.lsEpiDomain);
@@ -572,7 +572,7 @@ function LeafletController() {
     }
     this.defaultLanguage = localStorage.getItem(constants.APP_LANG) || "en";
     addEventListeners();
-    getLeaflet(this.defaultLanguage);
+    getLeafletMetadata();
 }
 
 
