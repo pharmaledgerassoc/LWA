@@ -249,8 +249,10 @@ class LeafletService {
     const self = this;
     const method = legacyMode ? this.getLeafletRequest : this.getLeafletMetadataRequest;
 
-    const legacyParser = (type, languagesAvailableArr, marketsAvailableArr) => {
+    const legacyParser = (type, status, languagesAvailableArr, marketsAvailableArr) => {
         const result = { [type]: {} };
+        if(status === "xml_found" && !languagesAvailableArr?.length)
+            languagesAvailableArr = [{"value": navigator.language}]
         if (languagesAvailableArr.length > 0)
           result[type].unspecified = languagesAvailableArr;
 
@@ -345,9 +347,9 @@ class LeafletService {
               leafletResponse.json().then(leaflet => {
                 if (legacyMode) {
                   console.warn("Received response for legacy mode. Parsing the result...");
-                  const parse = legacyParser("leaflet", leaflet?.availableLanguages, leaflet?.availableEpiMarkets);
+                  const parse = legacyParser("leaflet", leaflet?.resultStatus, leaflet?.availableLanguages, leaflet?.availableEpiMarkets);
                   return resolve ({
-                    productData: leaflet.productData,
+                    productData: leaflet?.productData,
                     availableDocuments: parse
                   })
                 }
