@@ -347,11 +347,12 @@ class LeafletService {
               leafletResponse.json().then(leaflet => {
                 if (legacyMode) {
                   console.warn("Received response for legacy mode. Parsing the result...");
-                  const parse = legacyParser("leaflet", leaflet?.resultStatus, leaflet?.availableLanguages, leaflet?.availableEpiMarkets);
-                  return resolve ({
-                    productData: leaflet?.productData,
-                    availableDocuments: parse
-                  })
+                  const parse = leaflet?.resultStatus === "xml_found" ? leaflet?.resultStatus : legacyParser("leaflet", leaflet?.resultStatus, leaflet?.availableLanguages, leaflet?.availableEpiMarkets);
+                  return resolve (Object.assign(leaflet, {availableDocuments: parse}))
+                //   return resolve ({
+                //     productData: leaflet?.productData,
+                //     availableDocuments: parse
+                //   })
                 }
                 resolve(leaflet);
               }).catch(err => {

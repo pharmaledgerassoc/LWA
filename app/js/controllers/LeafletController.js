@@ -104,6 +104,8 @@ function LeafletController() {
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
 
             this.metadata = data;
+            if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found")
+                return showDocumentModal(data);
             showAvailableDocuments(data);
         }).catch(err => {
             console.error(err);
