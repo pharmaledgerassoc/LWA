@@ -171,13 +171,15 @@ function LeafletController() {
         container.innerHTML = "";
         let selectedItem = null;
         const radionParent = document.createElement('div');
-        availableMarkets.slice().sort((a, b) => { 
+
+        availableMarkets = availableMarkets.map(
+            item => item !== "unspecified" ? getCountry(item, true) : 'unspecified'
+        ).sort((a, b) => { 
             if(a === "unspecified")
                 return a;
             if(b === "unspecified")
                 return b;
-
-            return a.localeCompare(b);
+            return a.localeCompare(b, this.defaultLanguage, { sensitivity: 'base' });
         }).forEach((item, index) => {
             const radioInput = document.createElement('input');
             radioInput.setAttribute("type", "radio");
@@ -187,7 +189,7 @@ function LeafletController() {
             radioInput.defaultChecked = index === 0;
 
             // Create the div element for the label
-            const label = item !== "unspecified" ? getCountry(item, true) : getTranslation("epi_markets_modal_no_market");
+            const label = item !== "unspecified" ? item : getTranslation("epi_markets_modal_no_market");
 
             const labelDiv = document.createElement('div');
             labelDiv.classList.add("radio-label");
@@ -511,14 +513,11 @@ function LeafletController() {
             if (batchRecalled) {
                 recalledContainer.querySelector("#recalled-title").textContent = getTranslation('recalled_batch_title');
                 recalledMessageContainer.innerHTML = getTranslation("recalled_batch_message",  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`);
-                // recallInformation.innerHTML += getTranslation('recalled_batch_name',  `<strong>${batchData?.batch || batchData.batchNumber}</strong><br />`);
                 recalledBar.querySelector('#recalled-bar-content').textContent =  getTranslation('leaflet_recalled_batch');
                 recalledMessageContainer.innerHTML += "<br /><br />"+getTranslation('recalled_product_name', `<strong>${result.productData.nameMedicinalProduct}</strong>`);
             } else {
                 recalledMessageContainer.innerHTML += getTranslation('recalled_product_message',  `<strong>${result.productData.nameMedicinalProduct}</strong>`);
             }
-
-            // recalledMessageContainer.appendChild(recallInformation);
 
             recalledContainer.querySelector(".close-modal").onclick = function() {
                 recalledContainer.classList.add("hiddenElement");
