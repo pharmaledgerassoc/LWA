@@ -104,13 +104,16 @@ function LeafletController() {
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
 
             this.metadata = data;
-            if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found")
+            if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found") {
+                this.selectedLanguage = this.getLanguageFromBrowser();
+                console.log(this.selectedLanguage);
                 return showDocumentModal(data);
+            }
             showAvailableDocuments(data);
         }).catch(err => {
             console.error(err);
             goToErrorPage(err.errorCode, err)
-        }).finally(() =>  this.showLoader(false))
+        }).finally(() =>  this.showLoader(false)) 
     };
 
     const getLeafletXML = () => {
