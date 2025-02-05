@@ -172,15 +172,20 @@ function LeafletController() {
         let selectedItem = null;
         const radionParent = document.createElement('div');
 
-        availableMarkets = availableMarkets.map(
-            item => item !== "unspecified" ? getCountry(item, true) : 'unspecified'
+        availableMarkets.map(
+            item => {
+               const name = item !== "unspecified" ? getCountry(item, true) : 'unspecified';
+               return {item, name};
+            }
         ).sort((a, b) => { 
-            if(a === "unspecified")
+            if(a.item === "unspecified")
                 return a;
-            if(b === "unspecified")
-                return b;
-            return a.localeCompare(b, this.defaultLanguage, { sensitivity: 'base' });
-        }).forEach((item, index) => {
+            if(b.item === "unspecified")
+                return b.item;
+            return a.item.localeCompare(b.item, this.defaultLanguage, { sensitivity: 'base' });
+        }).forEach((pair, index) => {
+            const {item, name} = pair;
+
             const radioInput = document.createElement('input');
             radioInput.setAttribute("type", "radio");
             radioInput.setAttribute("name", "epi-market");
@@ -189,7 +194,7 @@ function LeafletController() {
             radioInput.defaultChecked = index === 0;
 
             // Create the div element for the label
-            const label = item !== "unspecified" ? item : getTranslation("epi_markets_modal_no_market");
+            const label = item !== "unspecified" ? name : getTranslation("epi_markets_modal_no_market");
 
             const labelDiv = document.createElement('div');
             labelDiv.classList.add("radio-label");
