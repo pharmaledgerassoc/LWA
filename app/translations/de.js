@@ -50,7 +50,7 @@ const data = {
   "document_product_info": "Produktinformationen für Patienten",
   "document_lang_select_message": "Produktinformationen sind nur in Englisch verfügbar",
   "document_lang_select_title": "Beachten",
-  "document_prescribing_info": "Verschreibung von Informationen für Angehörige der Gesundheitsberufe",
+  "document_prescribing_info": "Information für medizinisches Fachpersonal",
   "epi_markets_modal_title": "Wählen Sie Land aus",
   "epi_markets_modal_message": "Bitte wählen Sie Ihr Land aus",
   "epi_markets_modal_no_market": "Kein Land",
