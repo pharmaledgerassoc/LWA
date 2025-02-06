@@ -5,7 +5,7 @@ import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
 import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
-import {translate, getTranslation} from "../translationUtils.js";
+import {translate, getTranslation, transformToISOStandardLangCode, langSubtypesMap} from "../translationUtils.js";
 import {getCountry} from "../countriesUtils.js";
 
 const DocumentsTypes = {
@@ -394,12 +394,8 @@ function LeafletController() {
      * @returns {string} The detected language, formatted as a lowercase ISO 639-1 code.
      */
     this.getLanguageFromBrowser = function(){
-        let browserLang = navigator.language.toLowerCase().replace("_", "-");
-        switch (browserLang) {
-            case "en-us":
-                browserLang = "en";
-                break;
-        }
+        let browserLang = transformToISOStandardLangCode(navigator.language);
+        browserLang = langSubtypesMap[browserLang.toLowerCase()] || browserLang;
         return browserLang;
     }
 
