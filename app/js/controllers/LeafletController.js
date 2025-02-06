@@ -359,7 +359,8 @@ function LeafletController() {
         container.appendChild(radionParent);
         this.showModal('documents-modal');
         document.querySelector('#button-exit').addEventListener('click', () => {
-            window.location.href = decodeURIComponent(window.location.href);
+            const {protocol, host} = window.location; 
+            window.location.href = `${protocol}//${host}/${host.includes('localhost') ? 'lwa' : ''}`;
         });
     };
 
