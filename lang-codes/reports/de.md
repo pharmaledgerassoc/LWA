@@ -61,7 +61,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | document_product_info | Produktinformationen für Patienten |  | 69 |
 | document_lang_select_message | Produktinformationen sind nur in Englisch verfügbar |  | 70 |
 | document_lang_select_title | Beachten |  | 71 |
-| document_prescribing_info | Verschreibung von Informationen für Angehörige der Gesundheitsberufe |  | 72 |
+| document_prescribing_info | Information für medizinisches Fachpersonal |  | 72 |
 | epi_markets_modal_title | Wählen Sie Land aus |  | 73 |
 | epi_markets_modal_message | Bitte wählen Sie Ihr Land aus |  | 74 |
 | epi_markets_modal_no_market | Kein Land |  | 75 |
