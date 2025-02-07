@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "A termékinformációk csak angolul érhetők el",
   "document_lang_select_title": "Értesítés",
   "document_prescribing_info": "Információ előírása az egészségügyi szakemberek számára",
-  "epi_markets_modal_title": "Válassza ki a piacot",
-  "epi_markets_modal_message": "Kérjük, válassza ki a piacát",
+  "epi_markets_modal_title": "Válassza ki az országot",
+  "epi_markets_modal_message": "Kérjük, válassza ki az országát",
   "epi_markets_modal_no_market": "Nincs ország",
   "country_af": "Afganisztán",
   "country_ax": "Åland -szigetek",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Nyugat -Szahara",
   "country_ye": "Jemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabwé"
+  "country_zw": "Zimbabwé",
+  "leaflet_print_title": "Nyomtatási információk",
+  "leaflet_print_description": "Az aktuális kiválasztott információt PDF -ként nyomtatják ki.",
+  "leaflet_print_description2": "Szeretne folytatni?",
+  "leaflet_print_button": "Folytatódik",
+  "leaflet_print_button_back": "Visszamegy"
 }
 
 export default data;

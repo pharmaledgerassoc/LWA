@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Tuotetiedot ovat saatavana vain englanniksi",
   "document_lang_select_title": "Huomautus",
   "document_prescribing_info": "Tietojen määrääminen terveydenhuollon ammattilaisille",
-  "epi_markets_modal_title": "Valitse markkinat",
-  "epi_markets_modal_message": "Valitse markkinat",
+  "epi_markets_modal_title": "Maasta",
+  "epi_markets_modal_message": "Valitse maasi",
   "epi_markets_modal_no_market": "Ei maata",
   "country_af": "Afganistan",
   "country_ax": "Ålannin saaret",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Länsi -Sahara",
   "country_ye": "Jemenit",
   "country_zm": "Sambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Tulostustiedot",
+  "leaflet_print_description": "Nykyiset valitut tiedot tulostetaan PDF: ksi.",
+  "leaflet_print_description2": "Haluatko edetä?",
+  "leaflet_print_button": "Edetä",
+  "leaflet_print_button_back": "Palata"
 }
 
 export default data;

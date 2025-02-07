@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "Produktinformation finns endast på engelska",
   "document_lang_select_title": "Varsel",
   "document_prescribing_info": "Förskriva information för sjukvårdspersonal",
-  "epi_markets_modal_title": "Välj marknad",
-  "epi_markets_modal_message": "Välj din marknad",
+  "epi_markets_modal_title": "Välj land",
+  "epi_markets_modal_message": "Välj ditt land",
   "epi_markets_modal_no_market": "Inget land",
   "country_af": "Afghanistan",
   "country_ax": "Ålandöarna",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Västra sahara",
   "country_ye": "Jemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Utskriftsinformation",
+  "leaflet_print_description": "Den nuvarande valda informationen kommer att skrivas ut som PDF.",
+  "leaflet_print_description2": "Vill du fortsätta?",
+  "leaflet_print_button": "Fortsätta",
+  "leaflet_print_button_back": "Återgå"
 }
 
 export default data;

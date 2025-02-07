@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Produktoplysninger er kun tilgængelige på engelsk",
   "document_lang_select_title": "Meddelelse",
   "document_prescribing_info": "Ordinering af oplysninger til sundhedspersonale",
-  "epi_markets_modal_title": "Vælg marked",
-  "epi_markets_modal_message": "Vælg dit marked",
+  "epi_markets_modal_title": "Vælg land",
+  "epi_markets_modal_message": "Vælg dit land",
   "epi_markets_modal_no_market": "Intet land",
   "country_af": "Afghanistan",
   "country_ax": "Ålandsøer",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Western Sahara",
   "country_ye": "Yemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Udskriv information",
+  "leaflet_print_description": "De aktuelle valgte oplysninger udskrives som PDF.",
+  "leaflet_print_description2": "Vil du fortsætte?",
+  "leaflet_print_button": "Fortsætte",
+  "leaflet_print_button_back": "Gå tilbage"
 }
 
 export default data;

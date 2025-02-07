@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Tooteteave on saadaval ainult inglise keeles",
   "document_lang_select_title": "Teade",
   "document_prescribing_info": "Tervishoiutöötajatele mõeldud teabe väljakirjutamine",
-  "epi_markets_modal_title": "Valitud turg",
-  "epi_markets_modal_message": "Valige oma turg",
+  "epi_markets_modal_title": "Vali riik",
+  "epi_markets_modal_message": "Valige oma riik",
   "epi_markets_modal_no_market": "Riik",
   "country_af": "Afganistan",
   "country_ax": "Ålandi saared",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Lääne -Sahara",
   "country_ye": "Jeemen",
   "country_zm": "Sambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Trükiteave",
+  "leaflet_print_description": "Praegune valitud teave trükitakse PDF -na.",
+  "leaflet_print_description2": "Kas soovite jätkata?",
+  "leaflet_print_button": "Harima",
+  "leaflet_print_button_back": "Tagasi minema"
 }
 
 export default data;

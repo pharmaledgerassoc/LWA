@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "Informácie o produkte sú k dispozícii iba v angličtine",
   "document_lang_select_title": "Oznámenie",
   "document_prescribing_info": "Predpisovanie informácií pre zdravotníckych pracovníkov",
-  "epi_markets_modal_title": "Vyberať trh",
-  "epi_markets_modal_message": "Vyberte svoj trh",
+  "epi_markets_modal_title": "Vyberacia krajina",
+  "epi_markets_modal_message": "Vyberte svoju krajinu",
   "epi_markets_modal_no_market": "Žiadna krajina",
   "country_af": "Afganistan",
   "country_ax": "Ostrovy Åland",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Západná Sahara",
   "country_ye": "Jemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Výtlačok",
+  "leaflet_print_description": "Aktuálne vybrané informácie budú vytlačené ako PDF.",
+  "leaflet_print_description2": "Chceš pokračovať?",
+  "leaflet_print_button": "Pokračovať",
+  "leaflet_print_button_back": "Vrátiť sa"
 }
 
 export default data;

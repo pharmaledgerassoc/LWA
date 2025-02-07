@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Informațiile despre produs sunt disponibile numai în engleză",
   "document_lang_select_title": "Observa",
   "document_prescribing_info": "Prescrierea informațiilor pentru profesioniștii din domeniul sănătății",
-  "epi_markets_modal_title": "Selectați piața",
-  "epi_markets_modal_message": "Vă rugăm să selectați piața dvs.",
+  "epi_markets_modal_title": "Selectați țară",
+  "epi_markets_modal_message": "Vă rugăm să selectați țara dvs.",
   "epi_markets_modal_no_market": "Nici o țară",
   "country_af": "Afganistan",
   "country_ax": "Insulele Åland",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Sahara de Vest",
   "country_ye": "Yemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Informații tipărite",
+  "leaflet_print_description": "Informațiile selectate curente vor fi tipărite ca PDF.",
+  "leaflet_print_description2": "Doriți să continuați?",
+  "leaflet_print_button": "Procedează",
+  "leaflet_print_button_back": "Întoarce-te"
 }
 
 export default data;

@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "Informacija apie produktą galima tik anglų kalba",
   "document_lang_select_title": "Pranešimas",
   "document_prescribing_info": "Informacijos skyrimas sveikatos priežiūros specialistams",
-  "epi_markets_modal_title": "Pasirinkite rinką",
-  "epi_markets_modal_message": "Pasirinkite savo rinką",
+  "epi_markets_modal_title": "Pasirinkite Šalis",
+  "epi_markets_modal_message": "Pasirinkite savo šalį",
   "epi_markets_modal_no_market": "Nėra šalies",
   "country_af": "Afganistanas",
   "country_ax": "Åland salos",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Vakarų Sachara",
   "country_ye": "Jemenas",
   "country_zm": "Zambija",
-  "country_zw": "Zimbabvė"
+  "country_zw": "Zimbabvė",
+  "leaflet_print_title": "Spausdinti informaciją",
+  "leaflet_print_description": "Dabartinė pasirinkta informacija bus atspausdinta kaip PDF.",
+  "leaflet_print_description2": "Ar norite tęsti?",
+  "leaflet_print_button": "Tęsk",
+  "leaflet_print_button_back": "Grįžk atgal"
 }
 
 export default data;

@@ -50,9 +50,9 @@ const data = {
   "document_product_info": "Product Information for Patients",
   "document_lang_select_message": "Product information are only available in English",
   "document_lang_select_title": "Notice",
-  "document_prescribing_info": "Prescribing information for Healthcare professionals",
-  "epi_markets_modal_title": "Select Market",
-  "epi_markets_modal_message": "Please select your market",
+  "document_prescribing_info": "Prescribing information for Healthcare Professionals",
+  "epi_markets_modal_title": "Select Country",
+  "epi_markets_modal_message": "Please select your country",
   "epi_markets_modal_no_market": "No country",
   "country_af": "Afghanistan",
   "country_ax": "Åland Islands",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Western Sahara",
   "country_ye": "Yemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Print Information",
+  "leaflet_print_description": "The current selected information will be printed as PDF.",
+  "leaflet_print_description2": "Do you want to proceed?",
+  "leaflet_print_button": "Proceed",
+  "leaflet_print_button_back": "Go back"
 }
 
 export default data;

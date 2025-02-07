@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Οι πληροφορίες προϊόντων είναι διαθέσιμα μόνο στα Αγγλικά",
   "document_lang_select_title": "Ανακοίνωση",
   "document_prescribing_info": "ΠΡΟΓΡΑΜΜΑΤΙΣΜΟΣ ΠΛΗΡΟΦΟΡΙΕΣ ΓΙΑ ΤΗΝ ΥΠΟΔΟΤΗΤΑΣ",
-  "epi_markets_modal_title": "Επιλέξτε αγορά",
-  "epi_markets_modal_message": "Επιλέξτε την αγορά σας",
+  "epi_markets_modal_title": "Επιλεγμένη χώρα",
+  "epi_markets_modal_message": "Επιλέξτε τη χώρα σας",
   "epi_markets_modal_no_market": "Χωρίς χώρα",
   "country_af": "Αφγανιστάν",
   "country_ax": "Νησιά Åland",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Δυτική Σαχάρα",
   "country_ye": "Γέμενη",
   "country_zm": "Ζάμπια",
-  "country_zw": "Ζιμπάμπουε"
+  "country_zw": "Ζιμπάμπουε",
+  "leaflet_print_title": "Πληροφορίες εκτύπωσης",
+  "leaflet_print_description": "Οι τρέχουσες επιλεγμένες πληροφορίες θα εκτυπωθούν ως PDF.",
+  "leaflet_print_description2": "Θέλετε να προχωρήσετε;",
+  "leaflet_print_button": "Προχωρώ",
+  "leaflet_print_button_back": "Πάω πίσω"
 }
 
 export default data;

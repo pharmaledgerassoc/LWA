@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "La información del producto solo está disponible en inglés",
   "document_lang_select_title": "Aviso",
   "document_prescribing_info": "Prescribir información para profesionales de la salud",
-  "epi_markets_modal_title": "Mercado selecto",
-  "epi_markets_modal_message": "Seleccione su mercado",
+  "epi_markets_modal_title": "País seleccionado",
+  "epi_markets_modal_message": "Seleccione su país",
   "epi_markets_modal_no_market": "No hay país",
   "country_af": "Afganistán",
   "country_ax": "Åland Islas",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Sahara occidental",
   "country_ye": "Yemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabue"
+  "country_zw": "Zimbabue",
+  "leaflet_print_title": "Información de impresión",
+  "leaflet_print_description": "La información seleccionada actual se imprimirá como PDF.",
+  "leaflet_print_description2": "¿Quieres continuar?",
+  "leaflet_print_button": "Proceder",
+  "leaflet_print_button_back": "Volver"
 }
 
 export default data;

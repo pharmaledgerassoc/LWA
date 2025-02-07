@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Podaci o proizvodu dostupni su samo na engleskom jeziku",
   "document_lang_select_title": "Obavijest",
   "document_prescribing_info": "Propisivanje informacija zdravstvenim radnicima",
-  "epi_markets_modal_title": "Odaberite tržište",
-  "epi_markets_modal_message": "Molimo odaberite svoje tržište",
+  "epi_markets_modal_title": "Odaberite zemlju",
+  "epi_markets_modal_message": "Odaberite svoju zemlju",
   "epi_markets_modal_no_market": "Nijedna zemlja",
   "country_af": "Afganistan",
   "country_ax": "Åland Islands",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Zapadna Sahara",
   "country_ye": "Jemen",
   "country_zm": "Zambija",
-  "country_zw": "Zimbabve"
+  "country_zw": "Zimbabve",
+  "leaflet_print_title": "Informacije o ispisu",
+  "leaflet_print_description": "Trenutne odabrane informacije bit će ispisane kao PDF.",
+  "leaflet_print_description2": "Želite li nastaviti?",
+  "leaflet_print_button": "Nastaviti",
+  "leaflet_print_button_back": "Vratiti se"
 }
 
 export default data;

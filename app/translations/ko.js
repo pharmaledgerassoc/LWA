@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "제품 정보는 영어로만 제공됩니다",
   "document_lang_select_title": "알아채다",
   "document_prescribing_info": "의료 전문가를위한 처방 정보",
-  "epi_markets_modal_title": "시장 선택",
-  "epi_markets_modal_message": "시장을 선택하십시오",
+  "epi_markets_modal_title": "국가 선택",
+  "epi_markets_modal_message": "국가를 선택하십시오",
   "epi_markets_modal_no_market": "나라도 없습니다",
   "country_af": "아프가니스탄",
   "country_ax": "Åland Islands",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "서부 사하라",
   "country_ye": "예멘 아랍 공화국",
   "country_zm": "잠비아",
-  "country_zw": "짐바브웨"
+  "country_zw": "짐바브웨",
+  "leaflet_print_title": "인쇄 정보",
+  "leaflet_print_description": "현재 선택된 정보는 PDF로 인쇄됩니다.",
+  "leaflet_print_description2": "진행 하시겠습니까?",
+  "leaflet_print_button": "진행하다",
+  "leaflet_print_button_back": "돌아 가라"
 }
 
 export default data;

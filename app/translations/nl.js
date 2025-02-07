@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "Productinformatie is alleen beschikbaar in het Engels",
   "document_lang_select_title": "Kennisgeving",
   "document_prescribing_info": "Informatie voorschrijven voor professionals in de gezondheidszorg",
-  "epi_markets_modal_title": "Selecteer markt",
-  "epi_markets_modal_message": "Selecteer uw markt",
+  "epi_markets_modal_title": "Selecteer land",
+  "epi_markets_modal_message": "Selecteer uw land",
   "epi_markets_modal_no_market": "Geen land",
   "country_af": "Afghanistan",
   "country_ax": "Åland -eilanden",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Westelijke Sahara",
   "country_ye": "Jemen",
   "country_zm": "Zambia",
-  "country_zw": "Zimbabwe"
+  "country_zw": "Zimbabwe",
+  "leaflet_print_title": "Informatie afdrukken",
+  "leaflet_print_description": "De huidige geselecteerde informatie wordt afgedrukt als PDF.",
+  "leaflet_print_description2": "Wil je doorgaan?",
+  "leaflet_print_button": "Doorgaan",
+  "leaflet_print_button_back": "Teruggaan"
 }
 
 export default data;

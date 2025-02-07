@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Ürün bilgileri yalnızca İngilizce olarak mevcuttur",
   "document_lang_select_title": "Fark etme",
   "document_prescribing_info": "Sağlık uzmanları için bilgi reçete etmek",
-  "epi_markets_modal_title": "Piyasa Seçin",
-  "epi_markets_modal_message": "Lütfen pazarınızı seçin",
+  "epi_markets_modal_title": "Ülke Seçin",
+  "epi_markets_modal_message": "Lütfen ülkenizi seçin",
   "epi_markets_modal_no_market": "Ülke Yok",
   "country_af": "Afganistan",
   "country_ax": "Åland Adaları",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Batı Sahra",
   "country_ye": "Yemen",
   "country_zm": "Zambiya",
-  "country_zw": "Zimbabve"
+  "country_zw": "Zimbabve",
+  "leaflet_print_title": "Baskı Bilgileri",
+  "leaflet_print_description": "Mevcut seçilen bilgiler PDF olarak yazdırılacaktır.",
+  "leaflet_print_description2": "Devam etmek ister misin?",
+  "leaflet_print_button": "İlerlemek",
+  "leaflet_print_button_back": "Geri gitmek"
 }
 
 export default data;

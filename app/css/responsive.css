@@ -636,7 +636,10 @@ b {
 
 .modal-content .radio-item-container .radio-label {
     flex-grow: 1;
-    word-break: keep-all;
+    /* 
+        word-break: keep-all;
+        removed by sonja request 
+    */
     text-align: left;
 }
 
@@ -720,6 +723,12 @@ b {
     padding-right: 1rem;
 }
 
+[dir="RTL"] .radio-label {
+    direction: rtl !important;    
+    text-align: right !important;
+ }
+
+ 
 body[dir="RTL"] .loader {
     right: calc(50% - 51px);
 }
@@ -759,10 +768,7 @@ body[dir="RTL"] .error-page .page-content {
     text-align: right;
 }
 
-body[dir="RTL"] .scan-button.go-home-button {
-    left: 4vh;
-    right: unset;
-}
+
 
 body[dir="RTL"] .modal-header.left-aligned-header .modal-title {
     margin-right: unset;

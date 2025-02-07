@@ -47,8 +47,8 @@ const data = {
   "document_lang_select_message": "Informācija par produktu ir pieejama tikai angļu valodā",
   "document_lang_select_title": "Pamanīt",
   "document_prescribing_info": "Informācijas izrakstīšana veselības aprūpes speciālistiem",
-  "epi_markets_modal_title": "Atlasīt tirgus",
-  "epi_markets_modal_message": "Lūdzu, atlasiet savu tirgu",
+  "epi_markets_modal_title": "Izvēlēties valsti",
+  "epi_markets_modal_message": "Lūdzu, atlasiet savu valsti",
   "epi_markets_modal_no_market": "Nav valsts",
   "country_af": "Afganistāna",
   "country_ax": "Åland salas",
@@ -292,7 +292,12 @@ const data = {
   "country_eh": "Rietumu Sahara",
   "country_ye": "Jemena",
   "country_zm": "Zambija",
-  "country_zw": "Zimbabve"
+  "country_zw": "Zimbabve",
+  "leaflet_print_title": "Drukas informācija",
+  "leaflet_print_description": "Pašreizējā atlasītā informācija tiks izdrukāta kā PDF.",
+  "leaflet_print_description2": "Vai vēlaties turpināt?",
+  "leaflet_print_button": "Turpināt",
+  "leaflet_print_button_back": "Atgriezties"
 }
 
 export default data;

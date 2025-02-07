@@ -51,8 +51,8 @@ const data = {
   "document_lang_select_message": "Інформація про товар доступна лише англійською мовою",
   "document_lang_select_title": "Ув'язнення",
   "document_prescribing_info": "Призначення інформації для медичних працівників",
-  "epi_markets_modal_title": "Виберіть ринок",
-  "epi_markets_modal_message": "Будь ласка, виберіть свій ринок",
+  "epi_markets_modal_title": "Вибір країни",
+  "epi_markets_modal_message": "Будь ласка, виберіть свою країну",
   "epi_markets_modal_no_market": "Жодної країни",
   "country_af": "Афганістан",
   "country_ax": "Острови Оланд",
@@ -296,7 +296,12 @@ const data = {
   "country_eh": "Західна Сахара",
   "country_ye": "Ємен",
   "country_zm": "Замбія",
-  "country_zw": "Зімбабве"
+  "country_zw": "Зімбабве",
+  "leaflet_print_title": "Інформація про друк",
+  "leaflet_print_description": "Поточна вибрана інформація буде надрукована як PDF.",
+  "leaflet_print_description2": "Ви хочете продовжити?",
+  "leaflet_print_button": "Тривати",
+  "leaflet_print_button_back": "Повернутися"
 }
 
 export default data;
