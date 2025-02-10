@@ -106,7 +106,6 @@ function LeafletController() {
             this.metadata = data;
             if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found") {
                 this.selectedLanguage = this.getLanguageFromBrowser();
-                console.log(this.selectedLanguage);
                 return showDocumentModal(data);
             }
             showAvailableDocuments(data);
@@ -397,7 +396,7 @@ function LeafletController() {
     this.getLanguageFromBrowser = function(){
         let browserLang = transformToISOStandardLangCode(navigator.language);
         browserLang = langSubtypesMap[browserLang.toLowerCase()] || browserLang;
-        return browserLang;
+        return browserLang.toLowerCase();
     }
 
     /**
