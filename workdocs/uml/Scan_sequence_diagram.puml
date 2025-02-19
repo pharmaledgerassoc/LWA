@@ -1,0 +1,80 @@
+@startuml
+hide footbox
+autonumber
+hide unlinked
+
+box "User Actions" #LightBlue
+actor Patient as p
+end box
+
+participant "LWA\n(Browser)" as l #slateblue
+
+participant "Any\nApi Hub" as a #teal
+participant "MAH\nApiHub" as b #olivedrab
+
+title Leaflet Scan Sequence Diagram
+
+note right
+    includes:
+    - credentials
+    - token name
+    - token description
+    - source endpoint
+end note
+
+activate p #LightBlue
+p o-> l: 2d Matrix  Scanned
+deactivate p
+
+activate l #slateblue
+l o-> a : Detect MAH  Domain Owner
+deactivate  l
+
+activate a #teal
+return Returns BDNS Domain
+deactivate a
+
+activate l #slateblue
+l o-> b : Request metadata for product/batch
+deactivate l
+
+activate b #olivedrab
+return Product/Batch metadata
+deactivate b
+
+activate l #slateblue
+
+alt there is more than one document type
+l o-> p #LightBlue: Display document type selection
+activate p #LightBlue
+p o-> l #slateblue: Choose document type
+deactivate p
+end
+
+alt Document type is 'leaflet'\nand there is more than one market available for the select
+l o-> p #LightBlue: Display market selection
+activate p #LightBlue
+p o-> l #slateblue: Choose market
+deactivate p
+end
+
+alt Document type is 'leaflet' and there is more than one\nlanguage available for selection (and none match the browser's)
+l o-> p #LightBlue: Display language selection
+activate p #LightBlue
+p o-> l #slateblue: Choose language
+deactivate p
+end
+l o-> b #olivedrab: Request leaflet for product/batch/market/type/language
+deactivate l
+
+activate b #olivedrab
+return selected Leaflet XML
+deactivate b
+
+activate l #slateblue
+l o-> l #slateblue: XML to HTML conversion
+deactivate l
+l -> p #LightBlue: Display HTML for the Leaflet
+activate p #LightBlue
+
+@enduml
