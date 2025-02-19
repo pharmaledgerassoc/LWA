@@ -51,9 +51,32 @@ button:not([disabled]) {
     width: 100%;
 }
 
-#leaflet-content table {
+#leaflet-content .table-container {
     display: block;
-    overflow-x: auto;
+    overflow-x: auto !important;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+}
+
+#leaflet-content .table-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+#leaflet-content table {
+    display: table;  
+    width: 100%;
+}
+
+@media(max-width: 768px) {
+    #leaflet-content table {
+        min-width: 768px !important;
+    } 
+}
+
+#leaflet-content figure {
+    display: block;
+    margin: 0 auto;
 }
 
 /* Force hidden content for images because xslt rule not working for safari < 16. */
@@ -62,10 +85,12 @@ button:not([disabled]) {
 }
 
 #leaflet-content img {
+    width: 100%;
+    height: auto !important;
     min-width: 100%;
-    min-width: -moz-available; /* WebKit-based browsers will ignore this. */
-    min-width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
-    min-width: fill-available;
+    min-width: -webkit-fill-available; /* For WebKit-based browsers (Chrome, Safari) */
+    min-width: -moz-available; /* For Mozilla-based browsers (Firefox) */
+    min-width: fill-available; /* For compatibility */
 }
 
 .leaflet-link {
@@ -89,6 +114,11 @@ button:not([disabled]) {
     display: none;
     margin-right: 5px;
     height: fit-content;
+    scrollbar-width: thin !important;
+}
+
+.leaflet-accordion-item-content::-webkit-scrollbar {
+    width: 5px !important;
 }
 
 .leaflet-accordion-item.active .leaflet-accordion-item-content {
@@ -131,6 +161,14 @@ button:not([disabled]) {
     padding: 5px;
     width: auto;
     height: 100%;
+}
+
+#settings-modal .modal-body {
+    scrollbar-width: thin !important;
+}
+
+#settings-modal .modal-body::-webkit-scrollbar {
+    width: 5px !important;
 }
 
 .settings-modal[dir="RTL"] .icon-title-container {
@@ -184,24 +222,64 @@ button:not([disabled]) {
     display: none;
 }
  
-.leaflet-page #recalled-bar {
+
+
+#recalled-bar {
     background: #058798;
-    position: fixed;
+    border: 3px solid #27494e;
+    height: 50px;
+    max-height: auto;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0;
+    font-weight: 500;
+    text-align: center;
+    padding: 5px;
     bottom: 10vh;
+    position: fixed;
     width: 100%;
     box-sizing: border-box;
     left: 0;
-    overflow-x: hidden;
-    border: 3px solid #27494e;
-} 
-
-.leaflet-page #recalled-bar p {
-    font-size: 3rem;
-    font-weight: 500;
-    line-height: 125% !important;
-    color: white;
-    text-align: center;  
+    overflow: hidden;
 }
+
+#recalled-bar  p {
+    font-size: var(--font-size--XL) !important;
+    color: white;
+    height: inherit;
+}
+
+@media(max-width: 300px) {
+    .leaflet-page #recalled-bar {
+        bottom: 18vh;
+    } 
+    .leaflet-page #recalled-bar p {
+        font-size: 1.5rem !important;       
+    }
+}
+
+/* Zoom at 250% */
+@media(max-width: 150px) {
+    .leaflet-page #recalled-bar {
+        bottom: 38vh;
+    }
+     .leaflet-page #recalled-bar p {
+        font-size: 1.5rem !important;       
+    }
+}  
+
+
+
+
+/* Zoom at 250% */
+@media(max-width: 150px) {
+    .leaflet-page #recalled-bar {
+        bottom: 22.5vh;
+    }
+}  
 
 #print-content {
     display: none;
