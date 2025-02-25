@@ -238,6 +238,18 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
             <xsl:attribute name="src">
                 <xsl:value-of select="concat($resources_path, $_src)"/>
             </xsl:attribute>
+            <xsl:choose>
+                <xsl:when test="@alt">
+                    <xsl:attribute name="alt">
+                        <xsl:value-of select="@alt"/>
+                    </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="alt">
+                        <xsl:value-of select="following-sibling::*[1]"/>
+                    </xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:apply-templates select="node()"/>
         </img>
     </xsl:template>
