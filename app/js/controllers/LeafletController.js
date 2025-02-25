@@ -550,12 +550,12 @@ function LeafletController() {
         
         setTextDirectionForLanguage(this.selectedLanguage, "#print-content");
 
-        const content =  document.querySelector(`#${modal} .content-to-print`);
+        const content =  document.querySelector(`#${modal} .content-to-print`).cloneNode(true);
         const printContent =  document.querySelector('#print-content');
         content.querySelectorAll('[style], [nowrap]').forEach(element => {
             element.removeAttribute('style');
             element.removeAttribute('nowrap');
-            element.removeAttribute('xmlns');
+            element.removeAttribute('xmlns');  
         });
         printContent.innerHTML = "";
         printContent.innerHTML = content.innerHTML;

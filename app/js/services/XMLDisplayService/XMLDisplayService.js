@@ -170,7 +170,7 @@ class XMLDisplayService {
                 const regex = /[.:]$/;
                 // check ponctuation
                 if(!regex.test(title.textContent)) {
-                    title.innerHTML = `<b>${title.textContent.trim()}<span class="invisible">.</span></b>`;
+                    title.innerHTML += `<span class="invisible">.</span>`;
                 }
                 // fixing tab index
                 if(title.hasAttribute('tabindex')) {
