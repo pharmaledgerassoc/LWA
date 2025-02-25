@@ -552,8 +552,8 @@ function LeafletController() {
 
         const content =  document.querySelector(`#${modal} .content-to-print`);
         const printContent =  document.querySelector('#print-content');
-        content.querySelectorAll('[nowrap]').forEach(element => {
-            // element.removeAttribute('style');
+        content.querySelectorAll('[style], [nowrap]').forEach(element => {
+            element.removeAttribute('style');
             element.removeAttribute('nowrap');
             element.removeAttribute('xmlns');
         });
