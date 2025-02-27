@@ -595,8 +595,7 @@ function LeafletController() {
             this.setSelectedDocument();
         });
         document.querySelector('#product-modal #button-exit').addEventListener('click', () => {
-            const {protocol, host} = window.location; 
-            window.location.href = `${protocol}//${host}/${host.includes('localhost') ? 'lwa' : ''}`;
+            goToPage("/scan.html")
         });
     }
 
