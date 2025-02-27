@@ -300,7 +300,10 @@ const data = {
   "leaflet_print_description": "As informações selecionadas serão impressas como PDF.",
   "leaflet_print_description2": "Você quer prosseguir?",
   "leaflet_print_button": "Prosseguir",
-  "leaflet_print_button_back": "Voltar"
+  "leaflet_print_button_back": "Voltar",
+  "country_me": "Montenegro",
+  "country_rs": "Sérvia",
+  "country_xk": "Kosovo"
 }
 
 export default data;
