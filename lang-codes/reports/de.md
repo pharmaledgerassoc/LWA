@@ -81,7 +81,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_bh | Bahrain |  | 93 |
 | country_bd | Bangladesch |  | 94 |
 | country_bb | Barbados |  | 95 |
-| country_by | Weißrussland |  | 96 |
+| country_by | Belarus |  | 96 |
 | country_be | Belgien |  | 97 |
 | country_bz | Belize |  | 98 |
 | country_bj | Benin |  | 99 |
@@ -103,9 +103,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_cl | Chile |  | 119 |
 | country_cn | China |  | 120 |
 | country_co | Kolumbien |  | 123 |
-| country_km | Komoros |  | 124 |
+| country_km | Komoren |  | 124 |
 | country_cg | Kongo, Republik der |  | 125 |
-| country_cd | Kongo, die Demokratische Republik der |  | 126 |
+| country_cd | Kongo, Demokratische Republik |  | 126 |
 | country_cr | Costa Rica |  | 128 |
 | country_ci | Elfenbeinküste |  | 129 |
 | country_hr | Kroatien |  | 130 |
@@ -144,7 +144,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_is | Island |  | 175 |
 | country_in | Indien |  | 176 |
 | country_id | Indonesien |  | 177 |
-| country_ir | Iran, Islamische Republik von |  | 178 |
+| country_ir | Iran |  | 178 |
 | country_iq | Irak |  | 179 |
 | country_ie | Irland |  | 180 |
 | country_il | Israel |  | 182 |
@@ -168,19 +168,19 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_li | Liechtenstein |  | 201 |
 | country_lt | Litauen |  | 202 |
 | country_lu | Luxemburg |  | 203 |
-| country_mk | Nord -Mazedonien |  | 205 |
+| country_mk | Nordmazedonien |  | 205 |
 | country_mg | Madagaskar |  | 206 |
 | country_mw | Malawi |  | 207 |
 | country_my | Malaysia |  | 208 |
 | country_mv | Malediven |  | 209 |
 | country_ml | Mali |  | 210 |
 | country_mt | Malta |  | 211 |
-| country_mh | Marshall Islands |  | 212 |
+| country_mh | Marshallinseln |  | 212 |
 | country_mr | Mauretanien |  | 214 |
 | country_mu | Mauritius |  | 215 |
 | country_mx | Mexiko |  | 217 |
-| country_fm | Mikronesien, Föderierte Zustände von |  | 218 |
-| country_md | Moldawien |  | 219 |
+| country_fm | Mikronesien |  | 218 |
+| country_md | Moldau |  | 219 |
 | country_mc | Monaco |  | 220 |
 | country_mn | Mongolei |  | 221 |
 | country_ma | Marokko |  | 223 |
@@ -199,7 +199,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_pk | Pakistan |  | 241 |
 | country_pw | Palau |  | 242 |
 | country_pa | Panama |  | 244 |
-| country_pg | Papua -Neuguinea |  | 245 |
+| country_pg | Papua-Neuguinea |  | 245 |
 | country_py | Paraguay |  | 246 |
 | country_pe | Peru |  | 247 |
 | country_ph | Philippinen |  | 248 |
@@ -233,7 +233,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_se | Schweden |  | 284 |
 | country_ch | Schweiz |  | 285 |
 | country_sy | Syrien |  | 286 |
-| country_tw | Taiwan |  | 287 |
+| country_tw | Taiwan (Republik China) |  | 287 |
 | country_tj | Tadschikistan |  | 288 |
 | country_tz | Tansania |  | 289 |
 | country_th | Thailand |  | 290 |
@@ -242,7 +242,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_to | Tonga |  | 294 |
 | country_tt | Trinidad und Tobago |  | 295 |
 | country_tn | Tunesien |  | 296 |
-| country_tr | Truthahn |  | 297 |
+| country_tr | Türkei |  | 297 |
 | country_tm | Turkmenistan |  | 298 |
 | country_tv | Tuvalu |  | 300 |
 | country_ug | Uganda |  | 301 |
