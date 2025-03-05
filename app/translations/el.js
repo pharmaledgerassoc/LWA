@@ -300,7 +300,8 @@ const data = {
   "leaflet_print_button_back": "Πάω πίσω",
   "country_me": "Μαυροβούνιο",
   "country_rs": "Σερβία",
-  "country_xk": "Κοσσυφοπέδιο"
+  "country_xk": "Κοσσυφοπέδιο",
+  "country_ss": "Νότιο Σουδάν"
 }
 
 export default data;

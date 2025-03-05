@@ -304,7 +304,8 @@ const data = {
   "leaflet_print_description": "Das aktuelle Dokument wird als PDF gedruckt.",
   "leaflet_print_description2": "Möchten Sie fortfahren?",
   "leaflet_print_button": "Fortfahren",
-  "leaflet_print_button_back": "Zurück"
+  "leaflet_print_button_back": "Zurück",
+  "country_ss": "Südsudan"
 }
 
 export default data;

@@ -304,7 +304,8 @@ const data = {
   "leaflet_print_button_back": "Teruggaan",
   "country_me": "Montenegro",
   "country_rs": "Servië",
-  "country_xk": "Kosovo"
+  "country_xk": "Kosovo",
+  "country_ss": "Zuid -Soedan"
 }
 
 export default data;

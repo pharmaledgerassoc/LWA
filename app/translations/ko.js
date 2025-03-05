@@ -304,7 +304,8 @@ const data = {
   "leaflet_print_button_back": "돌아 가라",
   "country_me": "몬테네그로",
   "country_rs": "세르비아",
-  "country_xk": "코소보"
+  "country_xk": "코소보",
+  "country_ss": "남 수단"
 }
 
 export default data;

@@ -304,7 +304,8 @@ const data = {
   "leaflet_print_button_back": "Grįžk atgal",
   "country_me": "Juodkalnija",
   "country_rs": "Serbija",
-  "country_xk": "Kosovas"
+  "country_xk": "Kosovas",
+  "country_ss": "Pietų Sudanas"
 }
 
 export default data;

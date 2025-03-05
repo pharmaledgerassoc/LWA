@@ -300,7 +300,8 @@ const data = {
   "leaflet_print_button_back": "Palata",
   "country_me": "Montenegro",
   "country_rs": "Serbia",
-  "country_xk": "Kosovo"
+  "country_xk": "Kosovo",
+  "country_ss": "Etelä -Sudan"
 }
 
 export default data;

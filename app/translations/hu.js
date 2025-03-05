@@ -304,7 +304,8 @@ const data = {
   "leaflet_print_button_back": "Visszamegy",
   "country_me": "Montenegró",
   "country_rs": "Szerbia",
-  "country_xk": "Koszovó"
+  "country_xk": "Koszovó",
+  "country_ss": "Dél -Szudán"
 }
 
 export default data;

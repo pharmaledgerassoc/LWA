@@ -300,7 +300,8 @@ const data = {
   "leaflet_print_button_back": "Atgriezties",
   "country_me": "Narkotika",
   "country_rs": "Serbija",
-  "country_xk": "Kosovo"
+  "country_xk": "Kosovo",
+  "country_ss": "Dienvidsudāna"
 }
 
 export default data;

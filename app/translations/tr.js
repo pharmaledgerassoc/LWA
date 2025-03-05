@@ -300,7 +300,8 @@ const data = {
   "leaflet_print_button_back": "Geri gitmek",
   "country_me": "Karadağ",
   "country_rs": "Sırbistan",
-  "country_xk": "Kosova"
+  "country_xk": "Kosova",
+  "country_ss": "Güney Sudan"
 }
 
 export default data;

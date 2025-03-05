@@ -300,7 +300,8 @@ const data = {
   "leaflet_print_button_back": "Tagasi minema",
   "country_me": "Montenegro",
   "country_rs": "Serbia",
-  "country_xk": "Kosovo"
+  "country_xk": "Kosovo",
+  "country_ss": "Lõuna -Sudaan"
 }
 
 export default data;

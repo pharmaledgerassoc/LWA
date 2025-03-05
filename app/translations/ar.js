@@ -304,7 +304,8 @@ const data = {
   "leaflet_print_button_back": "عُد",
   "country_me": "الجبل الأسود",
   "country_rs": "صربيا",
-  "country_xk": "كوسوفو"
+  "country_xk": "كوسوفو",
+  "country_ss": "جنوب السودان"
 }
 
 export default data;

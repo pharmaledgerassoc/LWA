@@ -313,7 +313,8 @@ const data = {
   "country_zw": "Zimbábue",
   "country_me": "Montenegro",
   "country_rs": "Sérvia",
-  "country_xk": "Kosovo"
+  "country_xk": "Kosovo",
+  "country_ss": "Sudão do Sul"
 }
 
 export default data;

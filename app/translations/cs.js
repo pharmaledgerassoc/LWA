@@ -300,7 +300,8 @@ const data = {
   "leaflet_print_button_back": "Vraťte se",
   "country_me": "Černá Hora",
   "country_rs": "Srbsko",
-  "country_xk": "Kosovo"
+  "country_xk": "Kosovo",
+  "country_ss": "Jižní Súdán"
 }
 
 export default data;
