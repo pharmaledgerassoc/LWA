@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | На жаль, жодної інформації про продукт не завантажено. | ok | 45 |
 | err_code | Код помилки | ok | 46 |
 | system_busy | Система зайнята, будь ласка, повторіть спробу пізніше. | ok | 47 |
+| leaflet_print | Друкувати |  | 48 |
 | error_subtitle | Unverified Product |  | 49 |
 | leaflet_incorrect_date_title | Incorrect date |  | 50 |
 | leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |

@@ -254,7 +254,8 @@ const data = {
   "country_me": "몬테네그로",
   "country_rs": "세르비아",
   "country_xk": "코소보",
-  "country_ss": "남 수단"
+  "country_ss": "남 수단",
+  "leaflet_print": "인쇄"
 }
 
 export default data;

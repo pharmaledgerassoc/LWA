@@ -254,7 +254,8 @@ const data = {
   "country_me": "黑山",
   "country_rs": "塞尔维亚",
   "country_xk": "科索沃",
-  "country_ss": "南苏丹"
+  "country_ss": "南苏丹",
+  "leaflet_print": "打印"
 }
 
 export default data;

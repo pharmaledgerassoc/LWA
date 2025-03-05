@@ -250,7 +250,8 @@ const data = {
   "country_me": "Черна гора",
   "country_rs": "Сърбия",
   "country_xk": "Косово",
-  "country_ss": "Южен Судан"
+  "country_ss": "Южен Судан",
+  "leaflet_print": "Печат"
 }
 
 export default data;

@@ -40,6 +40,7 @@ code,text,status,key
 45,Es wurden leider keine Produktinformationen zu diesem Arzneimittel zur Verfügung gestellt.,ok,product_not_loaded
 46,Fehler,ok,err_code
 47,"Das System ist beschäftigt, bitte versuchen Sie es später noch einmal.",ok,system_busy
+48,Drucken,,leaflet_print
 49,,,error_subtitle
 50,,,leaflet_incorrect_date_title
 51,,,leaflet_incorrect_date_subtitle

@@ -40,6 +40,7 @@ code,text,status,key
 45,"Ľutujeme, písomná informácia o lieku nebola nahraná.",ok,product_not_loaded
 46,Chybový kód,ok,err_code
 47,"Systém je zaneprázdnený, skúste neskôr.",ok,system_busy
+48,Tlač,,leaflet_print
 49,Unverified Product,,error_subtitle
 50,Incorrect date,,leaflet_incorrect_date_title
 51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle

@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Diemžēl informācija par produktu nav ielādēta. | ok | 45 |
 | err_code | Kļūdas kods | ok | 46 |
 | system_busy | Sistēma ir aizņemta, lūdzu, mēģiniet vēlāk. | ok | 47 |
+| leaflet_print | Drukāt |  | 48 |
 | leaflet_print_title | Drukas informācija |  | 61 |
 | leaflet_print_description | Pašreizējā atlasītā informācija tiks izdrukāta kā PDF. |  | 62 |
 | leaflet_print_description2 | Vai vēlaties turpināt? |  | 63 |

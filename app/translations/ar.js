@@ -254,7 +254,8 @@ const data = {
   "country_me": "الجبل الأسود",
   "country_rs": "صربيا",
   "country_xk": "كوسوفو",
-  "country_ss": "جنوب السودان"
+  "country_ss": "جنوب السودان",
+  "leaflet_print": "مطبعة"
 }
 
 export default data;

@@ -253,7 +253,8 @@ const data = {
   "country_rs": "Sérvia",
   "country_xk": "Kosovo",
   "country_lv": "Letônia",
-  "country_ss": "Sudão do Sul"
+  "country_ss": "Sudão do Sul",
+  "leaflet_print": "Imprimir"
 }
 
 export default data;

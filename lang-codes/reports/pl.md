@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Niestety, nie pobrano żadnych informacji o produkcie. | ok | 45 |
 | err_code | Kod błędu | ok | 46 |
 | system_busy | System jest przeciążony, spróbuj ponownie później. | ok | 47 |
+| leaflet_print | Wydrukować |  | 48 |
 | leaflet_print_title | Drukuj informacje |  | 61 |
 | leaflet_print_description | Obecne wybrane informacje zostaną wydrukowane jako PDF. |  | 62 |
 | leaflet_print_description2 | Chcesz kontynuować? |  | 63 |

@@ -40,6 +40,7 @@ code,text,status,key
 45,Diemžēl informācija par produktu nav ielādēta.,ok,product_not_loaded
 46,Kļūdas kods,ok,err_code
 47,"Sistēma ir aizņemta, lūdzu, mēģiniet vēlāk.",ok,system_busy
+48,Drukāt,,leaflet_print
 61,Drukas informācija,,leaflet_print_title
 62,Pašreizējā atlasītā informācija tiks izdrukāta kā PDF.,,leaflet_print_description
 63,Vai vēlaties turpināt?,,leaflet_print_description2

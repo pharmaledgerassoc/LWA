@@ -250,7 +250,8 @@ const data = {
   "country_me": "Crna Gora",
   "country_rs": "Srbija",
   "country_xk": "Kosov",
-  "country_ss": "Južni Sudan"
+  "country_ss": "Južni Sudan",
+  "leaflet_print": "Ispis"
 }
 
 export default data;

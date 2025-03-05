@@ -41,6 +41,7 @@ code,text,status,key
 45,"Deja, nebuvo įkelta jokia informacija apie produktą.",ok,product_not_loaded
 46,Klaidos kodas,ok,err_code
 47,"Sistema užimta, pabandykite vėliau.",ok,system_busy
+48,Spausdinti,,leaflet_print
 49,Unverified Product,,error_subtitle
 50,Incorrect date,,leaflet_incorrect_date_title
 51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle

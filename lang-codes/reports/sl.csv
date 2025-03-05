@@ -40,6 +40,7 @@ code,text,status,key
 45,Žal ni bilo naloženih nobenih informacij o izdelku.,ok,product_not_loaded
 46,Koda napake,ok,err_code
 47,"Sistem je zaseden, prosimo poskusite pozneje.",ok,system_busy
+48,Tisk,,leaflet_print
 49,Unverified Product,,error_subtitle
 50,Incorrect date,,leaflet_incorrect_date_title
 51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle

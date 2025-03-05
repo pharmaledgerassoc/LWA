@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Maalesef hiçbir ürün bilgisi yüklenmedi. | ok | 45 |
 | err_code | Hata kodu | ok | 46 |
 | system_busy | Sistem meşgul, lütfen daha sonra tekrar deneyin. | ok | 47 |
+| leaflet_print | Basılı |  | 48 |
 | leaflet_print_title | Baskı Bilgileri |  | 61 |
 | leaflet_print_description | Mevcut seçilen bilgiler PDF olarak yazdırılacaktır. |  | 62 |
 | leaflet_print_description2 | Devam etmek ister misin? |  | 63 |

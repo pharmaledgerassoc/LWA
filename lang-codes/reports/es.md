@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Lamentablemente, no se ha cargado ninguna información del producto. | ok | 45 |
 | err_code | Código de error | ok | 46 |
 | system_busy | Sobrecarga del sistema. Por favor, vuelva a intentarlo más tarde. | ok | 47 |
+| leaflet_print | Imprimir |  | 48 |
 | error_subtitle | Producto no verificado |  | 49 |
 | leaflet_incorrect_date_title | Fecha incorrecta |  | 50 |
 | leaflet_incorrect_date_subtitle | La fecha escaneada es incorrecta |  | 51 |

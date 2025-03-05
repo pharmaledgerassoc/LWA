@@ -40,6 +40,7 @@ code,text,status,key
 45,"Malheureusement, aucune information sur le produit n’a été chargée.",ok,product_not_loaded
 46,Code d’erreur,ok,err_code
 47,"Le système est occupé, veuillez réessayer plus tard.",ok,system_busy
+48,Imprimer,,leaflet_print
 49,,,error_subtitle
 50,,,leaflet_incorrect_date_title
 51,,,leaflet_incorrect_date_subtitle

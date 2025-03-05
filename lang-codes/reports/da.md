@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Desværre er der ikke indlæst nogen produktinformation. | ok | 45 |
 | err_code | Fejlkode | ok | 46 |
 | system_busy | Systemet er optaget, prøv venligst igen senere. | ok | 47 |
+| leaflet_print | Trykke |  | 48 |
 | leaflet_print_title | Udskriv information |  | 61 |
 | leaflet_print_description | De aktuelle valgte oplysninger udskrives som PDF. |  | 62 |
 | leaflet_print_description2 | Vil du fortsætte? |  | 63 |

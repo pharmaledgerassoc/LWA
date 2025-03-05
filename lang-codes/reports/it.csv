@@ -40,6 +40,7 @@ code,text,status,key
 45,Purtroppo nessuna informazione è stata caricata per questo prodotto.,ok,product_not_loaded
 46,Codice di errore.,ok,err_code
 47,"Il Sistema è occupato, prova di nuovo più tardi.",ok,system_busy
+48,Stampa,,leaflet_print
 61,Informazioni di stampa,,leaflet_print_title
 62,Le attuali informazioni selezionate verranno stampate come PDF.,,leaflet_print_description
 63,Vuoi procedere?,,leaflet_print_description2

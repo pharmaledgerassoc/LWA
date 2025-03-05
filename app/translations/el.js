@@ -250,7 +250,8 @@ const data = {
   "country_me": "Μαυροβούνιο",
   "country_rs": "Σερβία",
   "country_xk": "Κοσσυφοπέδιο",
-  "country_ss": "Νότιο Σουδάν"
+  "country_ss": "Νότιο Σουδάν",
+  "leaflet_print": "Αποτύπωμα"
 }
 
 export default data;
