@@ -40,6 +40,7 @@ code,text,status,key
 45,Dessverre har ingen produktinformasjon blitt lastet inn.,ok,product_not_loaded
 46,Feilkode,ok,err_code
 47,"Systemet er opptatt, vennligst prøv igjen senere.",ok,system_busy
+48,Trykk,,leaflet_print
 61,Skriv ut informasjon,,leaflet_print_title
 62,Den gjeldende valgte informasjonen vil bli skrevet ut som PDF.,,leaflet_print_description
 63,Vil du fortsette?,,leaflet_print_description2

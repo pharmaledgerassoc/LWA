@@ -254,7 +254,8 @@ const data = {
   "country_me": "Čierna Hora",
   "country_rs": "Srbsko",
   "country_xk": "Kosovo",
-  "country_ss": "Južný Sudán"
+  "country_ss": "Južný Sudán",
+  "leaflet_print": "Tlač"
 }
 
 export default data;

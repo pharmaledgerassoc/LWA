@@ -41,6 +41,7 @@ papierowej ulotki dla pacjenta z informacjami o produkcie, którą zwykle można
 45,"Niestety, nie pobrano żadnych informacji o produkcie.",ok,product_not_loaded
 46,Kod błędu,ok,err_code
 47,"System jest przeciążony, spróbuj ponownie później.",ok,system_busy
+48,Wydrukować,,leaflet_print
 61,Drukuj informacje,,leaflet_print_title
 62,Obecne wybrane informacje zostaną wydrukowane jako PDF.,,leaflet_print_description
 63,Chcesz kontynuować?,,leaflet_print_description2

@@ -254,7 +254,8 @@ const data = {
   "country_me": "Чорногорія",
   "country_rs": "Сербія",
   "country_xk": "Косово",
-  "country_ss": "Південний Судан"
+  "country_ss": "Південний Судан",
+  "leaflet_print": "Друкувати"
 }
 
 export default data;

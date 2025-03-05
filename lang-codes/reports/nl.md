@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Helaas, er is geen productinformatie beschikbaar. | ok | 45 |
 | err_code | Foutmelding | ok | 46 |
 | system_busy | Systeem is bezet, probeer het later nog eens. | ok | 47 |
+| leaflet_print | Afdrukken |  | 48 |
 | error_subtitle |  |  | 49 |
 | leaflet_incorrect_date_title |  |  | 50 |
 | leaflet_incorrect_date_subtitle |  |  | 51 |

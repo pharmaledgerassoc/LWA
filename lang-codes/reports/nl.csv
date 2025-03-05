@@ -40,6 +40,7 @@ code,text,status,key
 45,"Helaas, er is geen productinformatie beschikbaar.",ok,product_not_loaded
 46,Foutmelding,ok,err_code
 47,"Systeem is bezet, probeer het later nog eens.",ok,system_busy
+48,Afdrukken,,leaflet_print
 49,,,error_subtitle
 50,,,leaflet_incorrect_date_title
 51,,,leaflet_incorrect_date_subtitle

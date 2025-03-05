@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | للأسف، لم يتم تحميل أي معلومات عن المنتج. | ok | 45 |
 | err_code | خطأ بالكود | ok | 46 |
 | system_busy | النظام مشغول، يرجى إعادة المحاولة لاحقا. | ok | 47 |
+| leaflet_print | مطبعة |  | 48 |
 | error_subtitle | منتج غير موثوق |  | 49 |
 | leaflet_incorrect_date_title | تاريخ خاطئ |  | 50 |
 | leaflet_incorrect_date_subtitle | تاريخ المسح غير صحيح |  | 51 |

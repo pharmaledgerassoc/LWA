@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Infelizmente, nenhum folheto informativo foi carregado. | ok | 45 |
 | err_code | Código de erro | ok | 46 |
 | system_busy | O sistema está ocupado, por favor tente novamente mais tarde. | ok | 47 |
+| leaflet_print | Imprimir |  | 48 |
 | leaflet_incorrect_date_title | Incorrect date |  | 50 |
 | leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; This product's date is incorrect&lt;/b&gt;. |  | 52 |

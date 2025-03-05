@@ -41,6 +41,7 @@ code,text,status,key
 45,Kahjuks pole laaditud ühtegi tooteinfot.,ok,product_not_loaded
 46,Viga kood,ok,err_code
 47,"Süsteem on hõivatud, palun proovige hiljem uuesti.",ok,system_busy
+48,Trükikoda,,leaflet_print
 61,Trükiteave,,leaflet_print_title
 62,Praegune valitud teave trükitakse PDF -na.,,leaflet_print_description
 63,Kas soovite jätkata?,,leaflet_print_description2

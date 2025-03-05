@@ -40,6 +40,7 @@ code,text,status,key
 45,Valitettavasti tuotetietoja ei ole ladattu.,ok,product_not_loaded
 46,Virhekoodi,ok,err_code
 47,"Järjestelmä on kiireinen, yritä myöhemmin uudelleen.",ok,system_busy
+48,Painaa,,leaflet_print
 61,Tulostustiedot,,leaflet_print_title
 62,Nykyiset valitut tiedot tulostetaan PDF: ksi.,,leaflet_print_description
 63,Haluatko edetä?,,leaflet_print_description2

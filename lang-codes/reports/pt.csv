@@ -40,6 +40,7 @@ code,text,status,key
 45,"Infelizmente, nenhum folheto informativo foi carregado.",ok,product_not_loaded
 46,Código de erro,ok,err_code
 47,"O sistema está ocupado, por favor tente novamente mais tarde.",ok,system_busy
+48,Imprimir,,leaflet_print
 50,Incorrect date,,leaflet_incorrect_date_title
 51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle
 52,<b> This product's date is incorrect</b>.,,leaflet_incorrect_date_message

@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | 죄송합니다. 제품 정보가 입력되지 않았습니다. | ok | 45 |
 | err_code | 코드 오류 | ok | 46 |
 | system_busy | 시스템이 사용 중입니다. 나중에 다시 시도하십시오. | ok | 47 |
+| leaflet_print | 인쇄 |  | 48 |
 | error_subtitle | 인증되지 않은 제품 |  | 49 |
 | leaflet_incorrect_date_title | 잘못된 날짜 |  | 50 |
 | leaflet_incorrect_date_subtitle | 스캔한 날짜가 잘못되었습니다 |  | 51 |

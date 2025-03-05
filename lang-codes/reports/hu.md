@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | A betegtájékoztatót nem sikerült betölteni. | ok | 45 |
 | err_code | Hibaüzenet | ok | 46 |
 | system_busy | A rendszer működésében hiba merült fel. Kérjük, próbálja meg később. | ok | 47 |
+| leaflet_print | Nyomtatás |  | 48 |
 | error_subtitle | Unverified Product |  | 49 |
 | leaflet_incorrect_date_title | Incorrect date |  | 50 |
 | leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |

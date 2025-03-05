@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Tyvärr har ingen produktinformation laddats. | ok | 45 |
 | err_code | Felkod | ok | 46 |
 | system_busy | Systemet är upptaget, försök igen senare. | ok | 47 |
+| leaflet_print | Skriva ut |  | 48 |
 | error_subtitle | Unverified Product |  | 49 |
 | leaflet_incorrect_date_title | Incorrect date |  | 50 |
 | leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |

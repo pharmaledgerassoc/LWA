@@ -250,7 +250,8 @@ const data = {
   "country_me": "Narkotika",
   "country_rs": "Serbija",
   "country_xk": "Kosovo",
-  "country_ss": "Dienvidsudāna"
+  "country_ss": "Dienvidsudāna",
+  "leaflet_print": "Drukāt"
 }
 
 export default data;

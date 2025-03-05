@@ -40,6 +40,7 @@ code,text,status,key
 45,Maalesef hiçbir ürün bilgisi yüklenmedi.,ok,product_not_loaded
 46,Hata kodu,ok,err_code
 47,"Sistem meşgul, lütfen daha sonra tekrar deneyin.",ok,system_busy
+48,Basılı,,leaflet_print
 61,Baskı Bilgileri,,leaflet_print_title
 62,Mevcut seçilen bilgiler PDF olarak yazdırılacaktır.,,leaflet_print_description
 63,Devam etmek ister misin?,,leaflet_print_description2

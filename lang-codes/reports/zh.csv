@@ -40,6 +40,7 @@ code,text,status,key
 45,很遗憾，没有加载产品信息,ok,product_not_loaded
 46,错误代码,ok,err_code
 47,系统繁忙，请稍后再试。,ok,system_busy
+48,打印,,leaflet_print
 49,未验证的产品,,error_subtitle
 50,日期不正确,,leaflet_incorrect_date_title
 51,扫描的日期不正确,,leaflet_incorrect_date_subtitle

@@ -254,7 +254,8 @@ const data = {
   "country_me": "Montenegró",
   "country_rs": "Szerbia",
   "country_xk": "Koszovó",
-  "country_ss": "Dél -Szudán"
+  "country_ss": "Dél -Szudán",
+  "leaflet_print": "Nyomtatás"
 }
 
 export default data;

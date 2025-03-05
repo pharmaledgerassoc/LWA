@@ -40,6 +40,7 @@ code,text,status,key
 45,"Lamentablemente, no se ha cargado ninguna información del producto.",ok,product_not_loaded
 46,Código de error,ok,err_code
 47,"Sobrecarga del sistema. Por favor, vuelva a intentarlo más tarde.",ok,system_busy
+48,Imprimir,,leaflet_print
 49,Producto no verificado,,error_subtitle
 50,Fecha incorrecta,,leaflet_incorrect_date_title
 51,La fecha escaneada es incorrecta,,leaflet_incorrect_date_subtitle

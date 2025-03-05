@@ -40,6 +40,7 @@ code,text,status,key
 45,"На жаль, жодної інформації про продукт не завантажено.",ok,product_not_loaded
 46,Код помилки,ok,err_code
 47,"Система зайнята, будь ласка, повторіть спробу пізніше.",ok,system_busy
+48,Друкувати,,leaflet_print
 49,Unverified Product,,error_subtitle
 50,Incorrect date,,leaflet_incorrect_date_title
 51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle

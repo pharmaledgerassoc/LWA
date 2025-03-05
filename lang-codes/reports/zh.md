@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | 很遗憾，没有加载产品信息 | ok | 45 |
 | err_code | 错误代码 | ok | 46 |
 | system_busy | 系统繁忙，请稍后再试。 | ok | 47 |
+| leaflet_print | 打印 |  | 48 |
 | error_subtitle | 未验证的产品 |  | 49 |
 | leaflet_incorrect_date_title | 日期不正确 |  | 50 |
 | leaflet_incorrect_date_subtitle | 扫描的日期不正确 |  | 51 |

@@ -254,7 +254,8 @@ const data = {
   "leaflet_print_description2": "Möchten Sie fortfahren?",
   "leaflet_print_button": "Fortfahren",
   "leaflet_print_button_back": "Zurück",
-  "country_ss": "Südsudan"
+  "country_ss": "Südsudan",
+  "leaflet_print": "Drucken"
 }
 
 export default data;

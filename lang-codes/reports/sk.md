@@ -46,6 +46,7 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | product_not_loaded | Ľutujeme, písomná informácia o lieku nebola nahraná. | ok | 45 |
 | err_code | Chybový kód | ok | 46 |
 | system_busy | Systém je zaneprázdnený, skúste neskôr. | ok | 47 |
+| leaflet_print | Tlač |  | 48 |
 | error_subtitle | Unverified Product |  | 49 |
 | leaflet_incorrect_date_title | Incorrect date |  | 50 |
 | leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |

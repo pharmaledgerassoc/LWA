@@ -254,7 +254,8 @@ const data = {
   "country_me": "Monténégro",
   "country_rs": "Serbie",
   "country_xk": "Kosovo",
-  "country_ss": "Soudan du Sud"
+  "country_ss": "Soudan du Sud",
+  "leaflet_print": "Imprimer"
 }
 
 export default data;

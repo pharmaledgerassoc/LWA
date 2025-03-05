@@ -250,7 +250,8 @@ const data = {
   "country_me": "Černá Hora",
   "country_rs": "Srbsko",
   "country_xk": "Kosovo",
-  "country_ss": "Jižní Súdán"
+  "country_ss": "Jižní Súdán",
+  "leaflet_print": "Vytisknout"
 }
 
 export default data;

@@ -47,6 +47,7 @@ code,text,status,key
 45,죄송합니다. 제품 정보가 입력되지 않았습니다.,ok,product_not_loaded
 46,코드 오류,ok,err_code
 47,시스템이 사용 중입니다. 나중에 다시 시도하십시오.,ok,system_busy
+48,인쇄,,leaflet_print
 49,인증되지 않은 제품,,error_subtitle
 50,잘못된 날짜,,leaflet_incorrect_date_title
 51,스캔한 날짜가 잘못되었습니다,,leaflet_incorrect_date_subtitle

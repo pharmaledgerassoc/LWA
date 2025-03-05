@@ -40,6 +40,7 @@ code,text,status,key
 45,Tyvärr har ingen produktinformation laddats.,ok,product_not_loaded
 46,Felkod,ok,err_code
 47,"Systemet är upptaget, försök igen senare.",ok,system_busy
+48,Skriva ut,,leaflet_print
 49,Unverified Product,,error_subtitle
 50,Incorrect date,,leaflet_incorrect_date_title
 51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle

@@ -254,7 +254,8 @@ const data = {
   "country_me": "Juodkalnija",
   "country_rs": "Serbija",
   "country_xk": "Kosovas",
-  "country_ss": "Pietų Sudanas"
+  "country_ss": "Pietų Sudanas",
+  "leaflet_print": "Spausdinti"
 }
 
 export default data;

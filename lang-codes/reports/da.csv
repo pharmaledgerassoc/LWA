@@ -40,6 +40,7 @@ code,text,status,key
 45,Desværre er der ikke indlæst nogen produktinformation.,ok,product_not_loaded
 46,Fejlkode,ok,err_code
 47,"Systemet er optaget, prøv venligst igen senere.",ok,system_busy
+48,Trykke,,leaflet_print
 61,Udskriv information,,leaflet_print_title
 62,De aktuelle valgte oplysninger udskrives som PDF.,,leaflet_print_description
 63,Vil du fortsætte?,,leaflet_print_description2
