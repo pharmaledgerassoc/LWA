@@ -680,13 +680,17 @@ b {
     } 
 } */
 
+.hiddenElement + .control-container {
+    display: none;
+}
+
 .control-container {
     display: block;
 }
 
 @media(min-width: 301px) {
     .control-container {
-        margin: -30px auto 20px auto !important;
+        margin: -20px auto 20px auto !important;
     }
     .jsgif canvas {
         width: 324px !important;
