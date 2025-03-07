@@ -254,7 +254,17 @@ const data = {
   "leaflet_print": "Wydrukować",
   "error_subtitle": "Niezweryfikowany produkt",
   "leaflet_incorrect_date_title": "Niepoprawna data",
-  "leaflet_incorrect_date_subtitle": "Skanowana data jest nieprawidłowa"
+  "leaflet_incorrect_date_subtitle": "Skanowana data jest nieprawidłowa",
+  "scan_gif": "Jak skanować, animowany GIF",
+  "gif_play": "Grać",
+  "gif_pause": "Pauza",
+  "play_pause_gif": "Przycisk odtwarzania / pauzy",
+  "top_close": "Zamknąć",
+  "close_error_message": "Zamknij komunikat o błędzie",
+  "menu_button": "Przycisk menu",
+  "alert_icon": "Ikona alertów",
+  "leaflet_available_doc": "Dostępne dokumenty ulotki",
+  "leaflet_available_lang": "Dostępne języki ulotki"
 }
 
 export default data;

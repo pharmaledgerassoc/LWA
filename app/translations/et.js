@@ -254,7 +254,17 @@ const data = {
   "leaflet_print": "Trükikoda",
   "error_subtitle": "Kontrollimata toode",
   "leaflet_incorrect_date_title": "Vale kuupäev",
-  "leaflet_incorrect_date_subtitle": "Skaneeritud kuupäev on vale"
+  "leaflet_incorrect_date_subtitle": "Skaneeritud kuupäev on vale",
+  "scan_gif": "Kuidas skannida, animeeritud gif",
+  "gif_play": "Näidend",
+  "gif_pause": "Paus",
+  "play_pause_gif": "Play / pausi animatsiooni nupp",
+  "top_close": "Sulgur",
+  "close_error_message": "Sulgege veateade",
+  "menu_button": "Menüünupp",
+  "alert_icon": "Hoiatusikoon",
+  "leaflet_available_doc": "Voldiku saadaolevad dokumendid",
+  "leaflet_available_lang": "Voldiku saadaolevad keeled"
 }
 
 export default data;

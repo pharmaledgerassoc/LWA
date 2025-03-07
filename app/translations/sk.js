@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Srbsko",
   "country_xk": "Kosovo",
   "country_ss": "Južný Sudán",
-  "leaflet_print": "Tlač"
+  "leaflet_print": "Tlač",
+  "scan_gif": "Ako skenovať, animovaný gif",
+  "gif_play": "Hračka",
+  "gif_pause": "Pozastaviť",
+  "play_pause_gif": "Tlačidlo prehrať / pozastaviť animáciu",
+  "top_close": "Zatvoriť",
+  "close_error_message": "Zatvorte chybovú správu",
+  "menu_button": "Tlačidlo ponuky",
+  "alert_icon": "Ikona výstrahy",
+  "leaflet_available_doc": "Dostupné dokumenty letákov",
+  "leaflet_available_lang": "Dostupné jazyky letákov"
 }
 
 export default data;

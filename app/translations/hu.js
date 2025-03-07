@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Szerbia",
   "country_xk": "Koszovó",
   "country_ss": "Dél -Szudán",
-  "leaflet_print": "Nyomtatás"
+  "leaflet_print": "Nyomtatás",
+  "scan_gif": "Hogyan szkenneljünk, animált gif",
+  "gif_play": "Játék",
+  "gif_pause": "Szünet",
+  "play_pause_gif": "Lejátszás / szünet animációs gomb",
+  "top_close": "Közeli",
+  "close_error_message": "Zárja be a hibaüzenetet",
+  "menu_button": "Menügomb",
+  "alert_icon": "Riasztási ikon",
+  "leaflet_available_doc": "A szórólap rendelkezésre álló dokumentumai",
+  "leaflet_available_lang": "A szórólap rendelkezésre álló nyelvei"
 }
 
 export default data;

@@ -254,7 +254,17 @@ const data = {
   "leaflet_print": "Печат",
   "error_subtitle": "Непроверен продукт",
   "leaflet_incorrect_date_title": "Неправилна дата",
-  "leaflet_incorrect_date_subtitle": "Сканираната дата е неправилна"
+  "leaflet_incorrect_date_subtitle": "Сканираната дата е неправилна",
+  "scan_gif": "Как да сканираме, анимиран GIF",
+  "gif_play": "Игра",
+  "gif_pause": "Пауза",
+  "play_pause_gif": "Бутон за анимация за възпроизвеждане / пауза",
+  "top_close": "Затворете",
+  "close_error_message": "Затворете съобщението за грешка",
+  "menu_button": "Бутон за менюто",
+  "alert_icon": "Икона за предупреждение",
+  "leaflet_available_doc": "Наличните документи на листовка",
+  "leaflet_available_lang": "Наличните езици на листовка"
 }
 
 export default data;

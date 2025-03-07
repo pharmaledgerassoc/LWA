@@ -255,7 +255,17 @@ const data = {
   "country_rs": "塞尔维亚",
   "country_xk": "科索沃",
   "country_ss": "南苏丹",
-  "leaflet_print": "打印"
+  "leaflet_print": "打印",
+  "scan_gif": "如何扫描，动画gif",
+  "gif_play": "玩",
+  "gif_pause": "暂停",
+  "play_pause_gif": "播放 /暂停动画按钮",
+  "top_close": "关闭",
+  "close_error_message": "关闭错误消息",
+  "menu_button": "菜单按钮",
+  "alert_icon": "警报图标",
+  "leaflet_available_doc": "传单的可用文件",
+  "leaflet_available_lang": "传单的可用语言"
 }
 
 export default data;

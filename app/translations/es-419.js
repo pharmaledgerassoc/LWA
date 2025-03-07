@@ -254,7 +254,17 @@ const data = {
   "leaflet_print": "Imprimir",
   "error_subtitle": "Producto no verificado",
   "leaflet_incorrect_date_title": "Fecha incorrecta",
-  "leaflet_incorrect_date_subtitle": "La fecha escaneada es incorrecta"
+  "leaflet_incorrect_date_subtitle": "La fecha escaneada es incorrecta",
+  "scan_gif": "Cómo escanear, animado gif",
+  "gif_play": "Jugar",
+  "gif_pause": "Pausa",
+  "play_pause_gif": "Botón de animación reproducir / pausa",
+  "top_close": "Cerca",
+  "close_error_message": "Cierre el mensaje de error",
+  "menu_button": "Botón de menú",
+  "alert_icon": "Icono de alerta",
+  "leaflet_available_doc": "Documentos disponibles del folleto",
+  "leaflet_available_lang": "Idiomas disponibles del folleto"
 }
 
 export default data;

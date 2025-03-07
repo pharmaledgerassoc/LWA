@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Servië",
   "country_xk": "Kosovo",
   "country_ss": "Zuid -Soedan",
-  "leaflet_print": "Afdrukken"
+  "leaflet_print": "Afdrukken",
+  "scan_gif": "Hoe te scannen, geanimeerde gif",
+  "gif_play": "Toneelstuk",
+  "gif_pause": "Pauze",
+  "play_pause_gif": "Speel / pauzeer animatieknop",
+  "top_close": "Dichtbij",
+  "close_error_message": "Sluit het foutbericht",
+  "menu_button": "Menu -knop",
+  "alert_icon": "Alert pictogram",
+  "leaflet_available_doc": "De beschikbare documenten van folder",
+  "leaflet_available_lang": "De beschikbare talen van folder"
 }
 
 export default data;

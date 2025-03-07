@@ -255,7 +255,17 @@ const data = {
   "country_rs": "صربيا",
   "country_xk": "كوسوفو",
   "country_ss": "جنوب السودان",
-  "leaflet_print": "مطبعة"
+  "leaflet_print": "مطبعة",
+  "scan_gif": "كيفية مسح ، الرسوم المتحركة gif",
+  "gif_play": "يلعب",
+  "gif_pause": "يوقف",
+  "play_pause_gif": "زر التشغيل / الإيقاف المؤقت للرسوم المتحركة",
+  "top_close": "يغلق",
+  "close_error_message": "أغلق رسالة الخطأ",
+  "menu_button": "زر القائمة",
+  "alert_icon": "أيقونة التنبيه",
+  "leaflet_available_doc": "مستندات النشرة المتاحة",
+  "leaflet_available_lang": "اللغات المتاحة للنشرة"
 }
 
 export default data;

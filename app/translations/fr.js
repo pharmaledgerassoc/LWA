@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Serbie",
   "country_xk": "Kosovo",
   "country_ss": "Soudan du Sud",
-  "leaflet_print": "Imprimer"
+  "leaflet_print": "Imprimer",
+  "scan_gif": "Comment scanner, gif animé",
+  "gif_play": "Jouer",
+  "gif_pause": "Pause",
+  "play_pause_gif": "Bouton d'animation de lecture / pause",
+  "top_close": "Fermer",
+  "close_error_message": "Fermez le message d'erreur",
+  "menu_button": "Bouton de menu",
+  "alert_icon": "Icône d'alerte",
+  "leaflet_available_doc": "Documents disponibles de la dépliante",
+  "leaflet_available_lang": "Langues disponibles de la dépliante"
 }
 
 export default data;

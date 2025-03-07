@@ -254,7 +254,17 @@ const data = {
   "leaflet_print": "Imprimare",
   "error_subtitle": "Produs neverificat",
   "leaflet_incorrect_date_title": "Data incorectă",
-  "leaflet_incorrect_date_subtitle": "Data scanată este incorectă"
+  "leaflet_incorrect_date_subtitle": "Data scanată este incorectă",
+  "scan_gif": "Cum să scanați, GIF animat",
+  "gif_play": "Juca",
+  "gif_pause": "Pauză",
+  "play_pause_gif": "Butonul de animație de redare / pauză",
+  "top_close": "Aproape",
+  "close_error_message": "Închideți mesajul de eroare",
+  "menu_button": "Butonul de meniu",
+  "alert_icon": "Pictogramă de alertă",
+  "leaflet_available_doc": "Documentele disponibile ale prospectului",
+  "leaflet_available_lang": "Limbile disponibile ale prospectului"
 }
 
 export default data;

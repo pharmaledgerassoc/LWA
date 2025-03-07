@@ -254,7 +254,17 @@ const data = {
   "leaflet_print": "Basılı",
   "error_subtitle": "Doğrulanmamış ürün",
   "leaflet_incorrect_date_title": "Yanlış Tarih",
-  "leaflet_incorrect_date_subtitle": "Taranan tarih yanlış"
+  "leaflet_incorrect_date_subtitle": "Taranan tarih yanlış",
+  "scan_gif": "Nasıl taranır, animasyonlu GIF",
+  "gif_play": "Oynamak",
+  "gif_pause": "Duraklamak",
+  "play_pause_gif": "Animasyon düğmesini oynat / duraklat",
+  "top_close": "Kapalı",
+  "close_error_message": "Hata mesajını kapatın",
+  "menu_button": "Menü düğmesi",
+  "alert_icon": "Uyarı simgesi",
+  "leaflet_available_doc": "Broşürün Mevcut Belgeleri",
+  "leaflet_available_lang": "Broşürün Mevcut Dilleri"
 }
 
 export default data;

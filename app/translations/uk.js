@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Сербія",
   "country_xk": "Косово",
   "country_ss": "Південний Судан",
-  "leaflet_print": "Друкувати"
+  "leaflet_print": "Друкувати",
+  "scan_gif": "Як сканувати, анімований gif",
+  "gif_play": "Гра",
+  "gif_pause": "Пауза",
+  "play_pause_gif": "Кнопка анімації гри / паузи",
+  "top_close": "Закривати",
+  "close_error_message": "Закрийте повідомлення про помилку",
+  "menu_button": "Кнопка меню",
+  "alert_icon": "Піктограма оповіщення",
+  "leaflet_available_doc": "Доступні документи листівки",
+  "leaflet_available_lang": "Наявні мови листівки"
 }
 
 export default data;

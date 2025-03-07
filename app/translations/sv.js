@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Serbien",
   "country_xk": "Kosovo",
   "country_ss": "Sydsudan",
-  "leaflet_print": "Skriva ut"
+  "leaflet_print": "Skriva ut",
+  "scan_gif": "Hur man skannar, animerad gif",
+  "gif_play": "Spela",
+  "gif_pause": "Paus",
+  "play_pause_gif": "Spela / Paus Animation -knappen",
+  "top_close": "Nära",
+  "close_error_message": "Stäng felmeddelandet",
+  "menu_button": "Menyknapp",
+  "alert_icon": "Varna ikon",
+  "leaflet_available_doc": "Broschyrens tillgängliga dokument",
+  "leaflet_available_lang": "Broschyrens tillgängliga språk"
 }
 
 export default data;

@@ -254,7 +254,17 @@ const data = {
   "leaflet_print": "Vytisknout",
   "error_subtitle": "Neověřený produkt",
   "leaflet_incorrect_date_title": "Nesprávné datum",
-  "leaflet_incorrect_date_subtitle": "Naskanované datum je nesprávné"
+  "leaflet_incorrect_date_subtitle": "Naskanované datum je nesprávné",
+  "scan_gif": "Jak skenovat, animovaný gif",
+  "gif_play": "Hrát",
+  "gif_pause": "Pauza",
+  "play_pause_gif": "Tlačítko Přehrát / pozastavit animaci",
+  "top_close": "Blízko",
+  "close_error_message": "Zavřete chybovou zprávu",
+  "menu_button": "Tlačítko nabídky",
+  "alert_icon": "Ikona výstrahy",
+  "leaflet_available_doc": "Dostupné dokumenty letáku",
+  "leaflet_available_lang": "Dostupné jazyky letáku"
 }
 
 export default data;

@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Serbija",
   "country_xk": "Kosovas",
   "country_ss": "Pietų Sudanas",
-  "leaflet_print": "Spausdinti"
+  "leaflet_print": "Spausdinti",
+  "scan_gif": "Kaip nuskaityti, animuoti GIF",
+  "gif_play": "Žaisk",
+  "gif_pause": "Pauzė",
+  "play_pause_gif": "Žaisk / pristabdykite animacijos mygtuką",
+  "top_close": "Uždaryti",
+  "close_error_message": "Uždarykite klaidos pranešimą",
+  "menu_button": "Meniu mygtukas",
+  "alert_icon": "Įspėjimo piktograma",
+  "leaflet_available_doc": "Lankstinukas turimi dokumentai",
+  "leaflet_available_lang": "Lankstinukas turimas kalbas"
 }
 
 export default data;

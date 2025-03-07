@@ -255,7 +255,17 @@ const data = {
   "country_rs": "Srbija",
   "country_xk": "Kosovo",
   "country_ss": "Južni Sudan",
-  "leaflet_print": "Tisk"
+  "leaflet_print": "Tisk",
+  "scan_gif": "Kako skenirati, animirani gif",
+  "gif_play": "Igrati",
+  "gif_pause": "Premor",
+  "play_pause_gif": "Gumb za predvajanje / pavzo animacije",
+  "top_close": "Blizu",
+  "close_error_message": "Zaprite sporočilo o napaki",
+  "menu_button": "Gumb za meni",
+  "alert_icon": "Ikona opozorila",
+  "leaflet_available_doc": "Na voljo dokumenti z letaki",
+  "leaflet_available_lang": "Na voljo jezikov"
 }
 
 export default data;
