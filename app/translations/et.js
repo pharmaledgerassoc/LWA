@@ -251,7 +251,10 @@ const data = {
   "country_rs": "Serbia",
   "country_xk": "Kosovo",
   "country_ss": "Lõuna -Sudaan",
-  "leaflet_print": "Trükikoda"
+  "leaflet_print": "Trükikoda",
+  "error_subtitle": "Kontrollimata toode",
+  "leaflet_incorrect_date_title": "Vale kuupäev",
+  "leaflet_incorrect_date_subtitle": "Skaneeritud kuupäev on vale"
 }
 
 export default data;

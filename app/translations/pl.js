@@ -251,7 +251,10 @@ const data = {
   "country_rs": "Serbia",
   "country_xk": "Kosovo",
   "country_ss": "Sudan Południowy",
-  "leaflet_print": "Wydrukować"
+  "leaflet_print": "Wydrukować",
+  "error_subtitle": "Niezweryfikowany produkt",
+  "leaflet_incorrect_date_title": "Niepoprawna data",
+  "leaflet_incorrect_date_subtitle": "Skanowana data jest nieprawidłowa"
 }
 
 export default data;

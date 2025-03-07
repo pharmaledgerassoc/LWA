@@ -251,7 +251,10 @@ const data = {
   "country_rs": "Srbsko",
   "country_xk": "Kosovo",
   "country_ss": "Jižní Súdán",
-  "leaflet_print": "Vytisknout"
+  "leaflet_print": "Vytisknout",
+  "error_subtitle": "Neověřený produkt",
+  "leaflet_incorrect_date_title": "Nesprávné datum",
+  "leaflet_incorrect_date_subtitle": "Naskanované datum je nesprávné"
 }
 
 export default data;

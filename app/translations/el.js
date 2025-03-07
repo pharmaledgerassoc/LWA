@@ -251,7 +251,10 @@ const data = {
   "country_rs": "Σερβία",
   "country_xk": "Κοσσυφοπέδιο",
   "country_ss": "Νότιο Σουδάν",
-  "leaflet_print": "Αποτύπωμα"
+  "leaflet_print": "Αποτύπωμα",
+  "error_subtitle": "Μη επαληθευμένο προϊόν",
+  "leaflet_incorrect_date_title": "Εσφαλμένη ημερομηνία",
+  "leaflet_incorrect_date_subtitle": "Η ημερομηνία σαρωτής είναι λανθασμένη"
 }
 
 export default data;

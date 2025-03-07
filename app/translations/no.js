@@ -251,7 +251,10 @@ const data = {
   "country_rs": "Serbia",
   "country_xk": "Kosovo",
   "country_ss": "Sør -Sudan",
-  "leaflet_print": "Trykk"
+  "leaflet_print": "Trykk",
+  "error_subtitle": "Ubekreftet produkt",
+  "leaflet_incorrect_date_title": "Feil dato",
+  "leaflet_incorrect_date_subtitle": "Skannet dato er feil"
 }
 
 export default data;

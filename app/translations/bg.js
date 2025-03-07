@@ -251,7 +251,10 @@ const data = {
   "country_rs": "Сърбия",
   "country_xk": "Косово",
   "country_ss": "Южен Судан",
-  "leaflet_print": "Печат"
+  "leaflet_print": "Печат",
+  "error_subtitle": "Непроверен продукт",
+  "leaflet_incorrect_date_title": "Неправилна дата",
+  "leaflet_incorrect_date_subtitle": "Сканираната дата е неправилна"
 }
 
 export default data;

@@ -251,7 +251,10 @@ const data = {
   "country_rs": "Sırbistan",
   "country_xk": "Kosova",
   "country_ss": "Güney Sudan",
-  "leaflet_print": "Basılı"
+  "leaflet_print": "Basılı",
+  "error_subtitle": "Doğrulanmamış ürün",
+  "leaflet_incorrect_date_title": "Yanlış Tarih",
+  "leaflet_incorrect_date_subtitle": "Taranan tarih yanlış"
 }
 
 export default data;
