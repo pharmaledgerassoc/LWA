@@ -256,3 +256,13 @@ code,text,status,key
 321,Serbie,,country_rs
 322,Kosovo,,country_xk
 324,Soudan du Sud,,country_ss
+325,Icône d'alerte,,alert_icon
+326,"Comment scanner, gif animé",,scan_gif
+327,Jouer,,gif_play
+328,Pause,,gif_pause
+329,Bouton d'animation de lecture / pause,,play_pause_gif
+330,Fermer,,top_close
+331,Fermez le message d'erreur,,close_error_message
+332,Bouton de menu,,menu_button
+333,Documents disponibles de la dépliante,,leaflet_available_doc
+334,Langues disponibles de la dépliante,,leaflet_available_lang

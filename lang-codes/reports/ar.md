@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | صربيا |  | 321 |
 | country_xk | كوسوفو |  | 322 |
 | country_ss | جنوب السودان |  | 324 |
+| alert_icon | أيقونة التنبيه |  | 325 |
+| scan_gif | كيفية مسح ، الرسوم المتحركة gif |  | 326 |
+| gif_play | يلعب |  | 327 |
+| gif_pause | يوقف |  | 328 |
+| play_pause_gif | زر التشغيل / الإيقاف المؤقت للرسوم المتحركة |  | 329 |
+| top_close | يغلق |  | 330 |
+| close_error_message | أغلق رسالة الخطأ |  | 331 |
+| menu_button | زر القائمة |  | 332 |
+| leaflet_available_doc | مستندات النشرة المتاحة |  | 333 |
+| leaflet_available_lang | اللغات المتاحة للنشرة |  | 334 |

@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Servië |  | 321 |
 | country_xk | Kosovo |  | 322 |
 | country_ss | Zuid -Soedan |  | 324 |
+| alert_icon | Alert pictogram |  | 325 |
+| scan_gif | Hoe te scannen, geanimeerde gif |  | 326 |
+| gif_play | Toneelstuk |  | 327 |
+| gif_pause | Pauze |  | 328 |
+| play_pause_gif | Speel / pauzeer animatieknop |  | 329 |
+| top_close | Dichtbij |  | 330 |
+| close_error_message | Sluit het foutbericht |  | 331 |
+| menu_button | Menu -knop |  | 332 |
+| leaflet_available_doc | De beschikbare documenten van folder |  | 333 |
+| leaflet_available_lang | De beschikbare talen van folder |  | 334 |

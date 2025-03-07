@@ -261,3 +261,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Serbia |  | 321 |
 | country_xk | Kosovo |  | 322 |
 | country_ss | Sud Sudan |  | 324 |
+| alert_icon | Icona di allerta |  | 325 |
+| scan_gif | Come scansionare, GIF animata |  | 326 |
+| gif_play | Giocare |  | 327 |
+| gif_pause | Pausa |  | 328 |
+| play_pause_gif | Pulsante di riproduzione / pausa |  | 329 |
+| top_close | Vicina |  | 330 |
+| close_error_message | Chiudi il messaggio di errore |  | 331 |
+| menu_button | Pulsante menu |  | 332 |
+| leaflet_available_doc | Documenti disponibili del volantino |  | 333 |
+| leaflet_available_lang | Le lingue disponibili del volantino |  | 334 |

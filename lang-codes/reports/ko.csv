@@ -263,3 +263,13 @@ code,text,status,key
 321,세르비아,,country_rs
 322,코소보,,country_xk
 324,남 수단,,country_ss
+325,경고 아이콘,,alert_icon
+326,"스캔하는 방법, 애니메이션 GIF",,scan_gif
+327,놀다,,gif_play
+328,정지시키다,,gif_pause
+329,플레이 / 일시 중지 애니메이션 버튼,,play_pause_gif
+330,닫다,,top_close
+331,오류 메시지를 닫습니다,,close_error_message
+332,메뉴 버튼,,menu_button
+333,리플렛의 사용 가능한 문서,,leaflet_available_doc
+334,리플렛의 사용 가능한 언어,,leaflet_available_lang

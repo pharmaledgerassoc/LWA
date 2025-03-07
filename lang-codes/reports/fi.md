@@ -261,3 +261,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Serbia |  | 321 |
 | country_xk | Kosovo |  | 322 |
 | country_ss | Etelä -Sudan |  | 324 |
+| alert_icon | Hälytyskuvake |  | 325 |
+| scan_gif | Kuinka skannata, animoitu gif |  | 326 |
+| gif_play | Pelata |  | 327 |
+| gif_pause | Tauko |  | 328 |
+| play_pause_gif | Toista / keskeyttää animaatiopainike |  | 329 |
+| top_close | Lähellä |  | 330 |
+| close_error_message | Sulje virheilmoitus |  | 331 |
+| menu_button | Valikkopainike |  | 332 |
+| leaflet_available_doc | Lehtisen käytettävissä olevat asiakirjat |  | 333 |
+| leaflet_available_lang | Lehteisen kielet |  | 334 |

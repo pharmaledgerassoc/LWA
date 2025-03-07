@@ -261,3 +261,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Sırbistan |  | 321 |
 | country_xk | Kosova |  | 322 |
 | country_ss | Güney Sudan |  | 324 |
+| alert_icon | Uyarı simgesi |  | 325 |
+| scan_gif | Nasıl taranır, animasyonlu GIF |  | 326 |
+| gif_play | Oynamak |  | 327 |
+| gif_pause | Duraklamak |  | 328 |
+| play_pause_gif | Animasyon düğmesini oynat / duraklat |  | 329 |
+| top_close | Kapalı |  | 330 |
+| close_error_message | Hata mesajını kapatın |  | 331 |
+| menu_button | Menü düğmesi |  | 332 |
+| leaflet_available_doc | Broşürün Mevcut Belgeleri |  | 333 |
+| leaflet_available_lang | Broşürün Mevcut Dilleri |  | 334 |

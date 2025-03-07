@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Serbien |  | 321 |
 | country_xk | Kosovo |  | 322 |
 | country_ss | Südsudan |  | 324 |
+| alert_icon | Alarm -Symbol |  | 325 |
+| scan_gif | So scannen, animierte GIF |  | 326 |
+| gif_play | Spielen |  | 327 |
+| gif_pause | Pause |  | 328 |
+| play_pause_gif | Animationstaste abspielen / pausieren |  | 329 |
+| top_close | Schließen |  | 330 |
+| close_error_message | Schließen Sie die Fehlermeldung |  | 331 |
+| menu_button | Menüschaltfläche |  | 332 |
+| leaflet_available_doc | Die verfügbaren Dokumente von Broschüren |  | 333 |
+| leaflet_available_lang | Die verfügbaren Sprachen von Broschüren |  | 334 |

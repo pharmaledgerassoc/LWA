@@ -256,3 +256,13 @@ code,text,status,key
 321,Srbija,,country_rs
 322,Kosovo,,country_xk
 324,Južni Sudan,,country_ss
+325,Ikona opozorila,,alert_icon
+326,"Kako skenirati, animirani gif",,scan_gif
+327,Igrati,,gif_play
+328,Premor,,gif_pause
+329,Gumb za predvajanje / pavzo animacije,,play_pause_gif
+330,Blizu,,top_close
+331,Zaprite sporočilo o napaki,,close_error_message
+332,Gumb za meni,,menu_button
+333,Na voljo dokumenti z letaki,,leaflet_available_doc
+334,Na voljo jezikov,,leaflet_available_lang

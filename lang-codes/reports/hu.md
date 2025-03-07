@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Szerbia |  | 321 |
 | country_xk | Koszovó |  | 322 |
 | country_ss | Dél -Szudán |  | 324 |
+| alert_icon | Riasztási ikon |  | 325 |
+| scan_gif | Hogyan szkenneljünk, animált gif |  | 326 |
+| gif_play | Játék |  | 327 |
+| gif_pause | Szünet |  | 328 |
+| play_pause_gif | Lejátszás / szünet animációs gomb |  | 329 |
+| top_close | Közeli |  | 330 |
+| close_error_message | Zárja be a hibaüzenetet |  | 331 |
+| menu_button | Menügomb |  | 332 |
+| leaflet_available_doc | A szórólap rendelkezésre álló dokumentumai |  | 333 |
+| leaflet_available_lang | A szórólap rendelkezésre álló nyelvei |  | 334 |

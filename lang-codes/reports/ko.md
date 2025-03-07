@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | 세르비아 |  | 321 |
 | country_xk | 코소보 |  | 322 |
 | country_ss | 남 수단 |  | 324 |
+| alert_icon | 경고 아이콘 |  | 325 |
+| scan_gif | 스캔하는 방법, 애니메이션 GIF |  | 326 |
+| gif_play | 놀다 |  | 327 |
+| gif_pause | 정지시키다 |  | 328 |
+| play_pause_gif | 플레이 / 일시 중지 애니메이션 버튼 |  | 329 |
+| top_close | 닫다 |  | 330 |
+| close_error_message | 오류 메시지를 닫습니다 |  | 331 |
+| menu_button | 메뉴 버튼 |  | 332 |
+| leaflet_available_doc | 리플렛의 사용 가능한 문서 |  | 333 |
+| leaflet_available_lang | 리플렛의 사용 가능한 언어 |  | 334 |

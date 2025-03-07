@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | 塞尔维亚 |  | 321 |
 | country_xk | 科索沃 |  | 322 |
 | country_ss | 南苏丹 |  | 324 |
+| alert_icon | 警报图标 |  | 325 |
+| scan_gif | 如何扫描，动画gif |  | 326 |
+| gif_play | 玩 |  | 327 |
+| gif_pause | 暂停 |  | 328 |
+| play_pause_gif | 播放 /暂停动画按钮 |  | 329 |
+| top_close | 关闭 |  | 330 |
+| close_error_message | 关闭错误消息 |  | 331 |
+| menu_button | 菜单按钮 |  | 332 |
+| leaflet_available_doc | 传单的可用文件 |  | 333 |
+| leaflet_available_lang | 传单的可用语言 |  | 334 |

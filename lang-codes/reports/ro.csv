@@ -255,3 +255,13 @@ code,text,status,key
 321,Serbia,,country_rs
 322,Kosovo,,country_xk
 324,Sudanul de Sud,,country_ss
+325,Pictogramă de alertă,,alert_icon
+326,"Cum să scanați, GIF animat",,scan_gif
+327,Juca,,gif_play
+328,Pauză,,gif_pause
+329,Butonul de animație de redare / pauză,,play_pause_gif
+330,Aproape,,top_close
+331,Închideți mesajul de eroare,,close_error_message
+332,Butonul de meniu,,menu_button
+333,Documentele disponibile ale prospectului,,leaflet_available_doc
+334,Limbile disponibile ale prospectului,,leaflet_available_lang

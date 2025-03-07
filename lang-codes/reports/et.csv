@@ -256,3 +256,13 @@ code,text,status,key
 321,Serbia,,country_rs
 322,Kosovo,,country_xk
 324,Lõuna -Sudaan,,country_ss
+325,Hoiatusikoon,,alert_icon
+326,"Kuidas skannida, animeeritud gif",,scan_gif
+327,Näidend,,gif_play
+328,Paus,,gif_pause
+329,Play / pausi animatsiooni nupp,,play_pause_gif
+330,Sulgur,,top_close
+331,Sulgege veateade,,close_error_message
+332,Menüünupp,,menu_button
+333,Voldiku saadaolevad dokumendid,,leaflet_available_doc
+334,Voldiku saadaolevad keeled,,leaflet_available_lang

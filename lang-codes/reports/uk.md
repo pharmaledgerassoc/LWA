@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Сербія |  | 321 |
 | country_xk | Косово |  | 322 |
 | country_ss | Південний Судан |  | 324 |
+| alert_icon | Піктограма оповіщення |  | 325 |
+| scan_gif | Як сканувати, анімований gif |  | 326 |
+| gif_play | Гра |  | 327 |
+| gif_pause | Пауза |  | 328 |
+| play_pause_gif | Кнопка анімації гри / паузи |  | 329 |
+| top_close | Закривати |  | 330 |
+| close_error_message | Закрийте повідомлення про помилку |  | 331 |
+| menu_button | Кнопка меню |  | 332 |
+| leaflet_available_doc | Доступні документи листівки |  | 333 |
+| leaflet_available_lang | Наявні мови листівки |  | 334 |

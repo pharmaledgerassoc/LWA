@@ -262,3 +262,13 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | country_rs | Srbija |  | 321 |
 | country_xk | Kosovo |  | 322 |
 | country_ss | Južni Sudan |  | 324 |
+| alert_icon | Ikona opozorila |  | 325 |
+| scan_gif | Kako skenirati, animirani gif |  | 326 |
+| gif_play | Igrati |  | 327 |
+| gif_pause | Premor |  | 328 |
+| play_pause_gif | Gumb za predvajanje / pavzo animacije |  | 329 |
+| top_close | Blizu |  | 330 |
+| close_error_message | Zaprite sporočilo o napaki |  | 331 |
+| menu_button | Gumb za meni |  | 332 |
+| leaflet_available_doc | Na voljo dokumenti z letaki |  | 333 |
+| leaflet_available_lang | Na voljo jezikov |  | 334 |

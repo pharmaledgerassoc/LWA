@@ -256,3 +256,13 @@ code,text,status,key
 321,Serbien,,country_rs
 322,Kosovo,,country_xk
 324,Sydsudan,,country_ss
+325,Varna ikon,,alert_icon
+326,"Hur man skannar, animerad gif",,scan_gif
+327,Spela,,gif_play
+328,Paus,,gif_pause
+329,Spela / Paus Animation -knappen,,play_pause_gif
+330,Nära,,top_close
+331,Stäng felmeddelandet,,close_error_message
+332,Menyknapp,,menu_button
+333,Broschyrens tillgängliga dokument,,leaflet_available_doc
+334,Broschyrens tillgängliga språk,,leaflet_available_lang

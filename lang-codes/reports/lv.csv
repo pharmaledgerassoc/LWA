@@ -255,3 +255,13 @@ code,text,status,key
 321,Serbija,,country_rs
 322,Kosovo,,country_xk
 324,Dienvidsudāna,,country_ss
+325,Brīdinājuma ikona,,alert_icon
+326,"Kā skenēt, animēt GIF",,scan_gif
+327,Rotaļlieta,,gif_play
+328,Apturēt,,gif_pause
+329,Spēlēt / pauzēt animācijas pogu,,play_pause_gif
+330,Tuvs,,top_close
+331,Aizveriet kļūdas ziņojumu,,close_error_message
+332,Izvēlnes poga,,menu_button
+333,Beamplet pieejamie dokumenti,,leaflet_available_doc
+334,Beamplet pieejamās valodas,,leaflet_available_lang
