@@ -42,9 +42,9 @@ code,text,status,key
 46,Klaidos kodas,ok,err_code
 47,"Sistema užimta, pabandykite vėliau.",ok,system_busy
 48,Spausdinti,,leaflet_print
-49,Unverified Product,,error_subtitle
-50,Incorrect date,,leaflet_incorrect_date_title
-51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle
+49,Nepatikrintas produktas,,error_subtitle
+50,Neteisinga data,,leaflet_incorrect_date_title
+51,Nuskaityta data neteisinga,,leaflet_incorrect_date_subtitle
 52,<b> This product's date is incorrect</b>.,,leaflet_incorrect_date_message
 61,Spausdinti informaciją,,leaflet_print_title
 62,Dabartinė pasirinkta informacija bus atspausdinta kaip PDF.,,leaflet_print_description

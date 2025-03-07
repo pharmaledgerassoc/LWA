@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Cod de eroare | ok | 46 |
 | system_busy | Sistemul este ocupat, vă rugăm să încercați din nou mai târziu. | ok | 47 |
 | leaflet_print | Imprimare |  | 48 |
+| error_subtitle | Produs neverificat |  | 49 |
+| leaflet_incorrect_date_title | Data incorectă |  | 50 |
+| leaflet_incorrect_date_subtitle | Data scanată este incorectă |  | 51 |
 | leaflet_print_title | Informații tipărite |  | 61 |
 | leaflet_print_description | Informațiile selectate curente vor fi tipărite ca PDF. |  | 62 |
 | leaflet_print_description2 | Doriți să continuați? |  | 63 |

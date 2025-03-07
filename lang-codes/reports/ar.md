@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | خطأ بالكود | ok | 46 |
 | system_busy | النظام مشغول، يرجى إعادة المحاولة لاحقا. | ok | 47 |
 | leaflet_print | مطبعة |  | 48 |
-| error_subtitle | منتج غير موثوق |  | 49 |
-| leaflet_incorrect_date_title | تاريخ خاطئ |  | 50 |
-| leaflet_incorrect_date_subtitle | تاريخ المسح غير صحيح |  | 51 |
+| error_subtitle | المنتج غير التحقق من ذلك |  | 49 |
+| leaflet_incorrect_date_title | تاريخ غير صحيح |  | 50 |
+| leaflet_incorrect_date_subtitle | التاريخ الممسوحة ضوئيًا غير صحيح |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; تاريخ هذا المنتج غير صحيح&lt;/b&gt;. |  | 52 |
 | leaflet_print_title | معلومات الطباعة |  | 61 |
 | leaflet_print_description | سيتم طباعة المعلومات المحددة الحالية على أنها PDF. |  | 62 |

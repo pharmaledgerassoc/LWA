@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Foutmelding | ok | 46 |
 | system_busy | Systeem is bezet, probeer het later nog eens. | ok | 47 |
 | leaflet_print | Afdrukken |  | 48 |
-| error_subtitle |  |  | 49 |
-| leaflet_incorrect_date_title |  |  | 50 |
-| leaflet_incorrect_date_subtitle |  |  | 51 |
+| error_subtitle | Niet -geverifieerd product |  | 49 |
+| leaflet_incorrect_date_title | Onjuiste datum |  | 50 |
+| leaflet_incorrect_date_subtitle | Gescande datum is onjuist |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; &lt;/b&gt;. |  | 52 |
 | leaflet_print_title | Informatie afdrukken |  | 61 |
 | leaflet_print_description | De huidige geselecteerde informatie wordt afgedrukt als PDF. |  | 62 |

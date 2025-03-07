@@ -41,6 +41,9 @@ code,text,status,key
 46,Kļūdas kods,ok,err_code
 47,"Sistēma ir aizņemta, lūdzu, mēģiniet vēlāk.",ok,system_busy
 48,Drukāt,,leaflet_print
+49,Nepārbaudīts produkts,,error_subtitle
+50,Nepareizs datums,,leaflet_incorrect_date_title
+51,Skenēts datums nav pareizs,,leaflet_incorrect_date_subtitle
 61,Drukas informācija,,leaflet_print_title
 62,Pašreizējā atlasītā informācija tiks izdrukāta kā PDF.,,leaflet_print_description
 63,Vai vēlaties turpināt?,,leaflet_print_description2

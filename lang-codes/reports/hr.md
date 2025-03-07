@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Kôd pogreške: | ok | 46 |
 | system_busy | Sustav je zauzet, molimo pokušajte ponovno kasnije. | ok | 47 |
 | leaflet_print | Ispis |  | 48 |
+| error_subtitle | Neprovjereni proizvod |  | 49 |
+| leaflet_incorrect_date_title | Netočan datum |  | 50 |
+| leaflet_incorrect_date_subtitle | Datum skeniranja je netočan |  | 51 |
 | leaflet_print_title | Informacije o ispisu |  | 61 |
 | leaflet_print_description | Trenutne odabrane informacije bit će ispisane kao PDF. |  | 62 |
 | leaflet_print_description2 | Želite li nastaviti? |  | 63 |

@@ -41,6 +41,9 @@ code,text,status,key
 46,Kôd pogreške:,ok,err_code
 47,"Sustav je zauzet, molimo pokušajte ponovno kasnije.",ok,system_busy
 48,Ispis,,leaflet_print
+49,Neprovjereni proizvod,,error_subtitle
+50,Netočan datum,,leaflet_incorrect_date_title
+51,Datum skeniranja je netočan,,leaflet_incorrect_date_subtitle
 61,Informacije o ispisu,,leaflet_print_title
 62,Trenutne odabrane informacije bit će ispisane kao PDF.,,leaflet_print_description
 63,Želite li nastaviti?,,leaflet_print_description2

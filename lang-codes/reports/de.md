@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Fehler | ok | 46 |
 | system_busy | Das System ist beschäftigt, bitte versuchen Sie es später noch einmal. | ok | 47 |
 | leaflet_print | Drucken |  | 48 |
-| error_subtitle |  |  | 49 |
-| leaflet_incorrect_date_title |  |  | 50 |
-| leaflet_incorrect_date_subtitle |  |  | 51 |
+| error_subtitle | Nicht überprüftes Produkt |  | 49 |
+| leaflet_incorrect_date_title | Falsches Datum |  | 50 |
+| leaflet_incorrect_date_subtitle | Das gescannte Datum ist falsch |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; &lt;/b&gt;. |  | 52 |
 | leaflet_print_title | Dokument Drucken |  | 61 |
 | leaflet_print_description | Das aktuelle Dokument wird als PDF gedruckt. |  | 62 |

@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Kļūdas kods | ok | 46 |
 | system_busy | Sistēma ir aizņemta, lūdzu, mēģiniet vēlāk. | ok | 47 |
 | leaflet_print | Drukāt |  | 48 |
+| error_subtitle | Nepārbaudīts produkts |  | 49 |
+| leaflet_incorrect_date_title | Nepareizs datums |  | 50 |
+| leaflet_incorrect_date_subtitle | Skenēts datums nav pareizs |  | 51 |
 | leaflet_print_title | Drukas informācija |  | 61 |
 | leaflet_print_description | Pašreizējā atlasītā informācija tiks izdrukāta kā PDF. |  | 62 |
 | leaflet_print_description2 | Vai vēlaties turpināt? |  | 63 |

@@ -41,9 +41,9 @@ code,text,status,key
 46,Код помилки,ok,err_code
 47,"Система зайнята, будь ласка, повторіть спробу пізніше.",ok,system_busy
 48,Друкувати,,leaflet_print
-49,Unverified Product,,error_subtitle
-50,Incorrect date,,leaflet_incorrect_date_title
-51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle
+49,Неперевірений продукт,,error_subtitle
+50,Неправильна дата,,leaflet_incorrect_date_title
+51,Відсканована дата невірна,,leaflet_incorrect_date_subtitle
 52,<b> This product's date is incorrect</b>.,,leaflet_incorrect_date_message
 61,Інформація про друк,,leaflet_print_title
 62,Поточна вибрана інформація буде надрукована як PDF.,,leaflet_print_description

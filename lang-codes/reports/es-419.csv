@@ -41,6 +41,9 @@ code,text,status,key
 46,Código de error,ok,err_code
 47,"El sistema está ocupado, por favor inténtelo de nuevo más tarde.",ok,system_busy
 48,Imprimir,,leaflet_print
+49,Producto no verificado,,error_subtitle
+50,Fecha incorrecta,,leaflet_incorrect_date_title
+51,La fecha escaneada es incorrecta,,leaflet_incorrect_date_subtitle
 61,Información de impresión,,leaflet_print_title
 62,La información seleccionada actual se imprimirá como PDF.,,leaflet_print_description
 63,¿Quieres continuar?,,leaflet_print_description2

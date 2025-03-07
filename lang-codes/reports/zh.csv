@@ -41,9 +41,9 @@ code,text,status,key
 46,错误代码,ok,err_code
 47,系统繁忙，请稍后再试。,ok,system_busy
 48,打印,,leaflet_print
-49,未验证的产品,,error_subtitle
-50,日期不正确,,leaflet_incorrect_date_title
-51,扫描的日期不正确,,leaflet_incorrect_date_subtitle
+49,未经验证的产品,,error_subtitle
+50,不正确的日期,,leaflet_incorrect_date_title
+51,扫描日期不正确,,leaflet_incorrect_date_subtitle
 52,<b> 此产品的日期不正确</b>.,,leaflet_incorrect_date_message
 61,打印信息,,leaflet_print_title
 62,当前选定的信息将以PDF打印。,,leaflet_print_description

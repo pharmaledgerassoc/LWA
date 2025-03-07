@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Σφάλμα κωδικού | ok | 46 |
 | system_busy | Το σύστημα είναι απασχολημένο (δεν μπορεί να σας εξυπηρετήσει), δοκιμάστε ξανά αργότερα. | ok | 47 |
 | leaflet_print | Αποτύπωμα |  | 48 |
+| error_subtitle | Μη επαληθευμένο προϊόν |  | 49 |
+| leaflet_incorrect_date_title | Εσφαλμένη ημερομηνία |  | 50 |
+| leaflet_incorrect_date_subtitle | Η ημερομηνία σαρωτής είναι λανθασμένη |  | 51 |
 | leaflet_print_title | Πληροφορίες εκτύπωσης |  | 61 |
 | leaflet_print_description | Οι τρέχουσες επιλεγμένες πληροφορίες θα εκτυπωθούν ως PDF. |  | 62 |
 | leaflet_print_description2 | Θέλετε να προχωρήσετε; |  | 63 |

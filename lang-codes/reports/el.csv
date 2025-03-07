@@ -42,6 +42,9 @@ code,text,status,key
 46,Σφάλμα κωδικού,ok,err_code
 47,"Το σύστημα είναι απασχολημένο (δεν μπορεί να σας εξυπηρετήσει), δοκιμάστε ξανά αργότερα.",ok,system_busy
 48,Αποτύπωμα,,leaflet_print
+49,Μη επαληθευμένο προϊόν,,error_subtitle
+50,Εσφαλμένη ημερομηνία,,leaflet_incorrect_date_title
+51,Η ημερομηνία σαρωτής είναι λανθασμένη,,leaflet_incorrect_date_subtitle
 61,Πληροφορίες εκτύπωσης,,leaflet_print_title
 62,Οι τρέχουσες επιλεγμένες πληροφορίες θα εκτυπωθούν ως PDF.,,leaflet_print_description
 63,Θέλετε να προχωρήσετε;,,leaflet_print_description2

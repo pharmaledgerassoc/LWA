@@ -42,9 +42,9 @@ code,text,status,key
 46,Hibaüzenet,ok,err_code
 47,"A rendszer működésében hiba merült fel. Kérjük, próbálja meg később.",ok,system_busy
 48,Nyomtatás,,leaflet_print
-49,Unverified Product,,error_subtitle
-50,Incorrect date,,leaflet_incorrect_date_title
-51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle
+49,Nem ellenőrzött termék,,error_subtitle
+50,Helytelen dátum,,leaflet_incorrect_date_title
+51,A beolvasott dátum helytelen,,leaflet_incorrect_date_subtitle
 52,<b> This product's date is incorrect</b>.,,leaflet_incorrect_date_message
 61,Nyomtatási információk,,leaflet_print_title
 62,Az aktuális kiválasztott információt PDF -ként nyomtatják ki.,,leaflet_print_description

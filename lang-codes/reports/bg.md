@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Код за грешка | ok | 46 |
 | system_busy | Системата е претоварена, моля, опитайте отново по-късно. | ok | 47 |
 | leaflet_print | Печат |  | 48 |
+| error_subtitle | Непроверен продукт |  | 49 |
+| leaflet_incorrect_date_title | Неправилна дата |  | 50 |
+| leaflet_incorrect_date_subtitle | Сканираната дата е неправилна |  | 51 |
 | leaflet_print_title | Информация за отпечатване |  | 61 |
 | leaflet_print_description | Текущата избрана информация ще бъде отпечатана като PDF. |  | 62 |
 | leaflet_print_description2 | Искате ли да продължите? |  | 63 |

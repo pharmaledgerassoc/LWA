@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Hata kodu | ok | 46 |
 | system_busy | Sistem meşgul, lütfen daha sonra tekrar deneyin. | ok | 47 |
 | leaflet_print | Basılı |  | 48 |
+| error_subtitle | Doğrulanmamış ürün |  | 49 |
+| leaflet_incorrect_date_title | Yanlış Tarih |  | 50 |
+| leaflet_incorrect_date_subtitle | Taranan tarih yanlış |  | 51 |
 | leaflet_print_title | Baskı Bilgileri |  | 61 |
 | leaflet_print_description | Mevcut seçilen bilgiler PDF olarak yazdırılacaktır. |  | 62 |
 | leaflet_print_description2 | Devam etmek ister misin? |  | 63 |

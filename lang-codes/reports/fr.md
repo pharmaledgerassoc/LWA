@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Code d’erreur | ok | 46 |
 | system_busy | Le système est occupé, veuillez réessayer plus tard. | ok | 47 |
 | leaflet_print | Imprimer |  | 48 |
-| error_subtitle |  |  | 49 |
-| leaflet_incorrect_date_title |  |  | 50 |
-| leaflet_incorrect_date_subtitle |  |  | 51 |
+| error_subtitle | Produit non vérifié |  | 49 |
+| leaflet_incorrect_date_title | Date incorrecte |  | 50 |
+| leaflet_incorrect_date_subtitle | La date numérisée est incorrecte |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; &lt;/b&gt;. |  | 52 |
 | leaflet_print_title | Imprimer des informations |  | 61 |
 | leaflet_print_description | Les informations sélectionnées actuelles seront imprimées sous forme de PDF. |  | 62 |

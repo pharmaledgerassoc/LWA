@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Koda napake | ok | 46 |
 | system_busy | Sistem je zaseden, prosimo poskusite pozneje. | ok | 47 |
 | leaflet_print | Tisk |  | 48 |
-| error_subtitle | Unverified Product |  | 49 |
-| leaflet_incorrect_date_title | Incorrect date |  | 50 |
-| leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |
+| error_subtitle | Neverificiran izdelek |  | 49 |
+| leaflet_incorrect_date_title | Nepravilen datum |  | 50 |
+| leaflet_incorrect_date_subtitle | Skeniran datum je napačen |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; This product's date is incorrect&lt;/b&gt;. |  | 52 |
 | leaflet_print_title | Informacije o tiskanju |  | 61 |
 | leaflet_print_description | Trenutni izbrani podatki bodo natisnjeni kot PDF. |  | 62 |

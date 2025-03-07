@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Chybový kód | ok | 46 |
 | system_busy | Systém je zaneprázdnený, skúste neskôr. | ok | 47 |
 | leaflet_print | Tlač |  | 48 |
-| error_subtitle | Unverified Product |  | 49 |
-| leaflet_incorrect_date_title | Incorrect date |  | 50 |
-| leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |
+| error_subtitle | Neverený produkt |  | 49 |
+| leaflet_incorrect_date_title | Nesprávny dátum |  | 50 |
+| leaflet_incorrect_date_subtitle | Naskenovaný dátum je nesprávny |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; This product's date is incorrect&lt;/b&gt;. |  | 52 |
 | leaflet_print_title | Výtlačok |  | 61 |
 | leaflet_print_description | Aktuálne vybrané informácie budú vytlačené ako PDF. |  | 62 |

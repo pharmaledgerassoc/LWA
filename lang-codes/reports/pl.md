@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Kod błędu | ok | 46 |
 | system_busy | System jest przeciążony, spróbuj ponownie później. | ok | 47 |
 | leaflet_print | Wydrukować |  | 48 |
+| error_subtitle | Niezweryfikowany produkt |  | 49 |
+| leaflet_incorrect_date_title | Niepoprawna data |  | 50 |
+| leaflet_incorrect_date_subtitle | Skanowana data jest nieprawidłowa |  | 51 |
 | leaflet_print_title | Drukuj informacje |  | 61 |
 | leaflet_print_description | Obecne wybrane informacje zostaną wydrukowane jako PDF. |  | 62 |
 | leaflet_print_description2 | Chcesz kontynuować? |  | 63 |

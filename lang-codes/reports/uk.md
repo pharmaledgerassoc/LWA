@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Код помилки | ok | 46 |
 | system_busy | Система зайнята, будь ласка, повторіть спробу пізніше. | ok | 47 |
 | leaflet_print | Друкувати |  | 48 |
-| error_subtitle | Unverified Product |  | 49 |
-| leaflet_incorrect_date_title | Incorrect date |  | 50 |
-| leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |
+| error_subtitle | Неперевірений продукт |  | 49 |
+| leaflet_incorrect_date_title | Неправильна дата |  | 50 |
+| leaflet_incorrect_date_subtitle | Відсканована дата невірна |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; This product's date is incorrect&lt;/b&gt;. |  | 52 |
 | leaflet_print_title | Інформація про друк |  | 61 |
 | leaflet_print_description | Поточна вибрана інформація буде надрукована як PDF. |  | 62 |

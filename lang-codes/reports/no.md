@@ -47,6 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Feilkode | ok | 46 |
 | system_busy | Systemet er opptatt, vennligst prøv igjen senere. | ok | 47 |
 | leaflet_print | Trykk |  | 48 |
+| error_subtitle | Ubekreftet produkt |  | 49 |
+| leaflet_incorrect_date_title | Feil dato |  | 50 |
+| leaflet_incorrect_date_subtitle | Skannet dato er feil |  | 51 |
 | leaflet_print_title | Skriv ut informasjon |  | 61 |
 | leaflet_print_description | Den gjeldende valgte informasjonen vil bli skrevet ut som PDF. |  | 62 |
 | leaflet_print_description2 | Vil du fortsette? |  | 63 |

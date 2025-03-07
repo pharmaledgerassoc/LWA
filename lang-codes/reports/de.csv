@@ -41,9 +41,9 @@ code,text,status,key
 46,Fehler,ok,err_code
 47,"Das System ist beschäftigt, bitte versuchen Sie es später noch einmal.",ok,system_busy
 48,Drucken,,leaflet_print
-49,,,error_subtitle
-50,,,leaflet_incorrect_date_title
-51,,,leaflet_incorrect_date_subtitle
+49,Nicht überprüftes Produkt,,error_subtitle
+50,Falsches Datum,,leaflet_incorrect_date_title
+51,Das gescannte Datum ist falsch,,leaflet_incorrect_date_subtitle
 52,<b> </b>.,,leaflet_incorrect_date_message
 61,Dokument Drucken,,leaflet_print_title
 62,Das aktuelle Dokument wird als PDF gedruckt.,,leaflet_print_description

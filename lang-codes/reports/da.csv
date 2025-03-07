@@ -41,6 +41,9 @@ code,text,status,key
 46,Fejlkode,ok,err_code
 47,"Systemet er optaget, prøv venligst igen senere.",ok,system_busy
 48,Trykke,,leaflet_print
+49,Ikke -verificeret produkt,,error_subtitle
+50,Forkert dato,,leaflet_incorrect_date_title
+51,Scannet dato er forkert,,leaflet_incorrect_date_subtitle
 61,Udskriv information,,leaflet_print_title
 62,De aktuelle valgte oplysninger udskrives som PDF.,,leaflet_print_description
 63,Vil du fortsætte?,,leaflet_print_description2

@@ -41,6 +41,9 @@ code,text,status,key
 46,Virhekoodi,ok,err_code
 47,"Järjestelmä on kiireinen, yritä myöhemmin uudelleen.",ok,system_busy
 48,Painaa,,leaflet_print
+49,Vahvistamaton tuote,,error_subtitle
+50,Virheellinen päivämäärä,,leaflet_incorrect_date_title
+51,Skannattu päivämäärä on väärä,,leaflet_incorrect_date_subtitle
 61,Tulostustiedot,,leaflet_print_title
 62,Nykyiset valitut tiedot tulostetaan PDF: ksi.,,leaflet_print_description
 63,Haluatko edetä?,,leaflet_print_description2

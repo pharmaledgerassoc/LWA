@@ -41,9 +41,9 @@ code,text,status,key
 46,Koda napake,ok,err_code
 47,"Sistem je zaseden, prosimo poskusite pozneje.",ok,system_busy
 48,Tisk,,leaflet_print
-49,Unverified Product,,error_subtitle
-50,Incorrect date,,leaflet_incorrect_date_title
-51,Scanned date is incorrect,,leaflet_incorrect_date_subtitle
+49,Neverificiran izdelek,,error_subtitle
+50,Nepravilen datum,,leaflet_incorrect_date_title
+51,Skeniran datum je napačen,,leaflet_incorrect_date_subtitle
 52,<b> This product's date is incorrect</b>.,,leaflet_incorrect_date_message
 61,Informacije o tiskanju,,leaflet_print_title
 62,Trenutni izbrani podatki bodo natisnjeni kot PDF.,,leaflet_print_description

@@ -41,9 +41,9 @@ code,text,status,key
 46,خطأ بالكود,ok,err_code
 47,النظام مشغول، يرجى إعادة المحاولة لاحقا.,ok,system_busy
 48,مطبعة,,leaflet_print
-49,منتج غير موثوق,,error_subtitle
-50,تاريخ خاطئ,,leaflet_incorrect_date_title
-51,تاريخ المسح غير صحيح,,leaflet_incorrect_date_subtitle
+49,المنتج غير التحقق من ذلك,,error_subtitle
+50,تاريخ غير صحيح,,leaflet_incorrect_date_title
+51,التاريخ الممسوحة ضوئيًا غير صحيح,,leaflet_incorrect_date_subtitle
 52,<b> تاريخ هذا المنتج غير صحيح</b>.,,leaflet_incorrect_date_message
 61,معلومات الطباعة,,leaflet_print_title
 62,سيتم طباعة المعلومات المحددة الحالية على أنها PDF.,,leaflet_print_description

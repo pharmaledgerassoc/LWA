@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | 코드 오류 | ok | 46 |
 | system_busy | 시스템이 사용 중입니다. 나중에 다시 시도하십시오. | ok | 47 |
 | leaflet_print | 인쇄 |  | 48 |
-| error_subtitle | 인증되지 않은 제품 |  | 49 |
+| error_subtitle | 검증되지 않은 제품 |  | 49 |
 | leaflet_incorrect_date_title | 잘못된 날짜 |  | 50 |
-| leaflet_incorrect_date_subtitle | 스캔한 날짜가 잘못되었습니다 |  | 51 |
+| leaflet_incorrect_date_subtitle | 스캔 날짜가 올바르지 않습니다 |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt;이 제품의 날짜가 잘못되었습니다&lt;/b&gt;. |  | 52 |
 | leaflet_print_title | 인쇄 정보 |  | 61 |
 | leaflet_print_description | 현재 선택된 정보는 PDF로 인쇄됩니다. |  | 62 |

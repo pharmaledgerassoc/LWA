@@ -47,9 +47,9 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | err_code | Hibaüzenet | ok | 46 |
 | system_busy | A rendszer működésében hiba merült fel. Kérjük, próbálja meg később. | ok | 47 |
 | leaflet_print | Nyomtatás |  | 48 |
-| error_subtitle | Unverified Product |  | 49 |
-| leaflet_incorrect_date_title | Incorrect date |  | 50 |
-| leaflet_incorrect_date_subtitle | Scanned date is incorrect |  | 51 |
+| error_subtitle | Nem ellenőrzött termék |  | 49 |
+| leaflet_incorrect_date_title | Helytelen dátum |  | 50 |
+| leaflet_incorrect_date_subtitle | A beolvasott dátum helytelen |  | 51 |
 | leaflet_incorrect_date_message | &lt;b&gt; This product's date is incorrect&lt;/b&gt;. |  | 52 |
 | leaflet_print_title | Nyomtatási információk |  | 61 |
 | leaflet_print_description | Az aktuális kiválasztott információt PDF -ként nyomtatják ki. |  | 62 |

@@ -41,6 +41,9 @@ code,text,status,key
 46,Код за грешка,ok,err_code
 47,"Системата е претоварена, моля, опитайте отново по-късно.",ok,system_busy
 48,Печат,,leaflet_print
+49,Непроверен продукт,,error_subtitle
+50,Неправилна дата,,leaflet_incorrect_date_title
+51,Сканираната дата е неправилна,,leaflet_incorrect_date_subtitle
 61,Информация за отпечатване,,leaflet_print_title
 62,Текущата избрана информация ще бъде отпечатана като PDF.,,leaflet_print_description
 63,Искате ли да продължите?,,leaflet_print_description2
