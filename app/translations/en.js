@@ -264,6 +264,7 @@ const data = {
   "country_rs": "Serbia",
   "country_xk": "Kosovo",
   "country_ss": "South Sudan",
+  "alert_icon": "Alert icon",
   "scan_gif": "How to scan, animated gif",
   "gif_play": "Play",
   "gif_pause": "Pause",
@@ -271,7 +272,6 @@ const data = {
   "top_close": "Close",
   "close_error_message": "Close the error message",
   "menu_button": "Menu button",
-  "alert_icon": "Alert icon",
   "leaflet_available_doc": "Leaflet's available documents",
   "leaflet_available_lang": "Leaflet's available languages"
 }
