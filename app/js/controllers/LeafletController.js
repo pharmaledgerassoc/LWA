@@ -106,9 +106,7 @@ function LeafletController() {
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
 
             this.metadata = data;
-            setTimeout(() => {
-                showRecalledMessage(data, this.selectedLanguage || this.defaultLanguage);
-            }, 150);
+            setTimeout(() => { showRecalledMessage(data) }, 100);
             
             if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found") {
                 this.selectedLanguage = this.getLanguageFromBrowser();
@@ -509,8 +507,10 @@ function LeafletController() {
         const recalledContainer = document.querySelector("#recalled-modal");
         const activeModal = this.getActiveModal();
         const recalledBar = document.querySelector('#recalled-bar');
-        activeModal.classList.remove('recalled');
         
+        if(!activeModal) 
+            return setTimeout(() => { showRecalledMessage(result) }, 200);
+
         if (recalled) {
             const batchRecalled = batchData?.batchRecall;
             const recalledMessageContainer = document.querySelector(".recalled-message-container");
