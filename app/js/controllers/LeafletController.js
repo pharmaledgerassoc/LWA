@@ -5,7 +5,7 @@ import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
 import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
-import {translate, getTranslation, transformToISOStandardLangCode, langSubtypesMap} from "../translationUtils.js";
+import {translate, getTranslation, transformToISOStandardLangCode, langSubtypesMap, translateAcessabilityAttributes} from "../translationUtils.js";
 import {getCountry} from "../countriesUtils.js";
 
 const DocumentsTypes = {
@@ -22,6 +22,7 @@ enableConsolePersistence();
 
 window.onload = async (event) => {
     await translate();
+    translateAcessabilityAttributes();
     setTimeout(() => {
         document.querySelectorAll(".modal-header .close-modal").forEach(elem => {
             elem.style.position = "absolute";
@@ -104,11 +105,16 @@ function LeafletController() {
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
 
             this.metadata = data;
+            setTimeout(() => {
+                showRecalledMessage(data, this.selectedLanguage || this.defaultLanguage);
+            }, 150);
+            
             if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found") {
                 this.selectedLanguage = this.getLanguageFromBrowser();
                 return showDocumentModal(data);
             }
             showAvailableDocuments(data);
+
         }).catch(err => {
             console.error(err);
             goToErrorPage(err.errorCode, err)
@@ -126,7 +132,7 @@ function LeafletController() {
             const tmp = JSON.stringify(result);
             if (!tmp || sanitationRegex.test(tmp))
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
-
+            
             try {
                 showDocumentModal(result);
             } catch (e) {
@@ -135,8 +141,6 @@ function LeafletController() {
             } finally {
                 this.showLoader(false);
             }
-
-            // showRecalledMessage(result);
 
         }).catch(err => {
             console.error(err);
@@ -267,8 +271,7 @@ function LeafletController() {
             renderLeaflet(result);
             this.loadPrintContent("settings-modal");
             if (isExpired(this.expiry))
-                return showExpired(this.selectedLanguage);
-            showRecalledMessage(result, this.selectedLanguage);
+                showExpired(this.selectedLanguage);  
             
         } catch (e) {
             console.error(e);
@@ -360,10 +363,6 @@ function LeafletController() {
         })
         container.appendChild(radionParent);
         this.showModal('documents-modal');
-        document.querySelector('#button-exit').addEventListener('click', () => {
-            const {protocol, host} = window.location; 
-            window.location.href = `${protocol}//${host}/${host.includes('localhost') ? 'lwa' : ''}`;
-        });
     };
 
     /**
@@ -502,19 +501,20 @@ function LeafletController() {
         }
     };
 
-    let showRecalledMessage = function (result) {
+    let showRecalledMessage = (result) => {
         const {productData} = result;
         const {productRecall, batchData} = productData;
         const recalled = productRecall || batchData?.batchRecall;
         const recalledContainer = document.querySelector("#recalled-modal");
-        const modalLeaflet = document.getElementById("settings-modal");
+        const activeModal = this.getActiveModal();
         const recalledBar = document.querySelector('#recalled-bar');
-        modalLeaflet.classList.remove('recalled');
+        activeModal.classList.remove('recalled');
+        
         if (recalled) {
             const batchRecalled = batchData?.batchRecall;
             const recalledMessageContainer = document.querySelector(".recalled-message-container");
 
-            modalLeaflet.classList.add('recalled');
+            activeModal.classList.add('recalled');
             recalledBar.classList.add('visible');
             recalledContainer.classList.remove("hiddenElement");
 
@@ -530,11 +530,11 @@ function LeafletController() {
 
             recalledContainer.querySelector(".close-modal").onclick = function() {
                 recalledContainer.classList.add("hiddenElement");
-                modalLeaflet.classList.remove('recalled');
+                activeModal.classList.remove('recalled');
             };
             recalledContainer.querySelector("#recalled-modal-procced").onclick = function() {
                 recalledContainer.classList.add("hiddenElement");
-                modalLeaflet.classList.remove('recalled');
+                activeModal.classList.remove('recalled');
             };
             recalledContainer.querySelector("#recalled-modal-exit").onclick = function() {
                 goToPage("/main.html")
@@ -551,15 +551,86 @@ function LeafletController() {
     }
 
     this.loadPrintContent= (modal = 'settings-modal') => {
-        const content =  document.querySelector(`#${modal} .content-to-print`);
+        
+        setTextDirectionForLanguage(this.selectedLanguage, "#print-content");
+
+        const content =  document.querySelector(`#${modal} .content-to-print`).cloneNode(true);
         const printContent =  document.querySelector('#print-content');
-        content.querySelectorAll('[style], [nowrap]').forEach(element => {
+        content.querySelectorAll('[style], [nowrap],video').forEach(element => {
             element.removeAttribute('style');
             element.removeAttribute('nowrap');
-            element.removeAttribute('xmlns');
+            element.removeAttribute('xmlns');  
         });
         printContent.innerHTML = "";
         printContent.innerHTML = content.innerHTML;
+
+        // Setup the printing images of the videos
+        printContent.querySelectorAll('video').forEach(async(element) => {
+            if(element.tagName === 'VIDEO') {
+                await setVideoFramesForPrint(element);
+                // Hide the video for the print
+                element.remove();
+            }
+
+        });
+    }
+
+    const setVideoFramesForPrint = async(element) => {
+        let chapters = element.querySelectorAll('chapter');
+        for (let chapter of chapters) {
+            // get timestamp from the chapter atribute
+            let timestamp = timeToSeconds(chapter.getAttribute("timestamp"));
+            let label = chapter.getAttribute("label");
+            if(timestamp){
+                await captureFrameAtTimestamp(element, timestamp, label); // Wait for seeked event to complete
+            }
+        }
+    }
+
+    async function captureFrameAtTimestamp(element, timestamp, label) {
+        return new Promise((resolve) => {
+            element.currentTime = timestamp;
+            // onseeked function to guarantee the video is set to the correct timestamp
+            element.onseeked = () => {
+                const canvas = document.createElement("canvas");
+                const ctx = canvas.getContext("2d");
+                canvas.width = element.videoWidth;
+                canvas.height = element.videoHeight
+    
+                // Draw the video frame onto the canvas
+                ctx.drawImage(element, 0, 0, canvas.width,canvas.height );
+    
+                // Convert the canvas to an image
+                let imgData = canvas.toDataURL();
+    
+                // Create and append the img and label if exists
+                let imageDiv = document.createElement("figure");
+                let img = document.createElement('img');
+                img.setAttribute('src', imgData);
+                img.setAttribute("timestamp", timestamp);
+                imageDiv.appendChild(img);
+                if(label){
+                    let labelElement = document.createElement("figcaption");
+                    labelElement.textContent = label;
+                    imageDiv.appendChild(labelElement);
+                }
+                element.parentNode.appendChild(imageDiv);
+    
+                resolve(); // Resolve the promise when done
+            };
+        });
+    }
+
+    function timeToSeconds(timeString) {
+        const parts = timeString.split(":"); // Split into hours, minutes, and seconds.ms
+    
+        // Parse hours, minutes, and seconds
+        const hours = parseInt(parts[0], 10) || 0;
+        const minutes = parseInt(parts[1], 10) || 0;
+        const seconds = parseFloat(parts[2]) || 0;
+    
+        // Convert to total seconds
+        return hours * 3600 + minutes * 60 + seconds;
     }
 
     this.showPrintVersion = (modal = 'settings-modal') => {
@@ -591,8 +662,10 @@ function LeafletController() {
         });
         document.querySelector("#documents-modal #proceed-button").addEventListener("click", () => {
             this.setSelectedDocument();
-        })
-
+        });
+        document.querySelector('#product-modal #button-exit').addEventListener('click', () => {
+            goToPage("/scan.html")
+        });
     }
 
     addEventListeners();

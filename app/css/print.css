@@ -133,6 +133,10 @@
         border: none !important;
     }
 
+    .leaflet-accordion-item:before {
+        display: none !important;
+    }
+
     button {
         display: none !important;
     }
@@ -155,5 +159,12 @@
 
     #recalled-bar {
         display: none;
+    }
+
+    figcaption {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 10pt;
     }
 }

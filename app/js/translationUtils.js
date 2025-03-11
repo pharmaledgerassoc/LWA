@@ -16,21 +16,21 @@ export const supportedLanguageCodesMap = {
     'bg': ["bg-bg"],
     'cs': ["cs-cz"],
     'da': ["da-dk"],
-    'de': ["de-de"],
+    'de': ["de-de", "de-li", "de-at", "de-ch", "de-be"],
     'el': ["el-gr"],
-    'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw"],
+    'en': ["en-au", "en-bz", "en-ca", "en-gb", "en-ie", "en-jm", "en-nz", "en-ph", "en-tt", "en-us", "en-za", "en-zw", "en-in", "en-sg"],
     'es': ["es-es"],
     'es-419': ["es-419", "es-ar", "es-bo", "es-cl", "es-co", "es-cr", "es-do", "es-ec", "es-gt", "es-mx", "es-ni", "es-pa", "es-pe", "es-pr", "es-py", "es-sv", "es-us", "es-uy", "es-ve"],
     'et': ["et-ee"],
     'fi': ["fi-fi"],
-    'fr': ["fr-be", "fr-ca", "fr-fr"],
+    'fr': ["fr-be", "fr-ca", "fr-fr","fr-ch"],
     'hr': ["hr-ba", "hr-hr"],
     'hu': ["hu-hu"],
     'it': ["it-ch", "it-it"],
     'ko': ["ko-kr"],
     'lt': ["lt-lt"],
     'lv': ["lv-lv"],
-    'nl': ["nl-nl"],
+    'nl': ["nl-nl","nl-be"],
     'no': ["nb", "nb-no", "nn", "nn-no"],
     'pl': ["pl-pl"],
     'pt': ["pt", "pt-pt"],
@@ -107,7 +107,9 @@ export function getTranslation(key, ...args) {
 
 function parseResult(result, key, ...args) {
     if(!result || result === undefined) 
-       return parseResult(fallbackTranslation[key], key, args);
+        if(fallbackTranslation[key]){
+            return parseResult(fallbackTranslation[key], key, args);
+        }
 
     if(!args)
         return result;
@@ -122,3 +124,16 @@ export function stringFormat(text, ...args) {
             : match;
     });
 };
+
+export function translateAcessabilityAttributes(){
+    ["alt", "title", "aria-label"].forEach((attr) => {
+        let altElements = document.querySelectorAll(`[${attr}]`);
+        altElements.forEach((element) => {
+            let elAttr = element.getAttribute(`${attr}`);
+            let elAttrTranslated = getTranslation(elAttr);
+            if(elAttrTranslated){
+                element.setAttribute(`${attr}`,elAttrTranslated);
+            }
+        });
+    })
+}

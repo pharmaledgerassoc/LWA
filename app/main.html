@@ -3,6 +3,8 @@
 <head>
     <link href="css/responsive.css" rel="stylesheet">
     <script src="./js/controllers/MainController.js" type="module"></script>
+    <script type="text/javascript" src="./lib/libgif-js/libgif.js"></script>
+
     <title>PharmaLedger</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -29,7 +31,7 @@
                         id="hamburger-menu-button"
                         aria-haspopup="true"
                         aria-controls="menu-items-list"
-                        aria-label="menu button"
+                        aria-label="menu_button"
                         aria-expanded="false"
                         class="menu-icon"
                         tabindex="0">
@@ -81,8 +83,19 @@
                 </div>
             </div>
         </div>
+
         <div class="content-container">
-            <img src="images/medicine-pack.gif" alt="How to scan animated gif"/>
+            <img id="pack-gif" src="images/medicine-pack.gif" 
+            rel:auto_play="1"
+            alt="scan_gif" />
+            <!-- "How to scan animated gif" -->
+           
+        </div>
+        <div class="control-container">
+            <button class="playing" aria-label="play_pause_gif" id="control-gif" type="button">
+               <img class="play" src="images/play.svg" alt="gif_play" title="gif_play"/>
+               <img class="pause" src="images/pause.svg" alt="gif_pause" title="gif_pause"/>
+            </button>
         </div>
         <div class="explain-container" tabindex="0">
             <div translate="scan_explain"></div>
