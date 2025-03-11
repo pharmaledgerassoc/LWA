@@ -505,13 +505,14 @@ function LeafletController() {
         const {productRecall, batchData} = productData;
         const recalled = productRecall || batchData?.batchRecall;
         const recalledContainer = document.querySelector("#recalled-modal");
-        const activeModal = this.getActiveModal();
         const recalledBar = document.querySelector('#recalled-bar');
         
-        if(!activeModal) 
-            return setTimeout(() => { showRecalledMessage(result) }, 200);
-
         if (recalled) {
+            const activeModal = this.getActiveModal();
+
+            if(!activeModal) 
+                return setTimeout(() => { showRecalledMessage(result) }, 200);
+
             const batchRecalled = batchData?.batchRecall;
             const recalledMessageContainer = document.querySelector(".recalled-message-container");
 
