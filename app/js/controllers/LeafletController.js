@@ -81,6 +81,7 @@ function LeafletController() {
             activeModal.classList.add("hiddenElement");
         setTimeout(() => {
             modal.classList.remove("hiddenElement");
+            modal.querySelector('.modal-body').focus();
         }, 0);
         return this.activeModal = modal;
     };
@@ -539,6 +540,8 @@ function LeafletController() {
             recalledContainer.querySelector("#recalled-modal-exit").onclick = function() {
                 goToPage("/main.html")
             };
+
+            recalledContainer.querySelector(".modal-body").focus();
         }
 
     }
@@ -548,6 +551,7 @@ function LeafletController() {
         const modal = document.querySelector("#print-modal")
         modal.classList.remove("hiddenElement");
         document.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
+        modal.querySelector('.modal-body').focus();
     }
 
     this.loadPrintContent= (modal = 'settings-modal') => {
