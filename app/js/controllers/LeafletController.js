@@ -238,8 +238,8 @@ function LeafletController() {
         })
         container.appendChild(radionParent);
         this.showModal('epi-markets-modal');
-        modal.querySelector('#epi-market-go-back-button').addEventListener('click', () => {
-            window.location.href = decodeURIComponent(window.location.href);
+        modal.querySelector('#epi-market-go-back-button').addEventListener('click', () => { 
+            this.goHome()
         });
 
         modal.querySelector('#epi-market-proceed-button').addEventListener('click', () => {
