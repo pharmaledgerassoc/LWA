@@ -189,7 +189,7 @@ function LeafletController() {
                 return a;
             if(b.item === "unspecified")
                 return b.item;
-            return a.item.localeCompare(b.item, this.defaultLanguage, { sensitivity: 'base' });
+            return a.name.localeCompare(b.name, this.defaultLanguage, { sensitivity: 'base' });
         }).forEach((pair, index) => {
             const {item, name} = pair;
 
