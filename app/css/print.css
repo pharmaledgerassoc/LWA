@@ -161,9 +161,7 @@
         display: none;
     }
 
-    video {
-        display: none !important;
-    }
+    video { display: none !important; }
 
     figcaption {
         display: block;

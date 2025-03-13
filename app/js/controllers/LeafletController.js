@@ -238,9 +238,7 @@ function LeafletController() {
         })
         container.appendChild(radionParent);
         this.showModal('epi-markets-modal');
-        modal.querySelector('#epi-market-go-back-button').addEventListener('click', () => { 
-            this.goHome()
-        });
+        modal.querySelector('#epi-market-go-back-button').addEventListener('click', () => this.goHome());
 
         modal.querySelector('#epi-market-proceed-button').addEventListener('click', () => {
             const value = modal.querySelector("input[name='epi-market']:checked")?.value;
@@ -583,7 +581,7 @@ function LeafletController() {
     const setVideoFramesForPrint = async(element) => {
         let chapters = element.querySelectorAll('chapter');
         for (let chapter of chapters) {
-            // get timestamp from the chapter atribute
+            // get timestamp from the chapter attribute
             let timestamp = timeToSeconds(chapter.getAttribute("timestamp"));
             let label = chapter.getAttribute("label");
             if(timestamp){
