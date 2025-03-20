@@ -1,3 +1,121 @@
+let currentVideoPlaying = "";
+
+/**
+ * Observer for play/pause video
+ *
+ * @param {object} htmlContent
+ * @return {object} 
+ * @memberof leafletXSL
+ */
+const observerVideos = function(section, sectionActive) {
+    const videos = document.querySelectorAll('video');
+    if(videos) {
+        function pauseVideo(video) {
+            if(!video.paused && !video.ended && video.readyState > 2)
+                video.pause();
+        }
+
+        const options = {
+            root: null, 
+            rootMargin: "0px",
+            threshold: 1, // Trigger when 50% of the video is in view
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                    currentVideoPlaying = video.id;
+                    if(!video.ended)
+                        video.play();
+                    setTimeout(() => {
+                        videos.forEach((v) => {
+                            if(currentVideoPlaying !== v.id)
+                                pauseVideo(v);
+                        });
+                    }, 200)
+                }  
+            });
+        }, options);
+
+        const sectionVideos = section.querySelectorAll('video');
+        if(sectionActive) {
+            sectionVideos.forEach((video) => observer.observe(video));
+        } else {
+            sectionVideos.forEach((video) => {
+                pauseVideo(video);
+                observer.unobserve(video)
+            });
+        }
+       
+
+        // const sectionVideos = section.querySelectorAll("video");
+        // sectionVideos.forEach((video) => {
+        //     if(sectionActive) {
+        //         observer.observe(video);
+        //     } else {
+        //         pauseVideo(video);
+        //         observer.unobserve(video)
+        //     }
+        // });
+    }
+};
+
+/**
+ * Some fixes on html content
+ *
+ * @param {object} htmlContent
+ * @return {object} 
+ * @memberof leafletXSL
+ */
+const fixHTML = function(htmlContent) {
+    fixTables(htmlContent);
+    fixTitles(htmlContent);
+
+    return htmlContent
+}
+
+/**
+ * Fix tables containers 
+ *
+ * @param {object} htmlContent
+ * @return {void} 
+ * @memberof leafletXSL
+ */
+const fixTables = function(htmlContent) {
+    const tables = htmlContent.querySelectorAll('table');
+    if(tables) 
+        tables.forEach(table => table.outerHTML = `<div class="table-container">${table.outerHTML}</div>`)
+}
+
+  
+/**
+ * Fix tab index on section titles
+ *
+ * @param {object} xmlContent
+ * @return {void} 
+ * @memberof leafletXSL
+ */
+const fixTitles = function(htmlContent) {
+    const sections = htmlContent.querySelectorAll(".leaflet-accordion-item");
+    for(let section of sections) {
+        const title = section.querySelector('h2');
+        if(title) {
+            // const regex = /\.{2}$|[:.]$/;
+            // // check ponctuation
+            // if(regex.test(title.textContent)) {
+            //     console.log('has ' + title.textContent)
+            //     title.querySelector('span.invisible').remove();
+
+            // }  
+            // fixing tab index
+            if(title.hasAttribute('tabindex')) {
+                title.removeAttribute('tabindex');
+                section.setAttribute('tabindex', 0);
+            }
+        }     
+    }
+}
+
 const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -169,6 +287,19 @@ const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
         </accordion-item>
     </xsl:template>
 
+    <xsl:template match="video">
+        <video id="{generate-id()}">
+            <xsl:copy-of select="@*[name() != 'autoplay']"/>
+            <xsl:if test="not(@controls)">
+                <xsl:attribute name="controls">true</xsl:attribute>
+            </xsl:if>
+            <xsl:attribute name="muted"></xsl:attribute>
+            <xsl:attribute name="playsinline"></xsl:attribute>
+            <xsl:attribute name="preload">metadata</xsl:attribute>
+            <xsl:apply-templates/>
+        </video>
+    </xsl:template>
+
     <!--nodes or attributes that we need to hide for a cleaner output-->
     <xsl:template
             match="xs:author|xs:id|xs:document/xs:code|xs:document/xs:effectiveTime|xs:document/xs:setId|xs:document/xs:versionNumber">
@@ -257,11 +388,12 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
 
     <xsl:template match="video">
-        <video>
-            <xsl:copy-of select="@*"/>
+        <video id="{generate-id()}">
+            <xsl:copy-of select="@*[name() != 'autoplay']"/>
             <xsl:if test="not(@controls)">
                 <xsl:attribute name="controls">true</xsl:attribute>
             </xsl:if>
+            <xsl:attribute name="muted"></xsl:attribute>
             <xsl:attribute name="playsinline"></xsl:attribute>
             <xsl:attribute name="preload">metadata</xsl:attribute>
             <xsl:apply-templates/>
@@ -315,5 +447,7 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
 
 export {
   defaultXslContent,
-  acodisXslContent
+  acodisXslContent,
+  observerVideos,
+  fixHTML
 };
