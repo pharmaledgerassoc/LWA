@@ -139,7 +139,7 @@ let renderLeaflet = function (leafletData) {
    /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
   let xmlService = new XMLDisplayService("#leaflet-content");
   let resultDocument = xmlService.getHTMLFromXML(leafletData.xmlContent);
-  let leafletImages = resultDocument.querySelectorAll("img");
+  let leafletImages = resultDocument.querySelectorAll("img,source");
   for (let image of leafletImages) {
     let imageSrc = image.getAttribute("src");
 
