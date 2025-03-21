@@ -179,7 +179,7 @@ class LeafletService {
     }
     smartUrl = smartUrl.concatWith(`${urlPart}?leaflet_type=${this.leafletType}&lang=${this.leafletLang}&gtin=${this.gtin}`);
 
-    if (this.batch) {
+    if (this.batch && !this.epiMarket) {
       smartUrl = smartUrl.concatWith(`&batch=${this.batch}`);
     }
 
