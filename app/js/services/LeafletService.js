@@ -7,6 +7,12 @@ import LightSmartUrl from "../utils/LightSmartUrl.js";
 
 import {goToErrorPage, sanitizeLogMessage, validateGTIN} from "../../../utils.js";
 
+const DocumentsTypes = {
+  LEAFLET: "leaflet",
+  INFO: "info",
+  PRESCRIBING_INFO: "prescribingInfo"
+};
+
 const buildQueryParams = function (gtin, batchNumber, lang, leafletType, epiMarket) {
   // Copy of fixedUrls "URL Builder" that constructs and orders parameters in a specific sequence.
   let converter = new URL("https://non.relevant.url.com");
@@ -20,12 +26,14 @@ const buildQueryParams = function (gtin, batchNumber, lang, leafletType, epiMark
     append.call(converter.searchParams, name, value);
   }
 
-  if(!epiMarket)
+  if((!epiMarket && leafletType === DocumentsTypes.LEAFLET))
     converter.searchParams.append("batch", batchNumber);
   converter.searchParams.append("lang", lang);
   converter.searchParams.append("gtin", gtin);
   converter.searchParams.append("leaflet_type", leafletType);
-  converter.searchParams.append("epiMarket",  epiMarket);
+
+  if(!!epiMarket)
+    converter.searchParams.append("epiMarket",  epiMarket);
   converter.searchParams.sort();
   return converter.searchParams.toString();
 }
