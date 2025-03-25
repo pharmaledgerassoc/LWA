@@ -31,7 +31,8 @@ const buildQueryParams = function (gtin, batchNumber, lang, leafletType, epiMark
   converter.searchParams.append("lang", lang);
   converter.searchParams.append("gtin", gtin);
   converter.searchParams.append("leaflet_type", leafletType);
-  converter.searchParams.append("epiMarket",  epiMarket);
+  if(!!epiMarket)
+    converter.searchParams.append("epiMarket",  epiMarket);
   converter.searchParams.sort();
   return converter.searchParams.toString();
 }
