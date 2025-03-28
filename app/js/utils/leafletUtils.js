@@ -221,7 +221,7 @@ const renderProductInformation = function (result, batch) {
     excipientsContainer.closest('.data-wrapper').hidden = true;
     genericNameContainer.hidden = true;
     const {productData} = result;
-    const {batchData} = batch;
+    const batchData = batch;
 
     excipientsContainer.closest('.data-wrapper').hidden = false;
 
