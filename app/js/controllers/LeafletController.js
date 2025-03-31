@@ -259,13 +259,13 @@ function LeafletController() {
         try {
             if (this.selectedDocument === DocumentsTypes.INFO) {
                 this.showModal("product-modal");
-                renderProductInformation(result);
+                renderProductInformation(result, this.metadata?.productData);
                 this.loadPrintContent("product-modal");
                 return;
             }
             setTextDirectionForLanguage(this.selectedLanguage, "#settings-modal");
             this.showModal("settings-modal");
-            renderLeaflet(result);
+            renderLeaflet(result, this.metadata);
             this.loadPrintContent("settings-modal");
             if (isExpired(this.expiry))
                 showExpired(this.selectedLanguage);  
