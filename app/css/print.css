@@ -116,6 +116,9 @@
         margin: 0 auto;
     }
 
+    .invisible {
+        visibility: hidden;
+    }
     
     .container::-webkit-scrollbar {
         display: none;  /* Safari and Chrome */
@@ -160,6 +163,8 @@
     #recalled-bar {
         display: none;
     }
+
+    video { display: none !important; }
 
     figcaption {
         display: block;

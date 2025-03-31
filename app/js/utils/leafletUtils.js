@@ -1,6 +1,7 @@
 import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.js";
 import constants from "../../../constants.js";
 import {setTextDirectionForLanguage} from "../../../utils.js";
+import {observerVideos, mediaUrlRegex} from "../services/XMLDisplayService/leafletXSL.js"
 
 
 const TITLES = {
@@ -27,13 +28,16 @@ let showIncorrectDate = function () {
 function handleLeafletAccordion() {
   let accordionItems = document.querySelectorAll("div.leaflet-accordion-item");
   accordionItems.forEach((accItem, index) => {
+    const sectionContent = accItem.querySelector('.leaflet-accordion-item-content');
     accItem.addEventListener("click", (evt) => {
       accItem.classList.toggle("active");
-      if (accItem.classList.contains("active")) {
+      const isActive = accItem.classList.contains("active");
+      if (isActive) {
         accItem.setAttribute('aria-expanded', "true");
       } else {
         accItem.setAttribute('aria-expanded', "false");
       }
+      observerVideos(accItem, isActive)
       accItem.querySelector(".leaflet-accordion-item-content").addEventListener("click", (event) => {
         event.stopImmediatePropagation();
         event.stopPropagation();
@@ -42,12 +46,14 @@ function handleLeafletAccordion() {
     accItem.addEventListener("keydown", (event) => {
       if (event.key === "Enter" || event.key === " ") {
         accItem.classList.toggle("active");
-        if (accItem.classList.contains("active")) {
+        const isActive = accItem.classList.contains("active");
+        if (isActive) {
           accItem.setAttribute('aria-expanded', "true");
         } else {
           accItem.setAttribute('aria-expanded', "false");
         }
       }
+      observerVideos(accItem, isActive);
       accItem.querySelector(".leaflet-accordion-item-content").addEventListener("keydown", (event) => {
         event.stopImmediatePropagation();
         event.stopPropagation();
@@ -91,8 +97,9 @@ let validateLeafletFiles = function (htmlContent, leafletImages, uploadedImages)
   let htmlImageNames = Array.from(leafletImages).map(img => img.getAttribute("src"));
   //removing from validation image src that are data URLs ("data:....")
   htmlImageNames = htmlImageNames.filter((imageSrc) => {
-    let dataUrlRegex = new RegExp(/^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i);
-    if (!!imageSrc.match(dataUrlRegex) || imageSrc.startsWith("data:")) {
+
+    // new RegExp(/^\s*data:([a-z]+\/[a-z]+(;[a-z\-]+\=[a-z\-]+)?)?(;base64)?,[a-z0-9\!\$\&\'\,\(\)\*\+\,\;\=\-\.\_\~\:\@\/\?\%\s]*\s*$/i);
+    if (!!imageSrc.match(mediaUrlRegex) || imageSrc.startsWith("data:")) {
       return false;
     }
     return true;
@@ -133,7 +140,7 @@ let renderLeaflet = function (leafletData) {
    /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
   let xmlService = new XMLDisplayService("#leaflet-content");
   let resultDocument = xmlService.getHTMLFromXML(leafletData.xmlContent);
-  let leafletImages = resultDocument.querySelectorAll("img");
+  let leafletImages = resultDocument.querySelectorAll("img,source");
   for (let image of leafletImages) {
     let imageSrc = image.getAttribute("src");
 
@@ -174,11 +181,12 @@ const upperCaseProductDescriptionProductName = function (text , searchText) {
 }
 
 
-const renderProductInformation = function (result) {
+const renderProductInformation = function (result, product) {
     const modal = document.querySelector('#product-modal');
 
     modal.querySelector(".product-name").innerText = result.productData.inventedName || result.productData.name;
-    modal.querySelector(".product-description").innerText = result.productData.nameMedicinalProduct || result.productData.description;
+    const productDescriptionName = upperCaseProductDescriptionProductName(result.productData.nameMedicinalProduct || result.productData.description, result.productData.inventedName || result.productData.name);
+    modal.querySelector(".product-description").innerText = productDescriptionName;
      /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
 
      let list = undefined;
@@ -212,8 +220,8 @@ const renderProductInformation = function (result) {
     genericNameContainer.textContent = '';
     excipientsContainer.closest('.data-wrapper').hidden = true;
     genericNameContainer.hidden = true;
-    const {productData} = result;
-    const {batchData} = productData;
+    const productData = product || {};
+    const batchData = product?.batchData || {};
 
     excipientsContainer.closest('.data-wrapper').hidden = false;
 
