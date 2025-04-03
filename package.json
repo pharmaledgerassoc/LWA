@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "node ./node_modules/octopus/scripts/run dependencies devmode",
+    "postinstall": "node ./node_modules/octopus/scripts/run dependencies devmode && cp -Rvp scanner.js app/lib/zxing-wrapper/",
     "uml": "cd workdocs/uml && for FILE in ./*.puml; do docker run --rm -v $(pwd):/work -w /work miy4/plantuml -DPLANTUML_LIMIT_SIZE=8192 -tpng $FILE; done && cd ../.. && cp -fr workdocs/uml/*.png workdocs/resources/",
     "translate": "node bin/translations.cjs"
   },
