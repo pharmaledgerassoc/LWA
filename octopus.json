@@ -1,17 +1,17 @@
 {
-  "workDir": ".",
-  "dependencies": [
-    {
-      "name": "zxing-wrapper",
-      "src": "http://github.com/webcardinal/zxing-wrapper.git",
-      "actions": [
+    "workDir": ".",
+    "dependencies": [
         {
-          "type": "smartClone",
-          "target": "./app/lib",
-          "collectLog": false,
-          "commit": "a580226efc56ca6556060308850b43d16708ed85"
+        "name": "zxing-wrapper",
+        "src": "https://github.com/PDMFCSA/zxing-wrapper",
+        "actions": [
+            {
+                "type": "smartClone",
+                "target": "./app/lib",
+                "collectLog": false,
+                "commit": "500a3b840cd5e793df80ad944cf4159e8bb7eafd"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }
