@@ -44,6 +44,7 @@ function handleLeafletAccordion() {
       })
     })
     accItem.addEventListener("keydown", (event) => {
+      const isActive = accItem.classList.contains("active");
       if (event.key === "Enter" || event.key === " ") {
         accItem.classList.toggle("active");
         const isActive = accItem.classList.contains("active");
