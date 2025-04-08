@@ -133,7 +133,7 @@ let validateLeafletFiles = function (htmlContent, leafletImages, uploadedImages)
 
 let renderLeaflet = function (leafletData, metadata) {
 
-  if(metadata)
+  if(!!metadata.productData)
     leafletData.productData = metadata.productData;
     
   document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
