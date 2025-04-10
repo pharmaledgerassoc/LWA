@@ -151,7 +151,7 @@ const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
 
     <xsl:template match="xs:paragraph">
-        <p tabindex="0">
+        <p aria-live="polite" tabindex="0">
             <xsl:apply-templates select="@*|node()"/>
         </p>
     </xsl:template>
@@ -352,7 +352,7 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
 
     <xsl:template match="//section//p">
-        <p tabindex="0"><xsl:apply-templates select="node()" /></p>
+        <p aria-live="polite" tabindex="0"><xsl:apply-templates select="node()" /></p>
     </xsl:template>
     
     <xsl:template match="//figure">
