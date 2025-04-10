@@ -1,6 +1,8 @@
 @import "prerequisites.css";
 
-
+.voiceover-pause {
+    opacity: 0;
+}
 fieldset {
     border: none;
     margin-top: .5rem;

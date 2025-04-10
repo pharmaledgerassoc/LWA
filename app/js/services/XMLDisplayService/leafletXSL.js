@@ -210,7 +210,7 @@ const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
                                     select="concat($firstLetter,translate($partialTitle,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))"/>
                         </xsl:variable>
                         <xsl:value-of select="$modifiedTitle"/>
-                        <span class="invisible"><xsl:value-of select="'.'"/></span>
+                        <span class="voiceover-pause">.</span>
 
                     </h2>
                     <div class="leaflet-accordion-item-content">
@@ -456,7 +456,7 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     <xsl:template match="document/section/header">
         <h2 tabindex="0">
             <xsl:apply-templates select="node()" />
-            <span class="invisible"><xsl:value-of select="'.'"/></span>
+            <span class="voiceover-pause">.</span>
         </h2>
     </xsl:template>
 </xsl:stylesheet>`;
