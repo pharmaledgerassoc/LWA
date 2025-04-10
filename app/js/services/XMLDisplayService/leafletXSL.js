@@ -156,6 +156,7 @@ const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
         </p>
     </xsl:template>
 
+
     <xsl:template match="xs:list">
         <ul role="list">
             <xsl:apply-templates select="@*|node()"/>
