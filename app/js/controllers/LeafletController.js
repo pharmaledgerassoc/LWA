@@ -263,7 +263,7 @@ function LeafletController() {
             renderLeaflet(result, this.metadata);
             this.loadPrintContent("settings-modal");
             if (isExpired(this.expiry))
-                modalOpen(document.querySelector("#expired-modal"));
+                modalOpen(document.querySelector("#expired-modal"), null);
             
         } catch (e) {
             console.error(e);
