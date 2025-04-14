@@ -1,10 +1,40 @@
-import {goToPage} from "../../../utils.js"
-import {translate} from "../translationUtils.js";
+import {goToPage, elementTrapFocus} from "../../../utils.js"
+import {getTranslation, translateAccessibilityAttributes, translate} from "../translationUtils.js";
 import environment from "../../../environment.js";
 import constants from "../../../constants.js";
-
-
+  
 function MainController() {
+
+    this.loadGifControl = function () {
+        const image = document.querySelector('#pack-gif');
+        const imageAlt = image.getAttribute('alt');
+        const controlGifButton = document.querySelector('#control-gif');
+        const animatedGif = new SuperGif({gif: image, show_progress_bar: false, draw_while_loading: false});
+        
+        animatedGif.load();
+
+        const gifContainer = document.querySelector('.jsgif');
+        gifContainer.setAttribute('role', "img");  
+        gifContainer.setAttribute('aria-label', imageAlt);
+        function toggleAnimationState() {
+            const playing = animatedGif.get_playing();
+            // controlGifButton.classList.toggle('playing');
+            controlGifButton.setAttribute('aria-pressed', playing);
+            if(playing) {
+                animatedGif.pause();
+            } else {
+                animatedGif.play();
+            }
+        };
+
+        gifContainer.addEventListener('mouseenter', toggleAnimationState);
+        gifContainer.addEventListener('mouseleave', toggleAnimationState);
+        controlGifButton.addEventListener('click', toggleAnimationState);
+
+        const gifLoaderBar = document.querySelector('.jsgif_toolbar');
+        if(gifLoaderBar)
+            gifLoaderBar.remove();
+    }
 
     this.toggleMenu = function () {
         let menuButton = document.getElementById("hamburger-menu-button");
@@ -52,10 +82,12 @@ function MainController() {
     let addEventListeners = () => {
         let menuContainer = document.querySelector(".app-menu-container");
         let menuButton = document.getElementById("hamburger-menu-button");
-        const focusableElements = [...document.querySelectorAll('.app-menu-container li')];
+        const focusableElements = [...document.querySelectorAll('.app-menu-container li[tabindex="0"]')];
         let firstFocusableEl = focusableElements[0];
         let lastFocusableEl = focusableElements[focusableElements.length - 1];
         let KEYCODE_TAB = 9;
+
+        this.loadGifControl();
 
         menuButton.addEventListener("keydown", (event) => {
             switch (event.key) {
@@ -85,15 +117,13 @@ function MainController() {
 
         menuContainer.addEventListener('keydown', function (e) {
             let activeIndex = focusableElements.findIndex((item) => document.activeElement === item);
-            if (activeIndex < 0) {
+            if (activeIndex < 0) 
                 activeIndex = 0;
-            }
             switch (e.key) {
                 case 'Up':
                 case 'ArrowUp':
                     e.stopPropagation();
                     e.preventDefault();
-
                     if (activeIndex === 0) {
                         lastFocusableEl.focus();
                     } else {
@@ -185,7 +215,9 @@ function MainController() {
         document.getElementById("agree-button").addEventListener("click", () => {
             this.submitTerms(true)
         })
-        document.getElementById("scan-button").addEventListener("click", this.scanHandler)
+        document.getElementById("scan-button").addEventListener("click", this.scanHandler);
+        const page = document.querySelector(".page-container");
+        page.addEventListener("keydown", (event) => elementTrapFocus(event, page));
 
     }
     addEventListeners();
@@ -195,6 +227,7 @@ const mainController = new MainController();
 
 window.onload = async (event) => {
     await translate();
+    translateAccessibilityAttributes();
     mainController.checkOnboarding();
     document.querySelector(".page-container").classList.remove("hiddenElement");
     document.querySelector(".loader-container").setAttribute('style', 'display:none');
@@ -202,6 +235,7 @@ window.onload = async (event) => {
         document.querySelector(".app-menu-container ").style.position = "absolute";
     }, 0);
 }
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 let epiDomain = urlParams.get("setdomain") || localStorage.getItem(constants.EPI_DOMAIN) || environment.epiDomain;

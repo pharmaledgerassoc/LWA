@@ -1,8 +1,9 @@
-import {translate} from "../translationUtils.js";
+import {translate, translateAccessibilityAttributes} from "../translationUtils.js";
 import {goToPage} from "../../../utils.js";
 
 window.onload = async (event) => {
   await translate();
+  translateAccessibilityAttributes();
 
 
   function Error404Controller() {

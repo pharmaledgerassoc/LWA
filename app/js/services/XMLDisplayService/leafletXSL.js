@@ -1,3 +1,122 @@
+let currentVideoPlaying = "";
+const mediaUrlRegex = new RegExp(/^\s*data:([a-z]+\/[a-z4]+(;[a-z-]+=[a-z-]+)?)?(;base64)?,[a-z0-9!$&',()*+;=\-._~:@/?%\s]*\s*$/i);
+
+/**
+ * Observer for play/pause video
+ *
+ * @param {object} htmlContent
+ * @return {object} 
+ * @memberof leafletXSL
+ */
+const observerVideos = function(section, sectionActive) {
+    const videos = document.querySelectorAll('video');
+    if(videos) {
+        function pauseVideo(video) {
+            if(!video.paused && !video.ended && video.readyState > 2)
+                video.pause();
+        }
+
+        const options = {
+            root: null, 
+            rootMargin: "0px",
+            threshold: 1, // Trigger when of all video component is in view
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const video = entry.target;
+                if (entry.isIntersecting) {
+                    currentVideoPlaying = video.id;
+                    if(!video.ended)
+                        video.play();
+                    setTimeout(() => {
+                        videos.forEach((v) => {
+                            if(currentVideoPlaying !== v.id)
+                                pauseVideo(v);
+                        });
+                    }, 200)
+                }  
+            });
+        }, options);
+
+        const sectionVideos = section.querySelectorAll('video');
+        if(sectionActive) {
+            sectionVideos.forEach((video) => observer.observe(video));
+        } else {
+            sectionVideos.forEach((video) => {
+                pauseVideo(video);
+                observer.unobserve(video)
+            });
+        }
+       
+
+        // const sectionVideos = section.querySelectorAll("video");
+        // sectionVideos.forEach((video) => {
+        //     if(sectionActive) {
+        //         observer.observe(video);
+        //     } else {
+        //         pauseVideo(video);
+        //         observer.unobserve(video)
+        //     }
+        // });
+    }
+};
+
+/**
+ * Some fixes on html content
+ *
+ * @param {object} htmlContent
+ * @return {object} 
+ * @memberof leafletXSL
+ */
+const fixHTML = function(htmlContent) {
+    fixTables(htmlContent);
+    fixTitles(htmlContent);
+
+    return htmlContent
+}
+
+/**
+ * Fix tables containers 
+ *
+ * @param {object} htmlContent
+ * @return {void} 
+ * @memberof leafletXSL
+ */
+const fixTables = function(htmlContent) {
+    const tables = htmlContent.querySelectorAll('table');
+    if(tables) 
+        tables.forEach(table => table.outerHTML = `<div class="table-container">${table.outerHTML}</div>`)
+}
+
+  
+/**
+ * Fix tab index on section titles
+ *
+ * @param {object} xmlContent
+ * @return {void} 
+ * @memberof leafletXSL
+ */
+const fixTitles = function(htmlContent) {
+    const sections = htmlContent.querySelectorAll(".leaflet-accordion-item");
+    for(let section of sections) {
+        const title = section.querySelector('h2');
+        if(title) {
+            // const regex = /\.{2}$|[:.]$/;
+            // // check ponctuation
+            // if(regex.test(title.textContent)) {
+            //     console.log('has ' + title.textContent)
+            //     title.querySelector('span.invisible').remove();
+
+            // }  
+            // fixing tab index
+            if(title.hasAttribute('tabindex')) {
+                title.removeAttribute('tabindex');
+                section.setAttribute('tabindex', 0);
+            }
+        }     
+    }
+}
+
 const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
@@ -32,10 +151,11 @@ const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
 
     <xsl:template match="xs:paragraph">
-        <p tabindex="0">
+        <p aria-live="polite" tabindex="0">
             <xsl:apply-templates select="@*|node()"/>
         </p>
     </xsl:template>
+
 
     <xsl:template match="xs:list">
         <ul role="list">
@@ -91,6 +211,8 @@ const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
                                     select="concat($firstLetter,translate($partialTitle,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'))"/>
                         </xsl:variable>
                         <xsl:value-of select="$modifiedTitle"/>
+                        <span class="voiceover-pause">.</span>
+
                     </h2>
                     <div class="leaflet-accordion-item-content">
                         <xsl:apply-templates select="@*|node()"/>
@@ -167,6 +289,19 @@ const defaultXslContent = `<?xml version="1.0" encoding="UTF-8"?>
         </accordion-item>
     </xsl:template>
 
+    <xsl:template match="video">
+        <video id="{generate-id()}">
+            <xsl:copy-of select="@*[name() != 'autoplay']"/>
+            <xsl:if test="not(@controls)">
+                <xsl:attribute name="controls">true</xsl:attribute>
+            </xsl:if>
+            <xsl:attribute name="muted"></xsl:attribute>
+            <xsl:attribute name="playsinline"></xsl:attribute>
+            <xsl:attribute name="preload">metadata</xsl:attribute>
+            <xsl:apply-templates/>
+        </video>
+    </xsl:template>
+
     <!--nodes or attributes that we need to hide for a cleaner output-->
     <xsl:template
             match="xs:author|xs:id|xs:document/xs:code|xs:document/xs:effectiveTime|xs:document/xs:setId|xs:document/xs:versionNumber">
@@ -218,7 +353,7 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
 
     <xsl:template match="//section//p">
-        <p tabindex="0"><xsl:apply-templates select="node()" /></p>
+        <p aria-live="polite" tabindex="0"><xsl:apply-templates select="node()" /></p>
     </xsl:template>
     
     <xsl:template match="//figure">
@@ -238,8 +373,48 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
             <xsl:attribute name="src">
                 <xsl:value-of select="concat($resources_path, $_src)"/>
             </xsl:attribute>
+            <xsl:choose>
+                <xsl:when test="@alt">
+                    <xsl:attribute name="alt">
+                        <xsl:value-of select="@alt"/>
+                    </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="alt">
+                        <xsl:value-of select="following-sibling::*[1]"/>
+                    </xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
             <xsl:apply-templates select="node()"/>
         </img>
+    </xsl:template>
+
+    <xsl:template match="video">
+        <video id="{generate-id()}">
+            <xsl:copy-of select="@*[name() != 'autoplay']"/>
+            <xsl:if test="not(@controls)">
+                <xsl:attribute name="controls">true</xsl:attribute>
+            </xsl:if>
+            <xsl:attribute name="muted"></xsl:attribute>
+            <xsl:attribute name="playsinline"></xsl:attribute>
+            <xsl:attribute name="preload">metadata</xsl:attribute>
+           <xsl:choose>
+                <xsl:when test="@aria-label">
+                    <xsl:attribute name="aria-label">
+                        <xsl:value-of select="@aria-label"/>
+                    </xsl:attribute>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:attribute name="aria-label">
+                        <xsl:value-of select="@title"/>
+                    </xsl:attribute>
+                </xsl:otherwise>
+            </xsl:choose>
+            <xsl:attribute name="title">
+                <xsl:value-of select="@title"/>
+            </xsl:attribute>
+            <xsl:apply-templates/>
+        </video>
     </xsl:template>
     
     <xsl:template match="//table">
@@ -282,11 +457,15 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     <xsl:template match="document/section/header">
         <h2 tabindex="0">
             <xsl:apply-templates select="node()" />
+            <span class="voiceover-pause">.</span>
         </h2>
     </xsl:template>
 </xsl:stylesheet>`;
 
 export {
   defaultXslContent,
-  acodisXslContent
+  acodisXslContent,
+  observerVideos,
+  fixHTML,
+  mediaUrlRegex
 };

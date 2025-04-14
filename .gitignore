@@ -1,3 +1,10 @@
 node_modules
 lib
 latest-change-set.txt
+.idea
+lang-codes/*.json
+lang-codes/reports/*.bkp
+lang-codes/reports/*.pdf
+lang-codes/reports/*.zip
+workdocs/uml/*.jpg
+workdocs/uml/*.png

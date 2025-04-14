@@ -2,6 +2,150 @@ import constants from "./constants.js"
 import environment from "./environment.js";
 import interpretGS1scan from "./interpretGS1scan/interpretGS1scan.js";
 
+
+const APP_NAME = "PharmaLedger";
+
+/**
+ * Sets the page title for the document.
+ * 
+ * This function sets the document's title based on the provided title parameter
+ * or the content of the first h1 element or element with role="heading" and aria-level="1".
+ * It prepends the APP_NAME to the title if not already present.
+ *
+ * @param {string} [title] - The title to set. If not provided, the function will use the content of the first heading element.
+ * @returns {void}
+ */
+function setPageTitle(title) {
+    const heading = document.querySelector('h1, [role="heading"][aria-level="1"]').textContent || "";
+    if(title) {
+        title = `${APP_NAME} - ${title}`
+    } else {
+        title = !heading ? 
+        APP_NAME : heading.includes(APP_NAME) ? 
+            heading : `${APP_NAME} - ${heading}`;
+    }
+    document.title = title.trim();
+}
+
+
+/**
+ * Opens a modal and sets up focus management within it.
+ * 
+ * This function removes the 'hiddenElement' class from the modal, making it visible.
+ * It also sets up a MutationObserver to manage focus when the modal's visibility changes.
+ * When the modal becomes visible, it focuses on a specified element and sets up keyboard trap.
+ * When the modal is hidden, it removes the keyboard trap and disconnects the observer.
+ *
+ * @param {HTMLElement} modal - The modal element to be opened and observed.
+ * @param {string} [elementToFocus='.close-modal'] - Selector for the element to receive focus when the modal opens. If not found, focuses on the modal itself.
+ * @param {HTMLElement} [triggerElement=null] - The element that triggered the modal opening (not used in the current implementation).
+ * @returns {HTMLElement} The modal element that was opened.
+ */
+function modalOpen(modal, elementToFocus = '.close-modal', triggerElement = null) {
+    // console.log(`Opening modal ${modal.id}`)
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            const {target} = mutation;
+            const element = !elementToFocus ? target : (target.querySelector(elementToFocus) || target);
+            if(!target.classList.contains("hiddenElement")) {
+                element.focus(); 
+                // console.info("Element in focus is", document.activeElement);
+                target.addEventListener("keydown", (event) => elementTrapFocus(event, target));
+            } else {
+                observer.disconnect();
+            }
+        });
+    });
+
+    modal.setAttribute("aria-hidden", "false");
+    observer.observe(modal, {attributes: true }); 
+    modal.classList.remove("hiddenElement");
+    return modal;
+};
+
+
+/**
+ * Closes a modal dialog and handles associated cleanup tasks.
+ * 
+ * This function hides the modal, updates its ARIA attributes, removes event listeners,
+ * and attempts to return focus to the element that originally triggered the modal.
+ *
+ * @param {HTMLElement} modal - The modal element to be closed.
+ * @returns {void}
+ */
+function modalClose(modal) {
+    console.log(`Closing modal ${modal.id}`)
+    modal.classList.add("hiddenElement");
+    modal.removeEventListener("keydown", elementTrapFocus);
+    const activeModal = getActiveModal();
+    if(!modal.id === 'print-modal') {
+        activeModal ? activeModal.focus() : document.body.focus()
+    } else {
+        const printButton = activeModal.querySelector('#print-modal-button');
+        if(printButton)
+            printButton.focus();
+        // console.info("Element in focus is", document.activeElement);
+    }
+    modal.setAttribute("aria-hidden", "true");
+}
+  
+/**
+ * Retrieves the currently active modal element on the page.
+ * 
+ * This function searches for and returns the first visible modal element,
+ * which can be either a page container or a popup modal.
+ * 
+ * @returns {HTMLElement|null} The active modal element if found, or null if no active modal is present.
+ */
+function getActiveModal() {
+    return document.querySelector(".page-container:not(.hiddenElement), .popup-modal:not(.hiddenElement)");
+};
+
+
+/**
+ * Traps focus within a specified element, typically used for modal dialogs or other UI components.
+ * This function handles keyboard navigation to ensure focus remains within the element's focusable children.
+ * 
+ * @param {KeyboardEvent} event - The keyboard event object.
+ * @param {HTMLElement} element - The container element within which focus should be trapped.
+ * @returns {void}
+ */
+function elementTrapFocus(event, element) {
+    if(event.type !== "keydown") 
+        return false;
+
+    // console.info(`Focus trapped in ${element.id}`)
+    const focusableElements = element.querySelectorAll("button, a, [tabindex='0']");
+    const firstElement = focusableElements[0];
+    const lastElement  = focusableElements[focusableElements.length - 1];
+    const {keyCode, key, code, shiftKey} = event;
+    
+    const {activeElement} = document;
+
+    if (keyCode === 27 || key.toLowerCase() === "escape" || code.toLowerCase() === "escape") {
+        const closeButton = element.querySelector('.close-modal');
+        if(closeButton) {
+            const modalContainer = closeButton.closest('.popup-modal, .page-container, .modal-container');
+            if(modalContainer) {
+                event.preventDefault();
+                closeButton.dispatchEvent(new Event("click"), {cancelable: false});
+            }
+        }
+    } else {
+        if (keyCode === 9 || key.toLowerCase() === "tab" || code.toLowerCase() === "tab") {
+            // case last element, back to the first element
+            if (!shiftKey && activeElement === lastElement) {
+                event.preventDefault();
+                firstElement.focus(); 
+            } else if (shiftKey && activeElement === firstElement) {
+                // case first element, back to the last element
+                event.preventDefault();
+                lastElement.focus(); 
+            }
+        }
+    }
+}
+
 function convertToLastMonthDay(date) {
     let expireDateConverted = date.replace("00", "01");
     expireDateConverted = new Date(expireDateConverted.replaceAll(' ', ''));
@@ -16,7 +160,6 @@ function getDateForDisplay(date) {
     }
     return date;
 }
-
 
 function getExpiryTime(expiry) {
     let normalizedExpiryDate;
@@ -117,13 +260,15 @@ function goToPage(pageName) {
 }
 
 function goToErrorPage(errorCode, error) {
+    console.error(error);
+
     let errCode = errorCode || "010";
     if (!error) {
         error = new Error("goToErrorPage called with partial args!")
     }
-    console.log(JSON.stringify(error, Object.getOwnPropertyNames(error)));
+    const parseError = JSON.stringify(error, Object.getOwnPropertyNames(error));
+    localStorage.setItem(constants.LAST_ERROR, parseError);
     window.history.pushState({}, "", "index.html");
-
     goToPage(`/error.html?errorCode=${errCode}`)
 }
 
@@ -160,35 +305,35 @@ function updateLocalStorage(consoleArgs, nrToKeep = 20) {
 }
 
 function enableConsolePersistence() {
-    console.originalLogFnc = console.log;
-    console.originalErrorFnc = console.error;
-    console.originalWarnFnc = console.warn;
+    // console.originalLogFnc = console.log;
+    // console.originalErrorFnc = console.error;
+    // console.originalWarnFnc = console.warn;
 
-    sessionStorage.tabID ? sessionStorage.tabID : sessionStorage.tabID = Math.random();
+    // sessionStorage.tabID ? sessionStorage.tabID : sessionStorage.tabID = Math.random();
 
-    if (!JSON.parse(localStorage.getItem(constants.DEV_DEBUG))) {
-        localStorage.setItem(constants.DEV_DEBUG, JSON.stringify([]))
-    }
+    // if (!JSON.parse(localStorage.getItem(constants.DEV_DEBUG))) {
+    //     localStorage.setItem(constants.DEV_DEBUG, JSON.stringify([]))
+    // }
 
-    console.log = function () {
-        // default &  console.log()
-        console.originalLogFnc.apply(console, arguments);
-        // new & array data
-        updateLocalStorage(arguments);
-    }
-    console.error = function () {
-        // default &  console.error()
-        console.originalErrorFnc.apply(console, arguments);
-        // new & array data
-        updateLocalStorage(arguments);
+    // console.log = function () {
+    //     // default &  console.log()
+    //     console.originalLogFnc.apply(console, arguments);
+    //     // new & array data
+    //     updateLocalStorage(arguments);
+    // }
+    // console.error = function () {
+    //     // default &  console.error()
+    //     console.originalErrorFnc.apply(console, arguments);
+    //     // new & array data
+    //     updateLocalStorage(arguments);
 
-    }
-    console.warn = function () {
-        // default &  console.warn()
-        console.originalWarnFnc.apply(console, arguments);
-        // new & array data
-        updateLocalStorage(arguments);
-    }
+    // }
+    // console.warn = function () {
+    //     // default &  console.warn()
+    //     console.originalWarnFnc.apply(console, arguments);
+    //     // new & array data
+    //     updateLocalStorage(arguments);
+    // }
 
 }
 
@@ -414,5 +559,10 @@ export {
     parseGS1Code,
     escapeHTML,
     escapeHTMLAttribute,
-    sanitizeLogMessage
+    sanitizeLogMessage,
+    modalOpen,
+    modalClose,
+    getActiveModal,
+    setPageTitle,
+    elementTrapFocus
 }
