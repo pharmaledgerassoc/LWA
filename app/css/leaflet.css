@@ -397,3 +397,8 @@ video {
 /* #recalled-modal.warning-modal .modal-header .modal-icon {
     background: url(./../images/modal-info-icon.svg) no-repeat center;
 } */
+
+.controlled-substance {
+    width:auto !important;
+    min-width:auto !important;
+}

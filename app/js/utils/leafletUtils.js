@@ -136,7 +136,7 @@ let renderLeaflet = function (leafletData, metadata) {
 
   if(!!metadata && !!metadata.productData)
     leafletData.productData = metadata.productData;
-    
+  
   document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
   let productDescriptionName = upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
   document.querySelector(".product-description").innerText = productDescriptionName;
@@ -177,11 +177,33 @@ let renderLeaflet = function (leafletData, metadata) {
   handleLeafletAccordion();
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
   focusModalHeader();
+  renderControlledSubstancesSymbol();
 };
 
 const upperCaseProductDescriptionProductName = function (text , searchText) {
   let regex = new RegExp(searchText, "gi");
   return text.replace(regex, (match) => match.toUpperCase());
+}
+
+const renderControlledSubstancesSymbol = function() {
+  const controlSubstance = document.getElementById("controlled-substance");
+  if(controlSubstance){
+    const img = document.createElement('img');
+    img.src = 'images/controlled_substance.jpg';
+    img.alt = 'Controlled substance in Canada';
+    img.className = 'controlled-substance'
+    controlSubstance.appendChild(img);
+    addControlledSymbolToProductName();
+  }
+}
+
+const addControlledSymbolToProductName = function() {
+  const prodName = document.getElementById("product-leaf-title");
+  const img = document.createElement('img');
+  img.alt = 'Controlled substance in Canada';
+  img.src = 'images/controlled_substance.jpg';
+  img.className = 'controlled-substance'
+  prodName.prepend(img)
 }
 
 
