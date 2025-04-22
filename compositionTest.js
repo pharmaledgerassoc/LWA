@@ -1,8 +1,8 @@
-import { findCompositions, createLaflet } from "./app/js/utils/fhirLeaflet.js";
+import { getDocumentFromFHIR, createLaflet } from "./app/js/utils/fhirLeaflet.js";
 
 import {json} from './bundletest.js';
 
-const compositions = findCompositions(json);
+const compositions = getDocumentFromFHIR(json);
 
 console.log("lenght",compositions.length)
 

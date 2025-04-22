@@ -184,6 +184,23 @@ const upperCaseProductDescriptionProductName = function (text , searchText) {
   return text.replace(regex, (match) => match.toUpperCase());
 }
 
+const renderEMAleaflet = function (leafletData, emaDoc) {
+  document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
+  let productDescriptionName = upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
+  document.querySelector(".product-description").innerText = productDescriptionName;
+  validateLeafletFiles(htmlContent, leafletImages, leafletData.leafletImages);
+
+  const contentContainer =  document.querySelector("#leaflet-content");
+  contentContainer.parentNode.hidden = false;
+
+  document.querySelector("#leaflet-content").innerHTML = emaDoc;
+  let leafletLinks = document.querySelectorAll(".leaflet-link");
+  xmlService.activateLeafletInnerLinks(leafletLinks);
+  handleLeafletAccordion();
+  document.querySelector(".loader-container").setAttribute('style', 'display:none');
+  focusModalHeader();
+}
+
 
 const renderProductInformation = function (result, product) {
     const modal = document.querySelector('#product-modal');
@@ -346,5 +363,6 @@ export {
   getFileContentAsBuffer,
   getBase64FileContent,
   getImageAsBase64,
-  renderProductInformation
+  renderProductInformation,
+  renderEMAleaflet
 }

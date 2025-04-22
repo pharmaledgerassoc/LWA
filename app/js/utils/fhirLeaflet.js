@@ -14,7 +14,7 @@ function getDocumentFromFHIR(json) {
         }
       } else if (obj !== null && typeof obj === 'object') {
         if (obj.resourceType === 'Composition') {
-          compositions.push(obj.entry[0]);
+          compositions.push(obj.section[0]);
         }
         for (const value of Object.values(obj)) {
           recurse(value);

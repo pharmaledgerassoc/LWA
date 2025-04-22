@@ -4,9 +4,11 @@ import {
 import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
-import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
+import {focusModalHeader, renderLeaflet, renderEMAleaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
 import {translate, getTranslation, transformToISOStandardLangCode, getLanguageFallback,translateAccessibilityAttributes} from "../translationUtils.js";
 import {getCountry} from "../countriesUtils.js";
+import {createLaflet,getDocumentFromFHIR} from "../utils/fhirLeaflet.js"
+import {json} from '../../../bundletest.js';
 
 const DocumentsTypes = {
     LEAFLET: "leaflet",
@@ -298,8 +300,10 @@ function LeafletController() {
         if(!markets || markets.length < 1 || !markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId)))
             documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
 
-        if(!documents?.length)
-            return goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Has not documents for product`));
+        if(!documents?.length){
+            this.getEMAepi(result, this.gtin);
+            return;
+        }
 
         if(documents.length === 1)
             return this.setSelectedDocument(documents[0].value);
@@ -359,6 +363,35 @@ function LeafletController() {
         container.appendChild(radioParent);
         this.showModal('documents-modal');
     };
+
+    /**
+     * Try to get a leaflet from EMA API if no leaflet available
+     * @param {Object} result Metadata info
+     * @param {string} gtin 
+     */
+    this.getEMAepi = async function (result, gtin) {
+        let doc ;
+        try {
+            doc = await this.getDocument(gtin)
+        } catch (error) {
+            console.log(error);
+            return goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Has not documents for product`));
+        }
+        this.showModal("settings-modal");
+        renderEMAleaflet(result, doc );
+        this.loadPrintContent("settings-modal");
+        if (isExpired(this.expiry))
+            modalOpen(document.querySelector("#expired-modal"), null);
+        
+    }
+
+    this.getDocument = async function (gtin) {
+        // EAM query to get the fhir based on gtin 
+        const doc = getDocumentFromFHIR(json);
+        const container = document.querySelector("#leaflet-content")
+        const leaflet = createLaflet(doc[0],container);
+        return leaflet;
+    }
 
     /**
      * @param selectedDocument
