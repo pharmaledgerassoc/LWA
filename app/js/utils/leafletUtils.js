@@ -189,21 +189,23 @@ const renderControlledSubstancesSymbol = function() {
   const controlSubstance = document.getElementById("controlled-substance");
   if(controlSubstance){
     const img = document.createElement('img');
-    img.src = 'images/controlled_substance.jpg';
+    img.src = 'images/controlled_substance.svg';
     img.alt = 'Controlled substance in Canada';
-    img.className = 'controlled-substance'
-    controlSubstance.appendChild(img);
+    img.className = 'controlled-substance-p '
+    controlSubstance.replaceWith(img);
     addControlledSymbolToProductName();
   }
 }
 
-const addControlledSymbolToProductName = function() {
+const addControlledSymbolToProductName = async function() {
   const prodName = document.getElementById("product-leaf-title");
-  const img = document.createElement('img');
-  img.alt = 'Controlled substance in Canada';
-  img.src = 'images/controlled_substance.jpg';
-  img.className = 'controlled-substance'
-  prodName.prepend(img)
+  const response = await fetch('images/controlled_substance.svg');
+  const svgText = await response.text();
+  const svg = document.createElement('div')
+  svg.alt = 'Controlled substance in Canada';
+  svg.className = 'controlled-substance-header controlled-substance';
+  svg.innerHTML= svgText;
+  prodName.prepend(svg);
 }
 
 

@@ -25,6 +25,7 @@ button:not([disabled]) {
 
  
 .product-name {
+    display: flex;
     font-size: var(--font-size--XL);
     font-weight: 700;
     word-break: break-word;
@@ -398,7 +399,48 @@ video {
     background: url(./../images/modal-info-icon.svg) no-repeat center;
 } */
 
-.controlled-substance {
-    width:auto !important;
-    min-width:auto !important;
+.controlled-substance-header {
+    display: flex;
+    align-items: flex-start; 
 }
+
+.controlled-substance-p {
+    vertical-align: top;
+    top: 0px !important;
+    width: 0.5em !important;
+    height: auto;
+    min-width: min-content !important;
+
+}
+
+#controlled-substance {
+    display: flex;
+    align-items: flex-start; 
+    width: 1em ;
+    min-width: 1em ;
+}
+
+svg {
+    width: 0.7em;
+    height: auto;
+}
+
+
+#path979 {
+    stroke: white !important;
+    fill:none;
+    stroke:#231f20;
+    stroke-width:0.5;
+    stroke-linecap:butt;
+    stroke-linejoin:miter;
+    stroke-miterlimit:4;
+    stroke-dasharray:none;
+    stroke-opacity:1
+} 
+
+#path980 {
+    fill: white !important;
+    fill-opacity:1;
+    fill-rule:nonzero;
+    stroke:none
+} 
