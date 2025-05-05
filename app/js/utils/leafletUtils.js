@@ -185,18 +185,26 @@ const upperCaseProductDescriptionProductName = function (text , searchText) {
   return text.replace(regex, (match) => match.toUpperCase());
 }
 
+/**
+ * Replace element with id "controlled-substance" with an image of the Canadian controlled substance symbol on the leaflet 
+ */
 const renderControlledSubstancesSymbol = function() {
-  const controlSubstance = document.getElementById("controlled-substance");
-  if(controlSubstance){
-    const img = document.createElement('img');
-    img.src = 'images/controlled_substance.svg';
-    img.alt = 'Controlled substance in Canada';
-    img.className = 'controlled-substance-p '
-    controlSubstance.replaceWith(img);
+  const controlSubstances = document.querySelectorAll(".controlled-substance");
+  if(controlSubstances){
     addControlledSymbolToProductName();
+    controlSubstances.forEach((controlSubstance) => {
+      const img = document.createElement('img');
+      img.src = 'images/controlled_substance.svg';
+      img.alt = 'Controlled substance in Canada';
+      img.className = 'controlled-substance-p '
+      controlSubstance.replaceWith(img);
+    })
   }
 }
 
+/**
+ * Add the controlled substance symbol to the product name
+ */
 const addControlledSymbolToProductName = async function() {
   const prodName = document.getElementById("product-leaf-title");
   const response = await fetch('images/controlled_substance.svg');

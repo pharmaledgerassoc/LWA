@@ -413,13 +413,6 @@ video {
 
 }
 
-#controlled-substance {
-    display: flex;
-    align-items: flex-start; 
-    width: 1em ;
-    min-width: 1em ;
-}
-
 svg {
     width: 0.7em;
     height: auto;
