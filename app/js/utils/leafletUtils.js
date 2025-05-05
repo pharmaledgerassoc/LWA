@@ -197,7 +197,7 @@ const renderControlledSubstancesSymbol = function() {
       img.src = 'images/controlled_substance.svg';
       img.alt = 'Controlled substance in Canada';
       img.className = 'controlled-substance-p '
-      controlSubstance.replaceWith(img);
+      controlSubstance.insertBefore(img, controlSubstance.firstChild);
     })
   }
 }
