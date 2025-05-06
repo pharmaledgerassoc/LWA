@@ -38,8 +38,9 @@ jobs:
       - name: Prepare site
         run: |
           ls -la
-          ls -al leaflet-previewer/docs
+          
           cp -r workdocs/accessibility leaflet-previewer/docs
+          ls -al leaflet-previewer/docs 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
