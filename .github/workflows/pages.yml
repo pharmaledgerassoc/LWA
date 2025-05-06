@@ -39,7 +39,7 @@ jobs:
         run: |
           cp -r workdocs/accessibility leaflet-previewer/docs
           cp -r app leaflet-previewer/docs
-          cp -r GS1DigitalLinkTtollkit leaflet-previewer/docs
+          cp -r GS1DigitalLinkToolkit leaflet-previewer/docs
           cp -r interpretGS1scan leaflet-previewer/docs
           cp -r utils.js leaflet-previewer/docs
       - name: Upload artifact
