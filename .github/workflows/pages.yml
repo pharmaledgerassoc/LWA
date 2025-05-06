@@ -38,10 +38,10 @@ jobs:
       - name: Prepare site
         run: |
           cp -r workdocs/accessibility leaflet-previewer/docs
-          cp -r app leaflet-previewer/docs
+          cp -r app leaflet-previewer/docs/lwa
           cp -r GS1DigitalLinkToolkit leaflet-previewer/docs
           cp -r interpretGS1scan leaflet-previewer/docs
-          cp -r utils.js leaflet-previewer/docs
+          cp  utils.js leaflet-previewer/docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
