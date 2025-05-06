@@ -1,10 +1,10 @@
-import {setTextDirectionForLanguage, updateFontZoom} from "../../../../utils.js"
+import {setTextDirectionForLanguage, updateFontZoom} from "utils.js"
 
 import environment from "../../environment.js";
 import constants from "../../constants.js";
 // import {getFileContent, getFileContentAsBuffer, getImageAsBase64} from "./utils/leafletUtils.js";
-import { renderLeaflet, upperCaseProductDescriptionProductName, getFileContent, getFileContentAsBuffer,getImageAsBase64 } from "../../../../app/js/utils/leafletUtils.js";
-import { translate, getTranslation } from "../../../../app/js/translationUtils.js";
+import { renderLeaflet, upperCaseProductDescriptionProductName, getFileContent, getFileContentAsBuffer,getImageAsBase64 } from "./app/js/utils/leafletUtils.js";
+import { translate, getTranslation } from "./app/js/translationUtils.js";
 
 let uploadedFiles = [];
 const devices = [

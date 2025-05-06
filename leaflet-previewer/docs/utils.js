@@ -1,6 +1,6 @@
 import constants from "./constants.js"
 import environment from "./environment.js";
-import interpretGS1scan from "../../interpretGS1scan/interpretGS1scan.js";
+import interpretGS1scan from "./interpretGS1scan/interpretGS1scan.js";
 
 function convertToLastMonthDay(date) {
     let expireDateConverted = date.replace("00", "01");
