@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: Deploy leaflet previewer
 
 on:
   workflow_dispatch:
@@ -11,19 +11,11 @@ on:
       - utils.js
       - workdocs/accessibility/**
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
 
 jobs:
   DeployLeafletPreviewer:
     name: 'Deploy Leaflet Previewer'
-    uses: pdmfcsa/leaflet-preview/.github/workflows/static.yaml@main
+    uses: pdmfcsa/leaflet-preview/.github/workflows/static.yml@main
