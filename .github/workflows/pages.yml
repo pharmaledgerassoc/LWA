@@ -9,7 +9,7 @@ on:
     paths:
       - app/**
       - utils.js
-      - leaflet-previewer/**
+      - workdocs/accessibility/**
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
@@ -37,11 +37,10 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Prepare site
         run: |
+          git clone --depth 1 https://github.com/PDMFCSA/leaflet-preview.git leaflet-previewer
           cp -r workdocs/accessibility leaflet-previewer/docs
           mkdir -p leaflet-previewer/docs/lwa
           cp -r app/* leaflet-previewer/docs/lwa/
-          cp -r GS1DigitalLinkToolkit leaflet-previewer/docs
-          cp -r interpretGS1scan leaflet-previewer/docs
           cp  utils.js leaflet-previewer/docs
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
