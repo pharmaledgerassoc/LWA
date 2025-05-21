@@ -102,6 +102,10 @@ button:not([disabled]) {
     margin: 0 auto;
 }
 
+#leaflet-content table figure {
+    font-size: 0px !important;
+}
+
 /* Force hidden content for images because xslt rule not working for safari < 16. */
 #leaflet-content figure *:not(img) {
     display: none;
