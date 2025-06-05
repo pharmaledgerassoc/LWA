@@ -1,9 +1,12 @@
 @import "prerequisites.css";
 
+html {
+    -webkit-text-size-adjust: none;
+}
+
 .voiceover-pause {
     opacity: 0;
 }
-
 
 fieldset {
     border: none;
