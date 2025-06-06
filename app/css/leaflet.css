@@ -398,6 +398,15 @@ video {
 /* #recalled-modal.warning-modal .modal-header .modal-icon {
     background: url(./../images/modal-info-icon.svg) no-repeat center;
 } */
+.controlled-substance-description {
+  display: inline-flex;
+  align-items: flex-start;
+  vertical-align:text-top;
+}
+
+.controlled-substance {
+    display: inline-block; 
+}
 
 .controlled-substance-header {
     display: flex;

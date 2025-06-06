@@ -1,6 +1,6 @@
 import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.js";
 import constants from "../../../constants.js";
-import {setTextDirectionForLanguage} from "../../../utils.js";
+import {setTextDirectionForLanguage, zoomFont} from "../../../utils.js";
 import {observerVideos, mediaUrlRegex} from "../services/XMLDisplayService/leafletXSL.js"
 
 
@@ -132,14 +132,14 @@ let validateLeafletFiles = function (htmlContent, leafletImages, uploadedImages)
 
 }
 
-let renderLeaflet = function (leafletData, metadata) {
+let renderLeaflet = async function (leafletData, metadata) {
 
   if(!!metadata && !!metadata.productData)
     leafletData.productData = metadata.productData;
   
   document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
-  let productDescriptionName = upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
-  document.querySelector(".product-description").innerText = productDescriptionName;
+  let productDescriptionName = await upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
+  document.querySelector(".product-description").innerHTML = productDescriptionName;
 
    /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
   let xmlService = new XMLDisplayService("#leaflet-content");
@@ -168,7 +168,7 @@ let renderLeaflet = function (leafletData, metadata) {
 
   validateLeafletFiles(htmlContent, leafletImages, leafletData.leafletImages);
 
-  const contentContainer =  document.querySelector("#leaflet-content");
+  const contentContainer =  document.querySelector("#leaflet-content");zoomFont
   contentContainer.parentNode.hidden = false;
 
   document.querySelector("#leaflet-content").innerHTML = htmlContent;
@@ -180,9 +180,9 @@ let renderLeaflet = function (leafletData, metadata) {
   renderControlledSubstancesSymbol();
 };
 
-const upperCaseProductDescriptionProductName = function (text , searchText) {
-  let regex = new RegExp(searchText, "gi");
-  return text.replace(regex, (match) => match.toUpperCase());
+const upperCaseProductDescriptionProductName = function (text, searchText) {
+  let regex = new RegExp(`(?<=\\b)${searchText}(?=\\b)`, "gi");
+  return text.replace(regex, (match) => `<span class="controlled-substance-description">${match.toUpperCase()}</span>`);
 }
 
 /**
@@ -192,12 +192,31 @@ const renderControlledSubstancesSymbol = function() {
   const controlSubstances = document.querySelectorAll(".controlled-substance");
   if(controlSubstances){
     addControlledSymbolToProductName();
+    addControlledSymbolToProductDescription();
     controlSubstances.forEach((controlSubstance) => {
       const img = document.createElement('img');
       img.src = 'images/controlled_substance.svg';
       img.alt = 'Controlled substance in Canada';
       img.className = 'controlled-substance-p '
       controlSubstance.insertBefore(img, controlSubstance.firstChild);
+    })
+  }
+}
+
+/**
+ * Add the controlled substance symbol to the product description
+ */
+const addControlledSymbolToProductDescription = async function() {
+  const controlSubstances = document.querySelectorAll(".controlled-substance-description");
+  if(controlSubstances){
+    controlSubstances.forEach(async (controlSubstance) => {
+      const response = await fetch('images/controlled_substance.svg');
+      const svgText = await response.text();
+      const tempSVG = document.createElement('div')
+      tempSVG.innerHTML= svgText;
+      const svg = tempSVG.firstElementChild;
+      svg.alt = 'Controlled substance in Canada';
+      controlSubstance.prepend(svg);
     })
   }
 }
