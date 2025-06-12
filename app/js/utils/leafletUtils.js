@@ -2,6 +2,7 @@ import XMLDisplayService from "../services/XMLDisplayService/XMLDisplayService.j
 import constants from "../../../constants.js";
 import {setTextDirectionForLanguage, zoomFont} from "../../../utils.js";
 import {observerVideos, mediaUrlRegex} from "../services/XMLDisplayService/leafletXSL.js"
+import { getTranslation } from "../translationUtils.js";
 
 
 const TITLES = {
@@ -141,6 +142,8 @@ let renderLeaflet = async function (leafletData, metadata) {
   let productDescriptionName = await upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
   document.querySelector(".product-description").innerHTML = productDescriptionName;
 
+
+
    /* document.querySelector(".leaflet-title-icon").classList.remove("hiddenElement");*/
   let xmlService = new XMLDisplayService("#leaflet-content");
   let resultDocument = xmlService.getHTMLFromXML(leafletData.xmlContent);
@@ -196,7 +199,7 @@ const renderControlledSubstancesSymbol = function() {
     controlSubstances.forEach((controlSubstance) => {
       const img = document.createElement('img');
       img.src = 'images/controlled_substance.svg';
-      img.alt = 'Controlled substance in Canada';
+      img.alt = getTranslation("controlled_substance");
       img.className = 'controlled-substance-p '
       controlSubstance.insertBefore(img, controlSubstance.firstChild);
     })
@@ -210,13 +213,11 @@ const addControlledSymbolToProductDescription = async function() {
   const controlSubstances = document.querySelectorAll(".controlled-substance-description");
   if(controlSubstances){
     controlSubstances.forEach(async (controlSubstance) => {
-      const response = await fetch('images/controlled_substance.svg');
-      const svgText = await response.text();
-      const tempSVG = document.createElement('div')
-      tempSVG.innerHTML= svgText;
-      const svg = tempSVG.firstElementChild;
-      svg.alt = 'Controlled substance in Canada';
-      controlSubstance.prepend(svg);
+      const img = document.createElement('img');
+      img.src = 'images/controlled_substance_contrast.svg';
+      img.alt = getTranslation("controlled_substance");
+      img.className = 'controlled-substance-p '
+      controlSubstance.insertBefore(img, controlSubstance.firstChild);
     })
   }
 }
@@ -226,13 +227,12 @@ const addControlledSymbolToProductDescription = async function() {
  */
 const addControlledSymbolToProductName = async function() {
   const prodName = document.getElementById("product-leaf-title");
-  const response = await fetch('images/controlled_substance.svg');
-  const svgText = await response.text();
-  const svg = document.createElement('div')
-  svg.alt = 'Controlled substance in Canada';
-  svg.className = 'controlled-substance-header controlled-substance';
-  svg.innerHTML= svgText;
-  prodName.prepend(svg);
+  const img = document.createElement('img');
+      img.src = 'images/controlled_substance_contrast.svg';
+      img.alt = getTranslation("controlled_substance");
+      img.className = 'controlled-substance-p '
+      prodName.insertBefore(img, prodName.firstChild);
+      prodName.classList.add("controlled-substance-header")
 }
 
 
