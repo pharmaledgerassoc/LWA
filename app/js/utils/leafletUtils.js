@@ -180,20 +180,33 @@ let renderLeaflet = async function (leafletData, metadata) {
   handleLeafletAccordion();
   document.querySelector(".loader-container").setAttribute('style', 'display:none');
   focusModalHeader();
-  renderControlledSubstancesSymbol();
+  renderControlledSubstancesSymbol(leafletData);
 };
 
 const upperCaseProductDescriptionProductName = function (text, searchText) {
   let regex = new RegExp(`(?<=\\b)${searchText}(?=\\b)`, "gi");
-  return text.replace(regex, (match) => `<span class="controlled-substance-description">${match.toUpperCase()}</span>`);
+  return text.replace(regex, (match) => `${match.toUpperCase()}`);
+}
+
+/**
+ * If controlled substance detected wrappe it in a span
+ * @param {string} description 
+ * @param {string} title 
+ * @returns 
+ */
+const setupDescriptionProductName = function (description, title) {
+  let regex = new RegExp(`(?<=\\b)${title}(?=\\b)`, "gi");
+  return description.replace(regex, (match) => `<span class="controlled-substance-description">${match.toUpperCase()}</span>`);
 }
 
 /**
  * Replace element with id "controlled-substance" with an image of the Canadian controlled substance symbol on the leaflet 
  */
-const renderControlledSubstancesSymbol = function() {
+const renderControlledSubstancesSymbol = function(leafletData) {
   const controlSubstances = document.querySelectorAll(".controlled-substance");
-  if(controlSubstances){
+  if(controlSubstances.length != 0){
+    const descriptionName = setupDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
+    document.querySelector(".product-description").innerHTML = descriptionName;
     addControlledSymbolToProductName();
     addControlledSymbolToProductDescription();
     controlSubstances.forEach((controlSubstance) => {
@@ -211,7 +224,7 @@ const renderControlledSubstancesSymbol = function() {
  */
 const addControlledSymbolToProductDescription = async function() {
   const controlSubstances = document.querySelectorAll(".controlled-substance-description");
-  if(controlSubstances){
+  if(controlSubstances.length !=0){
     controlSubstances.forEach(async (controlSubstance) => {
       const img = document.createElement('img');
       img.src = 'images/controlled_substance_contrast.svg';
@@ -228,11 +241,11 @@ const addControlledSymbolToProductDescription = async function() {
 const addControlledSymbolToProductName = async function() {
   const prodName = document.getElementById("product-leaf-title");
   const img = document.createElement('img');
-      img.src = 'images/controlled_substance_contrast.svg';
-      img.alt = getTranslation("controlled_substance");
-      img.className = 'controlled-substance-p '
-      prodName.insertBefore(img, prodName.firstChild);
-      prodName.classList.add("controlled-substance-header")
+  img.src = 'images/controlled_substance_contrast.svg';
+  img.alt = getTranslation("controlled_substance");
+  img.className = 'controlled-substance-p '
+  prodName.insertBefore(img, prodName.firstChild);
+  prodName.classList.add("controlled-substance-header")
 }
 
 
@@ -398,5 +411,6 @@ export {
   getBase64FileContent,
   getImageAsBase64,
   renderProductInformation,
-  upperCaseProductDescriptionProductName
+  upperCaseProductDescriptionProductName,
+  setupDescriptionProductName
 }
