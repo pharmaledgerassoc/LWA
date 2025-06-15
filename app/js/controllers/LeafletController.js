@@ -101,6 +101,7 @@ function LeafletController() {
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
 
             this.metadata = data;
+            // this.leafletService.availableKeys = Array.isArray(data?.availableKeys) ? data.availableKeys : [];
             setTimeout(() => { showRecalledMessage(data) }, 100);
             
             if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found") {
@@ -566,7 +567,7 @@ function LeafletController() {
         
         printContent.innerHTML = "";
         printContent.innerHTML = content.innerHTML;
-
+        
         // Setup the printing images of the videos
         printContent.querySelectorAll('video').forEach(async(element) => {
             if(element.tagName === 'VIDEO') {

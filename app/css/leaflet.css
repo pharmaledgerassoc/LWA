@@ -54,7 +54,7 @@ button:not([disabled]) {
 #leaflet-content p,
 #leaflet-content h4 {
     font-size: var(--font-size--basic);
-}
+} 
 
 #leaflet-content .select-lang-text {
     padding: 35px;
