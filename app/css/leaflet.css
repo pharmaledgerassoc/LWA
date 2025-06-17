@@ -1,5 +1,8 @@
 @import "prerequisites.css";
-
+html {
+  -webkit-font-size-adjust: none;
+  font-size-adjust: none;
+}
 .voiceover-pause {
     opacity: 0;
 }
