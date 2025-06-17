@@ -1,7 +1,6 @@
 @import "prerequisites.css";
 html {
-  -webkit-font-size-adjust: none;
-  font-size-adjust: none;
+  -webkit-font-size-adjust: none !important;
 }
 .voiceover-pause {
     opacity: 0;
@@ -50,6 +49,10 @@ button:not([disabled]) {
     text-align: start;
 }
 
+#leaflet-content table,
+#leaflet-content th,
+#leaflet-content td,
+#leaflet-content caption,
 #leaflet-content,
 #leaflet-content p,
 #leaflet-content h4 {
