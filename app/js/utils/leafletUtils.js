@@ -133,13 +133,13 @@ let validateLeafletFiles = function (htmlContent, leafletImages, uploadedImages)
 
 }
 
-let renderLeaflet = async function (leafletData, metadata) {
+let renderLeaflet = function (leafletData, metadata) {
 
   if(!!metadata && !!metadata.productData)
     leafletData.productData = metadata.productData;
   
   document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
-  let productDescriptionName = await upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
+  let productDescriptionName = upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
   document.querySelector(".product-description").innerHTML = productDescriptionName;
 
 
