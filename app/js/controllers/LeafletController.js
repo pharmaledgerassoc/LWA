@@ -386,14 +386,9 @@ function LeafletController() {
     }
 
     this.getDocument = async function (gtin) {
-        // EAM query to get the fhir based on gtin 
-        gtin = "8044a345-70f0-439b-92e2-9ff8cca43f3a" // Mock with known id. Need a transformation from gtin to valid ID
-        const jsonDocument = await fetch('http://localhost:8080/EMA/8044a345-70f0-439b-92e2-9ff8cca43f3a')
+        const jsonDocument = await fetch('http://localhost:8080/EMA/'+gtin)
         const bundle = await jsonDocument.json()
-        const resource = bundle['entry'][0]['resource']
-        // const doc = getDocumentFromFHIR(json);
-        // const container = document.querySelector("#leaflet-content")
-        // const leaflet = createLaflet(doc[0],container);
+        const resource = bundle['entry'][1]['resource']['entry'][0]
         return resource;
     }
 

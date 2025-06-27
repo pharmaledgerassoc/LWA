@@ -191,42 +191,35 @@ const renderEMAleaflet = function (leafletData, emaDoc) {
 
   var content=document.createElement("div")
 
-  addSection(content,emaDoc['section'][0],1,emaDoc['contained'])
+  addSection(content,emaDoc['resource']['section'][0],1,emaDoc['contained'])
 
   const contentContainer =  document.querySelector("#leaflet-content");
   contentContainer.parentNode.hidden = false;
   contentContainer.innerHTML=""
   contentContainer.appendChild(content)
-
-  // document.querySelector("#leaflet-content").innerHTML = emaDoc;
-  // let leafletLinks = document.querySelectorAll(".leaflet-link");
-  // xmlService.activateLeafletInnerLinks(leafletLinks);
-  // handleLeafletAccordion();
-  // document.querySelector(".loader-container").setAttribute('style', 'display:none');
-  // focusModalHeader();
 }
 
-  function addSection(content, section, level,contained) {
-    let head = document.createElement("h"+level)
-    head.innerHTML = section["title"]
-    content.appendChild(head)
-    let div = document.createElement("div")
-    let text = section["text"]["div"]
+function addSection(content, section, level,contained) {
+  let head = document.createElement("h"+level)
+  head.innerHTML = section["title"]
+  content.appendChild(head)
+  let div = document.createElement("div")
+  let text = section["text"]["div"]
 
-    if (contained) {
-      for (i=0; i < contained.length; i++) {
-        text = text.replace("#"+contained[i]['id'],"data:"+contained[i]['contentType']+";base64,"+contained[i]['data'])
-      }
+  if (contained) {
+    for (i=0; i < contained.length; i++) {
+      text = text.replace("#"+contained[i]['id'],"data:"+contained[i]['contentType']+";base64,"+contained[i]['data'])
     }
-    div.innerHTML = text
-    content.appendChild(div)
-    let sections = section['section']
-
-    if (sections) { for (var i = 0; i<sections.length; i++) {
-        addSection(content, sections[i],level+1,contained)
-    }}
-
   }
+  div.innerHTML = text
+  content.appendChild(div)
+  let sections = section['section']
+
+  if (sections) { for (var i = 0; i<sections.length; i++) {
+      addSection(content, sections[i],level+1,contained)
+  }}
+
+}
 
 
 const renderProductInformation = function (result, product) {
