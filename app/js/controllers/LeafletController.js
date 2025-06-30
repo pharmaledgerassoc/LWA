@@ -98,6 +98,10 @@ function LeafletController() {
         this.showLoader(true);
         this.leafletService.getLeafletMetadata(this.timePerCall, this.totalWaitTime, this.gto_TimePerCall, this.gto_TotalWaitTime).then((data) => {
             //check for injections in result
+            if(!data){
+                this.getEMAepi(null,this.gtin);
+                return
+            }
             const tmp = JSON.stringify(data);
             if (!tmp || sanitationRegex.test(tmp))
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
@@ -114,7 +118,8 @@ function LeafletController() {
 
         }).catch(err => {
             console.error(err);
-            goToErrorPage(err.errorCode, err)
+            this.getEMAepi(null,this.gtin);
+            return
         }).finally(() =>  this.showLoader(false)) 
     };
 

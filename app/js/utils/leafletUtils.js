@@ -250,9 +250,11 @@ const addControlledSymbolToProductName = async function() {
 }
 
 const renderEMAleaflet = function (leafletData, emaDoc) {
-  document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
-  let productDescriptionName = upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
-  document.querySelector(".product-description").innerText = productDescriptionName;
+  if(leafletData){
+    document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
+    let productDescriptionName = upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
+    document.querySelector(".product-description").innerText = productDescriptionName;
+  }
 
   var content=document.createElement("div")
 

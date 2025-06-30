@@ -117,10 +117,11 @@ class LeafletService {
     this.bdnsCache = undefined;
     this.gtinOwnerCache = new Map();
 
-    let gtinValidationResult = validateGTIN(this.gtin);
-    if (!gtinValidationResult.isValid) {
-      goToErrorPage(gtinValidationResult.errorCode, new Error(gtinValidationResult.message));
-    }
+    // Commented to test until EMA has valid gtin
+    // let gtinValidationResult = validateGTIN(this.gtin);
+    // if (!gtinValidationResult.isValid) {
+    //   goToErrorPage(gtinValidationResult.errorCode, new Error(gtinValidationResult.message));
+    // }
   }
 
   async getBDNS(skipCache) {
@@ -183,7 +184,8 @@ class LeafletService {
           return;
         }
         if (response.status === 404) {
-          goToErrorPage(constants.errorCodes.gtin_not_created, new Error(`Could not detect the owner of GTIN: ${GTIN}`));
+          reject(constants.errorCodes.gtin_not_created)
+          // goToErrorPage(constants.errorCodes.gtin_not_created, new Error(`Could not detect the owner of GTIN: ${GTIN}`));
           return;
         }
         resolve(false);
