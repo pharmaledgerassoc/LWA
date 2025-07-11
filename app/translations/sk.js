@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "Dostupné dokumenty letákov",
   "leaflet_available_lang": "Dostupné jazyky letákov",
   "leaflet_page_title": "Dokumenty",
-  "controlled_substance": "Kontrolovaná látka"
+  "controlled_substance": "Kontrolovaná látka",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Leták",
+  "document_labelling": "Označenie"
 }
 
 export default data;

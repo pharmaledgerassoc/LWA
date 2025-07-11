@@ -266,7 +266,10 @@ const data = {
   "leaflet_available_doc": "Poles ledige dokumenter",
   "leaflet_available_lang": "Poles ledige sprog",
   "leaflet_page_title": "Dokumenter",
-  "controlled_substance": "Kontrolleret stof"
+  "controlled_substance": "Kontrolleret stof",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Pakkebrættet",
+  "document_labelling": "Mærkning"
 }
 
 export default data;

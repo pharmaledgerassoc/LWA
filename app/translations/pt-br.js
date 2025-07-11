@@ -275,7 +275,10 @@ const data = {
   "leaflet_available_doc": "Documentos disponíveis do folheto",
   "leaflet_available_lang": "Línguas disponíveis do folheto",
   "leaflet_page_title": "Documentos",
-  "controlled_substance": "Substância controlada"
+  "controlled_substance": "Substância controlada",
+  "document_smpc": "Smpc",
+  "document_package_leaflet": "Folheto de embalagem",
+  "document_labelling": "Rotulagem"
 }
 
 export default data;

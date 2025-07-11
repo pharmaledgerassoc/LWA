@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "Documents disponibles de la dépliante",
   "leaflet_available_lang": "Langues disponibles de la dépliante",
   "leaflet_page_title": "Documents",
-  "controlled_substance": "Substance contrôlée"
+  "controlled_substance": "Substance contrôlée",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Tracteur",
+  "document_labelling": "Étiquetage"
 }
 
 export default data;

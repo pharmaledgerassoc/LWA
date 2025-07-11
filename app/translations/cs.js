@@ -266,7 +266,10 @@ const data = {
   "leaflet_available_doc": "Dostupné dokumenty letáku",
   "leaflet_available_lang": "Dostupné jazyky letáku",
   "leaflet_page_title": "Dokumenty",
-  "controlled_substance": "Kontrolovaná látka"
+  "controlled_substance": "Kontrolovaná látka",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Balíček leták",
+  "document_labelling": "Označování"
 }
 
 export default data;

@@ -266,7 +266,10 @@ const data = {
   "leaflet_available_doc": "Documenti disponibili del volantino",
   "leaflet_available_lang": "Le lingue disponibili del volantino",
   "leaflet_page_title": "Documenti",
-  "controlled_substance": "Sostanza controllata"
+  "controlled_substance": "Sostanza controllata",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Foglietto",
+  "document_labelling": "Etichettatura"
 }
 
 export default data;

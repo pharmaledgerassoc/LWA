@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "Lankstinukas turimi dokumentai",
   "leaflet_available_lang": "Lankstinukas turimas kalbas",
   "leaflet_page_title": "Dokumentai",
-  "controlled_substance": "Kontroliuojama medžiaga"
+  "controlled_substance": "Kontroliuojama medžiaga",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Pakuotės lankstinukas",
+  "document_labelling": "Ženklinimas"
 }
 
 export default data;

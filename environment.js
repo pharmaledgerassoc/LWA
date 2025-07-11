@@ -8,5 +8,6 @@ export default {
   "gto_TotalWaitTime": 15000,
   "enableEpiDomain": true,
   "enableRootVersion": false,
-  "bdnsUrl": "http://localhost:8080/bdns"
+  "bdnsUrl": "http://localhost:8080/bdns",
+  "outsideLeaflet": "http://localhost:3000"
 }

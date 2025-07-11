@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "리플렛의 사용 가능한 문서",
   "leaflet_available_lang": "리플렛의 사용 가능한 언어",
   "leaflet_page_title": "서류",
-  "controlled_substance": "제어 된 물질"
+  "controlled_substance": "제어 된 물질",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "패키지 전단지",
+  "document_labelling": "라벨링"
 }
 
 export default data;

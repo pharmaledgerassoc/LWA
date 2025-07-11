@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "A szórólap rendelkezésre álló dokumentumai",
   "leaflet_available_lang": "A szórólap rendelkezésre álló nyelvei",
   "leaflet_page_title": "Dokumentumok",
-  "controlled_substance": "Ellenőrzött anyag"
+  "controlled_substance": "Ellenőrzött anyag",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Csomag szórólapot",
+  "document_labelling": "Címkézés"
 }
 
 export default data;

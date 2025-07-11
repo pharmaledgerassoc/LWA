@@ -266,7 +266,10 @@ const data = {
   "leaflet_available_doc": "Наличните документи на листовка",
   "leaflet_available_lang": "Наличните езици на листовка",
   "leaflet_page_title": "Документи",
-  "controlled_substance": "Контролирано вещество"
+  "controlled_substance": "Контролирано вещество",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Пакетна листовка",
+  "document_labelling": "Етикетиране"
 }
 
 export default data;

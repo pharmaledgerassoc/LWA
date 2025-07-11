@@ -266,7 +266,10 @@ const data = {
   "leaflet_available_doc": "Documentele disponibile ale prospectului",
   "leaflet_available_lang": "Limbile disponibile ale prospectului",
   "leaflet_page_title": "Documente",
-  "controlled_substance": "Substanță controlată"
+  "controlled_substance": "Substanță controlată",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Prospect de pachete",
+  "document_labelling": "Etichetare"
 }
 
 export default data;

@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "传单的可用文件",
   "leaflet_available_lang": "传单的可用语言",
   "leaflet_page_title": "文件",
-  "controlled_substance": "受控物质"
+  "controlled_substance": "受控物质",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "包装传单",
+  "document_labelling": "标签"
 }
 
 export default data;

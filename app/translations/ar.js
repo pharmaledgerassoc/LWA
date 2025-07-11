@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "مستندات النشرة المتاحة",
   "leaflet_available_lang": "اللغات المتاحة للنشرة",
   "leaflet_page_title": "وثائق",
-  "controlled_substance": "مادة خاضعة للرقابة"
+  "controlled_substance": "مادة خاضعة للرقابة",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "نشرة حزمة",
+  "document_labelling": "وضع العلامات"
 }
 
 export default data;

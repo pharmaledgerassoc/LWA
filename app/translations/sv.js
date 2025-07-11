@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "Broschyrens tillgängliga dokument",
   "leaflet_available_lang": "Broschyrens tillgängliga språk",
   "leaflet_page_title": "Dokument",
-  "controlled_substance": "Kontrollerad substans"
+  "controlled_substance": "Kontrollerad substans",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Paket broschyr",
+  "document_labelling": "Märkning"
 }
 
 export default data;

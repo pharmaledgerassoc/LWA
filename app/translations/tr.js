@@ -266,7 +266,10 @@ const data = {
   "leaflet_available_doc": "Broşürün Mevcut Belgeleri",
   "leaflet_available_lang": "Broşürün Mevcut Dilleri",
   "leaflet_page_title": "Belgeler",
-  "controlled_substance": "Kontrollü madde"
+  "controlled_substance": "Kontrollü madde",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Paket broşürü",
+  "document_labelling": "Etiketleme"
 }
 
 export default data;

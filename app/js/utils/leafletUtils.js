@@ -249,12 +249,9 @@ const addControlledSymbolToProductName = async function() {
   prodName.classList.add("controlled-substance-header")
 }
 
-const renderEMAleaflet = function (leafletData, emaDoc) {
-  if(leafletData){
-    document.querySelector(".product-name").innerText = leafletData.productData.inventedName || leafletData.productData.name;
-    let productDescriptionName = upperCaseProductDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
-    document.querySelector(".product-description").innerText = productDescriptionName;
-  }
+const renderAuthorityLeaflet = function (emaDoc) {
+  emaDoc= emaDoc['resource']['entry'][0]
+  document.querySelector(".product-name").innerText = emaDoc['resource']['title']
 
   var content=document.createElement("div")
 
@@ -453,5 +450,5 @@ export {
   renderProductInformation,
   upperCaseProductDescriptionProductName,
   setupDescriptionProductName,
-  renderEMAleaflet
+  renderAuthorityLeaflet
 }

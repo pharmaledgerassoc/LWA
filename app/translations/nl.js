@@ -267,7 +267,10 @@ const data = {
   "leaflet_available_doc": "De beschikbare documenten van folder",
   "leaflet_available_lang": "De beschikbare talen van folder",
   "leaflet_page_title": "Documenten",
-  "controlled_substance": "Gecontroleerde stof"
+  "controlled_substance": "Gecontroleerde stof",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Pakketfolder",
+  "document_labelling": "Etikettering"
 }
 
 export default data;
