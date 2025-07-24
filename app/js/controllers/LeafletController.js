@@ -4,14 +4,22 @@ import {
 import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
-import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
+import {focusModalHeader, renderLeaflet, renderAuthorityLeaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
 import {translate, getTranslation, transformToISOStandardLangCode, getLanguageFallback,translateAccessibilityAttributes} from "../translationUtils.js";
 import {getCountry} from "../countriesUtils.js";
+import {createLaflet,getDocumentFromFHIR} from "../utils/fhirLeaflet.js"
+import {json} from '../../../bundletest.js';
 
 const DocumentsTypes = {
     LEAFLET: "leaflet",
     INFO: "info",
     PRESCRIBING_INFO: "prescribingInfo"
+};
+
+const HealthAuthoritiesDocumentsTypes = {
+    SMPC: "Summary of Product Characteristics",
+    PACKAGE_LEAFLET: "Package Leaflet",
+    LABELLING: "Labelling"
 };
 
 const parseEpiMarketValue = (epiMarket) => {
@@ -101,6 +109,7 @@ function LeafletController() {
                 return goToErrorPage(constants.errorCodes.unsupported_response, new Error("Response unsupported format or contains forbidden content"));
 
             this.metadata = data;
+            // this.leafletService.availableKeys = Array.isArray(data?.availableKeys) ? data.availableKeys : [];
             setTimeout(() => { showRecalledMessage(data) }, 100);
             
             if(typeof data.availableDocuments === 'string' && data.availableDocuments === "xml_found") {
@@ -112,6 +121,7 @@ function LeafletController() {
         }).catch(err => {
             console.error(err);
             goToErrorPage(err.errorCode, err)
+            return
         }).finally(() =>  this.showLoader(false)) 
     };
 
@@ -298,9 +308,6 @@ function LeafletController() {
         if(!markets || markets.length < 1 || !markets.some(market => constants.MARKETS_WITH_PRODUCT_INFORMATION.includes(market.marketId)))
             documents = documents.filter(doc => doc.value !== DocumentsTypes.INFO);
 
-        if(!documents?.length)
-            return goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Has not documents for product`));
-
         if(documents.length === 1)
             return this.setSelectedDocument(documents[0].value);
 
@@ -359,6 +366,132 @@ function LeafletController() {
         container.appendChild(radioParent);
         this.showModal('documents-modal');
     };
+
+    /**
+     * Try to get a leaflet from Health Authority
+     * @param {Object} result Metadata info
+     * @param {string} gtin 
+     */
+    const getAuthorityLeaflet = async (result, gtin) => {
+        try{
+            let doc ;
+            try {
+                doc = await this.getDocument(gtin);
+            } catch (error) {
+                console.log(error);
+                return getLeafletMetadata();
+            }
+            showAvailableAuthorityDocuments(doc["entry"]);
+        } catch(error) {
+            console.log(error.message);
+            return getLeafletMetadata();
+        }
+        
+    }
+
+    this.getDocument = async function (gtin) {
+        const jsonDocument = await fetch(environment.outsideLeaflet+"/leaflet?gtin="+gtin)
+        return await jsonDocument.json()
+    }
+
+    /**
+     * @param {Array} documents
+     */
+    const showAvailableAuthorityDocuments = (documents) => {
+        
+        this.showLoader(true);
+
+        const docTypes = documents.map(doc => doc["resource"]["entry"][0]["resource"]["type"]["coding"][0]["display"])
+
+        let alldocuments = [
+            {text: 'document_smpc', value: HealthAuthoritiesDocumentsTypes.SMPC},
+            {text: 'document_package_leaflet', value: HealthAuthoritiesDocumentsTypes.PACKAGE_LEAFLET},
+            {text: 'document_labelling', value: HealthAuthoritiesDocumentsTypes.LABELLING},
+        ];
+
+        if(docTypes.length >= 1){
+            const availableDocs = alldocuments.filter(doc => docTypes.includes(doc.value));
+
+            if(availableDocs.length === 1)
+                return this.setSelectedAuthorityLeafelt(documents[docTypes.findIndex(v => v === availableDocs[0].value)]);
+
+            const modal = document.querySelector('#authorities-document-modal');
+            const container = modal.querySelector("#content-container");
+            const radioParent = container.querySelector("#documents-radio-container") || document.createElement('div');
+            radioParent.id = "documents-radio-container";
+            radioParent.innerHTML = "";
+            let selectedItem = null;
+            
+            availableDocs.forEach((item, index) => {
+                const radioInput = document.createElement('input');
+                radioInput.setAttribute("type", "radio");
+                radioInput.setAttribute("name", "documents");
+                radioInput.setAttribute("value", escapeHTMLAttribute(item.value));
+                radioInput.setAttribute("id", escapeHTMLAttribute(item.value));
+                radioInput.setAttribute("tabindex", "-1");
+                radioInput.defaultChecked = index === 0;
+
+                // Create the div element for the label
+                const label = getTranslation(item.text);
+
+                const labelDiv = document.createElement('div');
+                labelDiv.classList.add("radio-label");
+                labelDiv.setAttribute("radio-label", escapeHTMLAttribute(label));
+                labelDiv.textContent = label;
+
+                const radioFragment = document.createElement('label');
+                radioFragment.classList.add("radio-item-container");
+                // radioFragment.setAttribute("role", "radio");
+                radioFragment.setAttribute("tabindex", "0");
+                radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
+                // radioFragment.setAttribute("aria-label", escapeHTMLAttribute(label));
+
+                // Append the radioInput and label elements to the container
+                radioFragment.appendChild(radioInput);
+                radioFragment.appendChild(labelDiv);
+
+                if (index === 0)
+                    selectedItem = radioFragment;
+
+                radioFragment.querySelector("input").addEventListener("change", (event) => {
+                    if (selectedItem)
+                        selectedItem.setAttribute("aria-checked", "false");
+                    radioFragment.setAttribute("aria-checked", "true");
+                    selectedItem = radioFragment;
+                })
+
+                radioFragment.addEventListener("keydown", (event) => {
+                    if (event.key === "Enter" || event.key === " ")
+                        radioFragment.querySelector("input").checked = true;
+                })
+
+                radioParent.appendChild(radioFragment);
+            })
+            container.appendChild(radioParent);
+            document.querySelector("#authorities-document-modal #proceed-button").addEventListener("click", () => {
+                let selectedDocument = document.querySelector("input[name='documents']:checked")?.value;
+                this.setSelectedAuthorityLeafelt(documents[docTypes.findIndex(v => v === selectedDocument)]);
+            });
+            this.showModal('authorities-document-modal');
+        } else {
+            goToErrorPage(constants.errorCodes.no_uploaded_epi, new Error(`Product found but no associated leaflet`));
+            /*      document.querySelector(".proceed-button.has-leaflets").setAttribute('style', 'display:none');
+                  document.querySelector(".text-section.has-leaflets").setAttribute('style', 'display:none');*/
+        }
+    };
+
+    this.setSelectedAuthorityLeafelt = function (selectedDocument) {
+        try{
+            this.showModal("settings-modal");
+            renderAuthorityLeaflet(selectedDocument);
+            this.loadPrintContent("settings-modal");
+            if (isExpired(this.expiry))
+                modalOpen(document.querySelector("#expired-modal"), null);
+        } catch(error) {
+            console.log(error.message);
+            return getLeafletMetadata();
+        }
+    }
 
     /**
      * @param selectedDocument
@@ -557,14 +690,16 @@ function LeafletController() {
 
         const content =  document.querySelector(`#${modal} .content-to-print`).cloneNode(true);
         const printContent =  document.querySelector('#print-content');
-        content.querySelectorAll('[style], [nowrap],video').forEach(element => {
-            element.removeAttribute('style');
+        content.querySelectorAll('[nowrap], video').forEach(element => {
+            // if(['table', 'th', 'td', 'tr', 'thead', 'tbody', 'tfoot', 'caption'].includes(element.tagName.toLowerCase()))  
+            //     element.removeAttribute('style');
             element.removeAttribute('nowrap');
             element.removeAttribute('xmlns');  
         });
+        
         printContent.innerHTML = "";
         printContent.innerHTML = content.innerHTML;
-
+        
         // Setup the printing images of the videos
         printContent.querySelectorAll('video').forEach(async(element) => {
             if(element.tagName === 'VIDEO') {
@@ -670,7 +805,7 @@ function LeafletController() {
     }
 
     addEventListeners();
-    getLeafletMetadata();
+    getAuthorityLeaflet(null,this.gtin)
 }
 
 

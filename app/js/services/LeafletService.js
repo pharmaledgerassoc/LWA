@@ -112,14 +112,16 @@ class LeafletService {
     this.epiDomain = epiDomain;
     this.epiMarket = epiMarket;
     this.leafletType = "leaflet";
+    // this.availableKeys = [];
 
     this.bdnsCache = undefined;
     this.gtinOwnerCache = new Map();
 
-    let gtinValidationResult = validateGTIN(this.gtin);
-    if (!gtinValidationResult.isValid) {
-      goToErrorPage(gtinValidationResult.errorCode, new Error(gtinValidationResult.message));
-    }
+    // Commented to test until EMA has valid gtin
+    // let gtinValidationResult = validateGTIN(this.gtin);
+    // if (!gtinValidationResult.isValid) {
+    //   goToErrorPage(gtinValidationResult.errorCode, new Error(gtinValidationResult.message));
+    // }
   }
 
   async getBDNS(skipCache) {
@@ -182,7 +184,8 @@ class LeafletService {
           return;
         }
         if (response.status === 404) {
-          goToErrorPage(constants.errorCodes.gtin_not_created, new Error(`Could not detect the owner of GTIN: ${GTIN}`));
+          reject(constants.errorCodes.gtin_not_created)
+          // goToErrorPage(constants.errorCodes.gtin_not_created, new Error(`Could not detect the owner of GTIN: ${GTIN}`));
           return;
         }
         resolve(false);
@@ -228,7 +231,11 @@ class LeafletService {
       urlPart += `/${subDomain}`;
     }
 
-    const queryParams = buildQueryParams(this.gtin, this.batch, this.leafletLang, this.leafletType, this.epiMarket);
+    let queryParams = buildQueryParams(this.gtin, this.batch, this.leafletLang, this.leafletType, this.epiMarket);
+    // if (!this.availableKeys.includes(queryParams)) {
+    //   queryParams = buildQueryParams(this.gtin, undefined, this.leafletLang, this.leafletType, this.epiMarket);
+    // }
+
     smartUrl = smartUrl.concatWith(`${urlPart}?${queryParams}`);
 
     let header = {"epiProtocolVersion": environment.epiProtocolVersion || "1"};

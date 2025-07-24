@@ -265,7 +265,11 @@ const data = {
   "alert_icon": "Εικονίδιο ειδοποίησης",
   "leaflet_available_doc": "Τα διαθέσιμα έγγραφα του φυλλαδίου",
   "leaflet_available_lang": "Οι διαθέσιμες γλώσσες του φυλλαδίου",
-  "leaflet_page_title": "Εγγραφα"
+  "leaflet_page_title": "Εγγραφα",
+  "controlled_substance": "Ελεγχόμενη ουσία",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Φυλλάδιο πακέτου",
+  "document_labelling": "Τιτλοφόρηση"
 }
 
 export default data;

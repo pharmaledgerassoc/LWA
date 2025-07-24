@@ -265,7 +265,11 @@ const data = {
   "alert_icon": "Hoiatusikoon",
   "leaflet_available_doc": "Voldiku saadaolevad dokumendid",
   "leaflet_available_lang": "Voldiku saadaolevad keeled",
-  "leaflet_page_title": "Dokumendid"
+  "leaflet_page_title": "Dokumendid",
+  "controlled_substance": "Kontrollitav aine",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Pakk -lendlehe",
+  "document_labelling": "Märgistamine"
 }
 
 export default data;

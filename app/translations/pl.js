@@ -265,7 +265,11 @@ const data = {
   "alert_icon": "Ikona alertów",
   "leaflet_available_doc": "Dostępne dokumenty ulotki",
   "leaflet_available_lang": "Dostępne języki ulotki",
-  "leaflet_page_title": "Dokumenty"
+  "leaflet_page_title": "Dokumenty",
+  "controlled_substance": "Substancja kontrolowana",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Pakiet ulotki",
+  "document_labelling": "Etykietowanie"
 }
 
 export default data;

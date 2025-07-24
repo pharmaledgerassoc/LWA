@@ -88,7 +88,8 @@ function ScanController() {
   this.processGS1Fields = function (scanResultText) {
     let gs1Fields = null;
     try {
-      gs1Fields = parseGS1Code(scanResultText);
+      /* FIXME: CHANGE WHEN EMA'S GTINS START BEEING VALID BACK TO parseGS1Code() */
+      gs1Fields = parseGS1DataMatrix(scanResultText); 
       const page = `/leaflet.html?gtin=${gs1Fields.gtin}&batch=${gs1Fields.batchNumber}&expiry=${gs1Fields.expiry}`;
       goToPage(page);
     } catch (err) {
@@ -105,6 +106,58 @@ function ScanController() {
       goToErrorPage(constants.errorCodes.unknown_error, err);
     }
   }
+/*********************************************************************/
+/*********** FIXME: THIS IS FOR EMA TESTING **************************
+ *********** WHILE EMA GTINS ARE NOT VALID  *************************/
+/********************************************************************/
+
+function parseGS1DataMatrix(input) {
+  // Clean up invisible characters
+  const gs = '\u001D';
+  input = input.replace(/[\u001D]/g, '');
+
+  let i = 0;
+  const result = {};
+
+  while (i < input.length) {
+    const ai = input.substring(i, i + 2);
+
+    switch (ai) {
+      case '01': // GTIN (fixed length: 14)
+        result.gtin = input.substring(i + 2, i + 16);
+        i += 16;
+        break;
+      case '10': { // Batch/Lot (variable length until next AI or end)
+        i += 2;
+        let end = i;
+        while (
+          end < input.length &&
+          !['01', '17', '21'].includes(input.substring(end, end + 2))
+        ) {
+          end++;
+        }
+        result.batch = input.substring(i, end);
+        i = end;
+        break;
+      }
+      case '17': { // Expiration Date (YYMMDD — fixed 6)
+        const dateStr = input.substring(i + 2, i + 8);
+        result.expiry = dateStr;
+        i += 8;
+        break;
+      }
+      default:
+        i++; // skip unknown or malformed data
+    }
+  }
+
+  return result;
+}
+
+/*********************************************************************/
+/*********** FIXME: THIS IS FOR EMA TESTING **************************
+ *********** WHILE EMA GTINS ARE NOT VALID  *************************/
+/********************************************************************/
 
   this.switchCamera = function () {
     //this.scanService.stop();

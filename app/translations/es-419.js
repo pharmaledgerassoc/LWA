@@ -265,7 +265,11 @@ const data = {
   "alert_icon": "Icono de alerta",
   "leaflet_available_doc": "Documentos disponibles del folleto",
   "leaflet_available_lang": "Idiomas disponibles del folleto",
-  "leaflet_page_title": "Documentos"
+  "leaflet_page_title": "Documentos",
+  "controlled_substance": "Sustancia controlada",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Folleto de paquetes",
+  "document_labelling": "Etiquetado"
 }
 
 export default data;

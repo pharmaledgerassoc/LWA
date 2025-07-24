@@ -266,7 +266,11 @@ const data = {
   "alert_icon": "Піктограма оповіщення",
   "leaflet_available_doc": "Доступні документи листівки",
   "leaflet_available_lang": "Наявні мови листівки",
-  "leaflet_page_title": "Документи"
+  "leaflet_page_title": "Документи",
+  "controlled_substance": "Контрольована речовина",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Упаковка листівка",
+  "document_labelling": "Маркування"
 }
 
 export default data;

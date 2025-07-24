@@ -8,5 +8,6 @@ export default {
   "gto_TotalWaitTime": ${gto_total_wait_time},
   "enableEpiDomain": false,
   "enableRootVersion": true,
-  "bdnsUrl": "${bdns_url}"
+  "bdnsUrl": "${bdns_url}",
+  "outsideLeaflet": "${backend_url}"
 }

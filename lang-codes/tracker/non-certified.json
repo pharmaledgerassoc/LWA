@@ -286,5 +286,9 @@
   "menu_button": 332,
   "leaflet_available_doc": 333,
   "leaflet_available_lang": 334,
-  "leaflet_page_title": 335
+  "leaflet_page_title": 335,
+  "controlled_substance": 336,
+  "document_smpc": 337,
+  "document_package_leaflet": 338,
+  "document_labelling": 339
 }

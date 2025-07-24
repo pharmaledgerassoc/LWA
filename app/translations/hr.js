@@ -265,7 +265,11 @@ const data = {
   "alert_icon": "Ikona upozorenja",
   "leaflet_available_doc": "Dostupni dokumenti Leaflet",
   "leaflet_available_lang": "Dostupni jezici Leaflet",
-  "leaflet_page_title": "Dokumenti"
+  "leaflet_page_title": "Dokumenti",
+  "controlled_substance": "Kontrolirana tvar",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Letak",
+  "document_labelling": "Etiketiranje"
 }
 
 export default data;

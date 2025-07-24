@@ -265,7 +265,11 @@ const data = {
   "alert_icon": "Brīdinājuma ikona",
   "leaflet_available_doc": "Beamplet pieejamie dokumenti",
   "leaflet_available_lang": "Beamplet pieejamās valodas",
-  "leaflet_page_title": "Dokumenti"
+  "leaflet_page_title": "Dokumenti",
+  "controlled_substance": "Kontrolējama viela",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Iepakojuma skrejlapa",
+  "document_labelling": "Marķēšana"
 }
 
 export default data;

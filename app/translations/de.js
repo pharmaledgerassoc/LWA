@@ -266,7 +266,11 @@ const data = {
   "alert_icon": "Alarm -Symbol",
   "leaflet_available_doc": "Die verfügbaren Dokumente von Broschüren",
   "leaflet_available_lang": "Die verfügbaren Sprachen von Broschüren",
-  "leaflet_page_title": "Unterlagen"
+  "leaflet_page_title": "Unterlagen",
+  "controlled_substance": "Kontrollierte Substanz",
+  "document_smpc": "SMPC",
+  "document_package_leaflet": "Paketbroschüre",
+  "document_labelling": "Beschriftung"
 }
 
 export default data;
