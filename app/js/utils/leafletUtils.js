@@ -347,5 +347,6 @@ export {
   getBase64FileContent,
   getImageAsBase64,
   renderProductInformation,
-  upperCaseProductDescriptionProductName
+  upperCaseProductDescriptionProductName,
+  handleLeafletAccordion
 }

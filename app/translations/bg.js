@@ -265,7 +265,8 @@ const data = {
   "alert_icon": "Икона за предупреждение",
   "leaflet_available_doc": "Наличните документи на листовка",
   "leaflet_available_lang": "Наличните езици на листовка",
-  "leaflet_page_title": "Документи"
+  "leaflet_page_title": "Документи",
+  "leaflet_search": "Търсене"
 }
 
 export default data;

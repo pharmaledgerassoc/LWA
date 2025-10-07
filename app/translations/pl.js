@@ -265,7 +265,8 @@ const data = {
   "alert_icon": "Ikona alertów",
   "leaflet_available_doc": "Dostępne dokumenty ulotki",
   "leaflet_available_lang": "Dostępne języki ulotki",
-  "leaflet_page_title": "Dokumenty"
+  "leaflet_page_title": "Dokumenty",
+  "leaflet_search": "Szukaj"
 }
 
 export default data;

@@ -265,7 +265,8 @@ const data = {
   "alert_icon": "Varslingsikon",
   "leaflet_available_doc": "Brosjyrens tilgjengelige dokumenter",
   "leaflet_available_lang": "Brosjyrens tilgjengelige språk",
-  "leaflet_page_title": "Dokumenter"
+  "leaflet_page_title": "Dokumenter",
+  "leaflet_search": "Søk"
 }
 
 export default data;
