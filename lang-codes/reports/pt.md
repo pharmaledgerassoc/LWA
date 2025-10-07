@@ -274,3 +274,4 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | leaflet_available_lang | Línguas disponíveis do folheto |  | 334 |
 | leaflet_page_title | Documentos |  | 335 |
 | leaflet_search | Procurar |  | 336 |
+| leaflet_search_input | Digite para pesquisar |  | 337 |

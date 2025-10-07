@@ -267,3 +267,4 @@ code,text,status,key
 334,Dostupné jazyky letáku,,leaflet_available_lang
 335,Dokumenty,,leaflet_page_title
 336,Vyhledávání,,leaflet_search
+337,Typ pro vyhledávání,,leaflet_search_input

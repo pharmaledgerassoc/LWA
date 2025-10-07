@@ -273,3 +273,4 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | leaflet_available_lang | Οι διαθέσιμες γλώσσες του φυλλαδίου |  | 334 |
 | leaflet_page_title | Εγγραφα |  | 335 |
 | leaflet_search | Ερευνα |  | 336 |
+| leaflet_search_input | Πληκτρολογήστε για αναζήτηση |  | 337 |

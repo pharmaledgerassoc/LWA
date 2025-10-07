@@ -266,7 +266,8 @@ const data = {
   "leaflet_available_doc": "Poles ledige dokumenter",
   "leaflet_available_lang": "Poles ledige sprog",
   "leaflet_page_title": "Dokumenter",
-  "leaflet_search": "Søge"
+  "leaflet_search": "Søge",
+  "leaflet_search_input": "Skriv for at søge"
 }
 
 export default data;

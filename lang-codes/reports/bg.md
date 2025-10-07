@@ -273,3 +273,4 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | leaflet_available_lang | Наличните езици на листовка |  | 334 |
 | leaflet_page_title | Документи |  | 335 |
 | leaflet_search | Търсене |  | 336 |
+| leaflet_search_input | Въведете за търсене |  | 337 |

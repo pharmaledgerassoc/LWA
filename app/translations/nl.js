@@ -267,7 +267,8 @@ const data = {
   "leaflet_available_doc": "De beschikbare documenten van folder",
   "leaflet_available_lang": "De beschikbare talen van folder",
   "leaflet_page_title": "Documenten",
-  "leaflet_search": "Zoekopdracht"
+  "leaflet_search": "Zoekopdracht",
+  "leaflet_search_input": "Type om te zoeken"
 }
 
 export default data;

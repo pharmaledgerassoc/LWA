@@ -269,3 +269,4 @@ code,text,status,key
 334,Leaflet's available languages,,leaflet_available_lang
 335,Documents,,leaflet_page_title
 336,Search,,leaflet_search
+337,Type to search,,leaflet_search_input

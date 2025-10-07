@@ -273,3 +273,4 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | leaflet_available_lang | Poles ledige sprog |  | 334 |
 | leaflet_page_title | Dokumenter |  | 335 |
 | leaflet_search | Søge |  | 336 |
+| leaflet_search_input | Skriv for at søge |  | 337 |

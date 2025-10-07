@@ -267,3 +267,4 @@ code,text,status,key
 334,Beamplet pieejamās valodas,,leaflet_available_lang
 335,Dokumenti,,leaflet_page_title
 336,Meklēšana,,leaflet_search
+337,"Tips, lai meklētu",,leaflet_search_input

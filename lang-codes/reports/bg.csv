@@ -267,3 +267,4 @@ code,text,status,key
 334,Наличните езици на листовка,,leaflet_available_lang
 335,Документи,,leaflet_page_title
 336,Търсене,,leaflet_search
+337,Въведете за търсене,,leaflet_search_input

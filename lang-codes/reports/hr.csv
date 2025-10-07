@@ -267,3 +267,4 @@ code,text,status,key
 334,Dostupni jezici Leaflet,,leaflet_available_lang
 335,Dokumenti,,leaflet_page_title
 336,Pretraživanje,,leaflet_search
+337,Tip za pretragu,,leaflet_search_input

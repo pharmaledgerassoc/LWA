@@ -274,3 +274,4 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | leaflet_available_lang | De beschikbare talen van folder |  | 334 |
 | leaflet_page_title | Documenten |  | 335 |
 | leaflet_search | Zoekopdracht |  | 336 |
+| leaflet_search_input | Type om te zoeken |  | 337 |

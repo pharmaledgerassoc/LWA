@@ -268,3 +268,4 @@ code,text,status,key
 334,Voldiku saadaolevad keeled,,leaflet_available_lang
 335,Dokumendid,,leaflet_page_title
 336,Otsima,,leaflet_search
+337,Tüüp otsima,,leaflet_search_input

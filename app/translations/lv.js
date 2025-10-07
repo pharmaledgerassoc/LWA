@@ -266,7 +266,8 @@ const data = {
   "leaflet_available_doc": "Beamplet pieejamie dokumenti",
   "leaflet_available_lang": "Beamplet pieejamās valodas",
   "leaflet_page_title": "Dokumenti",
-  "leaflet_search": "Meklēšana"
+  "leaflet_search": "Meklēšana",
+  "leaflet_search_input": "Tips, lai meklētu"
 }
 
 export default data;

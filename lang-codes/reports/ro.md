@@ -273,3 +273,4 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | leaflet_available_lang | Limbile disponibile ale prospectului |  | 334 |
 | leaflet_page_title | Documente |  | 335 |
 | leaflet_search | Căutare |  | 336 |
+| leaflet_search_input | Tip de căutare |  | 337 |

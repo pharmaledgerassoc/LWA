@@ -274,3 +274,4 @@ To ease the translation the Code refers where it is used on our app screen, see 
 | leaflet_available_lang | A szórólap rendelkezésre álló nyelvei |  | 334 |
 | leaflet_page_title | Dokumentumok |  | 335 |
 | leaflet_search | Keresés |  | 336 |
+| leaflet_search_input | Írja be a keresést |  | 337 |

@@ -267,3 +267,4 @@ code,text,status,key
 334,Lehteisen kielet,,leaflet_available_lang
 335,Asiakirjat,,leaflet_page_title
 336,Haku,,leaflet_search
+337,Kirjoita haku,,leaflet_search_input

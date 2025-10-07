@@ -267,3 +267,4 @@ code,text,status,key
 334,Le lingue disponibili del volantino,,leaflet_available_lang
 335,Documenti,,leaflet_page_title
 336,Ricerca,,leaflet_search
+337,Digita per cercare,,leaflet_search_input
