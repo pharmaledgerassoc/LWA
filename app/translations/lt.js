@@ -266,7 +266,9 @@ const data = {
   "alert_icon": "Įspėjimo piktograma",
   "leaflet_available_doc": "Lankstinukas turimi dokumentai",
   "leaflet_available_lang": "Lankstinukas turimas kalbas",
-  "leaflet_page_title": "Dokumentai"
+  "leaflet_page_title": "Dokumentai",
+  "document_change_lang_title": "Keisti kalbą",
+  "document_change_lang_message": "Pakeiskite dokumento kalbą."
 }
 
 export default data;

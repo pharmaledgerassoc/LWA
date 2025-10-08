@@ -274,7 +274,9 @@ const data = {
   "alert_icon": "Ícone de alerta",
   "leaflet_available_doc": "Documentos disponíveis do folheto",
   "leaflet_available_lang": "Línguas disponíveis do folheto",
-  "leaflet_page_title": "Documentos"
+  "leaflet_page_title": "Documentos",
+  "document_change_lang_title": "Mudar a linguagem",
+  "document_change_lang_message": "Altere o idioma do documento."
 }
 
 export default data;

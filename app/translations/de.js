@@ -266,7 +266,9 @@ const data = {
   "alert_icon": "Alarm -Symbol",
   "leaflet_available_doc": "Die verfügbaren Dokumente von Broschüren",
   "leaflet_available_lang": "Die verfügbaren Sprachen von Broschüren",
-  "leaflet_page_title": "Unterlagen"
+  "leaflet_page_title": "Unterlagen",
+  "document_change_lang_title": "Sprache ändern",
+  "document_change_lang_message": "Ändern Sie die Sprache des Dokuments."
 }
 
 export default data;

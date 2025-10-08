@@ -265,7 +265,9 @@ const data = {
   "alert_icon": "Icona di allerta",
   "leaflet_available_doc": "Documenti disponibili del volantino",
   "leaflet_available_lang": "Le lingue disponibili del volantino",
-  "leaflet_page_title": "Documenti"
+  "leaflet_page_title": "Documenti",
+  "document_change_lang_title": "Cambia il linguaggio",
+  "document_change_lang_message": "Cambia la lingua del documento."
 }
 
 export default data;

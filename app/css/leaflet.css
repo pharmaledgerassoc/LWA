@@ -230,6 +230,7 @@ button:not([disabled]) {
 }
 
 .leaflet-page .icon-title-container #print-modal-button,
+.leaflet-page .icon-title-container #languages-modal-button,
 .leaflet-page .icon-title-container .print-icon-container {
     width: 80px;
     text-align: center;

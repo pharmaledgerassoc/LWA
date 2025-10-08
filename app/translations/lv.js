@@ -265,7 +265,9 @@ const data = {
   "alert_icon": "Brīdinājuma ikona",
   "leaflet_available_doc": "Beamplet pieejamie dokumenti",
   "leaflet_available_lang": "Beamplet pieejamās valodas",
-  "leaflet_page_title": "Dokumenti"
+  "leaflet_page_title": "Dokumenti",
+  "document_change_lang_title": "Mainīt valodu",
+  "document_change_lang_message": "Mainiet dokumenta valodu."
 }
 
 export default data;

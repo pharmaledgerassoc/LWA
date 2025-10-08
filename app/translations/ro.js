@@ -265,7 +265,9 @@ const data = {
   "alert_icon": "Pictogramă de alertă",
   "leaflet_available_doc": "Documentele disponibile ale prospectului",
   "leaflet_available_lang": "Limbile disponibile ale prospectului",
-  "leaflet_page_title": "Documente"
+  "leaflet_page_title": "Documente",
+  "document_change_lang_title": "Schimbați limbajul",
+  "document_change_lang_message": "Schimbați limbajul documentului."
 }
 
 export default data;

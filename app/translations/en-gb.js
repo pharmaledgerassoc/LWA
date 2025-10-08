@@ -266,7 +266,9 @@ const data = {
   "alert_icon": "Alert icon",
   "leaflet_available_doc": "Leaflet's available documents",
   "leaflet_available_lang": "Leaflet's available languages",
-  "leaflet_page_title": "Documents"
+  "leaflet_page_title": "Documents",
+  "document_change_lang_title": "Change language",
+  "document_change_lang_message": "Change the language of the document."
 }
 
 export default data;
