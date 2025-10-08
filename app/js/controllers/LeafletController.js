@@ -259,6 +259,9 @@ function LeafletController() {
                 this.loadPrintContent("product-modal");
                 return;
             }
+            if(this.availableLanguages.length > 1) {
+                document.querySelector(`#languages-modal-button`).hidden = false;
+            }
             setTextDirectionForLanguage(this.selectedLanguage, "#settings-modal");
             this.showModal("settings-modal");
             renderLeaflet(result, this.metadata);
