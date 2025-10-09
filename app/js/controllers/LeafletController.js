@@ -559,8 +559,9 @@ function LeafletController() {
         const content = contentContainer.cloneNode(true);
         contentContainer.classList.add("active");
         const printContent =  document.querySelector('#print-content');
-        content.querySelectorAll('[style], [nowrap],video').forEach(element => {
-            element.removeAttribute('style');
+        content.querySelectorAll('[nowrap], video').forEach(element => {
+             // if(['table', 'th', 'td', 'tr', 'thead', 'tbody', 'tfoot', 'caption'].includes(element.tagName.toLowerCase()))  
+            //     element.removeAttribute('style');
             element.removeAttribute('nowrap');
             element.removeAttribute('xmlns');  
         });
@@ -574,7 +575,6 @@ function LeafletController() {
                 // Hide the video for the print
                 element.remove();
             }
-
         });
     }
 
