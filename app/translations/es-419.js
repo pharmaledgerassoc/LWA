@@ -266,6 +266,8 @@ const data = {
   "leaflet_available_doc": "Documentos disponibles del folleto",
   "leaflet_available_lang": "Idiomas disponibles del folleto",
   "leaflet_page_title": "Documentos",
+  "document_change_lang_title": "Cambiar idioma",
+  "document_change_lang_message": "Cambiar el idioma del documento.",
   "controlled_substance": "Sustancia controlada"
 }
 

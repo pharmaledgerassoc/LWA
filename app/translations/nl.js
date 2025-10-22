@@ -267,6 +267,8 @@ const data = {
   "leaflet_available_doc": "De beschikbare documenten van folder",
   "leaflet_available_lang": "De beschikbare talen van folder",
   "leaflet_page_title": "Documenten",
+  "document_change_lang_title": "Verander taal",
+  "document_change_lang_message": "Wijzig de taal van het document.",
   "controlled_substance": "Gecontroleerde stof"
 }
 
