@@ -188,7 +188,8 @@ const upperCaseProductDescriptionProductName = function (text , searchText) {
 }
 
 const renderControlledSubstancesSymbol = function(leafletData) {
-  const controlSubstances = document.querySelectorAll(".controlled-substance");
+  const leafletContent = document.querySelector("#leaflet-content");
+  const controlSubstances = leafletContent.querySelectorAll(".controlled-substance");
   if(controlSubstances.length != 0){
     const descriptionName = setupDescriptionProductName(leafletData.productData.nameMedicinalProduct || leafletData.productData.description, leafletData.productData.inventedName || leafletData.productData.name);
     document.querySelector(".product-description").innerHTML = descriptionName;
