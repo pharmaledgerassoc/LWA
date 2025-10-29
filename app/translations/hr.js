@@ -266,6 +266,8 @@ const data = {
   "leaflet_available_doc": "Dostupni dokumenti Leaflet",
   "leaflet_available_lang": "Dostupni jezici Leaflet",
   "leaflet_page_title": "Dokumenti",
+  "leaflet_search": "Pretraživanje",
+  "leaflet_search_input": "Tip za pretragu",
   "document_change_lang_title": "Promijenite jezik",
   "document_change_lang_message": "Promijenite jezik dokumenta.",
   "controlled_substance": "Kontrolirana tvar"

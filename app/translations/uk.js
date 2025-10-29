@@ -267,6 +267,8 @@ const data = {
   "leaflet_available_doc": "Доступні документи листівки",
   "leaflet_available_lang": "Наявні мови листівки",
   "leaflet_page_title": "Документи",
+  "leaflet_search": "Пошук",
+  "leaflet_search_input": "Введіть для пошуку",
   "document_change_lang_title": "Змінити мову",
   "document_change_lang_message": "Змінити мову документа.",
   "controlled_substance": "Контрольована речовина"
