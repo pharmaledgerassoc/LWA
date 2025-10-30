@@ -8,6 +8,10 @@ html {
     opacity: 0;
 }
 
+main {
+    min-height: 100vh;
+    box-sizing: border-box;
+}
 
 fieldset {
     border: none;
