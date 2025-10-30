@@ -72,7 +72,7 @@ function LeafletController() {
 
     this.showModal = function (modalId, stackModal = false)  {
         const modal = document.querySelector(`#${modalId}`);
-        this.showLoader(false);
+        // this.showLoader(false);
         if(!stackModal) {
             const activeModal = this.getActiveModal();
             if(activeModal)
@@ -83,7 +83,8 @@ function LeafletController() {
     };
 
     this.showLoader = function (show) {
-        this.loader.hidden = !show;
+        this.loader.hidden = !show
+        this.loader.style.display = show ? "": "none";
     };
 
     this.printContent = function(evt){
