@@ -266,7 +266,12 @@ const data = {
   "alert_icon": "警报图标",
   "leaflet_available_doc": "传单的可用文件",
   "leaflet_available_lang": "传单的可用语言",
-  "leaflet_page_title": "文件"
+  "leaflet_page_title": "文件",
+  "leaflet_search": "搜索",
+  "leaflet_search_input": "类型要搜索",
+  "document_change_lang_title": "更改语言",
+  "document_change_lang_message": "更改文档的语言。",
+  "controlled_substance": "受控物质"
 }
 
 export default data;

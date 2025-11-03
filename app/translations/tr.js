@@ -265,7 +265,12 @@ const data = {
   "alert_icon": "Uyarı simgesi",
   "leaflet_available_doc": "Broşürün Mevcut Belgeleri",
   "leaflet_available_lang": "Broşürün Mevcut Dilleri",
-  "leaflet_page_title": "Belgeler"
+  "leaflet_page_title": "Belgeler",
+  "leaflet_search": "Aramak",
+  "leaflet_search_input": "Arama yazın",
+  "document_change_lang_title": "Dili Değiştir",
+  "document_change_lang_message": "Belgenin dilini değiştirin.",
+  "controlled_substance": "Kontrollü Madde"
 }
 
 export default data;

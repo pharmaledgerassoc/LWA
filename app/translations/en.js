@@ -274,7 +274,12 @@ const data = {
   "menu_button": "Menu",
   "leaflet_available_doc": "Leaflet's available documents",
   "leaflet_available_lang": "Leaflet's available languages",
-  "leaflet_page_title": "Documents"
+  "leaflet_page_title": "Documents",
+  "leaflet_search": "Search",
+  "leaflet_search_input": "Type to search",
+  "document_change_lang_title": "Change language",
+  "document_change_lang_message": "Change the language of the document.",
+  "controlled_substance": "Controlled Substance"
 }
 
 export default data;

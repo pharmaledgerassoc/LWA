@@ -85,7 +85,18 @@ const fixHTML = function(htmlContent) {
 const fixTables = function(htmlContent) {
     const tables = htmlContent.querySelectorAll('table');
     if(tables) 
-        tables.forEach(table => table.outerHTML = `<div class="table-container">${table.outerHTML}</div>`)
+        tables.forEach(table => {
+        for (let i = 0; i < table.attributes.length; i++) {
+            const {name} = table.attributes[i];
+            if(name === 'xmlns') 
+                table.removeAttribute('xmlns');
+        }
+        try {
+            table.outerHTML = `<div class="table-container">${table.outerHTML}</div>`
+        } catch(error) {
+            console.error(`Error fixing table: ${error.message}`);
+        }
+    })
 }
 
   
@@ -333,22 +344,50 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     <xsl:param name="quote">"</xsl:param>
     <xsl:param name="space">\\0020</xsl:param>
     <xsl:template match="//ul">
-        <ul role="list"> <xsl:apply-templates select="node()" /></ul>
+        <ul role="list">
+            <xsl:choose>
+                <xsl:when test="contains(@style,'list-style-type')">
+                    <xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:apply-templates select="node()" />
+        </ul>
     </xsl:template>
 
     <xsl:template match="//ul/li">
         <li role="list-item" tabindex="0">
-          <xsl:attribute name="style"> list-style-type: <xsl:value-of select="$quote"/><xsl:value-of select="@data-enum"/><xsl:value-of select="$space"/><xsl:value-of select="$quote"/>; </xsl:attribute>
+            <xsl:choose>
+                <xsl:when test="normalize-space(@data-enum) != ''">
+                    <xsl:attribute name="style"> list-style-type: <xsl:value-of select="$quote"/><xsl:value-of select="@data-enum"/><xsl:value-of select="$space"/><xsl:value-of select="$quote"/>; </xsl:attribute>
+                </xsl:when>
+                <xsl:when test="contains(@style,'list-style-type')">
+                    <xsl:attribute name="style"><xsl:value-of select="@style"/></xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
         <xsl:apply-templates select="node()" /></li>
     </xsl:template>
 
     <xsl:template match="//ol">
-        <ol role="list"><xsl:apply-templates select="node()" /></ol>
+        <ol role="list">
+            <xsl:choose>
+                <xsl:when test="normalize-space(@type) != ''">
+                    <xsl:attribute name="type"><xsl:value-of select="@type"/></xsl:attribute>
+                </xsl:when>
+                <xsl:when test="normalize-space(@data-type) != ''">
+                    <xsl:attribute name="style">list-style-type: <xsl:value-of select="@data-type"/>;</xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
+            <xsl:apply-templates select="node()" />
+        </ol>
     </xsl:template>
 
     <xsl:template match="//ol/li">
         <li role="list-item" tabindex="0">
-         <xsl:attribute name="style"> list-style-type: <xsl:value-of select="$quote"/><xsl:value-of select="@data-enum"/><xsl:value-of select="$space"/><xsl:value-of select="$quote"/>; </xsl:attribute>
+            <xsl:choose>
+                <xsl:when test="normalize-space(@data-enum) != ''">
+                    <xsl:attribute name="style"> list-style-type: <xsl:value-of select="$quote"/><xsl:value-of select="@data-enum"/><xsl:value-of select="$space"/><xsl:value-of select="$quote"/>; </xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
         <xsl:apply-templates select="node()" /></li>
     </xsl:template>
 
@@ -418,11 +457,31 @@ const acodisXslContent =  `<?xml version="1.0" encoding="UTF-8"?>
     </xsl:template>
     
     <xsl:template match="//table">
-        <table><xsl:apply-templates select="node()" /></table>
+        <table>
+        <xsl:copy-of select="@*" />
+          <xsl:apply-templates select="node()" />
+        </table>
+    </xsl:template>
+
+    <xsl:template match="//th">
+        <th>
+            <xsl:copy-of select="@*" />
+            <xsl:apply-templates select="node()" />
+        </th>
     </xsl:template>
 
     <xsl:template match="//tr">
-        <tr><xsl:apply-templates select="node()" /></tr>
+        <tr>
+            <xsl:copy-of select="@*" />
+            <xsl:apply-templates select="node()" />
+        </tr>
+    </xsl:template>
+
+    <xsl:template match="//td">
+        <td>
+            <xsl:copy-of select="@*" />
+            <xsl:apply-templates select="node()" />
+        </td>
     </xsl:template>
       
      <xsl:template match="//*[@class='Table of Content']" priority="9">

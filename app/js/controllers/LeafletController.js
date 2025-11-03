@@ -4,7 +4,7 @@ import {
 import constants from "../../../constants.js";
 import LeafletService from "../services/LeafletService.js";
 import environment from "../../../environment.js";
-import {focusModalHeader, renderLeaflet, showExpired, renderProductInformation} from "../utils/leafletUtils.js"
+import {focusModalHeader, renderLeaflet, showExpired, handleLeafletAccordion, renderProductInformation} from "../utils/leafletUtils.js"
 import {translate, getTranslation, transformToISOStandardLangCode, getLanguageFallback,translateAccessibilityAttributes} from "../translationUtils.js";
 import {getCountry} from "../countriesUtils.js";
 
@@ -52,6 +52,7 @@ function LeafletController() {
     this.selectedEpiMarket;
     this.lastModal;
     this.metadata = undefined;
+    this.availableLanguages = [];
 
     this.defaultLanguage = localStorage.getItem(constants.APP_LANG) || "en";
     this.leafletService = new LeafletService(this.gtin, this.batch, this.expiry, this.defaultLanguage, this.lsEpiDomain);
@@ -71,7 +72,7 @@ function LeafletController() {
 
     this.showModal = function (modalId, stackModal = false)  {
         const modal = document.querySelector(`#${modalId}`);
-        this.showLoader(false);
+        // this.showLoader(false);
         if(!stackModal) {
             const activeModal = this.getActiveModal();
             if(activeModal)
@@ -82,7 +83,8 @@ function LeafletController() {
     };
 
     this.showLoader = function (show) {
-        this.loader.hidden = !show;
+        this.loader.hidden = !show
+        this.loader.style.display = show ? "": "none";
     };
 
     this.printContent = function(evt){
@@ -258,6 +260,9 @@ function LeafletController() {
                 this.loadPrintContent("product-modal");
                 return;
             }
+            if(this.availableLanguages.length > 1) {
+                document.querySelector(`#languages-modal-button`).hidden = false;
+            }
             setTextDirectionForLanguage(this.selectedLanguage, "#settings-modal");
             this.showModal("settings-modal");
             renderLeaflet(result, this.metadata);
@@ -414,6 +419,8 @@ function LeafletController() {
         
         this.showLoader(true);
 
+        this.availableLanguages = languages;
+
         const browserLang = this.getLanguageFromBrowser(false);
         if (languages.length >= 1) {
             if (languages.map(r => r.value.toLowerCase()).includes(browserLang)) {
@@ -497,6 +504,86 @@ function LeafletController() {
         }
     };
 
+    const changeAvailableLanguages = (languages) => {
+        
+        this.showLoader(true);
+        
+        this.availableLanguages = languages;
+
+        const modal = this.showModal('change-language-modal',true);
+        
+        modal.querySelector('#change-language-message').textContent = getTranslation("document_change_lang_message")
+        modal.querySelector('#change-lang-title').textContent = getTranslation("document_change_lang_title");
+
+        modal.querySelector("#proceed-button").addEventListener("click", () => {
+            let lang = document.querySelector("input[name='languages']:checked").value;
+            if(lang !== this.selectedLanguage) 
+                setSelectedLanguage(lang);
+            this.closeModal(modal.id);
+        })
+
+            // modal.querySelector("#go-back-button").addEventListener("click", () => {
+            //     this.showModal('documents-modal');
+            // });
+
+        modal.querySelector(".proceed-button.no-leaflet").classList.add("hiddenElement");
+        //  document.querySelector(".text-section.no-leaflet").setAttribute('style', 'display:none');
+        let languagesContainer = document.querySelector(".available-languages-container");
+        languagesContainer.querySelectorAll('label').forEach(label => label.remove());
+        /* site for flags https://flagpedia.net/download */
+        let selectedItem = null;
+        languages.forEach((lang, index) => {
+
+            // Create the radio input element
+            let radioInput = document.createElement('input');
+            radioInput.setAttribute("type", "radio");
+            radioInput.setAttribute("name", "languages");
+            radioInput.setAttribute("value", escapeHTMLAttribute(lang.value));
+            radioInput.setAttribute("tabindex", "-1");
+            radioInput.setAttribute("id", escapeHTMLAttribute(lang.value));
+            radioInput.defaultChecked = lang.value === this.selectedLanguage;
+
+            // Create the div element for the label
+            let labelDiv = document.createElement('div');
+            labelDiv.classList.add("radio-label");
+            labelDiv.setAttribute("radio-label", escapeHTMLAttribute(lang.label));
+            labelDiv.textContent = escapeHTML(`${lang.label} - (${lang.nativeName})`);
+
+            let radioFragment = document.createElement('label');
+            radioFragment.classList.add("radio-item-container");
+            // radioFragment.setAttribute("role", "radio");
+            radioFragment.setAttribute("tabindex", "0");
+            radioFragment.setAttribute("aria-checked", new Boolean(index === 0).toString());
+            // radioFragment.setAttribute("aria-label", escapeHTMLAttribute(lang.label) + " language");
+
+            // Append the radioInput and label elements to the container
+            radioFragment.appendChild(radioInput);
+            radioFragment.appendChild(labelDiv);
+
+            if (index === 0) {
+                selectedItem = radioFragment;
+            }
+
+            radioFragment.querySelector("input").addEventListener("change", (event) => {
+                if (selectedItem) {
+                    selectedItem.setAttribute("aria-checked", "false");
+                }
+                radioFragment.setAttribute("aria-checked", "true");
+                selectedItem = radioFragment;
+            })
+
+            radioFragment.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                    radioFragment.querySelector("input").checked = true;
+                }
+            })
+
+            languagesContainer.appendChild(radioFragment);
+        });
+        this.showLoader(false);
+        focusModalHeader();
+    };
+
     let showRecalledMessage = (result) => {
         const {productData} = result;
         const {productRecall, batchData} = productData;
@@ -553,18 +640,22 @@ function LeafletController() {
 
     this.loadPrintContent= (modal = 'settings-modal') => {
         
-        setTextDirectionForLanguage(this.selectedLanguage, "#print-content");
+         setTextDirectionForLanguage(this.selectedLanguage, "#print-content");
 
-        const content =  document.querySelector(`#${modal} .content-to-print`).cloneNode(true);
+        const contentContainer = document.querySelector(`#${modal} .content-to-print`);
+        const content = contentContainer.cloneNode(true);
+        contentContainer.classList.add("active");
         const printContent =  document.querySelector('#print-content');
-        content.querySelectorAll('[style], [nowrap],video').forEach(element => {
-            element.removeAttribute('style');
+        content.querySelectorAll('[nowrap], video').forEach(element => {
+             // if(['table', 'th', 'td', 'tr', 'thead', 'tbody', 'tfoot', 'caption'].includes(element.tagName.toLowerCase()))  
+            //     element.removeAttribute('style');
             element.removeAttribute('nowrap');
             element.removeAttribute('xmlns');  
         });
+        
         printContent.innerHTML = "";
         printContent.innerHTML = content.innerHTML;
-
+        
         // Setup the printing images of the videos
         printContent.querySelectorAll('video').forEach(async(element) => {
             if(element.tagName === 'VIDEO') {
@@ -572,7 +663,6 @@ function LeafletController() {
                 // Hide the video for the print
                 element.remove();
             }
-
         });
     }
 
@@ -651,10 +741,74 @@ function LeafletController() {
         }
     };
 
+     this.toggleSearch = () => {
+        console.log('toggleSearch');
+        const searchContainer = document.querySelector("#search-input-container");
+        searchContainer.classList.toggle("active");
+        if(searchContainer.classList.contains("active"))
+            searchContainer.querySelector("input").focus();
+    };
+
+
+    function debounceSearch(fn, delay) {
+        let timeout;
+        return function (...args) {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => fn.apply(this, args), delay);
+        };
+    }
+
+    this.handleSearch = debounceSearch(function () {
+        const value = document.querySelector("#search-input").value.trim();
+        const content = document.querySelector(".content-to-print.active");
+        // clean up previous highlights
+        content.innerHTML = content.innerHTML.replace(/<\/?mark>/g, "");
+
+        // collapse searched sections
+        if(value.length === 0) {
+            const sections = content.querySelectorAll(".section.searched");
+            sections.forEach(section => {
+                section.classList.remove("active", "searched");
+            });
+        }
+        if (value.length >= 2) {
+            const regex = new RegExp(`(${value})`, "gi");
+            function search(node, element) {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    const replaced = node.textContent.replace(regex, '<mark>$1</mark>');
+
+                    if (replaced !== node.textContent) {
+                        const span = document.createElement("span");
+                        span.innerHTML = replaced;
+                        node.replaceWith(span);
+                        if(element) {
+                            const section = element.closest(".section.leaflet-accordion-item");
+                            if(section && !section.classList.contains("active")) 
+                                section.classList.add("active", "searched");
+                        }
+                    
+                    }
+                } else if (node.nodeType === Node.ELEMENT_NODE) {
+                    node.childNodes.forEach(child => search(child, node));
+                }
+            }
+            search(content);
+        }   
+        handleLeafletAccordion();
+    });
+
+    this.LoadAvailableLanguages = () => {
+        changeAvailableLanguages(this.availableLanguages)
+    }
+
     const addEventListeners = () => {
+        document.getElementById("search-modal-button").addEventListener("click", this.toggleSearch);
+        document.getElementById("search-input").addEventListener("input", this.handleSearch);
+
         document.getElementById("scan-again-button").addEventListener("click", this.scanAgainHandler);
         document.getElementById("modal-print-button").addEventListener("click", this.printContent.bind(this));
         document.querySelectorAll("#print-modal-button").forEach(button => button.addEventListener("click", this.showPrintModal));
+        document.querySelectorAll("#languages-modal-button").forEach(button => button.addEventListener("click", this.LoadAvailableLanguages));
         document.getElementById("modal-scan-again-button").addEventListener("click", this.scanAgainHandler);
         document.querySelectorAll("#go-back-button").forEach(button =>  button.addEventListener("click", this.goHome));
         document.getElementById("modal-print-go-back-button").addEventListener("click", this.closePrintModal);

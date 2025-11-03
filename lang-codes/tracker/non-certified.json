@@ -286,5 +286,10 @@
   "menu_button": 332,
   "leaflet_available_doc": 333,
   "leaflet_available_lang": 334,
-  "leaflet_page_title": 335
+  "leaflet_page_title": 335,
+  "leaflet_search": 336,
+  "leaflet_search_input": 337,
+  "document_change_lang_title": 338,
+  "document_change_lang_message": 339,
+  "controlled_substance": 340
 }

@@ -266,7 +266,12 @@ const data = {
   "alert_icon": "Varna ikon",
   "leaflet_available_doc": "Broschyrens tillgängliga dokument",
   "leaflet_available_lang": "Broschyrens tillgängliga språk",
-  "leaflet_page_title": "Dokument"
+  "leaflet_page_title": "Dokument",
+  "leaflet_search": "Söka",
+  "leaflet_search_input": "Typ för att söka",
+  "document_change_lang_title": "Ändra språk",
+  "document_change_lang_message": "Ändra dokumentets språk.",
+  "controlled_substance": "Kontrollerat ämne"
 }
 
 export default data;

@@ -265,7 +265,12 @@ const data = {
   "alert_icon": "Ikona alertów",
   "leaflet_available_doc": "Dostępne dokumenty ulotki",
   "leaflet_available_lang": "Dostępne języki ulotki",
-  "leaflet_page_title": "Dokumenty"
+  "leaflet_page_title": "Dokumenty",
+  "leaflet_search": "Szukaj",
+  "leaflet_search_input": "Wpisz do wyszukiwania",
+  "document_change_lang_title": "Zmień język",
+  "document_change_lang_message": "Zmień język dokumentu.",
+  "controlled_substance": "Substancja kontrolowana"
 }
 
 export default data;

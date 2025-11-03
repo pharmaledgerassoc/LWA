@@ -266,7 +266,12 @@ const data = {
   "alert_icon": "أيقونة التنبيه",
   "leaflet_available_doc": "مستندات النشرة المتاحة",
   "leaflet_available_lang": "اللغات المتاحة للنشرة",
-  "leaflet_page_title": "وثائق"
+  "leaflet_page_title": "وثائق",
+  "leaflet_search": "يبحث",
+  "leaflet_search_input": "اكتب للبحث",
+  "document_change_lang_title": "تغيير اللغة",
+  "document_change_lang_message": "تغيير لغة المستند.",
+  "controlled_substance": "مادة خاضعة للرقابة"
 }
 
 export default data;
