@@ -365,6 +365,15 @@ class LeafletService {
               console.warn("Metadata not found. Retrying with legacy mode...");
               return this.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, true).then(resolve).catch(reject);
             }
+            if (error.code && error.code === ERROR_TYPES.MISCONFIGURATION) {
+              try {
+                this.batch = undefined;
+                return this.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, false).then(resolve).catch(reject);
+              } catch (err) {
+                reject({errorCode: constants.errorCodes.misconfiguration});
+              }
+              return;
+            }
           }
           
           if (!leafletResponse) {
@@ -495,14 +504,7 @@ class LeafletService {
             case 404:
               return reject({errorCode: constants.errorCodes.no_uploaded_epi});
             case 529:
-              try {
-                this.batch = null;
-                const prodLeaflet = await this.getLeafletResult(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime);
-                resolve(prodLeaflet);
-              } catch (err) {
-                reject({errorCode: constants.errorCodes.misconfiguration});
-              }
-              return;
+              return reject({errorCode: constants.errorCodes.get_dsu_timeout});
             case 304:
             case 200:
               if (globalTimer) {
