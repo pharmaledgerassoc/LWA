@@ -106,6 +106,7 @@ class LeafletService {
 
     this.gtin = gtin;
     this.batch = batch;
+    this.cacheBatch = batch;
     this.expiry = expiry;
     this.leafletLang = leafletLang;
     this.epiDomain = epiDomain;
@@ -220,7 +221,7 @@ class LeafletService {
     });
   }
 
-  getLeafletRequest(leafletApiUrl, subDomain) {
+  getLeafletRequest(leafletApiUrl, subDomain, noBatch) {
     let smartUrl = new LightSmartUrl(leafletApiUrl);
     let urlPart = `/leaflets/${this.epiDomain}`;
     if(subDomain){
@@ -237,14 +238,14 @@ class LeafletService {
     });
   }
 
-  getLeafletMetadataRequest(leafletApiUrl, subDomain) {
+  getLeafletMetadataRequest(leafletApiUrl, subDomain, noBatch) {
     let smartUrl = new LightSmartUrl(leafletApiUrl);
     let urlPart = `/metadata/leaflet/${this.epiDomain}`;
     if(subDomain){
       urlPart += `/${subDomain}`;
     }
 
-    const queryParams = buildMetadataQueryParams(this.gtin, this.batch);
+    const queryParams = buildMetadataQueryParams(this.gtin, noBatch ? undefined : this.batch);
     smartUrl = smartUrl.concatWith(`${urlPart}?${queryParams}`);
 
     const header = {"epiProtocolVersion": environment.epiProtocolVersion || "1"};
@@ -288,7 +289,7 @@ class LeafletService {
    *   availableDocuments: Record<string, Record<string, { label: string, value: string, nativeName: string }[]>>
    * }>} Resolves to an object containing product metadata and available documents.
    */
-  async getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, legacyMode = false) {
+  async getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, legacyMode = false, noBatch = false) {
     const self = this;
     const method = legacyMode ? this.getLeafletRequest : this.getLeafletMetadataRequest;
 
@@ -314,7 +315,7 @@ class LeafletService {
     const prepareUrlsForLeafletCall = (arrayOfUrls, subDomain) => {
       let newArray = [];
       for (let i = 0; i < arrayOfUrls.length; i++) {
-        newArray.push(method.call(self, arrayOfUrls[i], subDomain));
+        newArray.push(method.call(self, arrayOfUrls[i], subDomain, noBatch));
       }
       return newArray;
     }
@@ -361,18 +362,21 @@ class LeafletService {
           try {
             leafletResponse = await requestWizard.fetchMeAResponse(targets, validateResponse);
           } catch (error) {
-            if (!legacyMode) {
-              console.warn("Metadata not found. Retrying with legacy mode...");
-              return this.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, true).then(resolve).catch(reject);
+            if(this.batch !== "undefined" && !legacyMode) {
+              this.batch = "undefined"
+              console.warn("Metadata not found. Fallback to batch named undefined cache...");
+              return this.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, false, false).then(resolve).catch(reject);
             }
-            if (error.code && error.code === ERROR_TYPES.MISCONFIGURATION) {
-              try {
-                this.batch = undefined;
-                return this.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, false).then(resolve).catch(reject);
-              } catch (err) {
-                reject({errorCode: constants.errorCodes.misconfiguration});
-              }
-              return;
+            
+            if(!noBatch){
+              console.warn("Metadata not found. Fallback to product cache...");
+              return this.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, false, true).then(resolve).catch(reject);
+            }
+              
+            if (!legacyMode) {
+                this.batch = this.cacheBatch;
+                console.warn("Metadata not found. Retrying with legacy mode...");
+                return this.getLeafletMetadata(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime, true, true).then(resolve).catch(reject);
             }
           }
           
