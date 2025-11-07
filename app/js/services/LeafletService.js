@@ -495,7 +495,14 @@ class LeafletService {
             case 404:
               return reject({errorCode: constants.errorCodes.no_uploaded_epi});
             case 529:
-              return reject({errorCode: constants.errorCodes.get_dsu_timeout});
+              try {
+                this.batch = null;
+                const prodLeaflet = await this.getLeafletResult(timePerCall, totalWaitTime, gto_TimePerCall, gto_TotalWaitTime);
+                resolve(prodLeaflet);
+              } catch (err) {
+                reject({errorCode: constants.errorCodes.misconfiguration});
+              }
+              return;
             case 304:
             case 200:
               if (globalTimer) {
