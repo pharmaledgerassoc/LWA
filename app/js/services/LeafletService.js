@@ -25,7 +25,6 @@ const buildMetadataQueryParams = function (gtin, batchNumber) {
     }
     append.call(converter.searchParams, name, value);
   }
-
   converter.searchParams.append("batch", batchNumber);
   converter.searchParams.append("gtin", gtin);
 
@@ -46,7 +45,7 @@ const buildQueryParams = function (gtin, batchNumber, lang, leafletType, epiMark
     append.call(converter.searchParams, name, value);
   }
 
-  if(batchNumber && (!epiMarket && leafletType === DocumentsTypes.LEAFLET))
+  if(batchNumber && (!epiMarket && leafletType === DocumentsTypes.LEAFLET) && (batchNumber != "undefined" && batchNumber != "null"))
     converter.searchParams.append("batch", batchNumber);
   converter.searchParams.append("lang", lang);
   converter.searchParams.append("gtin", gtin);
