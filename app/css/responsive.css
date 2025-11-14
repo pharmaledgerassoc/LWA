@@ -405,7 +405,8 @@ b {
 
 @media(max-width: 768px) {
     .content-container {
-        align-items: flex-end;
+          /* align-items: flex-end; */
+        max-height: 50vh;
         /* flex-grow: 0; */
     }
 }
