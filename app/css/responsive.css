@@ -433,6 +433,12 @@ b {
     flex-grow: 1;
     word-break: normal;
 }
+@media(max-width: 768px) {
+    .scan-button-container {
+        flex-grow: 0;
+        margin-top: 5vh !important;
+    }
+}
 
 .scan-button {
     color: var(--olivegreen);
