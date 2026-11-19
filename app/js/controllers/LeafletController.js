@@ -41,15 +41,21 @@ const parseEpiMarketValue = (epiMarket) => {
 
 enableConsolePersistence();
 
-window.onload = async (event) => {
-  await translate();
-  translateAccessibilityAttributes();
-  setTimeout(() => {
-    document.querySelectorAll(".modal-header .close-modal").forEach((elem) => {
-      elem.style.position = "absolute";
-    });
-  }, 0);
+const initializeLeafletPage = async () => {
+    await translate();
+    translateAccessibilityAttributes();
+    setTimeout(() => {
+        document.querySelectorAll(".modal-header .close-modal").forEach(elem => {
+            elem.style.position = "absolute";
+        })
+    }, 0);
 };
+
+if (document.readyState === "complete") {
+    initializeLeafletPage();
+} else {
+    window.addEventListener("load", initializeLeafletPage, {once: true});
+}
 
 const sanitationRegex =
   /(<iframe>([\s\S]*)<\/iframe>)|(<script>([\s\S]*)<\/script>)/g;

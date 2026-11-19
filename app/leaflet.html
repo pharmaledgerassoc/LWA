@@ -2,6 +2,7 @@
 <html>
 <!--<html moznomarginboxes mozdisallowselectionprint>-->
 <head>
+    <meta charset="UTF-8">
     <script src="js/cacheControl.js"></script>
     <link href="css/responsive.css" rel="stylesheet">
 <!--    <link href="css/print.css" rel="stylesheet"></link>-->
@@ -277,6 +278,10 @@
             </div>
         </div>
     </main>
-    <script src="./js/controllers/LeafletController.js" type="module"></script>
+    <script src="vendor/xslt-polyfill.min.js"></script>
+    <script type="module">
+        await window.xsltPolyfillReady();
+        await import("./js/controllers/LeafletController.js");
+    </script>
 </body>
 </html>
