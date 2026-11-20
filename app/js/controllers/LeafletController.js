@@ -1036,6 +1036,7 @@ function LeafletController() {
   getLeafletMetadata();
 }
 
+await window.xsltPolyfillReady?.();
 const leafletController = new LeafletController();
 
 window.leafletController = leafletController;
